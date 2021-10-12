@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
 		832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E32715986A00BD92E2 /* SwiftUIX */; };
+		832AC1E727159AE600BD92E2 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E627159AE600BD92E2 /* Customer.swift */; };
+		832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E827159BC800BD92E2 /* Bengkel.swift */; };
+		832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1EA2715A2FD00BD92E2 /* Motor.swift */; };
+		832AC1ED2715A42300BD92E2 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1EC2715A42300BD92E2 /* Review.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
 		837370B627144701003656FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B527144701003656FC /* ContentView.swift */; };
 		837370B827144703003656FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370B727144703003656FC /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
+		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
+		832AC1EC2715A42300BD92E2 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
 		837370B527144701003656FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +54,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		832AC1E527159AC000BD92E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				832AC1E627159AE600BD92E2 /* Customer.swift */,
+				832AC1E827159BC800BD92E2 /* Bengkel.swift */,
+				832AC1EA2715A2FD00BD92E2 /* Motor.swift */,
+				832AC1EC2715A42300BD92E2 /* Review.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		837370A727144701003656FC = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +84,7 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				832AC1E527159AC000BD92E2 /* Models */,
 				837370C1271449E4003656FC /* GoogleService-Info.plist */,
 				837370B327144701003656FC /* MokuApp.swift */,
 				837370B527144701003656FC /* ContentView.swift */,
@@ -188,8 +208,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
+				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
+				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
