@@ -9,20 +9,20 @@ import Foundation
 
 struct Motor: Codable, Identifiable {
     var id = UUID()
-    let merk: Merk
+    let brand: Brand
     let model: String
     let cc: Int
     var year: Int?
 
-    init(merk: Merk, model: String, cc: Int) {
-        self.merk   = merk
+    init(brand: Brand, model: String, cc: Int) {
+        self.brand  = brand
         self.model  = model
         self.cc     = cc
     }
 }
 
 extension Motor {
-    enum Merk: String, Codable {
+    enum Brand: String, Codable {
         case honda, yamaha, suzuki, kawasaki
     }
 }
