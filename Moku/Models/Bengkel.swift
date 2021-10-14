@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Bengkel {
+struct Bengkel: Codable {
+    @DocumentID var id: String!
     var name: String
     var phoneNumber: String
     var photoReference: String?

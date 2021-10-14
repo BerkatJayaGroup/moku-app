@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+    @ObservedObject var repository = BengkelRepository.shared
+
     var body: some View {
         Text("Hello, world!")
             .padding()

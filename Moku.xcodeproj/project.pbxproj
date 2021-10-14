@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
+		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
+		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
+		830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D9271804D700F03CE3 /* RepositoryHelper.swift */; };
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
 		832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E32715986A00BD92E2 /* SwiftUIX */; };
 		832AC1E727159AE600BD92E2 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E627159AE600BD92E2 /* Customer.swift */; };
@@ -28,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
+		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
@@ -50,6 +57,7 @@
 			files = (
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
+				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
@@ -60,6 +68,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830383D02717FD7800F03CE3 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				830383D12717FD9F00F03CE3 /* BengkelRepository.swift */,
+				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		830383D32717FF3100F03CE3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				830383D42717FF5100F03CE3 /* Collection.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		830383D62718035A00F03CE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		832AC1E527159AC000BD92E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +118,7 @@
 			children = (
 				837370B227144701003656FC /* Moku */,
 				837370B127144701003656FC /* Products */,
+				830383D62718035A00F03CE3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +133,8 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				830383D32717FF3100F03CE3 /* Constants */,
+				830383D02717FD7800F03CE3 /* Repositories */,
 				8336748F2716C7840040D669 /* Resources */,
 				832AC1E527159AC000BD92E2 /* Models */,
 				837370C1271449E4003656FC /* GoogleService-Info.plist */,
@@ -143,6 +178,7 @@
 				837370CA27144BB1003656FC /* FirebaseStorage */,
 				832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */,
 				832AC1E32715986A00BD92E2 /* SwiftUIX */,
+				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -227,11 +263,14 @@
 			files = (
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
+				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
+				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
@@ -467,6 +506,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
 		832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 832AC1DF2715979B00BD92E2 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
