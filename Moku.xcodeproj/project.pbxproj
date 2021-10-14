@@ -20,6 +20,7 @@
 		833674912716C9DD0040D669 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674902716C9DD0040D669 /* Order.swift */; };
 		833674932716CC0D0040D669 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674922716CC0D0040D669 /* Location.swift */; };
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
+		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
 		837370B627144701003656FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B527144701003656FC /* ContentView.swift */; };
 		837370B827144703003656FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370B727144703003656FC /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		833674902716C9DD0040D669 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		833674922716CC0D0040D669 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		833674942716CD840040D669 /* Mekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mekanik.swift; sourceTree = "<group>"; };
+		83529A582718241000F3C82B /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
 		837370B527144701003656FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,8 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				830383D12717FD9F00F03CE3 /* BengkelRepository.swift */,
-				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
 				8E3735A72718237900C22DF0 /* CustomerRepository.swift */,
+				83529A582718241000F3C82B /* OrderRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -119,6 +121,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		83529A57271822E500F3C82B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		837370A727144701003656FC = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				830383D32717FF3100F03CE3 /* Constants */,
+				83529A57271822E500F3C82B /* Helpers */,
 				830383D02717FD7800F03CE3 /* Repositories */,
 				8336748F2716C7840040D669 /* Resources */,
 				832AC1E527159AC000BD92E2 /* Models */,
@@ -280,6 +291,7 @@
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
+				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

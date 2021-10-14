@@ -14,14 +14,8 @@ final class CustomerRepository: ObservableObject {
 
     private let store = Firestore.firestore().collection(Collection.customer)
 
-    @Published var customer = [Customer]() {
-        didSet {
-            for xou in customer {
-                print(xou)
-            }
-        }
-    }
-
+    @Published var customer = [Customer]()
+    
     private init() {
         fetch()
     }

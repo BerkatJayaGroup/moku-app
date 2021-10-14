@@ -1,5 +1,5 @@
 //
-//  BengkelRepository.swift
+//  OrderRepository.swift
 //  Moku
 //
 //  Created by Christianto Budisaputra on 14/10/21.
@@ -10,15 +10,15 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 // Final, biar ga bisa di extend
-final class BengkelRepository: ObservableObject {
+final class OrderRepository: ObservableObject {
     // Shared Instance (Singleton)
-    static let shared = BengkelRepository()
+    static let shared = OrderRepository()
 
     // Firestore Setup
-    private let store = Firestore.firestore().collection(Collection.bengkel)
+    private let store = Firestore.firestore().collection(Collection.order)
 
     // MARK: Properties
-    @Published var bengkel = [Bengkel]()
+    @Published var orders = [Order]()
 
     // Initial Setup
     private init() {
@@ -29,25 +29,25 @@ final class BengkelRepository: ObservableObject {
     func fetch() {
         store.getDocuments { snapshot, error in
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
-            self.bengkel = RepositoryHelper.extractData(from: documents, type: Bengkel.self)
+            self.orders = RepositoryHelper.extractData(from: documents, type: Order.self)
         }
     }
 
-    func add(bengkel: Bengkel) {
+    func add(order: Order) {
         do {
-            _ = try store.addDocument(from: bengkel)
+            _ = try store.addDocument(from: order)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
     }
 
-    func remove(bengkel: Bengkel) {
-        store.document(bengkel.id).delete()
+    func remove(order: Order) {
+        store.document(order.id).delete()
     }
 
-    func update(bengkel: Bengkel) {
+    func update(order: Order) {
         do {
-            try store.document(bengkel.id).setData(from: bengkel, merge: true)
+            try store.document(order.id).setData(from: order, merge: true)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
