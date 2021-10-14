@@ -41,7 +41,7 @@ final class BengkelRepository: ObservableObject {
 
     func add(bengkel: Bengkel) {
         do {
-            let _ = try store.addDocument(from: bengkel)
+            _ = try store.addDocument(from: bengkel)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

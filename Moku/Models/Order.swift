@@ -8,6 +8,7 @@
 import Foundation
 
 struct Order: Identifiable, Codable {
+    
     let id = UUID()
     let bengkel: Bengkel
     let customer: Customer
