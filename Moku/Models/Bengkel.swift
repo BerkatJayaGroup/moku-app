@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Bengkel {
+struct Bengkel: Codable{
     var name: String
     var phoneNumber: String
     var photoReference: String?
