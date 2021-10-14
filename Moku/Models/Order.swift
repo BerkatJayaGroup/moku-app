@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Order: Identifiable {
+struct Order: Identifiable, Codable {
     let id = UUID()
     let bengkel: Bengkel
     let customer: Customer
@@ -19,11 +19,11 @@ struct Order: Identifiable {
 }
 
 extension Order {
-    enum Status: String {
+    enum Status: String, Codable {
         case waitingConfirmation, waitingSchedule, onProgress, rejected, done
     }
 
-    enum Service: String {
+    enum Service: String, Codable {
         case checkup, fix
     }
 }
