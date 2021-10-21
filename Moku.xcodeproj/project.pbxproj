@@ -32,6 +32,7 @@
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854B921271EBAC700DCFAA5 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		B854B921271EBAC700DCFAA5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,7 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				B854B923271EBD0800DCFAA5 /* Info.plist */,
 				830383D32717FF3100F03CE3 /* Constants */,
 				83529A57271822E500F3C82B /* Helpers */,
 				830383D02717FD7800F03CE3 /* Repositories */,
@@ -159,6 +163,7 @@
 				837370B527144701003656FC /* ContentView.swift */,
 				837370B727144703003656FC /* Assets.xcassets */,
 				837370B927144703003656FC /* Preview Content */,
+				B854B921271EBAC700DCFAA5 /* MapView.swift */,
 			);
 			path = Moku;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
@@ -423,9 +429,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -453,9 +460,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

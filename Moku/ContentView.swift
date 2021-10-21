@@ -13,8 +13,7 @@ struct ContentView: View {
     @ObservedObject var cRepo = CustomerRepository.shared
 
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MapView()
     }
 }
 
