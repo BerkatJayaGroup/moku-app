@@ -50,7 +50,8 @@ struct BengkelDate: View {
                     Text("Lanjutkan")
                 }
                 .frame(width: 300, height: 45)
-                .background(Color.yellow)
+                .background(Color("PrimaryColor"))
+                .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
             }

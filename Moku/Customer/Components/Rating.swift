@@ -17,7 +17,7 @@ struct Rating: View {
             Button(action: { print("Button Tap") }) {
 
                 Image(systemName: "xmark")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("PrimaryColor"))
             }
             .padding(.top, -10)
             .offset(x: 0, y: 10)

@@ -33,7 +33,7 @@ struct BengkelList: View {
                 HStack {
                     Text("$$$")
                         .font(.system(size: 14))
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color("PrimaryColor"))
 
                     Spacer()
 
@@ -41,6 +41,7 @@ struct BengkelList: View {
                         Image(systemName: "star.fill")
                             .offset(x: 10, y: -0.5)
                             .font(.system(size: 14))
+                            .foregroundColor(Color("PrimaryColor"))
                         Text("5")
                             .font(.system(size: 17))
                             .fontWeight(.heavy)

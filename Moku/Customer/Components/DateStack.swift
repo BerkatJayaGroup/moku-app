@@ -17,17 +17,17 @@ struct DateStack: View {
             Text("\(date.day)")
                 .font(.system(size: 11))
                 .bold()
-                .foregroundColor(isSelected ? .white : .red)
+                .foregroundColor(isSelected ? .white : .black)
 
             Text("\(date.dayNumber)")
                 .font(.system(size: 20))
                 .bold()
-                .foregroundColor(isSelected ? .white : .red)
+                .foregroundColor(isSelected ? .white : .black)
                 .padding(.top, 10)
 
         }.padding()
             .frame(width: 60, height: 75)
-            .background( isSelected ? Color.blue : Color.gray.opacity(0.3))
+            .background( isSelected ? Color("PrimaryColor") : Color.white)
             .cornerRadius(10)
             .onTapGesture {
                 self.onSelect(self.date)

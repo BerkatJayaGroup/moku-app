@@ -42,6 +42,7 @@
 		AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7A2721C7AD00029323 /* DateStack.swift */; };
 		AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7C2721C9F000029323 /* TimeStack.swift */; };
 		AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */; };
+		AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDCF2722902900601421 /* ShapeBg.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		AE1E2E7A2721C7AD00029323 /* DateStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
 		AE1E2E7C2721C9F000029323 /* TimeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStack.swift; sourceTree = "<group>"; };
 		AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		AEFBBDCF2722902900601421 /* ShapeBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				AE1E2E7A2721C7AD00029323 /* DateStack.swift */,
 				AE1E2E7C2721C9F000029323 /* TimeStack.swift */,
 				AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */,
+				AEFBBDCF2722902900601421 /* ShapeBg.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,

@@ -14,9 +14,9 @@ struct TimeStack: View {
     var body: some View {
         Text("\(index):00")
             .frame(width: 50, height: 30)
-            .foregroundColor(isSelected ? .white : .red)
+            .foregroundColor(isSelected ? .white : Color("PrimaryColor"))
             .padding(5)
-            .background( isSelected ? Color.gray : Color.gray.opacity(0.3))
+            .background( isSelected ? Color("PrimaryColor") : Color("SalmonOrange"))
             .cornerRadius(10).onTapGesture {
                 self.onSelect(self.index)
             }
