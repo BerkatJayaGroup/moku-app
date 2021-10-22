@@ -30,6 +30,7 @@
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
+		B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854B921271EBAC700DCFAA5 /* MapView.swift */; };
 		83A4E60F271DDF580096377F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4E60E271DDF580096377F /* SessionService.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
@@ -69,9 +70,11 @@
 		837370B727144703003656FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		837370BA27144703003656FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		B854B921271EBAC700DCFAA5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		AE1E2E69272152F300029323 /* BengkelTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
 		AE1E2E6B27215EAE00029323 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		AE1E2E6D27215ECD00029323 /* BengkelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
@@ -94,7 +97,6 @@
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
 				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
@@ -165,7 +167,7 @@
 			children = (
 				837370B227144701003656FC /* Moku */,
 				837370B127144701003656FC /* Products */,
-				8E96E13C2716D52C00887C4E /* Frameworks */,
+				830383D62718035A00F03CE3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +182,7 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				B854B923271EBD0800DCFAA5 /* Info.plist */,
 				AE1E2E65272151DA00029323 /* Bengkel */,
 				AE1E2E612721503400029323 /* Customer */,
 				830383D32717FF3100F03CE3 /* Constants */,
@@ -192,6 +195,7 @@
 				837370B527144701003656FC /* ContentView.swift */,
 				837370B727144703003656FC /* Assets.xcassets */,
 				837370B927144703003656FC /* Preview Content */,
+				B854B921271EBAC700DCFAA5 /* MapView.swift */,
 				83A4E610271DDF640096377F /* Services */,
 			);
 			path = Moku;
@@ -323,7 +327,7 @@
 				837370CA27144BB1003656FC /* FirebaseStorage */,
 				832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */,
 				832AC1E32715986A00BD92E2 /* SwiftUIX */,
-				8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */,
+				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -409,6 +413,7 @@
 			files = (
 				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
+        830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */,
 				AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */,
 				AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */,
@@ -422,6 +427,7 @@
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+        B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
@@ -563,9 +569,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -593,9 +600,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

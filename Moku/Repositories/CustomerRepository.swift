@@ -15,7 +15,7 @@ final class CustomerRepository: ObservableObject {
     private let store = Firestore.firestore().collection(Collection.customer)
 
     @Published var customer = [Customer]()
-
+  
     private init() {
         fetch()
     }
@@ -48,5 +48,4 @@ final class CustomerRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
-
 }
