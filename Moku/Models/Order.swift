@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Order: Codable {
+struct Order: Identifiable, Codable {
     @DocumentID var id: String!
     let bengkel: Bengkel
     let customer: Customer

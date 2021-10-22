@@ -50,6 +50,11 @@
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
+		8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */; };
+		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 		AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		AEFBBDCF2722902900601421 /* ShapeBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
 		AEFBBDD127229BAF00601421 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
+		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
 				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
@@ -158,7 +165,7 @@
 			children = (
 				837370B227144701003656FC /* Moku */,
 				837370B127144701003656FC /* Products */,
-				830383D62718035A00F03CE3 /* Frameworks */,
+				8E96E13C2716D52C00887C4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,6 +292,11 @@
 				AE1E2E762721AE0700029323 /* DateExtention.swift */,
 			);
 			path = Extentions;
+		8E96E13C2716D52C00887C4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,7 +323,7 @@
 				837370CA27144BB1003656FC /* FirebaseStorage */,
 				832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */,
 				832AC1E32715986A00BD92E2 /* SwiftUIX */,
-				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
+				8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -688,6 +700,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
