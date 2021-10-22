@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Order: Identifiable, Codable {
-    let id = UUID()
+    @DocumentID var id: String!
     let bengkel: Bengkel
     let customer: Customer
     let motor: Motor

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
+		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
+		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
+		830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D9271804D700F03CE3 /* RepositoryHelper.swift */; };
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
 		832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E32715986A00BD92E2 /* SwiftUIX */; };
 		832AC1E727159AE600BD92E2 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E627159AE600BD92E2 /* Customer.swift */; };
@@ -16,6 +20,7 @@
 		833674912716C9DD0040D669 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674902716C9DD0040D669 /* Order.swift */; };
 		833674932716CC0D0040D669 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674922716CC0D0040D669 /* Location.swift */; };
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
+		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
 		837370B627144701003656FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B527144701003656FC /* ContentView.swift */; };
 		837370B827144703003656FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370B727144703003656FC /* Assets.xcassets */; };
@@ -25,6 +30,26 @@
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
+		83A4E60F271DDF580096377F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4E60E271DDF580096377F /* SessionService.swift */; };
+		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E69272152F300029323 /* BengkelTabItem.swift */; };
+		AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6B27215EAE00029323 /* Rating.swift */; };
+		AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6D27215ECD00029323 /* BengkelList.swift */; };
+		AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E712721A5DD00029323 /* BengkelDate.swift */; };
+		AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E762721AE0700029323 /* DateExtention.swift */; };
+		AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E782721AE3F00029323 /* BookDate.swift */; };
+		AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7A2721C7AD00029323 /* DateStack.swift */; };
+		AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7C2721C9F000029323 /* TimeStack.swift */; };
+		AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */; };
+		AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDCF2722902900601421 /* ShapeBg.swift */; };
+		AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDD127229BAF00601421 /* FavoriteList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
+		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
 		8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 /* End PBXBuildFile section */
@@ -37,12 +62,27 @@
 		833674902716C9DD0040D669 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		833674922716CC0D0040D669 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		833674942716CD840040D669 /* Mekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mekanik.swift; sourceTree = "<group>"; };
+		83529A582718241000F3C82B /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
 		837370B527144701003656FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		837370B727144703003656FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		837370BA27144703003656FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
+		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		AE1E2E69272152F300029323 /* BengkelTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
+		AE1E2E6B27215EAE00029323 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		AE1E2E6D27215ECD00029323 /* BengkelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
+		AE1E2E712721A5DD00029323 /* BengkelDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDate.swift; sourceTree = "<group>"; };
+		AE1E2E762721AE0700029323 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
+		AE1E2E782721AE3F00029323 /* BookDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
+		AE1E2E7A2721C7AD00029323 /* DateStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
+		AE1E2E7C2721C9F000029323 /* TimeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStack.swift; sourceTree = "<group>"; };
+		AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		AEFBBDCF2722902900601421 /* ShapeBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
+		AEFBBDD127229BAF00601421 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +93,7 @@
 			files = (
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
+				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
@@ -64,6 +105,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830383D02717FD7800F03CE3 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				830383D12717FD9F00F03CE3 /* BengkelRepository.swift */,
+				8E3735A72718237900C22DF0 /* CustomerRepository.swift */,
+				83529A582718241000F3C82B /* OrderRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		830383D32717FF3100F03CE3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				830383D42717FF5100F03CE3 /* Collection.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		830383D62718035A00F03CE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		832AC1E527159AC000BD92E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +152,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		83529A57271822E500F3C82B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		837370A727144701003656FC = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +180,11 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				AE1E2E65272151DA00029323 /* Bengkel */,
+				AE1E2E612721503400029323 /* Customer */,
+				830383D32717FF3100F03CE3 /* Constants */,
+				83529A57271822E500F3C82B /* Helpers */,
+				830383D02717FD7800F03CE3 /* Repositories */,
 				8336748F2716C7840040D669 /* Resources */,
 				832AC1E527159AC000BD92E2 /* Models */,
 				837370C1271449E4003656FC /* GoogleService-Info.plist */,
@@ -113,6 +192,7 @@
 				837370B527144701003656FC /* ContentView.swift */,
 				837370B727144703003656FC /* Assets.xcassets */,
 				837370B927144703003656FC /* Preview Content */,
+				83A4E610271DDF640096377F /* Services */,
 			);
 			path = Moku;
 			sourceTree = "<group>";
@@ -125,6 +205,93 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		83A4E610271DDF640096377F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				83A4E60E271DDF580096377F /* SessionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AE1E2E612721503400029323 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E732721ADD100029323 /* Extentions */,
+				AE1E2E64272151B000029323 /* Components */,
+				AE1E2E632721516D00029323 /* ViewModels */,
+				AE1E2E622721512B00029323 /* Views */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		AE1E2E622721512B00029323 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E69272152F300029323 /* BengkelTabItem.swift */,
+				AE1E2E712721A5DD00029323 /* BengkelDate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE1E2E632721516D00029323 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E782721AE3F00029323 /* BookDate.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AE1E2E64272151B000029323 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E6B27215EAE00029323 /* Rating.swift */,
+				AE1E2E6D27215ECD00029323 /* BengkelList.swift */,
+				AE1E2E7A2721C7AD00029323 /* DateStack.swift */,
+				AE1E2E7C2721C9F000029323 /* TimeStack.swift */,
+				AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */,
+				AEFBBDCF2722902900601421 /* ShapeBg.swift */,
+				AEFBBDD127229BAF00601421 /* FavoriteList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AE1E2E65272151DA00029323 /* Bengkel */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E68272151EF00029323 /* Components */,
+				AE1E2E67272151E600029323 /* ViewModels */,
+				AE1E2E66272151E100029323 /* Views */,
+			);
+			path = Bengkel;
+			sourceTree = "<group>";
+		};
+		AE1E2E66272151E100029323 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE1E2E67272151E600029323 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AE1E2E68272151EF00029323 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AE1E2E732721ADD100029323 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E762721AE0700029323 /* DateExtention.swift */,
+			);
+			path = Extentions;
 		8E96E13C2716D52C00887C4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,14 +407,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
+				AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */,
+				AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */,
+				AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
+				AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */,
+				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */,
+				AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
+				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
+				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
+				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
+				AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */,
+				AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */,
+				AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */,
+				AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */,
+				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +666,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
 		832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 832AC1DF2715979B00BD92E2 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
