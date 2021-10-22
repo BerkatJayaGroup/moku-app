@@ -48,5 +48,4 @@ final class CustomerRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
-
 }

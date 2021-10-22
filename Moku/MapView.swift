@@ -12,7 +12,7 @@ struct MapView: View {
     @State private var region: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapDefaults.latitude, longitude: MapDefaults.longitude),
         span: MKCoordinateSpan(latitudeDelta: MapDefaults.zoom, longitudeDelta: MapDefaults.zoom))
-
+    
     private enum MapDefaults {
         static let latitude = 45.872
         static let longitude = -1.248
