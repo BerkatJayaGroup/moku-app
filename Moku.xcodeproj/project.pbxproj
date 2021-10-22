@@ -33,6 +33,17 @@
 		83A4E60F271DDF580096377F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4E60E271DDF580096377F /* SessionService.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E69272152F300029323 /* BengkelTabItem.swift */; };
+		AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6B27215EAE00029323 /* Rating.swift */; };
+		AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6D27215ECD00029323 /* BengkelList.swift */; };
+		AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E712721A5DD00029323 /* BengkelDate.swift */; };
+		AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E762721AE0700029323 /* DateExtention.swift */; };
+		AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E782721AE3F00029323 /* BookDate.swift */; };
+		AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7A2721C7AD00029323 /* DateStack.swift */; };
+		AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7C2721C9F000029323 /* TimeStack.swift */; };
+		AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */; };
+		AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDCF2722902900601421 /* ShapeBg.swift */; };
+		AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDD127229BAF00601421 /* FavoriteList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +67,17 @@
 		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		AE1E2E69272152F300029323 /* BengkelTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
+		AE1E2E6B27215EAE00029323 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		AE1E2E6D27215ECD00029323 /* BengkelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
+		AE1E2E712721A5DD00029323 /* BengkelDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDate.swift; sourceTree = "<group>"; };
+		AE1E2E762721AE0700029323 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
+		AE1E2E782721AE3F00029323 /* BookDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
+		AE1E2E7A2721C7AD00029323 /* DateStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
+		AE1E2E7C2721C9F000029323 /* TimeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStack.swift; sourceTree = "<group>"; };
+		AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		AEFBBDCF2722902900601421 /* ShapeBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
+		AEFBBDD127229BAF00601421 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +173,8 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				AE1E2E65272151DA00029323 /* Bengkel */,
+				AE1E2E612721503400029323 /* Customer */,
 				830383D32717FF3100F03CE3 /* Constants */,
 				83529A57271822E500F3C82B /* Helpers */,
 				830383D02717FD7800F03CE3 /* Repositories */,
@@ -180,6 +204,87 @@
 				83A4E60E271DDF580096377F /* SessionService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		AE1E2E612721503400029323 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E732721ADD100029323 /* Extentions */,
+				AE1E2E64272151B000029323 /* Components */,
+				AE1E2E632721516D00029323 /* ViewModels */,
+				AE1E2E622721512B00029323 /* Views */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		AE1E2E622721512B00029323 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E69272152F300029323 /* BengkelTabItem.swift */,
+				AE1E2E712721A5DD00029323 /* BengkelDate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE1E2E632721516D00029323 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E782721AE3F00029323 /* BookDate.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AE1E2E64272151B000029323 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E6B27215EAE00029323 /* Rating.swift */,
+				AE1E2E6D27215ECD00029323 /* BengkelList.swift */,
+				AE1E2E7A2721C7AD00029323 /* DateStack.swift */,
+				AE1E2E7C2721C9F000029323 /* TimeStack.swift */,
+				AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */,
+				AEFBBDCF2722902900601421 /* ShapeBg.swift */,
+				AEFBBDD127229BAF00601421 /* FavoriteList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AE1E2E65272151DA00029323 /* Bengkel */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E68272151EF00029323 /* Components */,
+				AE1E2E67272151E600029323 /* ViewModels */,
+				AE1E2E66272151E100029323 /* Views */,
+			);
+			path = Bengkel;
+			sourceTree = "<group>";
+		};
+		AE1E2E66272151E100029323 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE1E2E67272151E600029323 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AE1E2E68272151EF00029323 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AE1E2E732721ADD100029323 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				AE1E2E762721AE0700029323 /* DateExtention.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,10 +395,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
+				AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */,
+				AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */,
+				AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
+				AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */,
+				AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,
@@ -303,6 +415,10 @@
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
+				AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */,
+				AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */,
+				AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */,
+				AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
