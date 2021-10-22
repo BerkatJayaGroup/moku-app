@@ -1,0 +1,17 @@
+[
+  {
+    "brand": "yamaha",
+    "model": "NMAX 155",
+    "cc": 155
+  },
+  {
+    "brand": "honda",
+    "model": "SCOOPY110i",
+    "cc": 110
+  },
+  {
+    "brand": "honda",
+    "model": "BeAT",
+    "cc": 110
+  }
+]
