@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
@@ -30,6 +31,12 @@
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
+		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.debug.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.debug.xcconfig"; sourceTree = "<group>"; };
 		B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854B921271EBAC700DCFAA5 /* MapView.swift */; };
 		83A4E60F271DDF580096377F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4E60E271DDF580096377F /* SessionService.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
@@ -72,6 +79,7 @@
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		B854B921271EBAC700DCFAA5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -101,6 +109,7 @@
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
 				837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */,
+				5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +137,7 @@
 		830383D62718035A00F03CE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 				837370B227144701003656FC /* Moku */,
 				837370B127144701003656FC /* Products */,
 				830383D62718035A00F03CE3 /* Frameworks */,
+				F5E8098DE71C292574E0645A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,6 +220,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F5E8098DE71C292574E0645A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */,
+				8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */,
+			);
+			path = Pods;
 		83A4E610271DDF640096377F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,10 +328,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 837370BE27144703003656FC /* Build configuration list for PBXNativeTarget "Moku" */;
 			buildPhases = (
+				B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */,
 				837370AC27144701003656FC /* Sources */,
 				837370AD27144701003656FC /* Frameworks */,
 				837370AE27144701003656FC /* Resources */,
 				832AC1DE2715963200BD92E2 /* Run SwiftLint */,
+				FC047A88C7DBEF7B73CA883F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,7 +422,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "
+";
+		};
+		B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Moku-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC047A88C7DBEF7B73CA883F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -411,23 +471,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
-        830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
+				837370B627144701003656FC /* ContentView.swift in Sources */,
+				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
+				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
+				837370B427144701003656FC /* MokuApp.swift in Sources */,
+				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */,
+				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
 				AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */,
 				AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */,
 				AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
 				AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */,
-				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
-				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */,
 				AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */,
-				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
-				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,
-				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
-        B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
@@ -563,6 +623,7 @@
 		};
 		837370BF27144703003656FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -594,6 +655,7 @@
 		};
 		837370C027144703003656FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
