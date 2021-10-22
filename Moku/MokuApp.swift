@@ -55,21 +55,21 @@ struct MokuApp: App {
     var body: some Scene {
         WindowGroup {
             //            ContentView()
-          if let user = session.user {
+            if let user = session.user {
                 switch user {
                 case let .bengkel(bengkel):
-                     BengkelView(from: bengkel)
+                    BengkelView(from: bengkel)
                 case let .customer(customer):
-                     CustomerView(from: customer)
+                    CustomerView(from: customer)
                 }
             } else {
                 // Suruh Login...
-              // Chris nitip
-              GoogleMapView(coordinate: $userLocation.coordinate) {
-                  print("Done Moving Camera.")
-              }
+                // Chris nitip
+                GoogleMapView(coordinate: $userLocation.coordinate) {
+                    print("Done Moving Camera.")
+                }
                 
-            Text("Anda harus login.")
+                Text("Anda harus login.")
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             let customer = Customer(name: "Alpha", phoneNumber: "1234")

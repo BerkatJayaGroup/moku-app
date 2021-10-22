@@ -24,45 +24,36 @@
 		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
 		837370B627144701003656FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B527144701003656FC /* ContentView.swift */; };
-		837370B827144703003656FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370B727144703003656FC /* Assets.xcassets */; };
 		837370BB27144703003656FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370BA27144703003656FC /* Preview Assets.xcassets */; };
 		837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837370C1271449E4003656FC /* GoogleService-Info.plist */; };
 		837370C527144BB1003656FC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C427144BB1003656FC /* FirebaseAuth */; };
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
+		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
+		83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22E2722BC7F00C79064 /* ShapeBg.swift */; };
+		83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22F2722BC7F00C79064 /* BengkelList.swift */; };
+		83CBF2422722BC7F00C79064 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2302722BC7F00C79064 /* Rating.swift */; };
+		83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2312722BC7F00C79064 /* DateStack.swift */; };
+		83CBF2442722BC7F00C79064 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2322722BC7F00C79064 /* CustomTextField.swift */; };
+		83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2332722BC7F00C79064 /* TimeStack.swift */; };
+		83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2342722BC7F00C79064 /* FavoriteList.swift */; };
+		83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2362722BC7F00C79064 /* DateExtention.swift */; };
+		83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2382722BC7F00C79064 /* BengkelDate.swift */; };
+		83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */; };
+		83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23B2722BC7F00C79064 /* Collection.swift */; };
+		83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23D2722BC7F00C79064 /* SessionService.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.debug.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.debug.xcconfig"; sourceTree = "<group>"; };
-		B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854B921271EBAC700DCFAA5 /* MapView.swift */; };
-		83A4E60F271DDF580096377F /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4E60E271DDF580096377F /* SessionService.swift */; };
-		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
-		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
-		AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E69272152F300029323 /* BengkelTabItem.swift */; };
-		AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6B27215EAE00029323 /* Rating.swift */; };
-		AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E6D27215ECD00029323 /* BengkelList.swift */; };
-		AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E712721A5DD00029323 /* BengkelDate.swift */; };
-		AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E762721AE0700029323 /* DateExtention.swift */; };
-		AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E782721AE3F00029323 /* BookDate.swift */; };
-		AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7A2721C7AD00029323 /* DateStack.swift */; };
-		AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7C2721C9F000029323 /* TimeStack.swift */; };
-		AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */; };
-		AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDCF2722902900601421 /* ShapeBg.swift */; };
-		AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBBDD127229BAF00601421 /* FavoriteList.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
-		8E96E13E2716D52D00887C4E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */; };
-		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
@@ -74,27 +65,26 @@
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
 		837370B527144701003656FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		837370B727144703003656FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		837370BA27144703003656FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		83CBF22C2722BC7F00C79064 /* BookDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
+		83CBF22E2722BC7F00C79064 /* ShapeBg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
+		83CBF22F2722BC7F00C79064 /* BengkelList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
+		83CBF2302722BC7F00C79064 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		83CBF2312722BC7F00C79064 /* DateStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
+		83CBF2322722BC7F00C79064 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		83CBF2332722BC7F00C79064 /* TimeStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStack.swift; sourceTree = "<group>"; };
+		83CBF2342722BC7F00C79064 /* FavoriteList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
+		83CBF2362722BC7F00C79064 /* DateExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
+		83CBF2382722BC7F00C79064 /* BengkelDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelDate.swift; sourceTree = "<group>"; };
+		83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
+		83CBF23B2722BC7F00C79064 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		83CBF23D2722BC7F00C79064 /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		83CBF24C2722BE6D00C79064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
-		B854B921271EBAC700DCFAA5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		83A4E60E271DDF580096377F /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
-		AE1E2E69272152F300029323 /* BengkelTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
-		AE1E2E6B27215EAE00029323 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
-		AE1E2E6D27215ECD00029323 /* BengkelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
-		AE1E2E712721A5DD00029323 /* BengkelDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDate.swift; sourceTree = "<group>"; };
-		AE1E2E762721AE0700029323 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
-		AE1E2E782721AE3F00029323 /* BookDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
-		AE1E2E7A2721C7AD00029323 /* DateStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStack.swift; sourceTree = "<group>"; };
-		AE1E2E7C2721C9F000029323 /* TimeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStack.swift; sourceTree = "<group>"; };
-		AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		AEFBBDCF2722902900601421 /* ShapeBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
-		AEFBBDD127229BAF00601421 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
-		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,20 +184,20 @@
 			isa = PBXGroup;
 			children = (
 				B854B923271EBD0800DCFAA5 /* Info.plist */,
-				AE1E2E65272151DA00029323 /* Bengkel */,
-				AE1E2E612721503400029323 /* Customer */,
+				837370C1271449E4003656FC /* GoogleService-Info.plist */,
+				83CBF23A2722BC7F00C79064 /* Constants */,
+				83CBF22A2722BC7F00C79064 /* Customer */,
+				83CBF23C2722BC7F00C79064 /* Services */,
+				83CBF2282722BC4200C79064 /* Bengkel */,
 				830383D32717FF3100F03CE3 /* Constants */,
 				83529A57271822E500F3C82B /* Helpers */,
 				830383D02717FD7800F03CE3 /* Repositories */,
 				8336748F2716C7840040D669 /* Resources */,
 				832AC1E527159AC000BD92E2 /* Models */,
-				837370C1271449E4003656FC /* GoogleService-Info.plist */,
 				837370B327144701003656FC /* MokuApp.swift */,
 				837370B527144701003656FC /* ContentView.swift */,
-				837370B727144703003656FC /* Assets.xcassets */,
 				837370B927144703003656FC /* Preview Content */,
-				B854B921271EBAC700DCFAA5 /* MapView.swift */,
-				83A4E610271DDF640096377F /* Services */,
+				83CBF24C2722BE6D00C79064 /* Assets.xcassets */,
 			);
 			path = Moku;
 			sourceTree = "<group>";
@@ -220,6 +210,82 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		83CBF2282722BC4200C79064 /* Bengkel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bengkel;
+			sourceTree = "<group>";
+		};
+		83CBF22A2722BC7F00C79064 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF22B2722BC7F00C79064 /* ViewModels */,
+				83CBF22D2722BC7F00C79064 /* Components */,
+				83CBF2352722BC7F00C79064 /* Extentions */,
+				83CBF2372722BC7F00C79064 /* Views */,
+			);
+			name = Customer;
+			path = Moku/Customer;
+			sourceTree = SOURCE_ROOT;
+		};
+		83CBF22B2722BC7F00C79064 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF22C2722BC7F00C79064 /* BookDate.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		83CBF22D2722BC7F00C79064 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF22E2722BC7F00C79064 /* ShapeBg.swift */,
+				83CBF22F2722BC7F00C79064 /* BengkelList.swift */,
+				83CBF2302722BC7F00C79064 /* Rating.swift */,
+				83CBF2312722BC7F00C79064 /* DateStack.swift */,
+				83CBF2322722BC7F00C79064 /* CustomTextField.swift */,
+				83CBF2332722BC7F00C79064 /* TimeStack.swift */,
+				83CBF2342722BC7F00C79064 /* FavoriteList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		83CBF2352722BC7F00C79064 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF2362722BC7F00C79064 /* DateExtention.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		83CBF2372722BC7F00C79064 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF2382722BC7F00C79064 /* BengkelDate.swift */,
+				83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		83CBF23A2722BC7F00C79064 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF23B2722BC7F00C79064 /* Collection.swift */,
+			);
+			name = Constants;
+			path = Moku/Constants;
+			sourceTree = SOURCE_ROOT;
+		};
+		83CBF23C2722BC7F00C79064 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				83CBF23D2722BC7F00C79064 /* SessionService.swift */,
+			);
+			name = Services;
+			path = Moku/Services;
+			sourceTree = SOURCE_ROOT;
+		};
 		F5E8098DE71C292574E0645A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,98 +293,6 @@
 				8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */,
 			);
 			path = Pods;
-		83A4E610271DDF640096377F /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				83A4E60E271DDF580096377F /* SessionService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		AE1E2E612721503400029323 /* Customer */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E732721ADD100029323 /* Extentions */,
-				AE1E2E64272151B000029323 /* Components */,
-				AE1E2E632721516D00029323 /* ViewModels */,
-				AE1E2E622721512B00029323 /* Views */,
-			);
-			path = Customer;
-			sourceTree = "<group>";
-		};
-		AE1E2E622721512B00029323 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E69272152F300029323 /* BengkelTabItem.swift */,
-				AE1E2E712721A5DD00029323 /* BengkelDate.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AE1E2E632721516D00029323 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E782721AE3F00029323 /* BookDate.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		AE1E2E64272151B000029323 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E6B27215EAE00029323 /* Rating.swift */,
-				AE1E2E6D27215ECD00029323 /* BengkelList.swift */,
-				AE1E2E7A2721C7AD00029323 /* DateStack.swift */,
-				AE1E2E7C2721C9F000029323 /* TimeStack.swift */,
-				AE1E2E7E2721CC1E00029323 /* CustomTextField.swift */,
-				AEFBBDCF2722902900601421 /* ShapeBg.swift */,
-				AEFBBDD127229BAF00601421 /* FavoriteList.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		AE1E2E65272151DA00029323 /* Bengkel */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E68272151EF00029323 /* Components */,
-				AE1E2E67272151E600029323 /* ViewModels */,
-				AE1E2E66272151E100029323 /* Views */,
-			);
-			path = Bengkel;
-			sourceTree = "<group>";
-		};
-		AE1E2E66272151E100029323 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AE1E2E67272151E600029323 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		AE1E2E68272151EF00029323 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		AE1E2E732721ADD100029323 /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-				AE1E2E762721AE0700029323 /* DateExtention.swift */,
-			);
-			path = Extentions;
-		8E96E13C2716D52C00887C4E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,8 +372,8 @@
 			files = (
 				837370BB27144703003656FC /* Preview Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
-				837370B827144703003656FC /* Assets.xcassets in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
+				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,32 +445,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
+				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
+				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
+				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
+				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
-				B854B922271EBAC700DCFAA5 /* MapView.swift in Sources */,
-				AE1E2E6E27215ECD00029323 /* BengkelList.swift in Sources */,
-				AE1E2E7D2721C9F000029323 /* TimeStack.swift in Sources */,
-				AE1E2E722721A5DD00029323 /* BengkelDate.swift in Sources */,
-				AE1E2E792721AE3F00029323 /* BookDate.swift in Sources */,
-				837370B627144701003656FC /* ContentView.swift in Sources */,
-				AE1E2E6C27215EAE00029323 /* Rating.swift in Sources */,
-				AEFBBDD227229BAF00601421 /* FavoriteList.swift in Sources */,
-				AEFBBDD02722902900601421 /* ShapeBg.swift in Sources */,
-				83A4E60F271DDF580096377F /* SessionService.swift in Sources */,
+				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
+				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,
+				83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */,
+				83CBF2422722BC7F00C79064 /* Rating.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
+				83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */,
+				83CBF2442722BC7F00C79064 /* CustomTextField.swift in Sources */,
+				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
-				AE1E2E772721AE0700029323 /* DateExtention.swift in Sources */,
-				AE1E2E6A272152F300029323 /* BengkelTabItem.swift in Sources */,
-				AE1E2E7F2721CC1E00029323 /* CustomTextField.swift in Sources */,
-				AE1E2E7B2721C7AD00029323 /* DateStack.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
@@ -630,7 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = TM8952UAR3;
+				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
@@ -662,7 +635,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = TM8952UAR3;
+				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
@@ -770,11 +743,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		8E96E13D2716D52D00887C4E /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
