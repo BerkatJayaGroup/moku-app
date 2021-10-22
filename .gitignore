@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/git,swift,xcode,macos,firebase,swiftpackagemanager
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,swift,xcode,macos,firebase,swiftpackagemanager
 
+### CocoaPods ###
+Pods/
+
 ### Firebase ###
 .idea
 **/node_modules/*
