@@ -59,6 +59,22 @@ struct BengkelTabItem: View {
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
                         .padding(.horizontal, 8)
                         VStack(alignment: .leading) {
+                            Text("Bengkel Favorit")
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack{
+                                    ForEach(0..<5) { _ in
+                                        FavoriteList()
+                                            .padding(10)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                    }
+                                }.padding(10)
+                            }
+                            Divider()
+                                .padding(.top)
+                        }.padding(7)
+                        VStack(alignment: .leading) {
                             Text("Kasih rating dulu yuk!")
                             Rating()
                                 .padding(10)
