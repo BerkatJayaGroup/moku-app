@@ -25,10 +25,12 @@ struct BengkelList: View {
                 Text("Senin - Jumat, 10.00 - 17.00")
                     .font(.system(size: 14))
                     .foregroundColor(Color.gray)
+                  
 
                 Text("0.5KM")
                     .font(.system(size: 14))
                     .foregroundColor(Color.gray)
+                    .padding(.bottom, 1)
 
                 HStack {
                     Text("$$$")
@@ -40,10 +42,10 @@ struct BengkelList: View {
                     HStack(alignment: .center) {
                         Image(systemName: "star.fill")
                             .offset(x: 10, y: -0.5)
-                            .font(.system(size: 14))
+                            .font(.system(size: 13))
                             .foregroundColor(Color("PrimaryColor"))
                         Text("5")
-                            .font(.system(size: 17))
+                            .font(.system(size: 15))
                             .fontWeight(.heavy)
                     }
 

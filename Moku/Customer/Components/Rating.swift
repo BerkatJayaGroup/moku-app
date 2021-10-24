@@ -16,7 +16,7 @@ struct Rating: View {
 
             Button(action: { print("Button Tap") }) {
 
-                Image(systemName: "xmark")
+                Image(systemName: "xmark.circle.fill")
                     .foregroundColor(Color("PrimaryColor"))
             }
             .padding(.top, -10)

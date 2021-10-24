@@ -9,12 +9,13 @@ import SwiftUI
 
 struct BengkelTabItem: View {
     @State private var searchText = ""
+    var lastOrder = true
     var body: some View {
         NavigationView {
             ScrollView {
                 ZStack(alignment: .top) {
                     ShapeBg()
-                        .frame(height: 150)
+                        .frame(height: 145)
                         .foregroundColor(Color("PrimaryColor"))
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
@@ -31,11 +32,11 @@ struct BengkelTabItem: View {
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(20)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, 18)
                         HStack {
                             Text("Ingin Memperbaiki")
                                 .foregroundColor(Color.white)
-                                .padding(.leading)
+                                .padding(.leading, 20)
                                 .font(.system(size: 17))
                             Button(action: {}) {
                                 Text("Motor")
@@ -57,9 +58,21 @@ struct BengkelTabItem: View {
                         .background(Color.white, alignment: .center)
                         .cornerRadius(7)
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 20)
                         bengkelFavoriteView()
-                        rantingView()
+                        Rectangle()
+                            .fill(Color(.systemGray6))
+                            .frame(height: 5)
+                            .edgesIgnoringSafeArea(.horizontal)
+                        
+                        if lastOrder == true {
+                            rantingView()
+                            Rectangle()
+                                .fill(Color(.systemGray6))
+                                .frame(height: 5)
+                                .edgesIgnoringSafeArea(.horizontal)
+                        }
+                        
                         LazyVStack {
                             ForEach(0..<5) { _ in
                                 BengkelList()
@@ -68,8 +81,10 @@ struct BengkelTabItem: View {
                                     .cornerRadius(10)
                                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
                             }
-                        }.padding(10)
-                    }.padding(7)
+                        }
+                        .padding(10)
+                        .padding(.horizontal, 10)
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)
@@ -79,6 +94,7 @@ struct BengkelTabItem: View {
     fileprivate func bengkelFavoriteView() -> some View {
         VStack(alignment: .leading) {
             Text("Bengkel Favorit")
+                .font(.headline)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(0..<5) { _ in
@@ -88,28 +104,32 @@ struct BengkelTabItem: View {
                             .cornerRadius(10)
                             .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
                     }
-                }.padding(10)
+                }
+                .padding(5)
             }
-            Divider()
-                .padding(.top)
-        }.padding(7)
+            
+        }
+        .padding(10)
+        .padding(.horizontal, 10)
     }
     fileprivate func rantingView() -> some View {
         VStack(alignment: .leading) {
             Text("Kasih rating dulu yuk!")
+                .font(.headline)
             Rating()
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(10)
                 .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-            Divider()
-                .padding(.top)
-        }.padding(10)
+        }
+        .padding(10)
+        .padding(.horizontal, 10)
+            
     }
 }
 
 struct BengkelTabItem_Previews: PreviewProvider {
     static var previews: some View {
-        BengkelTabItem()
+            BengkelTabItem()
     }
 }
