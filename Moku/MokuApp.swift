@@ -45,6 +45,7 @@ struct MokuApp: App {
     @ObservedObject var userLocation = LocationManager.shared
     @ObservedObject var session = SessionService.shared
 
+
     init() {
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
@@ -64,18 +65,9 @@ struct MokuApp: App {
                 }
             } else {
                 // Suruh Login...
-                // Chris nitip
                 GoogleMapView(coordinate: $userLocation.coordinate) {
-                    print("Done Moving Camera.")
+                    print("dzs_Done Moving Camera.")
                 }
-                
-                Text("Anda harus login.")
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            let customer = Customer(name: "Alpha", phoneNumber: "1234")
-                            session.user = .customer(customer)
-                        }
-                    }
             }
         }
     }
@@ -86,16 +78,16 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
 
     static let shared = LocationManager()
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedWhenInUse {
             manager.requestLocation()
         }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Mashoook!")
-        guard let recentLocation = locations.last else { return }
-        coordinate = recentLocation.coordinate
+        if let recentLocation = locations.last {
+            coordinate = recentLocation.coordinate
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -122,7 +114,9 @@ struct GoogleMapView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: GMSMapView, context: Context) {
-
+        uiView.animate(toLocation: coordinate)
+        uiView.clear()
+        marker.map = uiView
     }
 
     func makeCoordinator() -> GoogleMapViewCoordinator {
@@ -141,7 +135,7 @@ struct GoogleMapView: UIViewRepresentable {
         }
 
         func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-            print("Kelar drag:", marker.position)
+            print("dzs_Kelar drag:", marker.position)
         }
     }
 }
