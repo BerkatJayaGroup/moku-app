@@ -9,6 +9,9 @@ import SwiftUI
 
 struct BengkelTabItem: View {
     @State private var searchText = ""
+    @State private var selectedMotor: String = motors[0].model
+    @State private var showingSheet = false
+    @State private var select = 0
     var lastOrder = true
     var body: some View {
         NavigationView {
@@ -38,8 +41,10 @@ struct BengkelTabItem: View {
                                 .foregroundColor(Color.white)
                                 .padding(.leading, 20)
                                 .font(.system(size: 17))
-                            Button(action: {}) {
-                                Text("Motor")
+                            Button(action: {
+                                showingSheet = true
+                            }) {
+                                Text("\(selectedMotor)")
                                     .font(.system(size: 18))
                                     .fontWeight(.bold)
                                 Image(systemName: "chevron.down")
@@ -47,6 +52,9 @@ struct BengkelTabItem: View {
                                     .offset(x: -5)
                             }
                             .foregroundColor(Color.white)
+                            .sheet(isPresented: $showingSheet) {
+                                MotorModal(data: self.$selectedMotor, showingSheet: self.$showingSheet)
+                            }
                         }
                         HStack {
                             Image(systemName: "magnifyingglass")
@@ -124,12 +132,12 @@ struct BengkelTabItem: View {
         }
         .padding(10)
         .padding(.horizontal, 10)
-            
+        
     }
 }
 
 struct BengkelTabItem_Previews: PreviewProvider {
     static var previews: some View {
-            BengkelTabItem()
+        BengkelTabItem()
     }
 }
