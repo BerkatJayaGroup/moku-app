@@ -8,6 +8,8 @@
 import SwiftUI
 import Firebase
 import GoogleMaps
+import GooglePlaces
+import Combine
 
 struct BengkelView: View {
     @State var bengkel: Bengkel
@@ -45,12 +47,24 @@ struct MokuApp: App {
     @ObservedObject var userLocation = LocationManager.shared
     @ObservedObject var session = SessionService.shared
 
+    var subsriptions = Set<AnyCancellable>()
 
     init() {
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
+        GMSPlacesClient.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
 
         locationManager.requestWhenInUseAuthorization()
+
+        GooglePlacesService.shared.$results.sink { places in
+            places.forEach { place in
+                print(place.name)
+            }
+        }.store(in: &subsriptions)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            GooglePlacesService.shared.runQuery(" bangka  ")
+        }
     }
 
     var body: some Scene {
