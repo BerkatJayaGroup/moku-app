@@ -15,7 +15,7 @@ struct BengkelTabItem: View {
             ScrollView {
                 ZStack(alignment: .top) {
                     ShapeBg()
-                        .frame(height: 145)
+                        .frame(height: 140)
                         .foregroundColor(Color("PrimaryColor"))
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
@@ -32,7 +32,7 @@ struct BengkelTabItem: View {
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(20)
-                        .padding(.horizontal, 18)
+                        .padding(.horizontal, 20)
                         HStack {
                             Text("Ingin Memperbaiki")
                                 .foregroundColor(Color.white)
@@ -53,11 +53,11 @@ struct BengkelTabItem: View {
                                 .foregroundColor(Color(.systemGray3))
                             TextField("Cari Bengkel", text: $searchText)
                         }
-                        .padding(10)
+                        .padding(8)
                         .padding(.leading, 5)
                         .background(Color.white, alignment: .center)
                         .cornerRadius(7)
-                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
                         .padding(.horizontal, 20)
                         bengkelFavoriteView()
                         Rectangle()
@@ -79,7 +79,7 @@ struct BengkelTabItem: View {
                                     .padding(5)
                                     .background(Color.white)
                                     .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                             }
                         }
                         .padding(10)
@@ -102,7 +102,7 @@ struct BengkelTabItem: View {
                             .padding(10)
                             .background(Color.white)
                             .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                     }
                 }
                 .padding(5)
@@ -120,7 +120,7 @@ struct BengkelTabItem: View {
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(10)
-                .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
         }
         .padding(10)
         .padding(.horizontal, 10)
