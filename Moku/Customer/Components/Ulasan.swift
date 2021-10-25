@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+
+
 struct Ulasan: View {
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Devin Winardi")

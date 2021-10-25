@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+let review: [Review] = [
+    Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
+]
+
 struct UlasanPage: View {
     var body: some View {
         NavigationView {
