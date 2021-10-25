@@ -65,8 +65,10 @@ struct MokuApp: App {
                 }
             } else {
                 // Suruh Login...
-                GoogleMapView(coordinate: $userLocation.coordinate) {
-                    print("dzs_Done Moving Camera.")
+                GoogleMapView(coordinate: $userLocation.coordinate) { coordinate in
+                    MapHelper.geocode(coordinate: coordinate) { location in
+                        print(location)
+                    }
                 }
             }
         }
@@ -101,7 +103,7 @@ struct GoogleMapView: UIViewRepresentable {
     private let mapView = GMSMapView(frame: .zero)
     private let zoomLevel: Float = 18
 
-    let onAnimationEnded: () -> Void
+    let onAnimationEnded: (CLLocationCoordinate2D) -> Void
 
     func makeUIView(context: Context) -> GMSMapView {
         mapView.camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: zoomLevel)
@@ -130,12 +132,8 @@ struct GoogleMapView: UIViewRepresentable {
             self.mapView = mapView
         }
 
-        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-            self.mapView.onAnimationEnded()
-        }
-
         func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-            print("dzs_Kelar drag:", marker.position)
+            self.mapView.onAnimationEnded(marker.position)
         }
     }
 }
