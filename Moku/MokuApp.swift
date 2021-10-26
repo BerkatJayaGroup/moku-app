@@ -44,6 +44,10 @@ struct MokuApp: App {
 
     @ObservedObject var userLocation = LocationManager.shared
     @ObservedObject var session = SessionService.shared
+    
+    @StateObject var appState = AppState(hasOnboarded: false)
+    
+    var onboardingData = OnboardingDataModel.data
 
     init() {
         FirebaseApp.configure()
@@ -53,6 +57,7 @@ struct MokuApp: App {
     }
 
     var body: some Scene {
+        
         WindowGroup {
             //            ContentView()
             if let user = session.user {
@@ -65,17 +70,11 @@ struct MokuApp: App {
             } else {
                 // Suruh Login...
                 // Chris nitip
-                GoogleMapView(coordinate: $userLocation.coordinate) {
-                    print("Done Moving Camera.")
+                if appState.hasOnboarded {
+                    BengkelTabItem()
+                } else {
+                    OnboardingView(data: onboardingData).environmentObject(appState)
                 }
-
-                Text("Anda harus login.")
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            let customer = Customer(name: "Alpha", phoneNumber: "1234")
-                            session.user = .customer(customer)
-                        }
-                    }
             }
         }
     }
