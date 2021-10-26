@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-//Contoh jika data bengkel memiliki review
+// Contoh jika data bengkel memiliki review
 let bengkels: [Bengkel] = [
     Bengkel(id: "Dsdsda", name: "Berkat Jaya", phoneNumber: "0921", reviews:
-        [
-        Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date()),
-        Review(user: "Dicky Rangga Buwono", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
-        ],
+                [
+                    Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date()),
+                    Review(user: "Dicky Rangga Buwono", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
+                ],
             components: ["Oli", "Busi"] )
 ]
 
 /*
  MARK : Contoh jika data bengkel belum memiliki review
-let bengkels: [Bengkel] = [
-    Bengkel(id: "Dsdsda", name: "Berkat Jaya", phoneNumber: "0921", components: ["Oli", "Busi"] )
-]*/
+ let bengkels: [Bengkel] = [
+ Bengkel(id: "Dsdsda", name: "Berkat Jaya", phoneNumber: "0921", components: ["Oli", "Busi"] )
+ ]*/
 
 struct UlasanPage: View {
     var review: [Review] = bengkels[0].reviews
@@ -35,14 +35,14 @@ struct UlasanPage: View {
                     Text("Bengkel ini belum pernah menerima ulasan dari pelanggan")
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
-    
+
                 }
                 .padding()
                 .foregroundColor(Color.gray)
                 .navigationBarTitle("Ulasan", displayMode: .inline)
-            }else {
+            } else {
                 ScrollView {
-                    LazyVStack{
+                    LazyVStack {
                         ForEach(review, id: \.user) { item in
                             Ulasan(review: item)
                                 .padding(10)
@@ -50,13 +50,12 @@ struct UlasanPage: View {
                                 .cornerRadius(6)
                                 .shadow(color: .black.opacity(0.25), radius: 2, x: 2, y: 2)
                         }.padding(.vertical, 2)
-                        
-                        
+
                     }.padding(20)
                 }
                 .navigationBarTitle("Ulasan", displayMode: .inline)
             }
-            
+
         }
     }
 }

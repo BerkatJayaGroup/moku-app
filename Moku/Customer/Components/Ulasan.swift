@@ -34,10 +34,9 @@ struct Ulasan: View {
                 }
             }
         }
-        
+
     }
-    
-   
+
 }
 
 struct Ulasan_Previews: PreviewProvider {
