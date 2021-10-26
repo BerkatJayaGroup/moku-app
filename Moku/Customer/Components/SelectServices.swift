@@ -33,7 +33,7 @@ struct SelectServices: View {
             }
             .padding(.top, 24)
             .padding(.bottom, 8)
-            .frame(width: geo.size.width)
+            .frame(width: geo.size.width, height: .infinity)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"), lineWidth: 1)
