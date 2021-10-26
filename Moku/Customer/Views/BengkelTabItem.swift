@@ -12,7 +12,10 @@ struct BengkelTabItem: View {
     @State private var selectedMotor: String = motors[0].model
     @State private var showingSheet = false
     @State private var select = 0
+    @State private var isOpenBengkel = false
+  
     var lastOrder = true
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -83,11 +86,13 @@ struct BengkelTabItem: View {
                         
                         LazyVStack {
                             ForEach(0..<5) { _ in
-                                BengkelList()
-                                    .padding(5)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                                NavigationLink(destination: BengkelDetail()) {
+                                    BengkelList()
+                                        .padding(5)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                }
                             }
                         }
                         .padding(10)
