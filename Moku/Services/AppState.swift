@@ -8,9 +8,7 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var hasOnboarded: Bool
-
-    init(hasOnboarded: Bool) {
-        self.hasOnboarded = hasOnboarded
-    }
+    
+    @AppStorage(UserDefaults.hasOnboarded) var hasOnboarded = false
+    
 }
