@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct OnboardingDataModel {
     var image: String
