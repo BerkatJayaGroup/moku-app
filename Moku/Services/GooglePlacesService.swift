@@ -30,6 +30,10 @@ final class GooglePlacesService: ObservableObject {
 
     private init() {}
 
+    static func register() {
+        GMSPlacesClient.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
+    }
+
     func runQuery(_ query: String) {
         let sanitizedQuery = query.trimmingCharacters(in: .whitespaces).lowercased()
 
