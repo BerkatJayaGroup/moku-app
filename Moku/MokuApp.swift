@@ -45,7 +45,7 @@ struct MokuApp: App {
     @ObservedObject var userLocation = LocationManager.shared
     @ObservedObject var session = SessionService.shared
     
-    @StateObject var appState = AppState(hasOnboarded: false)
+    @StateObject var appState = AppState()
     
     var onboardingData = OnboardingDataModel.data
 
