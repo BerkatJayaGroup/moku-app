@@ -6,16 +6,36 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Bengkel: Codable {
+    // MARK: - Registration Related
     @DocumentID var id: String!
+    var owner: Owner
     var name: String
     var phoneNumber: String
-    var photoReference: String?
+    var location: Location
+    var operationalHours: OperationalHours
+    var operationalDays = Set<Day>()
+    var photos          = [String]()
+    var brands          = Set<Brand>()
+    var mekaniks        = [Mekanik]()
 
-//    var operationalHours: [Date]
+    // MARK: Order Related
+    var reviews         = [Review]()
+    var orders          = [Order]()
+}
 
-    var reviews = [Review]()
-    var components = [String]()
+extension Bengkel {
+    struct OperationalHours: Codable {
+        var open: Int
+        var close: Int
+    }
+
+    struct Owner: Codable {
+        let name: String
+        let phoneNumber: String
+        let email: String
+    }
 }
