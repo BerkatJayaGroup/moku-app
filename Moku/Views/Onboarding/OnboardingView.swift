@@ -39,7 +39,9 @@ struct OnboardingView: View {
                 .foregroundColor(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
                 .padding(.horizontal)
-            Button("Masuk ke halaman utama", action:{})
+            Button("Masuk ke halaman utama", action:{
+                appState.hasOnboarded = true
+            })
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color("SalmonOrange"))
