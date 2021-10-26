@@ -71,21 +71,10 @@ struct MokuApp: App {
                 // Suruh Login...
                 // Chris nitip
                 if appState.hasOnboarded {
-                    ContentView()
+                    BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
-//                GoogleMapView(coordinate: $userLocation.coordinate) {
-//                    print("Done Moving Camera.")
-//                }
-//
-//                Text("Anda harus login.")
-//                    .onAppear {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                            let customer = Customer(name: "Alpha", phoneNumber: "1234")
-//                            session.user = .customer(customer)
-//                        }
-//                    }
             }
         }
     }

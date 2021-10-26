@@ -46,4 +46,14 @@ extension Date {
         return dates
 
     }
+
+    static func convertDateFormater(date: Date) -> String {
+            let dateString = "\(date)"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+            guard let date = dateFormatter.date(from: dateString) else { return ""}
+            dateFormatter.dateFormat = "dd/MM/yyy"
+            return  dateFormatter.string(from: date)
+
+        }
 }

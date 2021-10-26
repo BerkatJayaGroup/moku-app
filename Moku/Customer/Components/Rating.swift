@@ -16,7 +16,7 @@ struct Rating: View {
 
             Button(action: { print("Button Tap") }) {
 
-                Image(systemName: "xmark")
+                Image(systemName: "xmark.circle.fill")
                     .foregroundColor(Color("PrimaryColor"))
             }
             .padding(.top, -10)
@@ -25,17 +25,18 @@ struct Rating: View {
             HStack {
                 Image(systemName: "number")
                     .resizable()
-                    .frame(width: 80, height: 80, alignment: .center)
+                    .frame(width: 85, height: 85, alignment: .center)
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(8)
 
                 VStack(alignment: .leading) {
                     Text("Berkat Jaya")
-                        .font(.headline)
-                        .fontWeight(.medium)
+                        .font(.system(size: 15))
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 0.5)
 
-                    Text("ganti oli, ganti ban")
-                        .font(.system(size: 14))
+                    Text("ganti oli, ganti ban, 22 Oktober 2021")
+                        .font(.system(size: 11))
                         .foregroundColor(Color.gray)
 
                     HStack(spacing: 10) {
