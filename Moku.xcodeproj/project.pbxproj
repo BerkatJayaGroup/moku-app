@@ -44,10 +44,15 @@
 		83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */; };
 		83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23B2722BC7F00C79064 /* Collection.swift */; };
 		83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23D2722BC7F00C79064 /* SessionService.swift */; };
+		8E043576272694700079DB29 /* BengkelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E043575272694700079DB29 /* BengkelDetail.swift */; };
+		8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435772726AA2F0079DB29 /* ColorExtension.swift */; };
+		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
+		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
 		AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9C2726A412000E2012 /* Ulasan.swift */; };
+		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,11 +88,16 @@
 		83CBF23B2722BC7F00C79064 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		83CBF23D2722BC7F00C79064 /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		83CBF24C2722BE6D00C79064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E043575272694700079DB29 /* BengkelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDetail.swift; sourceTree = "<group>"; };
+		8E0435772726AA2F0079DB29 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		8E0435792726B1790079DB29 /* SelectServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServices.swift; sourceTree = "<group>"; };
+		8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInfoDetailBengkel.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		AE9E6E9A2726A404000E2012 /* UlasanPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanPage.swift; sourceTree = "<group>"; };
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
+		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,6 +262,8 @@
 				83CBF2332722BC7F00C79064 /* TimeStack.swift */,
 				83CBF2342722BC7F00C79064 /* FavoriteList.swift */,
 				AE9E6E9C2726A412000E2012 /* Ulasan.swift */,
+				8E0435792726B1790079DB29 /* SelectServices.swift */,
+				8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -260,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				83CBF2362722BC7F00C79064 /* DateExtention.swift */,
+				8E0435772726AA2F0079DB29 /* ColorExtension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -270,6 +283,8 @@
 				83CBF2382722BC7F00C79064 /* BengkelDate.swift */,
 				83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */,
 				AE9E6E9A2726A404000E2012 /* UlasanPage.swift */,
+				AE9E6E9827269718000E2012 /* MotorModal.swift */,
+				8E043575272694700079DB29 /* BengkelDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */,
 				83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
@@ -458,10 +474,13 @@
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
+				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
+				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
+				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
@@ -478,6 +497,7 @@
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
+				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);
