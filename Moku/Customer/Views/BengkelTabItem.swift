@@ -63,7 +63,7 @@ struct BengkelTabItem: View {
                         rantingView()
                         LazyVStack {
                             ForEach(0..<5) { _ in
-                                NavigationLink(destination: BengkelDetail()){
+                                NavigationLink(destination: BengkelDetail()) {
                                     BengkelList()
                                         .padding(5)
                                         .background(Color.white)

@@ -13,11 +13,11 @@ struct CollectionInfoDetailBengkel: View {
     var mainInfo: String
     var cta: String
     var body: some View {
-        VStack(spacing: 6){
+        VStack(spacing: 6) {
             Text("\(titleInfo)")
                 .font(Font.system(size: 11))
                 .foregroundColor(.gray)
-            HStack{
+            HStack {
                 Image(systemName: "\(imageInfo)")
                     .foregroundColor(Color("PrimaryColor"))
                 Text("\(mainInfo)")

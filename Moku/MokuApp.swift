@@ -68,7 +68,7 @@ struct MokuApp: App {
                 GoogleMapView(coordinate: $userLocation.coordinate) {
                     print("Done Moving Camera.")
                 }
-                
+
                 Text("Anda harus login.")
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

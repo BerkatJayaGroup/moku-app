@@ -14,8 +14,8 @@ struct SelectServices: View {
     var servicePrice: String
     @Binding var isTap: Bool
     var body: some View {
-        GeometryReader{ geo in
-            VStack(alignment: .center, spacing: 8){
+        GeometryReader { geo in
+            VStack(alignment: .center, spacing: 8) {
                 Text("\(serviceTitle)")
                     .fontWeight(.semibold)
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
