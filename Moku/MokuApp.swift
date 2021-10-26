@@ -11,6 +11,10 @@ import Firebase
 @main
 struct MokuApp: App {
     @ObservedObject var session = SessionService.shared
+    
+    @StateObject var appState = AppState()
+    
+    var onboardingData = OnboardingDataModel.data
 
     init() {
         FirebaseApp.configure()
@@ -22,6 +26,7 @@ struct MokuApp: App {
     }
 
     var body: some Scene {
+        
         WindowGroup {
             if let user = session.user {
                 switch user {
@@ -31,7 +36,11 @@ struct MokuApp: App {
                     CustomerView(for: customer)
                 }
             } else {
-                // ...
+                if appState.hasOnboarded {
+                    BengkelTabItem()
+                } else {
+                    OnboardingView(data: onboardingData).environmentObject(appState)
+                }
             }
         }
     }
