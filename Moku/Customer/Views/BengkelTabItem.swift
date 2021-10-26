@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BengkelTabItem: View {
     @State private var searchText = ""
+    @State private var isOpenBengkel = false
     var body: some View {
         NavigationView {
             ScrollView {
@@ -62,11 +63,13 @@ struct BengkelTabItem: View {
                         rantingView()
                         LazyVStack {
                             ForEach(0..<5) { _ in
-                                BengkelList()
-                                    .padding(5)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                NavigationLink(destination: BengkelDetail()) {
+                                    BengkelList()
+                                        .padding(5)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                }
                             }
                         }.padding(10)
                     }.padding(7)

@@ -49,7 +49,6 @@ struct BengkelList: View {
 
                 }
             }
-
         }.foregroundColor(.black)
     }
 }
