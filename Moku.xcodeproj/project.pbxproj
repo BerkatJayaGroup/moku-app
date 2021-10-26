@@ -23,13 +23,20 @@
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
 		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
-		837370B627144701003656FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B527144701003656FC /* ContentView.swift */; };
 		837370BB27144703003656FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370BA27144703003656FC /* Preview Assets.xcassets */; };
 		837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837370C1271449E4003656FC /* GoogleService-Info.plist */; };
 		837370C527144BB1003656FC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C427144BB1003656FC /* FirebaseAuth */; };
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
+		83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83776A6727272E70008AA404 /* GooglePlacesService.swift */; };
+		837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1DB2727C2F9000E1FAA /* GoogleMapsService.swift */; };
+		837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1DE2727C427000E1FAA /* GoogleMapView.swift */; };
+		837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E12727C4F8000E1FAA /* LocationService.swift */; };
+		837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E32727CA52000E1FAA /* CustomerView.swift */; };
+		837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E52727CAD1000E1FAA /* BengkelView.swift */; };
+		837BE1E82727D580000E1FAA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E72727D580000E1FAA /* Place.swift */; };
+		83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC9FD12726AD5F003039D8 /* MapHelper.swift */; };
 		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
 		83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22E2722BC7F00C79064 /* ShapeBg.swift */; };
@@ -42,7 +49,6 @@
 		83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2362722BC7F00C79064 /* DateExtention.swift */; };
 		83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2382722BC7F00C79064 /* BengkelDate.swift */; };
 		83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */; };
-		83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23B2722BC7F00C79064 /* Collection.swift */; };
 		83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23D2722BC7F00C79064 /* SessionService.swift */; };
 		8E043576272694700079DB29 /* BengkelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E043575272694700079DB29 /* BengkelDetail.swift */; };
 		8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435772726AA2F0079DB29 /* ColorExtension.swift */; };
@@ -76,9 +82,16 @@
 		83529A582718241000F3C82B /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
-		837370B527144701003656FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		837370BA27144703003656FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		83776A6727272E70008AA404 /* GooglePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesService.swift; sourceTree = "<group>"; };
+		837BE1DB2727C2F9000E1FAA /* GoogleMapsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsService.swift; sourceTree = "<group>"; };
+		837BE1DE2727C427000E1FAA /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		837BE1E12727C4F8000E1FAA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		837BE1E32727CA52000E1FAA /* CustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerView.swift; sourceTree = "<group>"; };
+		837BE1E52727CAD1000E1FAA /* BengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelView.swift; sourceTree = "<group>"; };
+		837BE1E72727D580000E1FAA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		83AC9FD12726AD5F003039D8 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		83CBF22C2722BC7F00C79064 /* BookDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
 		83CBF22E2722BC7F00C79064 /* ShapeBg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
 		83CBF22F2722BC7F00C79064 /* BengkelList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
@@ -90,7 +103,6 @@
 		83CBF2362722BC7F00C79064 /* DateExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
 		83CBF2382722BC7F00C79064 /* BengkelDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelDate.swift; sourceTree = "<group>"; };
 		83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
-		83CBF23B2722BC7F00C79064 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		83CBF23D2722BC7F00C79064 /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		83CBF24C2722BE6D00C79064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E043575272694700079DB29 /* BengkelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDetail.swift; sourceTree = "<group>"; };
@@ -100,10 +112,10 @@
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
+		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE9E6E9A2726A404000E2012 /* UlasanPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanPage.swift; sourceTree = "<group>"; };
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
 		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
-		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B8CE65F82726BA2B008F4CEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B8CE65FA2726BA54008F4CEE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -167,6 +179,7 @@
 				833674902716C9DD0040D669 /* Order.swift */,
 				833674922716CC0D0040D669 /* Location.swift */,
 				833674942716CD840040D669 /* Mekanik.swift */,
+				837BE1E72727D580000E1FAA /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
+				83AC9FD12726AD5F003039D8 /* MapHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -208,21 +222,20 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				837370B327144701003656FC /* MokuApp.swift */,
+				837BE1DD2727C418000E1FAA /* Shared */,
 				B8CE65F02726B186008F4CEE /* Views */,
-				B854B923271EBD0800DCFAA5 /* Info.plist */,
-				837370C1271449E4003656FC /* GoogleService-Info.plist */,
-				83CBF23A2722BC7F00C79064 /* Constants */,
 				83CBF22A2722BC7F00C79064 /* Customer */,
-				83CBF23C2722BC7F00C79064 /* Services */,
 				83CBF2282722BC4200C79064 /* Bengkel */,
+				83CBF23C2722BC7F00C79064 /* Services */,
 				830383D32717FF3100F03CE3 /* Constants */,
 				83529A57271822E500F3C82B /* Helpers */,
 				830383D02717FD7800F03CE3 /* Repositories */,
 				8336748F2716C7840040D669 /* Resources */,
 				832AC1E527159AC000BD92E2 /* Models */,
-				837370B327144701003656FC /* MokuApp.swift */,
-				837370B527144701003656FC /* ContentView.swift */,
 				837370B927144703003656FC /* Preview Content */,
+				B854B923271EBD0800DCFAA5 /* Info.plist */,
+				837370C1271449E4003656FC /* GoogleService-Info.plist */,
 				83CBF24C2722BE6D00C79064 /* Assets.xcassets */,
 			);
 			path = Moku;
@@ -236,9 +249,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		837BE1DD2727C418000E1FAA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				837BE1E02727C42D000E1FAA /* GoogleMap */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		837BE1E02727C42D000E1FAA /* GoogleMap */ = {
+			isa = PBXGroup;
+			children = (
+				837BE1DE2727C427000E1FAA /* GoogleMapView.swift */,
+			);
+			path = GoogleMap;
+			sourceTree = "<group>";
+		};
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
+				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
 			);
 			path = Bengkel;
 			sourceTree = "<group>";
@@ -246,6 +276,7 @@
 		83CBF22A2722BC7F00C79064 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				837BE1E32727CA52000E1FAA /* CustomerView.swift */,
 				83CBF22B2722BC7F00C79064 /* ViewModels */,
 				83CBF22D2722BC7F00C79064 /* Components */,
 				83CBF2352722BC7F00C79064 /* Extentions */,
@@ -301,19 +332,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		83CBF23A2722BC7F00C79064 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				83CBF23B2722BC7F00C79064 /* Collection.swift */,
-			);
-			name = Constants;
-			path = Moku/Constants;
-			sourceTree = SOURCE_ROOT;
-		};
 		83CBF23C2722BC7F00C79064 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				83CBF23D2722BC7F00C79064 /* SessionService.swift */,
+				837BE1E12727C4F8000E1FAA /* LocationService.swift */,
+				837BE1DB2727C2F9000E1FAA /* GoogleMapsService.swift */,
+				83776A6727272E70008AA404 /* GooglePlacesService.swift */,
 				B8CE65F82726BA2B008F4CEE /* AppState.swift */,
 			);
 			name = Services;
@@ -503,39 +528,45 @@
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
-				837370B627144701003656FC /* ContentView.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
+				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				B8CE65FF2726BC94008F4CEE /* OnboardingStepView.swift in Sources */,
 				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				837BE1E82727D580000E1FAA /* Place.swift in Sources */,
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
-				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
+				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
+				837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */,
+				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */,
 				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,
 				83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */,
 				83CBF2422722BC7F00C79064 /* Rating.swift in Sources */,
 				B8CE65FD2726BB3D008F4CEE /* OnboardingDataModel.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
-				83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */,
 				83CBF2442722BC7F00C79064 /* CustomTextField.swift in Sources */,
+				83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */,
 				AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */,
 				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
+				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
+				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,
+				837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
