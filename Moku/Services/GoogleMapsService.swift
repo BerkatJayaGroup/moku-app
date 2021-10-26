@@ -14,6 +14,6 @@ final class GoogleMapsService: ObservableObject {
     private init() {}
 
     static func register() {
-        GMSServices.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
+        GMSServices.provideAPIKey(SessionService.apiKey)
     }
 }

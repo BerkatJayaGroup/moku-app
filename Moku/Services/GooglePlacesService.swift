@@ -9,11 +9,6 @@ import Foundation
 import GooglePlaces
 import SwiftUI
 
-struct Place: Identifiable {
-    let id: String
-    let name: String
-}
-
 final class GooglePlacesService: ObservableObject {
     static let shared = GooglePlacesService()
 
@@ -31,7 +26,7 @@ final class GooglePlacesService: ObservableObject {
     private init() {}
 
     static func register() {
-        GMSPlacesClient.provideAPIKey("AIzaSyDs--hrfb86N3WtmfbMXMoah4MiZcfzLF4")
+        GMSPlacesClient.provideAPIKey(SessionService.apiKey)
     }
 
     func runQuery(_ query: String) {

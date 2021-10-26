@@ -35,6 +35,7 @@
 		837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E12727C4F8000E1FAA /* LocationService.swift */; };
 		837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E32727CA52000E1FAA /* CustomerView.swift */; };
 		837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E52727CAD1000E1FAA /* BengkelView.swift */; };
+		837BE1E82727D580000E1FAA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E72727D580000E1FAA /* Place.swift */; };
 		83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC9FD12726AD5F003039D8 /* MapHelper.swift */; };
 		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
@@ -77,6 +78,7 @@
 		837BE1E12727C4F8000E1FAA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		837BE1E32727CA52000E1FAA /* CustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerView.swift; sourceTree = "<group>"; };
 		837BE1E52727CAD1000E1FAA /* BengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelView.swift; sourceTree = "<group>"; };
+		837BE1E72727D580000E1FAA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		83AC9FD12726AD5F003039D8 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		83CBF22C2722BC7F00C79064 /* BookDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
 		83CBF22E2722BC7F00C79064 /* ShapeBg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				833674902716C9DD0040D669 /* Order.swift */,
 				833674922716CC0D0040D669 /* Location.swift */,
 				833674942716CD840040D669 /* Mekanik.swift */,
+				837BE1E72727D580000E1FAA /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
+				837BE1E82727D580000E1FAA /* Place.swift in Sources */,
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
