@@ -19,6 +19,7 @@ struct FavoriteList: View {
                     .font(.headline)
                 Text("0.5KM")
                     .font(.caption)
+                    .foregroundColor(Color.gray)
             }
             HStack(alignment: .center) {
                 Image(systemName: "star.fill")

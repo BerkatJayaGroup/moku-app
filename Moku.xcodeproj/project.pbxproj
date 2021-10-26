@@ -50,6 +50,7 @@
 		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
+		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +277,7 @@
 			children = (
 				83CBF2382722BC7F00C79064 /* BengkelDate.swift */,
 				83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */,
+				AE9E6E9827269718000E2012 /* MotorModal.swift */,
 				8E043575272694700079DB29 /* BengkelDetail.swift */,
 			);
 			path = Views;
@@ -457,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */,
 				83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
