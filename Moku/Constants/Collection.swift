@@ -9,4 +9,5 @@ struct Collection {
     static let bengkel  = "bengkel"
     static let customer = "customer"
     static let order    = "order"
+    static let motor    = "motor"
 }
