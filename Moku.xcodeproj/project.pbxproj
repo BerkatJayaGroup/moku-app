@@ -46,6 +46,11 @@
 		83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23D2722BC7F00C79064 /* SessionService.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
+		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
+		B8CE65FB2726BA54008F4CEE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65FA2726BA54008F4CEE /* OnboardingView.swift */; };
+		B8CE65FD2726BB3D008F4CEE /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65FC2726BB3D008F4CEE /* OnboardingDataModel.swift */; };
+		B8CE65FF2726BC94008F4CEE /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65FE2726BC94008F4CEE /* OnboardingStepView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +90,11 @@
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		B8CE65F82726BA2B008F4CEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B8CE65FA2726BA54008F4CEE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B8CE65FC2726BB3D008F4CEE /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
+		B8CE65FE2726BC94008F4CEE /* OnboardingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				830383D42717FF5100F03CE3 /* Collection.swift */,
+				B8CE28632727E93A00464E64 /* UserDefaults.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -183,6 +194,7 @@
 		837370B227144701003656FC /* Moku */ = {
 			isa = PBXGroup;
 			children = (
+				B8CE65F02726B186008F4CEE /* Views */,
 				B854B923271EBD0800DCFAA5 /* Info.plist */,
 				837370C1271449E4003656FC /* GoogleService-Info.plist */,
 				83CBF23A2722BC7F00C79064 /* Constants */,
@@ -281,10 +293,29 @@
 			isa = PBXGroup;
 			children = (
 				83CBF23D2722BC7F00C79064 /* SessionService.swift */,
+				B8CE65F82726BA2B008F4CEE /* AppState.swift */,
 			);
 			name = Services;
 			path = Moku/Services;
 			sourceTree = SOURCE_ROOT;
+		};
+		B8CE65F02726B186008F4CEE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8CE65F12726B198008F4CEE /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8CE65F12726B198008F4CEE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B8CE65FA2726BA54008F4CEE /* OnboardingView.swift */,
+				B8CE65FC2726BB3D008F4CEE /* OnboardingDataModel.swift */,
+				B8CE65FE2726BC94008F4CEE /* OnboardingStepView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
 		};
 		F5E8098DE71C292574E0645A /* Pods */ = {
 			isa = PBXGroup;
@@ -445,14 +476,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE65FB2726BA54008F4CEE /* OnboardingView.swift in Sources */,
 				83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */,
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
+				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
 				837370B627144701003656FC /* ContentView.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
+				B8CE65FF2726BC94008F4CEE /* OnboardingStepView.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
@@ -462,12 +496,14 @@
 				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,
 				83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */,
 				83CBF2422722BC7F00C79064 /* Rating.swift in Sources */,
+				B8CE65FD2726BB3D008F4CEE /* OnboardingDataModel.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				83CBF24A2722BC7F00C79064 /* Collection.swift in Sources */,
 				83CBF2442722BC7F00C79064 /* CustomTextField.swift in Sources */,
 				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
+				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
@@ -603,7 +639,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
@@ -635,7 +671,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				DEVELOPMENT_TEAM = TM8952UAR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
