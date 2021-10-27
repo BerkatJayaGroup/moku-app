@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class SessionService: ObservableObject {
     // Shared Instance
