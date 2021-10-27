@@ -34,14 +34,12 @@ struct DaftarCustomer: View {
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
                         .padding(.bottom)
-
                     if !self.nameCheck {
                         Text("Nama Wajib Diisi")
                             .offset(y: -10)
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-
                     Text("NOMOR TELEPON")
                         .font(.caption2)
                     TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: {
