@@ -11,9 +11,9 @@ import Firebase
 @main
 struct MokuApp: App {
     @ObservedObject var session = SessionService.shared
-    
+
     @StateObject var appState = AppState()
-    
+
     var onboardingData = OnboardingDataModel.data
 
     init() {
@@ -26,7 +26,7 @@ struct MokuApp: App {
     }
 
     var body: some Scene {
-        
+
         WindowGroup {
             if let user = session.user {
                 switch user {
@@ -37,6 +37,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
+                    //temporary redirect to bengkel tab item
                     BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
