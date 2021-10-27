@@ -40,15 +40,6 @@ struct OnboardingView: View {
             })
                 .frame(height: 50, alignment: .center)
                 .padding(.horizontal)
-//            Button("Daftar atau Masuk", action:{
-//                appState.hasOnboarded = true
-//            })
-//                .padding()
-//                .frame(maxWidth: .infinity)
-//                .background(Color("PrimaryColor"))
-//                .foregroundColor(.white)
-//                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-//                .padding(.horizontal)
             Button("Masuk ke halaman utama", action: {
                 appState.hasOnboarded = true
             })
