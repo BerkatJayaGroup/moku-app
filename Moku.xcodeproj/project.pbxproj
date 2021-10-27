@@ -53,6 +53,7 @@
 		83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2382722BC7F00C79064 /* BengkelDate.swift */; };
 		83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */; };
 		83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF23D2722BC7F00C79064 /* SessionService.swift */; };
+		83CBFCB327299E5800BD64BC /* BengkelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */; };
 		8E043576272694700079DB29 /* BengkelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E043575272694700079DB29 /* BengkelDetail.swift */; };
 		8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435772726AA2F0079DB29 /* ColorExtension.swift */; };
 		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
@@ -111,6 +112,7 @@
 		83CBF2392722BC7F00C79064 /* BengkelTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelTabItem.swift; sourceTree = "<group>"; };
 		83CBF23D2722BC7F00C79064 /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		83CBF24C2722BE6D00C79064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDetailViewModel.swift; sourceTree = "<group>"; };
 		8E043575272694700079DB29 /* BengkelDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDetail.swift; sourceTree = "<group>"; };
 		8E0435772726AA2F0079DB29 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8E0435792726B1790079DB29 /* SelectServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServices.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				83CBF22C2722BC7F00C79064 /* BookDate.swift */,
 				8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */,
+				83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
+				83CBFCB327299E5800BD64BC /* BengkelDetailViewModel.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,

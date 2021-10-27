@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import MapKit
 
 struct Bengkel: Codable {
     // MARK: - Registration Related
@@ -22,12 +23,26 @@ struct Bengkel: Codable {
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
 
+    var distance: Double?
+
     // MARK: Order Related
     var reviews         = [Review]()
     var orders          = [Order]()
 }
 
 extension Bengkel {
+    var address: String {
+        location.address
+    }
+
+    var clLocation: CLLocation {
+        CLLocation(latitude: location.latitude, longitude: location.longitude)
+    }
+
+    var coordinate: CLLocationCoordinate2D {
+        clLocation.coordinate
+    }
+
     struct OperationalHours: Codable {
         var open: Int
         var close: Int

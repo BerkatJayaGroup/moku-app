@@ -21,10 +21,10 @@ extension Customer {
         name: "John Doe",
         phoneNumber: "082280806969",
         motors: [
-            Motor(brand: .yamaha, model: "NMAX", cc: 155),
-            Motor(brand: .yamaha, model: "Scoopy", cc: 110),
-            Motor(brand: .yamaha, model: "Mio", cc: 110),
-            Motor(brand: .yamaha, model: "Jupiter", cc: 120)
+            Motor(brand: .yamaha, model: "Motor Yamaha", cc: 155),
+            Motor(brand: .suzuki, model: "Motor Suzuki", cc: 110),
+            Motor(brand: .honda, model: "Motor Honda", cc: 110),
+            Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
         ]
     )
 }

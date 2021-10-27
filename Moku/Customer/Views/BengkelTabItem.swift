@@ -10,12 +10,9 @@ import SwiftUI
 struct BengkelTabItem: View {
     @StateObject private var viewModel = ViewModel()
 
-    @State private var searchText = ""
     @State private var showingSheet = false
-    @State private var select = 0
-    @State private var isOpenBengkel = false
 
-    var lastOrder = false
+    var lastOrder = true
 
     var body: some View {
         NavigationView {
@@ -24,6 +21,7 @@ struct BengkelTabItem: View {
                     ShapeBg()
                         .frame(height: 140)
                         .foregroundColor(Color("PrimaryColor"))
+
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
                         Button {
@@ -48,7 +46,7 @@ struct BengkelTabItem: View {
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(.systemGray3))
-                            TextField("Cari Bengkel", text: $searchText)
+                            TextField("Cari Bengkel", text: $viewModel.searchQuery)
                         }
                         .padding(8)
                         .padding(.leading, 5)
@@ -84,18 +82,20 @@ struct BengkelTabItem: View {
     @ViewBuilder
     private func listOfNearbyBengkel() -> some View {
         if viewModel.nearbyBengkel.isEmpty {
-            HStack {
-                Spacer()
+            VStack {
                 Image("EmptyBengkelPlaceholder")
                     .resizable()
-                    .fit()
-                Spacer()
-            }.padding(72)
+                    .scaledToFit()
+                    .padding(72)
+                Button("Coba Ulang") {
+                    viewModel.getNearestBengkel()
+                }
+            }
         } else {
             LazyVStack {
-                ForEach(viewModel.nearbyBengkel, id: \.name) { bengkel in
-                    NavigationLink(destination: BengkelDetail()) {
-                        BengkelList()
+                ForEach(viewModel.filteredNearbyBengkel, id: \.name) { bengkel in
+                    NavigationLink(destination: BengkelDetail(bengkel: bengkel)) {
+                        BengkelList(bengkel: bengkel)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -147,7 +147,7 @@ struct BengkelTabItem: View {
         }
     }
 
-    fileprivate func bengkelFavoriteView() -> some View {
+    private func bengkelFavoriteView() -> some View {
         VStack(alignment: .leading) {
             Text("Bengkel Favorit")
                 .font(.headline)
@@ -163,13 +163,12 @@ struct BengkelTabItem: View {
                 }
                 .padding(5)
             }
-            
         }
         .padding(10)
         .padding(.horizontal, 10)
     }
 
-    fileprivate func rantingView() -> some View {
+    private func rantingView() -> some View {
         VStack(alignment: .leading) {
             Text("Kasih rating dulu yuk!")
                 .font(.headline)
@@ -181,7 +180,6 @@ struct BengkelTabItem: View {
         }
         .padding(10)
         .padding(.horizontal, 10)
-        
     }
 }
 

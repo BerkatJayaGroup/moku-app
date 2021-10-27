@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct BengkelList: View {
+    let bengkel: Bengkel
+
+    init(bengkel: Bengkel) {
+        self.bengkel = bengkel
+    }
+
     var body: some View {
         HStack {
             Image(systemName: "number")
@@ -18,17 +24,17 @@ struct BengkelList: View {
                 .cornerRadius(8)
 
             VStack(alignment: .leading) {
-                Text("Berkat Jaya")
+                Text(bengkel.name)
                     .font(.system(size: 15))
                     .fontWeight(.semibold)
                     .padding(.bottom, 0.5)
 
-                Text("Senin - Jumat, 10.00 - 17.00")
+                Text("Senin - Jumat, \(operationalHours)")
                     .font(.system(size: 11))
                     .foregroundColor(Color.gray)
                     .padding(.bottom, 0.5)
 
-                Text("0.5KM")
+                Text(distance)
                     .font(.system(size: 11))
                     .foregroundColor(Color.gray)
                     .padding(.bottom, 0.5)
@@ -45,11 +51,10 @@ struct BengkelList: View {
                             .offset(x: 10, y: -0.5)
                             .font(.system(size: 13))
                             .foregroundColor(Color("PrimaryColor"))
-                        Text("5")
+                        Text(averageRating)
                             .font(.system(size: 15))
                             .fontWeight(.heavy)
                     }
-
                 }
             }
         }.foregroundColor(.black)
@@ -58,8 +63,27 @@ struct BengkelList: View {
 
 struct BengkelList_Previews: PreviewProvider {
     static var previews: some View {
-        BengkelList()
+        BengkelList(bengkel: .preview)
             .previewLayout(.sizeThatFits)
             .padding()
+    }
+}
+
+extension BengkelList {
+    var operationalHours: String {
+        "\(bengkel.operationalHours.open).00 - \(bengkel.operationalHours.close).00"
+    }
+
+    var distance: String {
+        MapHelper.stringify(distance: bengkel.distance)
+    }
+
+    var averageRating: String {
+        let totalRating = bengkel.reviews.reduce(Float(0)) { partialResult, review in
+            partialResult + Float(review.rating)
+        }
+        let average = Float(totalRating / Float(bengkel.reviews.count))
+
+        return String(format: "%.1f", average)
     }
 }
