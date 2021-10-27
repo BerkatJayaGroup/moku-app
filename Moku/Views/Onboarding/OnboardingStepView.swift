@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct OnboardingStepView: View {
-    
+
     var data: OnboardingDataModel
-    
+
     var body: some View {
-        VStack() {
+        VStack {
             Text(data.image).font(.title)
             Text(data.heading).font(.title3)
                 .multilineTextAlignment(.center)
