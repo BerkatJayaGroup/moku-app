@@ -8,7 +8,7 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    
+
     @AppStorage(UserDefaults.hasOnboarded) var hasOnboarded = false
-    
+
 }
