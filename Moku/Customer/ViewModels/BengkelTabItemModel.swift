@@ -6,13 +6,15 @@
 //
 
 import Combine
+import Dispatch
 
 extension BengkelTabItem {
     class ViewModel: ObservableObject {
         @Published var currentLocation = "Loading..."
         @Published var selectedMotor: Motor?
-
         @Published var isCustomer = false
+        @Published var nearbyBengkel = [Bengkel]()
+
         var customerMotors = [Motor]()
 
         private var subscriptions = Set<AnyCancellable>()
@@ -20,6 +22,7 @@ extension BengkelTabItem {
         init() {
             getMotors()
             getLocation()
+            getNearestBengkel()
         }
 
         private func getMotors() {
@@ -45,6 +48,14 @@ extension BengkelTabItem {
                     self.currentLocation = location
                 }
             }.store(in: &subscriptions)
+        }
+
+        private func getNearestBengkel() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.nearbyBengkel = [
+                    Bengkel.preview,
+                ]
+            }
         }
     }
 }

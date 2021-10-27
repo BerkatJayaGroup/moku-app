@@ -15,7 +15,7 @@ struct BengkelTabItem: View {
     @State private var select = 0
     @State private var isOpenBengkel = false
 
-    var lastOrder = true
+    var lastOrder = false
 
     var body: some View {
         NavigationView {
@@ -72,24 +72,39 @@ struct BengkelTabItem: View {
                                 .edgesIgnoringSafeArea(.horizontal)
                         }
                         
-                        LazyVStack {
-                            ForEach(0..<5) { _ in
-                                NavigationLink(destination: BengkelDetail()) {
-                                    BengkelList()
-                                        .padding(5)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                                }
-                            }
-                        }
-                        .padding(10)
-                        .padding(.horizontal, 10)
+                        listOfNearbyBengkel()
                     }
                 }
             }
             .edgesIgnoringSafeArea(.top)
             .navigationBarHidden(true)
+        }
+    }
+
+    @ViewBuilder
+    private func listOfNearbyBengkel() -> some View {
+        if viewModel.nearbyBengkel.isEmpty {
+            HStack {
+                Spacer()
+                Image("EmptyBengkelPlaceholder")
+                    .resizable()
+                    .fit()
+                Spacer()
+            }.padding(72)
+        } else {
+            LazyVStack {
+                ForEach(viewModel.nearbyBengkel, id: \.name) { bengkel in
+                    NavigationLink(destination: BengkelDetail()) {
+                        BengkelList()
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                    }
+                }
+            }
+            .padding(10)
+            .padding(.horizontal, 10)
         }
     }
 
@@ -114,8 +129,8 @@ struct BengkelTabItem: View {
                 .foregroundColor(Color.white)
                 .sheet(isPresented: $showingSheet) {
                     MotorModal(
-                        availableMotors: viewModel.customerMotors, 
-                        selectedMotor: $viewModel.selectedMotor, 
+                        availableMotors: viewModel.customerMotors,
+                        selectedMotor: $viewModel.selectedMotor,
                         showingSheet: $showingSheet
                     )
                 }
