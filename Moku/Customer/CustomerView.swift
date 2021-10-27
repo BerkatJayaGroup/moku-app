@@ -15,7 +15,7 @@ struct CustomerView: View {
     }
 
     var body: some View {
-        Text("\(customer.name) - \(customer.phoneNumber)")
+        Text("\(customer.name) - \(customer.motors?.count ?? 0)")
     }
 }
 

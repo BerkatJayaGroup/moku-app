@@ -7,7 +7,7 @@
 
 import MapKit
 
-struct Location {
+struct Location: Codable {
     var address: String
     let longitude: Double
     let latitude: Double
