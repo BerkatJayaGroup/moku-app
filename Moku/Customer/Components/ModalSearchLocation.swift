@@ -19,27 +19,37 @@ struct ModalSearchLocation: View {
     ]
     
     var body: some View {
-        VStack{
-            HStack{
+        NavigationView{
+            VStack{
+                SearchBarLocation(text: $searchText)
+                List(location.filter({
+                    searchText.isEmpty ? true : $0.name.contains(searchText)
+                })){ item in
+                    Text(item.name)
+                }
+            }
+            .padding(.vertical, 8)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
+                
+            }){
                 Text("Pilih Lokasimu")
                     .font(.system(size: 17, weight: .bold))
-                Spacer()
+                    .foregroundColor(Color.black)
+            }, trailing:Button(action: {
+                
+            }){
                 HStack{
-                    Image(systemName: "key")
+                    Image(systemName: "mappin.circle.fill")
                     Text("Pilih Lokasi")
                 }
+                .font(Font.system(size: 13))
                 .padding(.horizontal, 12.0)
                 .padding(.vertical, 7.0)
                 .foregroundColor(.white)
                 .background(Color("PrimaryColor"))
                 .cornerRadius(8)
-            }
-            SearchBarLocation(text: $searchText)
-            List(location.filter({
-                searchText.isEmpty ? true : $0.name.contains(searchText)
-            })){ item in
-                Text(item.name)
-            }
+            })
         }
     }
 }
