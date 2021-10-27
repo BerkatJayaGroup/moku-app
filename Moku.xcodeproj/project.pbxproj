@@ -232,7 +232,6 @@
 			children = (
 				837370B327144701003656FC /* MokuApp.swift */,
 				837BE1DD2727C418000E1FAA /* Shared */,
-				B8CE65F02726B186008F4CEE /* Views */,
 				83CBF22A2722BC7F00C79064 /* Customer */,
 				83CBF2282722BC4200C79064 /* Bengkel */,
 				83CBF23C2722BC7F00C79064 /* Services */,
@@ -260,6 +259,7 @@
 		837BE1DD2727C418000E1FAA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B8CE65F12726B198008F4CEE /* Onboarding */,
 				837BE1E02727C42D000E1FAA /* GoogleMap */,
 			);
 			path = Shared;
@@ -353,14 +353,6 @@
 			name = Services;
 			path = Moku/Services;
 			sourceTree = SOURCE_ROOT;
-		};
-		B8CE65F02726B186008F4CEE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B8CE65F12726B198008F4CEE /* Onboarding */,
-			);
-			path = Views;
-			sourceTree = "<group>";
 		};
 		B8CE65F12726B198008F4CEE /* Onboarding */ = {
 			isa = PBXGroup;
