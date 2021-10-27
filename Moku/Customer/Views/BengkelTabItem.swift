@@ -10,12 +10,19 @@ import SwiftUI
 struct BengkelTabItem: View {
     @State private var searchText = ""
     @State private var showModal = false
+    @State private var selectedMotor: String = motors[0].model
+    @State private var showingSheet = false
+    @State private var select = 0
+    @State private var isOpenBengkel = false
+  
+    var lastOrder = true
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 ZStack(alignment: .top) {
                     ShapeBg()
-                        .frame(height: 150)
+                        .frame(height: 140)
                         .foregroundColor(Color("PrimaryColor"))
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
@@ -37,14 +44,16 @@ struct BengkelTabItem: View {
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(20)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, 20)
                         HStack {
                             Text("Ingin Memperbaiki")
                                 .foregroundColor(Color.white)
-                                .padding(.leading)
+                                .padding(.leading, 20)
                                 .font(.system(size: 17))
-                            Button(action: {}) {
-                                Text("Motor")
+                            Button(action: {
+                                showingSheet = true
+                            }) {
+                                Text("\(selectedMotor)")
                                     .font(.system(size: 18))
                                     .fontWeight(.bold)
                                 Image(systemName: "chevron.down")
@@ -52,30 +61,49 @@ struct BengkelTabItem: View {
                                     .offset(x: -5)
                             }
                             .foregroundColor(Color.white)
+                            .sheet(isPresented: $showingSheet) {
+                                MotorModal(data: self.$selectedMotor, showingSheet: self.$showingSheet)
+                            }
                         }
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(.systemGray3))
                             TextField("Cari Bengkel", text: $searchText)
                         }
-                        .padding(10)
+                        .padding(8)
                         .padding(.leading, 5)
                         .background(Color.white, alignment: .center)
                         .cornerRadius(7)
-                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                        .padding(.horizontal, 8)
+                        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
+                        .padding(.horizontal, 20)
                         bengkelFavoriteView()
-                        rantingView()
+                        Rectangle()
+                            .fill(Color(.systemGray6))
+                            .frame(height: 5)
+                            .edgesIgnoringSafeArea(.horizontal)
+                        
+                        if lastOrder == true {
+                            rantingView()
+                            Rectangle()
+                                .fill(Color(.systemGray6))
+                                .frame(height: 5)
+                                .edgesIgnoringSafeArea(.horizontal)
+                        }
+                        
                         LazyVStack {
                             ForEach(0..<5) { _ in
-                                BengkelList()
-                                    .padding(5)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                NavigationLink(destination: BengkelDetail()) {
+                                    BengkelList()
+                                        .padding(5)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                                }
                             }
-                        }.padding(10)
-                    }.padding(7)
+                        }
+                        .padding(10)
+                        .padding(.horizontal, 10)
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)
@@ -85,6 +113,7 @@ struct BengkelTabItem: View {
     fileprivate func bengkelFavoriteView() -> some View {
         VStack(alignment: .leading) {
             Text("Bengkel Favorit")
+                .font(.headline)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(0..<5) { _ in
@@ -92,25 +121,29 @@ struct BengkelTabItem: View {
                             .padding(10)
                             .background(Color.white)
                             .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                     }
-                }.padding(10)
+                }
+                .padding(5)
             }
-            Divider()
-                .padding(.top)
-        }.padding(7)
+            
+        }
+        .padding(10)
+        .padding(.horizontal, 10)
     }
     fileprivate func rantingView() -> some View {
         VStack(alignment: .leading) {
             Text("Kasih rating dulu yuk!")
+                .font(.headline)
             Rating()
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(10)
-                .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-            Divider()
-                .padding(.top)
-        }.padding(10)
+                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+        }
+        .padding(10)
+        .padding(.horizontal, 10)
+        
     }
 }
 
