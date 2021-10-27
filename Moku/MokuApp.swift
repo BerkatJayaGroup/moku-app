@@ -11,7 +11,6 @@ import Firebase
 @main
 struct MokuApp: App {
     @ObservedObject var session = SessionService.shared
-    @ObservedObject var locService = LocationService.shared
 
     @StateObject var appState = AppState()
 
@@ -38,9 +37,8 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    GoogleMapView(coordinate: $locService.userCoordinate) { coordinate in
-                        print(coordinate)
-                    }
+                    //temporary redirect to bengkel tab item
+                    BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
