@@ -19,6 +19,7 @@
 		832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1EA2715A2FD00BD92E2 /* Motor.swift */; };
 		832AC1ED2715A42300BD92E2 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1EC2715A42300BD92E2 /* Review.swift */; };
 		8330A2BB2729331500AC5447 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330A2BA2729331500AC5447 /* Day.swift */; };
+		8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */; };
 		833674912716C9DD0040D669 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674902716C9DD0040D669 /* Order.swift */; };
 		833674932716CC0D0040D669 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674922716CC0D0040D669 /* Location.swift */; };
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
@@ -80,6 +81,7 @@
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
 		832AC1EC2715A42300BD92E2 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8330A2BA2729331500AC5447 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItemModel.swift; sourceTree = "<group>"; };
 		833674902716C9DD0040D669 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		833674922716CC0D0040D669 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		833674942716CD840040D669 /* Mekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mekanik.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				83CBF22C2722BC7F00C79064 /* BookDate.swift */,
+				8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,
+				8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */,
 				837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

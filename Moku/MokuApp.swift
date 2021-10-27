@@ -26,7 +26,6 @@ struct MokuApp: App {
     }
 
     var body: some Scene {
-        
         WindowGroup {
             if let user = session.user {
                 switch user {
@@ -37,7 +36,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-
+                    BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }

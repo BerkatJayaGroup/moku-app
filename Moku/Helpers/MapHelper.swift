@@ -17,6 +17,8 @@ struct MapHelper {
                let city = placemark.locality,
                let state = placemark.administrativeArea {
                 completionHandler("\(city), \(state)")
+            } else {
+                completionHandler("Location not found")
             }
         }
     }

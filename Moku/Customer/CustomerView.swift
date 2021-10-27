@@ -15,7 +15,23 @@ struct CustomerView: View {
     }
 
     var body: some View {
-        Text("\(customer.name) - \(customer.motors?.count ?? 0)")
+        TabView {
+            BengkelTabItem()
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Bengkel")
+                }
+            Text("Booking View")
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Booking")
+                }
+            Text("Garasi View")
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Bengkel")
+                }
+        }
     }
 }
 
