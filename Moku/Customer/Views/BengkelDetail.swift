@@ -24,9 +24,6 @@ struct BengkelDetail: View {
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                NavigationView {
-                    Text("Tes")
-                }
                 VStack(alignment: .center, spacing: 8) {
                     Image(systemName: "number")
                         .resizable()
@@ -92,6 +89,7 @@ struct BengkelDetail: View {
                             }
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
+                    Spacer()
                     Text("Pesan")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
