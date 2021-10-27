@@ -14,9 +14,9 @@ struct BengkelTabItem: View {
     @State private var showingSheet = false
     @State private var select = 0
     @State private var isOpenBengkel = false
-  
+
     var lastOrder = true
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -81,7 +81,7 @@ struct BengkelTabItem: View {
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
                             .edgesIgnoringSafeArea(.horizontal)
-                        
+
                         if lastOrder == true {
                             rantingView()
                             Rectangle()
@@ -89,7 +89,7 @@ struct BengkelTabItem: View {
                                 .frame(height: 5)
                                 .edgesIgnoringSafeArea(.horizontal)
                         }
-                        
+
                         LazyVStack {
                             ForEach(0..<5) { _ in
                                 NavigationLink(destination: BengkelDetail()) {
@@ -126,7 +126,7 @@ struct BengkelTabItem: View {
                 }
                 .padding(5)
             }
-            
+
         }
         .padding(10)
         .padding(.horizontal, 10)
@@ -143,7 +143,7 @@ struct BengkelTabItem: View {
         }
         .padding(10)
         .padding(.horizontal, 10)
-        
+
     }
 }
 

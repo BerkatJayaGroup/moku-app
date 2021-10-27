@@ -29,6 +29,6 @@ extension OnboardingDataModel {
             image: "image3",
             heading: "Cek riwayat servismu",
             text: "Kamu bisa melihat riwayat servis motormu sehingga performa motormu bisa tetap optimal"
-        ),
+        )
     ]
 }

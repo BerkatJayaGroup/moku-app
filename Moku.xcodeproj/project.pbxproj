@@ -63,6 +63,7 @@
 		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
 		AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9C2726A412000E2012 /* Ulasan.swift */; };
+		AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
 		B8CE65FB2726BA54008F4CEE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65FA2726BA54008F4CEE /* OnboardingView.swift */; };
@@ -123,6 +124,7 @@
 		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
 		AE9E6E9A2726A404000E2012 /* UlasanPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanPage.swift; sourceTree = "<group>"; };
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
+		AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaftarCustomer.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B8CE65F82726BA2B008F4CEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				AE9E6E9A2726A404000E2012 /* UlasanPage.swift */,
 				AE9E6E9827269718000E2012 /* MotorModal.swift */,
 				8E043575272694700079DB29 /* BengkelDetail.swift */,
+				AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
+				AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				B8CE65FF2726BC94008F4CEE /* OnboardingStepView.swift in Sources */,
 				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
