@@ -11,13 +11,16 @@ struct DaftarCustomer: View {
     @State private var name: String = ""
     @State private var nomorTelepon: String = ""
     @State private var email: String = ""
+    @State private var motor: String = ""
     @State private var isEmailValid: Bool = true
     @State private var nameCheck: Bool = true
     @State private var nomorCheck: Bool = true
+    @State private var motorCheck: Bool = true
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
                 VStack(alignment: .leading) {
+                    
                     Text("NAMA")
                         .font(.caption2)
                     TextField("Tulis namamu disini", text: $name, onEditingChanged: { (isChanged) in
@@ -40,6 +43,7 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
+                    
                     Text("NOMOR TELEPON")
                         .font(.caption2)
                     TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: {
@@ -58,6 +62,7 @@ struct DaftarCustomer: View {
                         .cornerRadius(8)
                         .keyboardType(.numberPad)
                         .padding(.bottom)
+                    
                     Text("EMAIL")
                         .font(.caption2)
                     TextField("Alamat email", text: $email, onEditingChanged: {
@@ -77,11 +82,32 @@ struct DaftarCustomer: View {
                         .cornerRadius(8)
                         .autocapitalization(.none)
                         .autocapitalization(.none)
+                        .padding(.bottom)
                     if !self.isEmailValid {
                         Text("Format email tidak valid, gunakan example@domain.com")
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
+                    
+                    Text("MODEL MOTOR")
+                        .font(.caption2)
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(hex: "#828282"))
+                        TextField("Cari model motormu", text: $motor, onEditingChanged: { (isChanged) in
+                            if !isChanged {
+                                if self.motor.isEmpty {
+                                    self.motorCheck = false
+                                } else {
+                                    self.motorCheck = true
+                                }
+                            }
+                        })
+                            .background(Color(.systemGray6))
+                    }
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
+
                 }.padding(20)
                 Spacer()
                 Button(action: {}) {
