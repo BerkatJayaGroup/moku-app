@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct motorBrand: Identifiable, Hashable{
+    var id: String {name}
+    var name: String
+}
+
+struct motorcc: Identifiable, Hashable{
+    var id: String {ccMotor}
+    var ccMotor: String
+}
+struct selectedBrand {
+    var brand: Set<motorBrand>
+    var cc: Set<motorcc>
+}
+
+let allBrands: [motorBrand] = [motorBrand(name: "Honda"), motorBrand(name: "Yamaha"), motorBrand(name: "Suzuki")]
+let allCC: [motorcc] = [motorcc(ccMotor: "110"), motorcc(ccMotor: "125")]
+
 struct PengaturanBengkel: View {
     @State private var date = Date()
     @State private var brandMotor: String = ""
@@ -16,7 +33,7 @@ struct PengaturanBengkel: View {
     @State private var isAddMekanik: Bool = false
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @State var daySelected: [Bool] = [false, false, false, false, false, false, false]
-    
+    @State var task = selectedBrand(brand: [], cc: [])
     var body: some View {
         GeometryReader { proxy in
             NavigationView{
@@ -25,21 +42,24 @@ struct PengaturanBengkel: View {
                         Text("BRAND MOTOR YANG BISA DIPERBAIKI")
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
-                        TextField("Masukan Brand Motor disini", text: $brandMotor)
-    //                        .sheet(isPresented: $isBrandSelected){
-    //
-    //                        }
+                        MultiSelector(options: allBrands,
+                                      optionToString: { $0.name },
+                                      selected: $task.brand
+                        )
                             .frame(width: .infinity, height: 40)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
-                            
+                        
                             
                     }
                     VStack(spacing: 8){
                         Text("CC MOTOR YANG BISA DIPERBAIKI")
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
-                        TextField("Masukan CC Motor disini", text: $ccMotor)
+                        MultiSelector(options: allCC,
+                                      optionToString: { $0.ccMotor },
+                                      selected: $task.cc
+                        )
                             .frame(width: .infinity, height: 40)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)

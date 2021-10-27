@@ -12,7 +12,7 @@ struct addMekanik: View {
     @Binding var showSheetView: Bool
     @State var mechanicName: String?
     var body: some View {
-//        NavigationView{
+        NavigationView{
             VStack(){
                 Image(systemName: "number")
                     .frame(width: 100, height: 100, alignment: .center)
@@ -31,13 +31,22 @@ struct addMekanik: View {
                 Spacer()
             }
             .navigationBarTitle("Tambah Mekanik", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action:{
-                print("Dismissing sheet view...")
+            .navigationBarItems(leading: Button(action:{
                 self.showSheetView = false
+            }){
+                HStack{
+                    Image(systemName: "chevron.left")
+                    Text("Kembali")
+                }
+            }, trailing: Button(action:{
+                print("Dismissing sheet view...")
+//                self.showSheetView = false
             }){
                     Text("Tambah")
             })
-//        }
+            .padding()
+            .edgesIgnoringSafeArea(.leading)
+        }
 //        .navigationTitle("Tambah Mekanik")
 //        .toolbar{
 //            ToolbarItem(placement: .principal){
