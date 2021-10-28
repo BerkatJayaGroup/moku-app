@@ -40,7 +40,6 @@ struct PengaturanHargaBengkel: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 Button {
-                    
                 }label: {
                     Text("Selesai")
                 }
