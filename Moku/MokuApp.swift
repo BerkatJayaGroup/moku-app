@@ -11,9 +11,9 @@ import Firebase
 @main
 struct MokuApp: App {
     @ObservedObject var session = SessionService.shared
-    
+
     @StateObject var appState = AppState()
-    
+
     var onboardingData = OnboardingDataModel.data
 
     init() {

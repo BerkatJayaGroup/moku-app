@@ -24,7 +24,6 @@ struct MotorModal: View {
                         HStack {
                             Text(motor.model)
                             Spacer()
-
                             if selectedMotor?.model == motor.model {
                                 Image(systemName: "checkmark")
                             }

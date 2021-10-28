@@ -35,6 +35,9 @@ struct BengkelTabItem: View {
                                 .padding(.vertical, 7)
                                 .padding(.trailing, 15)
                         }
+                        .sheet(isPresented: $showModal){
+                            ModalSearchLocation(showModal: $showModal)
+                        }
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(20)
