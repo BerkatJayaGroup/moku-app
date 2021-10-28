@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct BengkelTabItem: View {
-    @State private var searchText = ""
-    @State private var selectedMotor: String = motors[0].model
+    @StateObject private var viewModel = ViewModel()
+    @ObservedObject private var locationService = LocationService.shared
+
     @State private var showingSheet = false
-    @State private var select = 0
-    @State private var isOpenBengkel = false
 
     var lastOrder = true
 
@@ -23,46 +22,33 @@ struct BengkelTabItem: View {
                     ShapeBg()
                         .frame(height: 140)
                         .foregroundColor(Color("PrimaryColor"))
+
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
-                        Button(action: {}) {
+                        NavigationLink(destination: googleMap()) {
                             Image(systemName: "mappin")
                                 .padding(.vertical, 7)
                                 .padding(.leading, 10)
                                 .font(.system(size: 25))
-                            Text("Tanggerang, Banten")
+                            Text(viewModel.currentLocation)
                                 .font(.headline)
                                 .padding(.vertical, 7)
                                 .padding(.trailing, 15)
+                        }
+                        .sheet(isPresented: $showModal){
+                            ModalSearchLocation(showModal: $showModal)
                         }
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(20)
                         .padding(.horizontal, 20)
-                        HStack {
-                            Text("Ingin Memperbaiki")
-                                .foregroundColor(Color.white)
-                                .padding(.leading, 20)
-                                .font(.system(size: 17))
-                            Button(action: {
-                                showingSheet = true
-                            }) {
-                                Text("\(selectedMotor)")
-                                    .font(.system(size: 18))
-                                    .fontWeight(.bold)
-                                Image(systemName: "chevron.down")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .offset(x: -5)
-                            }
-                            .foregroundColor(Color.white)
-                            .sheet(isPresented: $showingSheet) {
-                                MotorModal(data: self.$selectedMotor, showingSheet: self.$showingSheet)
-                            }
-                        }
+
+                        motorSelection()
+
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(.systemGray3))
-                            TextField("Cari Bengkel", text: $searchText)
+                            TextField("Cari Bengkel", text: $viewModel.searchQuery)
                         }
                         .padding(8)
                         .padding(.leading, 5)
@@ -70,7 +56,9 @@ struct BengkelTabItem: View {
                         .cornerRadius(7)
                         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
                         .padding(.horizontal, 20)
+
                         bengkelFavoriteView()
+
                         Rectangle()
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
@@ -84,19 +72,7 @@ struct BengkelTabItem: View {
                                 .edgesIgnoringSafeArea(.horizontal)
                         }
 
-                        LazyVStack {
-                            ForEach(0..<5) { _ in
-                                NavigationLink(destination: BengkelDetail()) {
-                                    BengkelList()
-                                        .padding(5)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                                }
-                            }
-                        }
-                        .padding(10)
-                        .padding(.horizontal, 10)
+                        listOfNearbyBengkel()
                     }
                 }
             }
@@ -104,7 +80,79 @@ struct BengkelTabItem: View {
             .navigationBarHidden(true)
         }
     }
-    fileprivate func bengkelFavoriteView() -> some View {
+
+    private func googleMap() -> some View {
+        GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
+            locationService.userCoordinate = coordinate
+        }.ignoresSafeArea(edges: [.top, .horizontal])
+    }
+
+    @ViewBuilder
+    private func listOfNearbyBengkel() -> some View {
+        if viewModel.filteredNearbyBengkel.isEmpty {
+            VStack {
+                Image("EmptyBengkelPlaceholder")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(72)
+            }
+        } else {
+            LazyVStack {
+                ForEach(viewModel.filteredNearbyBengkel, id: \.name) { bengkel in
+                    NavigationLink(destination: BengkelDetail(bengkel: bengkel)) {
+                        BengkelList(bengkel: bengkel)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                    }
+                }
+            }
+            .padding(10)
+            .padding(.horizontal, 10)
+        }
+    }
+
+    @ViewBuilder
+    private func motorSelection() -> some View {
+        if viewModel.isCustomer {
+            HStack {
+                Text("Ingin Memperbaiki")
+                    .foregroundColor(Color.white)
+                    .padding(.leading, 20)
+                    .font(.system(size: 17))
+                Button {
+                    showingSheet = true
+                } label: {
+                    Text(viewModel.selectedMotor?.model ?? "N/A")
+                        .font(.system(size: 18))
+                        .fontWeight(.bold)
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 18, weight: .bold))
+                        .offset(x: -5)
+                }
+                .foregroundColor(Color.white)
+                .sheet(isPresented: $showingSheet) {
+                    MotorModal(
+                        availableMotors: viewModel.customerMotors,
+                        selectedMotor: $viewModel.selectedMotor,
+                        showingSheet: $showingSheet
+                    )
+                }
+            }
+        } else {
+            Button {
+
+            } label: {
+                Text("Daftar atau Masuk")
+                    .foregroundColor(Color.white)
+                    .padding(.leading, 20)
+                    .font(.system(size: 17))
+            }
+        }
+    }
+
+    private func bengkelFavoriteView() -> some View {
         VStack(alignment: .leading) {
             Text("Bengkel Favorit")
                 .font(.headline)
@@ -120,12 +168,12 @@ struct BengkelTabItem: View {
                 }
                 .padding(5)
             }
-
         }
         .padding(10)
         .padding(.horizontal, 10)
     }
-    fileprivate func rantingView() -> some View {
+
+    private func rantingView() -> some View {
         VStack(alignment: .leading) {
             Text("Kasih rating dulu yuk!")
                 .font(.headline)
@@ -137,7 +185,6 @@ struct BengkelTabItem: View {
         }
         .padding(10)
         .padding(.horizontal, 10)
-
     }
 }
 

@@ -15,17 +15,35 @@ struct Order: Codable {
     let customer: Customer
     let motor: Motor
     let typeOfService: Service
-    let schedule: Date
     var status: Status = .waitingConfirmation
     var notes: String?
+
+    let schedule: Date
+    let createdAt: Date
+
+    var cancelingReason: CancelingReason?
 }
 
 extension Order {
+    enum CancelingReason: String, Codable {
+        case bengkelTutup       = "Bengkel tutup"
+
+        // MARK: Customer Side
+        case bengkelLain        = "Ingin memilih bengkel lain"
+        case tidakJadi          = "Tidak ingin melakukan perbaikan / servis"
+        case ubahOrder          = "Ingin merubah detail / tanggal booking"
+
+        // MARK: Bengkel Side
+        case tidakMemilikiAlat  = "Tidak memiliki alat untuk tipe motor"
+        case sparepartKosong    = "Sparepart tidak tersedia / kosong"
+        case kurangMekanik      = "Bengkel kekurangan mekanik"
+    }
+
     enum Status: String, Codable {
         case waitingConfirmation, waitingSchedule, onProgress, rejected, done
     }
 
     enum Service: String, Codable {
-        case checkup, fix
+        case servisRutin, perbaikan
     }
 }

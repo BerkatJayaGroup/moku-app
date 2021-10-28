@@ -13,14 +13,23 @@ struct BengkelDetail: View {
     @State private var indexHeart = 0
     @State var service1: Bool = false
     @State var service2: Bool = false
+
+    @StateObject private var viewModel: ViewModel
+
+    init(bengkel: Bengkel) {
+        let viewModel = ViewModel(bengkel: bengkel)
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var btnBack: some View {
-        Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }) {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
             Image(systemName: "chevron.left.circle")
                 .foregroundColor(Color("PrimaryColor"))
         }
     }
+
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
@@ -31,7 +40,7 @@ struct BengkelDetail: View {
                         .scaledToFit()
 
                     HStack {
-                        Text("Berkat Jaya Motor")
+                        Text(viewModel.bengkel.name)
                         Spacer()
                         Image(systemName: heartTap[indexHeart])
                             .foregroundColor(.red)
@@ -44,21 +53,21 @@ struct BengkelDetail: View {
                             }
                     }
                     .font(Font.system(size: 22))
-                    Text("Jl. Sudirman 2 no 5, Jakarta Selatan, Kemang ")
+                    Text(viewModel.address)
                         .fontWeight(.light)
                         .frame(width: proxy.size.width)
                     HStack {
-                        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star.fill", mainInfo: "5.0", cta: "Lihat Semua")
+                        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star.fill", mainInfo: viewModel.bengkel.averageRating, cta: "Lihat Semua")
                             .padding(.all, 4)
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
-                        CollectionInfoDetailBengkel(titleInfo: "Jarak dari Anda", imageInfo: "", mainInfo: "0,5 KM", cta: "Lihat Peta")
+                        CollectionInfoDetailBengkel(titleInfo: "Jarak dari Anda", imageInfo: "", mainInfo: viewModel.distance, cta: "Lihat Peta")
                             .padding(.all, 4)
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
-                        CollectionInfoDetailBengkel(titleInfo: "Jam Buka", imageInfo: "", mainInfo: "11:00 - 17:00", cta: "Lihat Detail")
+                        CollectionInfoDetailBengkel(titleInfo: "Jam Buka", imageInfo: "", mainInfo: viewModel.operationalHours, cta: "Lihat Detail")
                             .padding(.all, 4)
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
@@ -109,6 +118,6 @@ struct BengkelDetail: View {
 
 struct BengkelDetail_Previews: PreviewProvider {
     static var previews: some View {
-        BengkelDetail()
+        BengkelDetail(bengkel: .preview)
     }
 }

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-struct Motor: Codable, Identifiable {
-    var id = UUID()
+class Motor: Codable, Identifiable {
+    @DocumentID var id: String!
     let brand: Brand
     let model: String
     let cc: Int
@@ -21,8 +23,9 @@ struct Motor: Codable, Identifiable {
     }
 }
 
-extension Motor {
-    enum Brand: String, Codable {
-        case honda, yamaha, suzuki, kawasaki
-    }
+enum Brand: String, Codable, CaseIterable {
+    case honda = "honda"
+    case yamaha = "yamaha"
+    case suzuki = "suzuki"
+    case kawasaki = "kawasaki"
 }

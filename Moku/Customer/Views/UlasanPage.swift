@@ -7,24 +7,9 @@
 
 import SwiftUI
 
-// Contoh jika data bengkel memiliki review
-let bengkels: [Bengkel] = [
-    Bengkel(id: "Dsdsda", name: "Berkat Jaya", phoneNumber: "0921", reviews:
-                [
-                    Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date()),
-                    Review(user: "Dicky Rangga Buwono", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
-                ],
-            components: ["Oli", "Busi"] )
-]
-
-/*
- MARK : Contoh jika data bengkel belum memiliki review
- let bengkels: [Bengkel] = [
- Bengkel(id: "Dsdsda", name: "Berkat Jaya", phoneNumber: "0921", components: ["Oli", "Busi"] )
- ]*/
-
 struct UlasanPage: View {
-    var review: [Review] = bengkels[0].reviews
+    var review: [Review] = Bengkel.preview.reviews
+
     var body: some View {
         NavigationView {
             if review.isEmpty {
