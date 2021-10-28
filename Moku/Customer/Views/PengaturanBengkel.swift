@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct motorBrand: Identifiable, Hashable {
+struct MotorBrand: Identifiable, Hashable {
     var id: String {name}
     var name: String
 }
 
-struct motorcc: Identifiable, Hashable {
+struct Motorcc: Identifiable, Hashable {
     var id: String {ccMotor}
     var ccMotor: String
 }
-struct selectedBrand {
-    var brand: Set<motorBrand>
-    var cc: Set<motorcc>
+struct SelectedBrand {
+    var brand: Set<MotorBrand>
+    var cc: Set<Motorcc>
 }
 
-let allBrands: [motorBrand] = [motorBrand(name: "Honda"), motorBrand(name: "Yamaha"), motorBrand(name: "Suzuki")]
-let allCC: [motorcc] = [motorcc(ccMotor: "110"), motorcc(ccMotor: "125")]
+let allBrands: [MotorBrand] = [MotorBrand(name: "Honda"), MotorBrand(name: "Yamaha"), MotorBrand(name: "Suzuki")]
+let allCC: [Motorcc] = [Motorcc(ccMotor: "110"), Motorcc(ccMotor: "125")]
 
 struct PengaturanBengkel: View {
     @State private var date = Date()
@@ -33,7 +33,7 @@ struct PengaturanBengkel: View {
     @State private var isAddMekanik: Bool = false
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @State var daySelected: [Bool] = [true, true, true, true, true, true, true]
-    @State var task = selectedBrand(brand: [], cc: [])
+    @State var task = SelectedBrand(brand: [], cc: [])
     var body: some View {
         GeometryReader { proxy in
             NavigationView {
@@ -113,11 +113,11 @@ struct PengaturanBengkel: View {
                                 .frame(width: proxy.size.width, alignment: .leading)
                         }
                         .sheet(isPresented: $isAddMekanik) {
-                            addMekanik(showSheetView: self.$isAddMekanik)
+                            AddMekanik(showSheetView: self.$isAddMekanik)
                             }
                     }
                     Spacer()
-                    NavigationLink(destination: addMekanik( showSheetView: $isAddMekanik)) {
+                    NavigationLink(destination: AddMekanik( showSheetView: $isAddMekanik)) {
                         Text("Lanjutkan")
                             .padding(.vertical, 8)
                             .frame(width: proxy.size.width * 0.8, alignment: .center)

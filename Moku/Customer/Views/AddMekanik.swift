@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct addMekanik: View {
+struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
     @State var mechanicName: String?
@@ -64,6 +64,6 @@ struct addMekanik: View {
 
 struct addMekanik_Previews: PreviewProvider {
     static var previews: some View {
-        addMekanik(showSheetView: .constant(true), mechanicName: "Heru")
+        AddMekanik(showSheetView: .constant(true), mechanicName: "Heru")
     }
 }
