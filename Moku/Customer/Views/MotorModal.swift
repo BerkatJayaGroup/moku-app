@@ -23,10 +23,10 @@ struct MotorModal: View {
         NavigationView {
             List {
                 ForEach(motors) { item in
-                    Button(action: {
+                    Button {
                         self.data = "\(item.model)"
                         self.showingSheet = false
-                    }) {
+                    }label: {
                         HStack {
                             Text(item.model)
                             Spacer()
@@ -35,10 +35,7 @@ struct MotorModal: View {
                                 Image(systemName: "checkmark")
                             }
                         }
-
-                    }
-                    .foregroundColor(.black)
-
+                    }.foregroundColor(.black)
                 }
             }
             .listStyle(.plain)
@@ -46,9 +43,9 @@ struct MotorModal: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading:
-                    Button(action: {
+                    Button {
                         self.showingSheet = false
-                    }) {
+                    }label: {
                         HStack(spacing: 3) {
                             Image(systemName: "chevron.backward")
                             Text("Kembali")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
@@ -46,7 +47,8 @@ struct BengkelDate: View {
                         .cornerRadius(8)
                         .padding(.horizontal)
                 }
-                Button(action: {}) {
+                Button {
+                }label: {
                     Text("Lanjutkan")
                 }
                 .frame(width: 300, height: 45)
@@ -78,7 +80,7 @@ struct BengkelDate: View {
                     TimeStack(index: item, isSelected: self.selectedHourndex == item, onSelect: { selectedIndex in
                         self.selectedHourndex = selectedIndex
                         self.hour = "\(selectedIndex):00"
-
+                        
                     })
                 }
             }.padding(.horizontal)
