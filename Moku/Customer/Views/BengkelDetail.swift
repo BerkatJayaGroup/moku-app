@@ -14,9 +14,9 @@ struct BengkelDetail: View {
     @State var service1: Bool = false
     @State var service2: Bool = false
     var btnBack: some View {
-        Button(action: {
+        Button {
             self.presentationMode.wrappedValue.dismiss()
-        }) {
+        }label: {
             Image(systemName: "chevron.left.circle")
                 .foregroundColor(Color("PrimaryColor"))
         }

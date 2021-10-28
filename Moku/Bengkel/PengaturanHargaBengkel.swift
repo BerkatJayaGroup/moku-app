@@ -7,64 +7,42 @@
 
 import SwiftUI
 
-struct Brand: Identifiable {
-    var id = UUID()
-    @State var type = ""
-    @State var min: String
-    @State var max: String
-}
-
-struct Harga: Identifiable {
-    var id = UUID()
-    var name = ""
-    var type = [
-        Brand(type: "HONDA", min: "", max: ""),
-        Brand(type: "YAMAHA", min: "", max: ""),
-        Brand(type: "SUZUKI", min: "", max: "")
-    ]
-}
-
 struct PengaturanHargaBengkel: View {
-    @State private var tipeBaru = Harga()
+    @State private var min: String = ""
+    @State private var max: String = ""
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
                 Text("Masukkan harga jasa service rutin, umumnya service rutin mencakup jasa pengecekan mesin, busa filter, pengecekan komponen ban, lampu, rantai, dan lainnya.")
-                    .font(.caption)
+                    .font(.system(size: 13))
                     .padding(.bottom)
                     .foregroundColor(.gray)
-
-                VStack(alignment: .leading) {
-                    ForEach(self.tipeBaru.type) { item in
-                        Text("\(item.type)")
-                            .font(.caption)
-                        HStack {
-                            TextField("Rp minimum", text: item.$min)
-                                .padding(10)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(9)
-                            Text("-")
-                            TextField("Rp maksimum", text: item.$max)
-                                .padding(10)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(9)
-                        }.padding(.bottom)
-
-                    }
+                    .padding(.horizontal)
+                HStack {
+                    TextField("Rp minimum", text: $min)
+                        .font(.system(size: 15))
+                        .padding(10)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(9)
+                        .keyboardType(.numberPad)
+                    Text("-")
+                    TextField("Rp maksimum", text: $max)
+                        .font(.system(size: 15))
+                        .padding(10)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(9)
+                        .keyboardType(.numberPad)
                 }.padding()
                 Spacer()
                 Text("Harga yang Anda masukkan dapat diubah sesuai dengan kerusakan komponen dan kesepakatan dengan pelanggan")
-                    .font(.caption)
+                    .font(.system(size: 13))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding()
-
-                Button(action: {
-
-                }) {
-
+                Button {
+                    
+                }label: {
                     Text("Selesai")
-
                 }
                 .frame(width: 300, height: 45)
                 .background(Color("PrimaryColor"))

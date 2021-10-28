@@ -1,4 +1,17 @@
+excluded: 
+- Pods
 identifier_name:
   excluded:
     - id
     - cc
+    - i
+    - x
+    - y
+    - r
+    - g
+    - b
+    - a
+
+disabled_rules:
+- line_length
+  
