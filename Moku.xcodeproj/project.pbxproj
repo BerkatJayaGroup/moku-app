@@ -79,6 +79,7 @@
 		6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchMotor.swift; sourceTree = "<group>"; };
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
+		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
