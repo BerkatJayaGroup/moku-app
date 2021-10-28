@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BengkelTabItem: View {
     @StateObject private var viewModel = ViewModel()
+    @ObservedObject private var locationService = LocationService.shared
 
     @State private var showingSheet = false
 
@@ -24,9 +25,7 @@ struct BengkelTabItem: View {
 
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
-                        Button {
-
-                        } label: {
+                        NavigationLink(destination: googleMap()) {
                             Image(systemName: "mappin")
                                 .padding(.vertical, 7)
                                 .padding(.leading, 10)
@@ -79,17 +78,20 @@ struct BengkelTabItem: View {
         }
     }
 
+    private func googleMap() -> some View {
+        GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
+            locationService.userCoordinate = coordinate
+        }.ignoresSafeArea(edges: [.top, .horizontal])
+    }
+
     @ViewBuilder
     private func listOfNearbyBengkel() -> some View {
-        if viewModel.nearbyBengkel.isEmpty {
+        if viewModel.filteredNearbyBengkel.isEmpty {
             VStack {
                 Image("EmptyBengkelPlaceholder")
                     .resizable()
                     .scaledToFit()
                     .padding(72)
-                Button("Coba Ulang") {
-                    viewModel.getNearestBengkel()
-                }
             }
         } else {
             LazyVStack {

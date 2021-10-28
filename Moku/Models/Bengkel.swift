@@ -31,6 +31,15 @@ struct Bengkel: Codable {
 }
 
 extension Bengkel {
+    var averageRating: String {
+        let totalRating = reviews.reduce(Float(0)) { partialResult, review in
+            partialResult + Float(review.rating)
+        }
+        let average = Float(totalRating / Float(reviews.count))
+
+        return String(format: "%.1f", average)
+    }
+
     var address: String {
         location.address
     }

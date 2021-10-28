@@ -11,11 +11,14 @@ import GoogleMaps
 import SDWebImageSwiftUI
 
 struct MapHelper {
+    static let googleGeocoder = GMSGeocoder()
+    static let clGeocoder = CLGeocoder()
+
     // Kalo absolute: lengkap -> Jl. Jalan, Gg. Gang, Kota, ...
     // Kalo ga: cuma kota ama propinsi -> Serpong, Tangerang
     static func geocode(absolute: Bool = false, coordinate: CLLocationCoordinate2D, completionHandler: @escaping (String) -> Void) {
         if absolute {
-            GMSGeocoder().reverseGeocodeCoordinate(coordinate) { response, _ in
+            googleGeocoder.reverseGeocodeCoordinate(coordinate) { response, _ in
                 if let address = response?.firstResult(), let lines = address.lines {
                     completionHandler(lines.joined(separator: ", "))
                 } else {
@@ -24,7 +27,7 @@ struct MapHelper {
             }
         } else {
             let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            CLGeocoder().reverseGeocodeLocation(location) { placemarks, _ in
+            clGeocoder.reverseGeocodeLocation(location) { placemarks, _ in
                 if let placemark = placemarks?.first,
                    let city = placemark.locality,
                    let state = placemark.administrativeArea {
@@ -37,13 +40,19 @@ struct MapHelper {
     }
 
     // Max Distance tuh in meters, jd kalo 100 km = 100.000
-    static func findNearbyBengkel(maxCount: Int = 20, maxDistance: Double = 30_000, from coordinate: CLLocationCoordinate2D, filter: Brand?) -> [Bengkel] {
+    static func findNearbyBengkel(
+        maxCount: Int = 20,
+        maxDistance: Double = 30_000,
+        data: [Bengkel] = BengkelRepository.shared.bengkel,
+        from coordinate: CLLocationCoordinate2D,
+        filter: Brand?
+    ) -> [Bengkel] {
         let customerLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         var nearbyBengkel = [Bengkel]()
 
         var currentCount = 0
 
-        for bengkel in BengkelRepository.shared.bengkel {
+        for bengkel in data {
             // Base Cases
             if currentCount >= maxCount { return nearbyBengkel }
             if let brand = filter, !bengkel.brands.contains(brand) { continue }
@@ -54,7 +63,7 @@ struct MapHelper {
             if distance.isLessThanOrEqualTo(maxDistance), distance.isNormal {
                 currentCount += 1
                 nearbyBengkel.append(bengkel)
-                nearbyBengkel[nearbyBengkel.count-1].distance = distance.binade
+                nearbyBengkel[nearbyBengkel.count-1].distance = distance.nextUp
             }
         }
 
@@ -65,7 +74,7 @@ struct MapHelper {
 
     static func stringify(distance: Double? = nil) -> String {
         if let distance = distance {
-            return String(format: "%.1 KM", distance / 1000)
+            return String(format: "%.1f KM", distance / 1000)
         }
 
         return "N/A"

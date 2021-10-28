@@ -51,7 +51,7 @@ struct BengkelList: View {
                             .offset(x: 10, y: -0.5)
                             .font(.system(size: 13))
                             .foregroundColor(Color("PrimaryColor"))
-                        Text(averageRating)
+                        Text(bengkel.averageRating)
                             .font(.system(size: 15))
                             .fontWeight(.heavy)
                     }
@@ -76,14 +76,5 @@ extension BengkelList {
 
     var distance: String {
         MapHelper.stringify(distance: bengkel.distance)
-    }
-
-    var averageRating: String {
-        let totalRating = bengkel.reviews.reduce(Float(0)) { partialResult, review in
-            partialResult + Float(review.rating)
-        }
-        let average = Float(totalRating / Float(bengkel.reviews.count))
-
-        return String(format: "%.1f", average)
     }
 }

@@ -60,7 +60,7 @@ struct BengkelDetail: View {
                         .fontWeight(.light)
                         .frame(width: proxy.size.width)
                     HStack {
-                        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star.fill", mainInfo: "5.0", cta: "Lihat Semua")
+                        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star.fill", mainInfo: viewModel.bengkel.averageRating, cta: "Lihat Semua")
                             .padding(.all, 4)
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
