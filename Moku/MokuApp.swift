@@ -38,7 +38,7 @@ struct MokuApp: App {
             } else {
                 if appState.hasOnboarded {
                     //temporary redirect to bengkel tab item
-                    BengkelTabItem()
+                    BengkelOwnerOnboardingView()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
