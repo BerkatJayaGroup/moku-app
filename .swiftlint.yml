@@ -1,5 +1,5 @@
-excluded: 
-- Pods
+excluded:
+  - Pods
 identifier_name:
   excluded:
     - id
@@ -13,5 +13,4 @@ identifier_name:
     - a
 
 disabled_rules:
-- line_length
-  
+  - line_length

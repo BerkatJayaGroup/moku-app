@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import MapKit
 
 struct Bengkel: Codable {
     // MARK: - Registration Related
@@ -22,12 +23,35 @@ struct Bengkel: Codable {
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
 
+    var distance: Double?
+
     // MARK: Order Related
     var reviews         = [Review]()
     var orders          = [Order]()
 }
 
 extension Bengkel {
+    var averageRating: String {
+        let totalRating = reviews.reduce(Float(0)) { partialResult, review in
+            partialResult + Float(review.rating)
+        }
+        let average = Float(totalRating / Float(reviews.count))
+
+        return String(format: "%.1f", average)
+    }
+
+    var address: String {
+        location.address
+    }
+
+    var clLocation: CLLocation {
+        CLLocation(latitude: location.latitude, longitude: location.longitude)
+    }
+
+    var coordinate: CLLocationCoordinate2D {
+        clLocation.coordinate
+    }
+
     struct OperationalHours: Codable {
         var open: Int
         var close: Int
@@ -49,8 +73,18 @@ extension Bengkel {
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [.senin, .selasa, .rabu],
         reviews: [
-            Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date()),
-            Review(user: "Dicky Rangga Buwono", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
+            Review(
+                user: "Devin Winardi",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            ),
+            Review(
+                user: "Dicky Rangga Buwono",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            )
         ]
     )
 }

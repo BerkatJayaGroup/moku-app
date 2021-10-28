@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class Motor: Codable, Identifiable{
+class Motor: Codable, Identifiable {
     @DocumentID var id: String!
     let brand: Brand
     let model: String
