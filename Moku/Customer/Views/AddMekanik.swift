@@ -62,7 +62,7 @@ struct AddMekanik: View {
 
 }
 
-struct addMekanik_Previews: PreviewProvider {
+struct AddMekanik_Previews: PreviewProvider {
     static var previews: some View {
         AddMekanik(showSheetView: .constant(true), mechanicName: "Heru")
     }
