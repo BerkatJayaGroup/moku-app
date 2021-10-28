@@ -9,13 +9,14 @@ import SwiftUI
 
 struct BengkelTabItem: View {
     @State private var searchText = ""
+    @State private var showModal = false
     @State private var selectedMotor: String = motors[0].model
     @State private var showingSheet = false
     @State private var select = 0
     @State private var isOpenBengkel = false
-  
+
     var lastOrder = true
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -25,7 +26,9 @@ struct BengkelTabItem: View {
                         .foregroundColor(Color("PrimaryColor"))
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
-                        Button(action: {}) {
+                        Button(action: {
+                            self.showModal.toggle()
+                        }) {
                             Image(systemName: "mappin")
                                 .padding(.vertical, 7)
                                 .padding(.leading, 10)
@@ -34,6 +37,9 @@ struct BengkelTabItem: View {
                                 .font(.headline)
                                 .padding(.vertical, 7)
                                 .padding(.trailing, 15)
+                        }
+                        .sheet(isPresented: $showModal){
+                            ModalSearchLocation(showModal: $showModal)
                         }
                         .foregroundColor(Color.white)
                         .background(Color.black.opacity(0.2))
@@ -75,7 +81,7 @@ struct BengkelTabItem: View {
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
                             .edgesIgnoringSafeArea(.horizontal)
-                        
+
                         if lastOrder == true {
                             rantingView()
                             Rectangle()
@@ -83,7 +89,7 @@ struct BengkelTabItem: View {
                                 .frame(height: 5)
                                 .edgesIgnoringSafeArea(.horizontal)
                         }
-                        
+
                         LazyVStack {
                             ForEach(0..<5) { _ in
                                 NavigationLink(destination: BengkelDetail()) {
@@ -120,7 +126,7 @@ struct BengkelTabItem: View {
                 }
                 .padding(5)
             }
-            
+
         }
         .padding(10)
         .padding(.horizontal, 10)
@@ -137,7 +143,7 @@ struct BengkelTabItem: View {
         }
         .padding(10)
         .padding(.horizontal, 10)
-        
+
     }
 }
 
