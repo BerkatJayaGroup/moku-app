@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     @Binding var showSheetView: Bool
     let options: [Selectable]
     let optionToString: (Selectable) -> String
@@ -10,7 +10,7 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     @Binding var selected: Set<Selectable>
 
     var body: some View {
-        NavigationView{
+        NavigationView {
             List {
                 ForEach(options) { selectable in
                     Button(action: { toggleSelection(selectable: selectable) }) {
@@ -26,7 +26,7 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
             }
             .navigationBarItems(leading: Button(action: {
                 self.showSheetView = false
-            }){
+            }) {
                 Image(systemName: "chevron.left")
                 Text("Kembali")
             })
@@ -43,7 +43,7 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     }
 }
 
-//struct MultiSelectionView_Previews: PreviewProvider {
+// struct MultiSelectionView_Previews: PreviewProvider {
 //    struct IdentifiableString: Identifiable, Hashable {
 //        let string: String
 //        var id: String { string }
@@ -61,4 +61,4 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
 //            )
 //        }
 //    }
-//}
+// }

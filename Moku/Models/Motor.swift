@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Motor: Codable, Identifiable{
+struct Motor: Codable, Identifiable {
     var id = UUID()
     let brand: Brand
     let model: String

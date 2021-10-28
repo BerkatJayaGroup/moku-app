@@ -12,15 +12,15 @@ struct addMekanik: View {
     @Binding var showSheetView: Bool
     @State var mechanicName: String?
     var body: some View {
-        NavigationView{
-            VStack(){
+        NavigationView {
+            VStack {
                 Image(systemName: "number")
                     .frame(width: 100, height: 100, alignment: .center)
                     .cornerRadius(16)
                 Text("Tambah Foto")
                     .font(Font.system(size: 16, weight: .regular))
                     .foregroundColor(Color("PrimaryColor"))
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     Text("NAMA MEKANIK")
                         .font(Font.system(size: 11, weight: .regular))
                     TextField("Tulis Nama Mekanik", text: $mechanicName)
@@ -31,17 +31,17 @@ struct addMekanik: View {
                 Spacer()
             }
             .navigationBarTitle("Tambah Mekanik", displayMode: .inline)
-            .navigationBarItems(leading: Button(action:{
+            .navigationBarItems(leading: Button(action: {
                 self.showSheetView = false
-            }){
-                HStack{
+            }) {
+                HStack {
                     Image(systemName: "chevron.left")
                     Text("Kembali")
                 }
-            }, trailing: Button(action:{
+            }, trailing: Button(action: {
                 print("Dismissing sheet view...")
 //                self.showSheetView = false
-            }){
+            }) {
                     Text("Tambah")
             })
             .padding()
@@ -59,7 +59,7 @@ struct addMekanik: View {
 //            }
 //        }
     }
-    
+
 }
 
 struct addMekanik_Previews: PreviewProvider {
