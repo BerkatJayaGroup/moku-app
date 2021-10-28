@@ -73,8 +73,18 @@ extension Bengkel {
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [.senin, .selasa, .rabu],
         reviews: [
-            Review(user: "Devin Winardi", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date()),
-            Review(user: "Dicky Rangga Buwono", rating: 5, comment: "Servisnya memuaskan banget, motor langsung kenceng", timestamp: Date())
+            Review(
+                user: "Devin Winardi",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            ),
+            Review(
+                user: "Dicky Rangga Buwono",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            )
         ]
     )
 }

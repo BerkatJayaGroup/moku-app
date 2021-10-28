@@ -16,7 +16,11 @@ struct MapHelper {
 
     // Kalo absolute: lengkap -> Jl. Jalan, Gg. Gang, Kota, ...
     // Kalo ga: cuma kota ama propinsi -> Serpong, Tangerang
-    static func geocode(absolute: Bool = false, coordinate: CLLocationCoordinate2D, completionHandler: @escaping (String) -> Void) {
+    static func geocode(
+        absolute: Bool = false,
+        coordinate: CLLocationCoordinate2D,
+        completionHandler: @escaping (String) -> Void
+    ) {
         if absolute {
             googleGeocoder.reverseGeocodeCoordinate(coordinate) { response, _ in
                 if let address = response?.firstResult(), let lines = address.lines {

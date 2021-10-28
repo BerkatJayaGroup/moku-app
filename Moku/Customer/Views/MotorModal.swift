@@ -12,7 +12,7 @@ struct MotorModal: View {
 
     @Binding var selectedMotor: Motor?
     @Binding var showingSheet: Bool
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -24,7 +24,7 @@ struct MotorModal: View {
                         HStack {
                             Text(motor.model)
                             Spacer()
-                            
+
                             if selectedMotor?.model == motor.model {
                                 Image(systemName: "checkmark")
                             }
@@ -60,6 +60,3 @@ struct UserMotorModal_Previews: PreviewProvider {
         )
     }
 }
-
-
-

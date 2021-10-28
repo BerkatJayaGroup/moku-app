@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UlasanPage: View {
     var review: [Review] = Bengkel.preview.reviews
-    
+
     var body: some View {
         NavigationView {
             if review.isEmpty {

@@ -60,7 +60,7 @@ struct BengkelTabItem: View {
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
                             .edgesIgnoringSafeArea(.horizontal)
-                        
+
                         if lastOrder == true {
                             rantingView()
                             Rectangle()
@@ -68,7 +68,7 @@ struct BengkelTabItem: View {
                                 .frame(height: 5)
                                 .edgesIgnoringSafeArea(.horizontal)
                         }
-                        
+
                         listOfNearbyBengkel()
                     }
                 }

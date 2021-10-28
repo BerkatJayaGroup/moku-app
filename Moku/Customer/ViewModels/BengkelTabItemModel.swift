@@ -41,7 +41,10 @@ extension BengkelTabItem {
 //            getNearbyBengkel(for: selectedMotor?.brand)
 
             $selectedMotor.sink { motor in
-                self.nearbyBengkel = MapHelper.findNearbyBengkel(from: LocationService.shared.userCoordinate, filter: motor?.brand)
+                self.nearbyBengkel = MapHelper.findNearbyBengkel(
+                    from: LocationService.shared.userCoordinate,
+                    filter: motor?.brand
+                )
             }.store(in: &subscriptions)
 
             LocationService.shared.$userCoordinate.sink { [self] coordinate in
@@ -49,8 +52,15 @@ extension BengkelTabItem {
             }.store(in: &subscriptions)
 
             // Update everytime both the location and bengkel database changes
-            Publishers.Zip(LocationService.shared.$userCoordinate, BengkelRepository.shared.$bengkel).sink { [self] coordinate, bengkel in
-                nearbyBengkel = MapHelper.findNearbyBengkel(data: bengkel, from: coordinate, filter: selectedMotor?.brand)
+            Publishers.Zip(
+                LocationService.shared.$userCoordinate,
+                BengkelRepository.shared.$bengkel
+            ).sink { [self] coordinate, bengkel in
+                nearbyBengkel = MapHelper.findNearbyBengkel(
+                    data: bengkel,
+                    from: coordinate,
+                    filter: selectedMotor?.brand
+                )
             }.store(in: &subscriptions)
         }
 
