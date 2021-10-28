@@ -37,8 +37,8 @@ final class SignInWithAppleToFirebase: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: Context) -> UIViewController {
-        let vc = UIHostingController(rootView: SignInWithApple().onTapGesture(perform: showAppleLogin))
-        return vc as UIViewController
+        let viewController = UIHostingController(rootView: SignInWithApple().onTapGesture(perform: showAppleLogin))
+        return viewController as UIViewController
     }
 
     func updateUIViewController(_ uiView: UIViewController, context: Context) {
@@ -181,12 +181,11 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIdCredential as ASAuthorizationAppleIDCredential:
-            if let _ = appleIdCredential.email, let _ = appleIdCredential.fullName {
+            if appleIdCredential.email != nil, appleIdCredential.fullName != nil {
                 registerNewAccount(credential: appleIdCredential)
             } else {
                 signInWithExistingAccount(credential: appleIdCredential)
             }
-            break
         default:
             break
         }

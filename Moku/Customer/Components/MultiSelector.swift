@@ -15,9 +15,9 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
     }
 
     var body: some View {
-        Button(action: {
-            self.isOpenSelector.toggle()
-        }) {
+        Button {
+            isOpenSelector.toggle()
+        } label: {
             HStack {
                 Text(formattedSelectedListString)
                     .foregroundColor(.gray)

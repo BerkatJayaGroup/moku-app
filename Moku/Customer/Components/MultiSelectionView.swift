@@ -13,7 +13,9 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
         NavigationView {
             List {
                 ForEach(options) { selectable in
-                    Button(action: { toggleSelection(selectable: selectable) }) {
+                    Button {
+                        toggleSelection(selectable: selectable)
+                    } label: {
                         HStack {
                             Text(optionToString(selectable)).foregroundColor(.black)
                             Spacer()
@@ -24,9 +26,9 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
                     }.tag(selectable.id)
                 }
             }
-            .navigationBarItems(leading: Button(action: {
+            .navigationBarItems(leading: Button {
                 self.showSheetView = false
-            }) {
+            } label: {
                 Image(systemName: "chevron.left")
                 Text("Kembali")
             })

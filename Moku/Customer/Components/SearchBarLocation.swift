@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct SearchBarLocation: View {
-    
+
     @Binding var text: String
-    
+
     @State private var isEditing = false
-    
+
     var body: some View {
-        HStack{
+        HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Color(.systemGray3))
             TextField("Cari Alamat", text: $text)
                 .onTapGesture {
                     self.isEditing = true
                 }
-            if isEditing{
-                Button(action: {
+            if isEditing {
+                Button {
                     self.isEditing = false
                     self.text = ""
-                }){
+                } label: {
                     Image(systemName: "x.circle.fill")
                         .foregroundColor(Color.gray)
                 }

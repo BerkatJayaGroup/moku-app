@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SearchBarMotor: View {
     @Binding var text: String
-    
+
     @State private var isEditing = false
- 
+
     var body: some View {
             HStack {
                 Image(systemName: "magnifyingglass")
@@ -21,10 +21,10 @@ struct SearchBarMotor: View {
                         self.isEditing = true
                     }
                 if isEditing {
-                    Button(action: {
+                    Button {
                         self.isEditing = false
                         self.text = ""
-                    }) {
+                    } label: {
                         Text("Cancel")
                     }
                     .padding(.trailing, 10)

@@ -11,8 +11,8 @@ struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
     @State var mechanicName: String?
+
     var body: some View {
-        NavigationView {
             VStack {
                 Image(systemName: "number")
                     .frame(width: 100, height: 100, alignment: .center)
@@ -30,25 +30,17 @@ struct AddMekanik: View {
                 }
                 Spacer()
             }
-            .navigationBarTitle("Tambah Mekanik", displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
-                self.showSheetView = false
-            }) {
-                HStack {
-                    Image(systemName: "chevron.left")
-                    Text("Kembali")
-                }
-            }, trailing: Button(action: {
-                print("Dismissing sheet view...")
-
-            }) {
-                    Text("Tambah")
-            })
             .padding()
             .edgesIgnoringSafeArea(.leading)
-        }
+            .toolbar {
+                Button {
+                    print("Dismissing sheet view...")
+                } label: {
+                    Text("Tambah")
+                }
+            }
+            .navigationBarTitle("Tambah Mekanik", displayMode: .inline)
     }
-
 }
 
 struct AddMekanik_Previews: PreviewProvider {
