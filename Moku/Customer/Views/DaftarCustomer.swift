@@ -17,11 +17,13 @@ struct DaftarCustomer: View {
     @State private var nomorCheck: Bool = true
     @State private var motorCheck: Bool = true
     @State private var showModal = false
+    
+    @ObservedObject var customerViewModel: CustomerViewModel = .shared
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
                 VStack(alignment: .leading) {
-
+                    
                     Text("NAMA")
                         .font(.caption2)
                     TextField("Tulis namamu disini", text: $name, onEditingChanged: { (isChanged) in
@@ -44,7 +46,7 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-
+                    
                     Text("NOMOR TELEPON")
                         .font(.caption2)
                     TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: {
@@ -63,7 +65,7 @@ struct DaftarCustomer: View {
                         .cornerRadius(8)
                         .keyboardType(.numberPad)
                         .padding(.bottom)
-
+                    
                     Text("EMAIL")
                         .font(.caption2)
                     TextField("Alamat email", text: $email, onEditingChanged: {
@@ -89,7 +91,7 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-
+                    
                     Text("MODEL MOTOR")
                         .font(.caption2)
                     Button {
@@ -124,21 +126,26 @@ struct DaftarCustomer: View {
                     .opacity(0.3)
                     .padding(15)
                 Spacer()
-            Button {
-
-            } label: {
-                Text("Lanjutkan")
-            }
-                .frame(width: 310, height: 50)
-                .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)
-                .cornerRadius(10)
-                .padding()
-                .disabled(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty)
+                Button(action: {
+                    let customer = Customer(name: name,
+                                            phoneNumber: nomorTelepon,
+                                            motors: [])
+                    customerViewModel.create(customer)
+                    NavigationLink(destination: Pengaturan)
+                }){
+                    Text("Lanjutkan")
+                        .frame(width: 310, height: 50)
+                        .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
+                        .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)
+                        .cornerRadius(10)
+                        .padding()
+                        .disabled(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty)
+                }
+                
             }
             .navigationTitle("Profil Diri")
             .navigationBarTitleDisplayMode(.inline)
-
+            
         }
     }
     private func textFieldValidatorEmail(_ string: String) -> Bool {

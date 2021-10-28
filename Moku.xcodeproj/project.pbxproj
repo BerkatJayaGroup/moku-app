@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */; };
-		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
+		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
@@ -72,6 +72,7 @@
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
 		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
 		8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */; };
+		8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
@@ -90,8 +91,8 @@
 		12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.debug.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.debug.xcconfig"; sourceTree = "<group>"; };
 		6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchMotor.swift; sourceTree = "<group>"; };
-		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
+		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
 		6FB9BD98272A98070041469C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
 		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
 		8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
+		8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				83CBF22C2722BC7F00C79064 /* BookDate.swift */,
 				8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */,
 				83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */,
+				8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
+				8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
