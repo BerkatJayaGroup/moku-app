@@ -104,7 +104,6 @@ struct BengkelDetail: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
-//        .navigationBarHidden(true)
     }
 }
 

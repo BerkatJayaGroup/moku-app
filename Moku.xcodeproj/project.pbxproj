@@ -50,7 +50,6 @@
 		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
 		8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */; };
-		8E40E50B27285BD9001CAEF3 /* ModalSelectBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50A27285BD9001CAEF3 /* ModalSelectBrand.swift */; };
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
 		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
 		8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */; };
@@ -99,7 +98,6 @@
 		8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInfoDetailBengkel.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
 		8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanBengkel.swift; sourceTree = "<group>"; };
-		8E40E50A27285BD9001CAEF3 /* ModalSelectBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSelectBrand.swift; sourceTree = "<group>"; };
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
 		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
 		8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 				AE9E6E9827269718000E2012 /* MotorModal.swift */,
 				8E043575272694700079DB29 /* BengkelDetail.swift */,
 				8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */,
-				8E40E50A27285BD9001CAEF3 /* ModalSelectBrand.swift */,
 				8E40E50C272862D3001CAEF3 /* AddMekanik.swift */,
 			);
 			path = Views;
@@ -516,7 +513,6 @@
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
-				8E40E50B27285BD9001CAEF3 /* ModalSelectBrand.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 			);

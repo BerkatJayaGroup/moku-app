@@ -40,24 +40,13 @@ struct AddMekanik: View {
                 }
             }, trailing: Button(action: {
                 print("Dismissing sheet view...")
-//                self.showSheetView = false
+
             }) {
                     Text("Tambah")
             })
             .padding()
             .edgesIgnoringSafeArea(.leading)
         }
-//        .navigationTitle("Tambah Mekanik")
-//        .toolbar{
-//            ToolbarItem(placement: .principal){
-//                Text("Tambah Mekanik")
-//            }
-//            ToolbarItem(placement: .primaryAction){
-//                Button("Tambah"){
-//
-//                }
-//            }
-//        }
     }
 
 }
