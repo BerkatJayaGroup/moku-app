@@ -10,16 +10,16 @@ import SwiftUI
 struct ModalSearchMotor: View {
     @Binding var showModal: Bool
     @State private var searchText = ""
-    
+
     var motors = [TestMotor(name: "Honda Beat"), TestMotor(name: "Honda Vario")]
-    
+
     var body: some View {
         NavigationView {
             VStack {
                 SearchBarMotor(text: $searchText)
                 List(motors.filter({
                     searchText.isEmpty ? true : $0.name.contains(searchText)
-                })){ item in
+                })) { item in
                     Text(item.name)
                 }
             }
@@ -31,14 +31,14 @@ struct ModalSearchMotor: View {
     }
 }
 
-struct modalSearchMotor_Previews: PreviewProvider {
+struct ModalSearchMotor_Previews: PreviewProvider {
     static var previews: some View {
         ModalSearchMotor(showModal: .constant(true))
     }
 }
 
-struct TestMotor: Identifiable{
+struct TestMotor: Identifiable {
     var id = UUID()
-    
+
     var name: String
 }

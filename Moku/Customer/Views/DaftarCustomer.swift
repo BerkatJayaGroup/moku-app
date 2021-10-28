@@ -21,7 +21,7 @@ struct DaftarCustomer: View {
         NavigationView {
             VStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    
+
                     Text("NAMA")
                         .font(.caption2)
                     TextField("Tulis namamu disini", text: $name, onEditingChanged: { (isChanged) in
@@ -44,7 +44,7 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-                    
+
                     Text("NOMOR TELEPON")
                         .font(.caption2)
                     TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: {
@@ -63,7 +63,7 @@ struct DaftarCustomer: View {
                         .cornerRadius(8)
                         .keyboardType(.numberPad)
                         .padding(.bottom)
-                    
+
                     Text("EMAIL")
                         .font(.caption2)
                     TextField("Alamat email", text: $email, onEditingChanged: {
@@ -89,11 +89,13 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-                    
+
                     Text("MODEL MOTOR")
                         .font(.caption2)
-                    Button(action: {self.showModal.toggle()}){
-                        HStack{
+                    Button {
+                        self.showModal.toggle()
+                    } label: {
+                        HStack {
                             Image(systemName: "magnifyingglass")
                             TextField("Cari model motormu", text: $motor, onEditingChanged: { (isChanged) in
                                 if !isChanged {
@@ -114,7 +116,7 @@ struct DaftarCustomer: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
-                    .sheet(isPresented: $showModal){
+                    .sheet(isPresented: $showModal) {
                         ModalSearchMotor(showModal: $showModal)
                     }
                 }.padding(20)
@@ -122,9 +124,11 @@ struct DaftarCustomer: View {
                     .opacity(0.3)
                     .padding(15)
                 Spacer()
-                Button(action: {}) {
-                    Text("Lanjutkan")
-                }
+            Button {
+
+            } label: {
+                Text("Lanjutkan")
+            }
                 .frame(width: 310, height: 50)
                 .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
                 .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)

@@ -80,7 +80,6 @@ struct BengkelDate: View {
                     TimeStack(index: item, isSelected: self.selectedHourndex == item, onSelect: { selectedIndex in
                         self.selectedHourndex = selectedIndex
                         self.hour = "\(selectedIndex):00"
-                        
                     })
                 }
             }.padding(.horizontal)

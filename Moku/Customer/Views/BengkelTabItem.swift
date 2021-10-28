@@ -12,6 +12,7 @@ struct BengkelTabItem: View {
     @ObservedObject private var locationService = LocationService.shared
 
     @State private var showingSheet = false
+    @State private var showModal = false
 
     var lastOrder = true
 
@@ -35,7 +36,7 @@ struct BengkelTabItem: View {
                                 .padding(.vertical, 7)
                                 .padding(.trailing, 15)
                         }
-                        .sheet(isPresented: $showModal){
+                        .sheet(isPresented: $showModal) {
                             ModalSearchLocation(showModal: $showModal)
                         }
                         .foregroundColor(Color.white)
