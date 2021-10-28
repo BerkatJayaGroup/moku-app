@@ -13,33 +13,29 @@ let motors: [Motor] = [
     Motor(brand: .yamaha, model: "Jupiter", cc: 120)
 ]
 
-
 struct MotorModal: View {
-    
+
     @Environment(\.presentationMode) var presentationMode
     @Binding var data: String
     @Binding var showingSheet: Bool
-    
+
     var body: some View {
         NavigationView {
-            List() {
+            List {
                 ForEach(motors) { item in
-                    Button(action: {
+                    Button {
                         self.data = "\(item.model)"
                         self.showingSheet = false
-                    }) {
+                    }label: {
                         HStack {
                             Text(item.model)
                             Spacer()
-                            
+
                             if item.model == data {
                                 Image(systemName: "checkmark")
                             }
                         }
-                        
-                    }
-                    .foregroundColor(.black)
-                    
+                    }.foregroundColor(.black)
                 }
             }
             .listStyle(.plain)
@@ -47,19 +43,18 @@ struct MotorModal: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading:
-                    Button(action: {
+                    Button {
                         self.showingSheet = false
-                    }) {
+                    }label: {
                         HStack(spacing: 3) {
                             Image(systemName: "chevron.backward")
                             Text("Kembali")
                         }
-                        
-                        
+
                     }.foregroundColor(Color("PrimaryColor"))
             )
         }
-        
+
     }
 }
 
@@ -68,6 +63,3 @@ struct UserMotorModal_Previews: PreviewProvider {
         MotorModal(data: .constant("hello"), showingSheet: .constant(true))
     }
 }
-
-
-

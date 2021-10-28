@@ -10,14 +10,14 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject var appState: AppState
     @State var curSlideIndex = 0
-    
+
     var data: [OnboardingDataModel]
-    
+
     private func setupAppearance() {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Color("PrimaryColor"))
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
     }
-    
+
     var body: some View {
         TabView(selection: $curSlideIndex) {
             ForEach(0..<data.count) { i in
@@ -30,7 +30,7 @@ struct OnboardingView: View {
             setupAppearance()
         }
         if curSlideIndex == data.count - 1 {
-            Button("Daftar atau Masuk", action:{
+            Button("Daftar atau Masuk", action: {
                 appState.hasOnboarded = true
             })
                 .padding()
@@ -39,7 +39,7 @@ struct OnboardingView: View {
                 .foregroundColor(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
                 .padding(.horizontal)
-            Button("Masuk ke halaman utama", action:{
+            Button("Masuk ke halaman utama", action: {
                 appState.hasOnboarded = true
             })
                 .padding()
@@ -49,17 +49,16 @@ struct OnboardingView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
                 .padding(.horizontal)
         } else {
-            Button("Selanjutnya", action:{ self.curSlideIndex += 1 })
+            Button("Selanjutnya", action: { self.curSlideIndex += 1 })
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color("PrimaryColor"))
                 .foregroundColor(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
                 .padding(.horizontal)
-            Button("Lewati", action:{ self.curSlideIndex = data.count - 1 })
+            Button("Lewati", action: { self.curSlideIndex = data.count - 1 })
                 .foregroundColor(.gray)
                 .padding()
         }
     }
 }
-    
