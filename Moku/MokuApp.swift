@@ -37,7 +37,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    BengkelTabItem()
+
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }

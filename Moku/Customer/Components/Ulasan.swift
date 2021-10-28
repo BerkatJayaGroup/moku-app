@@ -41,7 +41,7 @@ struct Ulasan: View {
 
 struct Ulasan_Previews: PreviewProvider {
     static var previews: some View {
-        Ulasan(review: bengkels[0].reviews[0])
+        Ulasan(review: Bengkel.preview.reviews[0])
             .previewLayout(.sizeThatFits)
             .padding(10)
     }

@@ -36,7 +36,6 @@ struct MotorModal: View {
                             }
                         }
                     }.foregroundColor(.black)
-
                 }
             }
             .listStyle(.plain)

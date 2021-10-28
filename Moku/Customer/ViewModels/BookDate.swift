@@ -14,5 +14,4 @@ struct BookDate: Equatable {
     var year: String
 
     static var `default`: BookDate { BookDate(day: "", dayNumber: "", month: "", year: "") }
-
 }

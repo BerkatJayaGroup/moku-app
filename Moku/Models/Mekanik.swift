@@ -5,8 +5,7 @@
 //  Created by Christianto Budisaputra on 13/10/21.
 //
 
-struct Mekanik {
+struct Mekanik: Codable {
     var name: String
-    var photoReference: String?
-//    var avail: Bool
+    var photo: String?
 }
