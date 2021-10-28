@@ -14,8 +14,10 @@ struct Rating: View {
     var body: some View {
         VStack(alignment: .trailing) {
 
-            Button(action: { print("Button Tap") }) {
+            Button {
+                print("Button Tap")
 
+            } label: {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(Color("PrimaryColor"))
             }

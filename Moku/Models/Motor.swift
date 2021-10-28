@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class Motor: Codable, Identifiable{
+class Motor: Codable, Identifiable {
     @DocumentID var id: String!
     let brand: Brand
     let model: String
@@ -24,8 +24,8 @@ class Motor: Codable, Identifiable{
 }
 
 enum Brand: String, Codable, CaseIterable {
-    case honda = "honda"
-    case yamaha = "yamaha"
-    case suzuki = "suzuki"
-    case kawasaki = "kawasaki"
+    case honda = "Honda"
+    case yamaha = "Yamaha"
+    case suzuki = "Suzuki"
+    case kawasaki = "Kawasaki"
 }

@@ -7,35 +7,29 @@
 
 import SwiftUI
 
-let motors: [Motor] = [
-    Motor(brand: .yamaha, model: "Scoopy", cc: 110),
-    Motor(brand: .yamaha, model: "Mio", cc: 110),
-    Motor(brand: .yamaha, model: "Jupiter", cc: 120)
-]
-
 struct MotorModal: View {
+    let availableMotors: [Motor]
 
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var data: String
+    @Binding var selectedMotor: Motor?
     @Binding var showingSheet: Bool
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(motors) { item in
+                ForEach(availableMotors) { motor in
                     Button {
-                        self.data = "\(item.model)"
-                        self.showingSheet = false
-                    }label: {
+                        selectedMotor = motor
+                        showingSheet.toggle()
+                    } label: {
                         HStack {
-                            Text(item.model)
+                            Text(motor.model)
                             Spacer()
-
-                            if item.model == data {
+                            if selectedMotor?.model == motor.model {
                                 Image(systemName: "checkmark")
                             }
                         }
-                    }.foregroundColor(.black)
+                    }
+                    .foregroundColor(.black)
                 }
             }
             .listStyle(.plain)
@@ -45,21 +39,23 @@ struct MotorModal: View {
                 leading:
                     Button {
                         self.showingSheet = false
-                    }label: {
+                    } label: {
                         HStack(spacing: 3) {
                             Image(systemName: "chevron.backward")
                             Text("Kembali")
                         }
-
                     }.foregroundColor(Color("PrimaryColor"))
             )
         }
-
     }
 }
 
 struct UserMotorModal_Previews: PreviewProvider {
     static var previews: some View {
-        MotorModal(data: .constant("hello"), showingSheet: .constant(true))
+        MotorModal(
+            availableMotors: Customer.preview.motors!,
+            selectedMotor: .constant(Customer.preview.motors![0]),
+            showingSheet: .constant(true)
+        )
     }
 }
