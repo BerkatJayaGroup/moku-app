@@ -55,6 +55,10 @@
 		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
 		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+		8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */; };
+		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
+		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
+		8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
@@ -116,11 +120,16 @@
 		8E0435792726B1790079DB29 /* SelectServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServices.swift; sourceTree = "<group>"; };
 		8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInfoDetailBengkel.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
+		8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanBengkel.swift; sourceTree = "<group>"; };
+		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
+		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
+		8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
 		AE9E6E9A2726A404000E2012 /* UlasanPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanPage.swift; sourceTree = "<group>"; };
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
+		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B80B01A7272917F600050D90 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		B80B01AA2729185000050D90 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B80B01AE272918A500050D90 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -311,6 +320,7 @@
 		83CBF22D2722BC7F00C79064 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */,
 				83CBF22E2722BC7F00C79064 /* ShapeBg.swift */,
 				83CBF22F2722BC7F00C79064 /* BengkelList.swift */,
 				83CBF2302722BC7F00C79064 /* Rating.swift */,
@@ -321,6 +331,7 @@
 				AE9E6E9C2726A412000E2012 /* Ulasan.swift */,
 				8E0435792726B1790079DB29 /* SelectServices.swift */,
 				8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */,
+				8E40E50E272949B6001CAEF3 /* MultiSelector.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -342,6 +353,8 @@
 				AE9E6E9A2726A404000E2012 /* UlasanPage.swift */,
 				AE9E6E9827269718000E2012 /* MotorModal.swift */,
 				8E043575272694700079DB29 /* BengkelDetail.swift */,
+				8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */,
+				8E40E50C272862D3001CAEF3 /* AddMekanik.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -509,8 +522,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
 		};
 		B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -578,12 +590,16 @@
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
+				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
 				837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */,
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */,
+				8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */,
+				8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */,
 				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,
+				8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */,
 				83CBF24B2722BC7F00C79064 /* SessionService.swift in Sources */,
 				83CBF2422722BC7F00C79064 /* Rating.swift in Sources */,
 				B8CE65FD2726BB3D008F4CEE /* OnboardingDataModel.swift in Sources */,
