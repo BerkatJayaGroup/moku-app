@@ -16,6 +16,7 @@ struct DaftarCustomer: View {
     @State private var nameCheck: Bool = true
     @State private var nomorCheck: Bool = true
     @State private var motorCheck: Bool = true
+    @State private var showModal = false
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -91,24 +92,35 @@ struct DaftarCustomer: View {
                     
                     Text("MODEL MOTOR")
                         .font(.caption2)
-                    HStack{
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(Color(hex: "#828282"))
-                        TextField("Cari model motormu", text: $motor, onEditingChanged: { (isChanged) in
-                            if !isChanged {
-                                if self.motor.isEmpty {
-                                    self.motorCheck = false
-                                } else {
-                                    self.motorCheck = true
+                    Button(action: {self.showModal.toggle()}){
+                        HStack{
+                            Image(systemName: "magnifyingglass")
+                            TextField("Cari model motormu", text: $motor, onEditingChanged: { (isChanged) in
+                                if !isChanged {
+                                    if self.motor.isEmpty {
+                                        self.motorCheck = false
+                                    } else {
+                                        self.motorCheck = true
+                                    }
                                 }
-                            }
-                        })
-                            .background(Color(.systemGray6))
+                            })
+                                .font(.subheadline)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .foregroundColor(Color(hex: "#b5b5b5"))
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
-
+                    .sheet(isPresented: $showModal){
+                        ModalSearchMotor(showModal: $showModal)
+                    }
                 }.padding(20)
+                Image("MotorGray")
+                    .opacity(0.3)
+                    .padding(15)
                 Spacer()
                 Button(action: {}) {
                     Text("Lanjutkan")
