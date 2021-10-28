@@ -19,3 +19,7 @@ struct Bengkel: Codable {
     var reviews = [Review]()
     var components = [String]()
 }
+
+extension Bengkel {
+    static let preview = Bengkel(id: UUID().uuidString, name: "Berkat Jaya Motor", phoneNumber: "081280806969")
+}
