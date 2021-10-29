@@ -38,8 +38,17 @@ final class GooglePlacesService: ObservableObject {
             sessionToken: nil
         ) { results, _ in
             if let results = results {
-                self.results = results.map { Place(id: $0.placeID, name: $0.attributedFullText.string) }
+                self.results = results.map { result in
+                    Place(id: result.placeID, address: result.attributedFullText.string)
+                }
             }
+        }
+    }
+
+    func getDetail(for id: String, completionHandler: ((GMSPlace) -> Void)? = nil) {
+        client.lookUpPlaceID(id) { place, _ in
+            guard let place = place else { return }
+            completionHandler?(place)
         }
     }
 }

@@ -12,23 +12,27 @@ struct GoogleMapView: UIViewRepresentable {
     @Binding var coordinate: CLLocationCoordinate2D
 
     private let mapView = GMSMapView(frame: .zero)
-    private let zoomLevel: Float = 18
+    static let zoomLevel: Float = 18
 
     private var marker: GMSMarker {
         let marker = GMSMarker(position: coordinate)
         marker.isDraggable = true
         marker.appearAnimation = .pop
+        marker.icon = UIImage(named: "mappin")
         return marker
     }
 
+    let onInit: (GMSMapView) -> Void
     let onAnimationEnded: (CLLocationCoordinate2D) -> Void
 
     func makeUIView(context: Context) -> GMSMapView {
-        mapView.camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: zoomLevel)
+        mapView.camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: GoogleMapView.zoomLevel)
         mapView.delegate = context.coordinator
         mapView.isUserInteractionEnabled = true
 
         marker.map = mapView
+
+        onInit(mapView)
 
         return mapView
     }

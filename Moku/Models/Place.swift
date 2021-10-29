@@ -9,5 +9,7 @@ import Foundation
 
 struct Place: Identifiable {
     let id: String
-    let name: String
+    let address: String
+    var latitude: Double?
+    var longitude: Double?
 }

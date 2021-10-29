@@ -9,33 +9,30 @@ import SwiftUI
 
 struct BengkelOwnerOnboardingView: View {
     @State var ownerName: String = ""
-    @State var bengkelName: String = ""
-    @State var bengkelLocation: Location?
-    @State var bengkelPhoneNumber: String = ""
     @State var isNavigateActive = false
 
     @ObservedObject var locationService = LocationService.shared
     @State var isSelectingLocation = false
-    @State var isMapOpen = false
-    @State var gatauApaan = ""
+
+    @StateObject var viewModel = ViewModel()
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
-            NavigationLink(destination: googleMap(), isActive: $isMapOpen) { EmptyView() }
+            NavigationLink(destination: googleMap(), isActive: $viewModel.isMapOpen) { EmptyView() }
             Form {
                 Section(header: Text("NAMA PEMILIK")) {
                     TextField("Tulis namamu disini", text: $ownerName)
                 }
                 Section(header: Text("NAMA BENGKEL")) {
-                    TextField("Tulis nama bengkelmu disini", text: $bengkelName)
+                    TextField("Tulis nama bengkelmu disini", text: $viewModel.name)
                 }
                 Section(header: Text("ALAMAT")) {
                     Button {
                         isSelectingLocation = true
                     } label: {
-                        if let address = bengkelLocation?.address {
+                        if let address = viewModel.address {
                             Text(address).foregroundColor(.primary)
                         } else {
                             HStack {
@@ -46,7 +43,7 @@ struct BengkelOwnerOnboardingView: View {
                     }
                 }
                 Section(header: Text("NOMOR TELEPON BENGKEL")) {
-                    TextField("08xx-xxxx-xxxx", text: $bengkelPhoneNumber).keyboardType(.numberPad)
+                    TextField("08xx-xxxx-xxxx", text: $viewModel.phoneNumber).keyboardType(.numberPad)
                 }
                 Section(header: Text("FOTO BENGKEL")) {
                     // UI IMAGE PICKER
@@ -78,12 +75,13 @@ struct BengkelOwnerOnboardingView: View {
                     .foregroundColor(.quaternaryLabel)
                 Spacer()
             }.padding(.bottom)
+
             HStack {
                 Text("Pilih Lokasimu").font(.title3.bold())
                 Spacer()
                 Button {
-                    isSelectingLocation.toggle()
-                    isMapOpen.toggle()
+                    isSelectingLocation = false
+                    viewModel.openMap()
                 } label: {
                     HStack {
                         Image(systemName: "mappin.circle.fill").imageScale(.small)
@@ -96,21 +94,26 @@ struct BengkelOwnerOnboardingView: View {
                     .cornerRadius(8)
                 }
             }
-            SearchBarLocation(text: $gatauApaan)
+
+            SearchBarLocation(text: $viewModel.query)
+
+            List(viewModel.results) { place in
+                Button(place.address) {
+                    viewModel.setBengkelLocation(as: place)
+                    isSelectingLocation = false
+                }
+            }.listStyle(PlainListStyle())
+
             Spacer()
         }.padding()
     }
 
-    private func centerLocation() {
-
-    }
-
     private func dismissMap() {
-        self.isMapOpen = false
+        viewModel.closeMap()
     }
 
     private func locationDetail() -> some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 20) {
             HStack {
                 Text("Pilih Lokasi").font(.title3.bold())
                 Spacer()
@@ -118,10 +121,10 @@ struct BengkelOwnerOnboardingView: View {
             HStack {
                 Image(systemName: "mappin.and.ellipse")
                     .font(.largeTitle).foregroundColor(AppColor.primaryColor)
-                Text(bengkelLocation?.address ?? "Invalid Location")
+                Text(viewModel.address ?? "Invalid Location")
             }
             Button {
-                
+
             } label: {
                 HStack {
                     Spacer()
@@ -135,9 +138,9 @@ struct BengkelOwnerOnboardingView: View {
                 .cornerRadius(8)
             }.padding(.horizontal, .regular)
         }
-        .padding(.large)
-        .padding(.bottom, 24)
-        .background(Color.white)
+        .padding(20)
+        .padding(.bottom, 26)
+        .background(Color.white.cornerRadius(16, corners: [.topLeft, .topRight]).shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: -2))
     }
 
     private func actionButton() -> some View {
@@ -150,34 +153,40 @@ struct BengkelOwnerOnboardingView: View {
                     .padding(.small)
                     .background(.white)
                     .clipShape(Circle())
+                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
             }
             Spacer()
             Button {
-                centerLocation()
+                viewModel.centerLocation()
             } label: {
                 Image(systemName: "location.fill").font(.title2)
                     .foregroundColor(AppColor.primaryColor)
                     .padding(.small)
                     .background(.white)
                     .clipShape(Circle())
+                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
             }
         }
         .padding(.small)
         .padding(.horizontal, 10)
+
     }
 
     private func googleMap() -> some View {
         ZStack {
-            GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
-                locationService.userCoordinate = coordinate
-                MapHelper.geocode(absolute: true, coordinate: coordinate) { address in
-                    bengkelLocation = Location(
-                        address: address,
-                        longitude: coordinate.longitude,
-                        latitude: coordinate.latitude
-                    )
-                }
-            }.ignoresSafeArea()
+            VStack {
+                GoogleMapView(coordinate: $viewModel.selectedCoordinate, onInit: viewModel.assignMapView) { coordinate in
+                    viewModel.selectedCoordinate = coordinate
+                    MapHelper.geocode(absolute: true, coordinate: coordinate) { address in
+                        viewModel.location = Location(
+                            address: address,
+                            longitude: coordinate.longitude,
+                            latitude: coordinate.latitude
+                        )
+                    }
+                }.ignoresSafeArea()
+                Spacer(minLength: 180)
+            }
 
             VStack {
                 Spacer()
@@ -185,10 +194,10 @@ struct BengkelOwnerOnboardingView: View {
                 locationDetail()
             }.edgesIgnoringSafeArea(.bottom)
         }
-//        .hideNavigationBar()
+        .hideNavigationBarIfAvailable()
         .onAppear {
-            MapHelper.geocode(absolute: true, coordinate: locationService.userCoordinate) { address in
-                bengkelLocation = Location(
+            MapHelper.geocode(absolute: true, coordinate: viewModel.selectedCoordinate) { address in
+                viewModel.location = Location(
                     address: address,
                     longitude: locationService.userCoordinate.longitude,
                     latitude: locationService.userCoordinate.latitude

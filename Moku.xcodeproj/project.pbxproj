@@ -43,6 +43,8 @@
 		837BE1E82727D580000E1FAA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E72727D580000E1FAA /* Place.swift */; };
 		83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC9FD12726AD5F003039D8 /* MapHelper.swift */; };
 		83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */; };
+		83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F33272BEA11009DC400 /* ViewExtension.swift */; };
+		83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F39272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift */; };
 		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
 		83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22E2722BC7F00C79064 /* ShapeBg.swift */; };
@@ -119,6 +121,8 @@
 		837BE1E72727D580000E1FAA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		83AC9FD12726AD5F003039D8 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelOwnerOnboardingView.swift; sourceTree = "<group>"; };
+		83CA0F33272BEA11009DC400 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		83CA0F39272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelOwnerOnboardingViewModel.swift; sourceTree = "<group>"; };
 		83CBF22C2722BC7F00C79064 /* BookDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDate.swift; sourceTree = "<group>"; };
 		83CBF22E2722BC7F00C79064 /* ShapeBg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeBg.swift; sourceTree = "<group>"; };
 		83CBF22F2722BC7F00C79064 /* BengkelList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelList.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 		837BE1DD2727C418000E1FAA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				83CA0F32272BE9FA009DC400 /* Extensions */,
 				83E13E7E272AA7B3008758B7 /* Onboarding */,
 				837BE1E02727C42D000E1FAA /* GoogleMap */,
 			);
@@ -315,8 +320,17 @@
 			isa = PBXGroup;
 			children = (
 				83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */,
+				83CA0F39272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift */,
 			);
 			path = Bengkel;
+			sourceTree = "<group>";
+		};
+		83CA0F32272BE9FA009DC400 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				83CA0F33272BEA11009DC400 /* ViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
@@ -607,6 +621,7 @@
 				832AC1E927159BC900BD92E2 /* Bengkel.swift in Sources */,
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
+				83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */,
 				83CBFCB327299E5800BD64BC /* BengkelDetailViewModel.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
@@ -626,6 +641,7 @@
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
+				83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
 				837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */,
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
