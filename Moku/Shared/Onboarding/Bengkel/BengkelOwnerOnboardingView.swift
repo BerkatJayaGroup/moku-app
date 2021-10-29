@@ -15,9 +15,11 @@ struct BengkelOwnerOnboardingView: View {
     @State var isNavigateActive = false
 
     @ObservedObject var locationService = LocationService.shared
-    @State var isSelectingLocation = true
+    @State var isSelectingLocation = false
     @State var isMapOpen = false
     @State var gatauApaan = ""
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
@@ -31,7 +33,7 @@ struct BengkelOwnerOnboardingView: View {
                 }
                 Section(header: Text("ALAMAT")) {
                     Button {
-                        isSelectingLocation.toggle()
+                        isSelectingLocation = true
                     } label: {
                         if let address = bengkelLocation?.address {
                             Text(address).foregroundColor(.primary)
@@ -99,19 +101,100 @@ struct BengkelOwnerOnboardingView: View {
         }.padding()
     }
 
+    private func centerLocation() {
+
+    }
+
+    private func dismissMap() {
+        self.isMapOpen = false
+    }
+
+    private func locationDetail() -> some View {
+        VStack(spacing: 24) {
+            HStack {
+                Text("Pilih Lokasi").font(.title3.bold())
+                Spacer()
+            }
+            HStack {
+                Image(systemName: "mappin.and.ellipse")
+                    .font(.largeTitle).foregroundColor(AppColor.primaryColor)
+                Text(bengkelLocation?.address ?? "Invalid Location")
+            }
+            Button {
+                
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Konfirmasi Lokasi")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding(.regular)
+                .background(AppColor.primaryColor)
+                .cornerRadius(8)
+            }.padding(.horizontal, .regular)
+        }
+        .padding(.large)
+        .padding(.bottom, 24)
+        .background(Color.white)
+    }
+
+    private func actionButton() -> some View {
+        HStack {
+            Button {
+                dismissMap()
+            } label: {
+                Image(systemName: "xmark").font(.title2.bold())
+                    .foregroundColor(AppColor.primaryColor)
+                    .padding(.small)
+                    .background(.white)
+                    .clipShape(Circle())
+            }
+            Spacer()
+            Button {
+                centerLocation()
+            } label: {
+                Image(systemName: "location.fill").font(.title2)
+                    .foregroundColor(AppColor.primaryColor)
+                    .padding(.small)
+                    .background(.white)
+                    .clipShape(Circle())
+            }
+        }
+        .padding(.small)
+        .padding(.horizontal, 10)
+    }
+
     private func googleMap() -> some View {
-        GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
-            locationService.userCoordinate = coordinate
-            MapHelper.geocode(absolute: true, coordinate: coordinate) { address in
+        ZStack {
+            GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
+                locationService.userCoordinate = coordinate
+                MapHelper.geocode(absolute: true, coordinate: coordinate) { address in
+                    bengkelLocation = Location(
+                        address: address,
+                        longitude: coordinate.longitude,
+                        latitude: coordinate.latitude
+                    )
+                }
+            }.ignoresSafeArea()
+
+            VStack {
+                Spacer()
+                actionButton()
+                locationDetail()
+            }.edgesIgnoringSafeArea(.bottom)
+        }
+//        .hideNavigationBar()
+        .onAppear {
+            MapHelper.geocode(absolute: true, coordinate: locationService.userCoordinate) { address in
                 bengkelLocation = Location(
                     address: address,
-                    longitude: coordinate.longitude,
-                    latitude: coordinate.latitude
+                    longitude: locationService.userCoordinate.longitude,
+                    latitude: locationService.userCoordinate.latitude
                 )
             }
         }
-        .statusBar(hidden: true)
-        .ignoresSafeArea()
     }
 }
 
