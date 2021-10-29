@@ -11,15 +11,32 @@ struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
     @State var mechanicName: String?
+    @State var mechanics = [Mekanik]()
+    @State var image: UIImage?
+    
+    @State var showImagePicker: Bool = false
+    @State private var showActionSheet = false
+    @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     var body: some View {
+        NavigationView{
             VStack {
-                Image(systemName: "number")
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .cornerRadius(16)
-                Text("Tambah Foto")
-                    .font(Font.system(size: 16, weight: .regular))
-                    .foregroundColor(Color("PrimaryColor"))
+                if image == nil {
+                    Image("profile")
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
+                        .padding(.bottom, 10.0)
+                } else {
+                    if let image = image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(.bottom, 10.0)
+                    }
+                }
+                UploadButton()
                 VStack(alignment: .leading) {
                     Text("NAMA MEKANIK")
                         .font(Font.system(size: 11, weight: .regular))
@@ -32,15 +49,51 @@ struct AddMekanik: View {
             }
             .padding()
             .edgesIgnoringSafeArea(.leading)
-            .toolbar {
-                Button {
-                    print("Dismissing sheet view...")
-                } label: {
-                    Text("Tambah")
-                }
-            }
             .navigationBarTitle("Tambah Mekanik", displayMode: .inline)
+            .navigationBarItems(leading: Button("Kembali",
+                                                action: {showSheetView = false}),
+                                trailing: Button("Tambah", action: tambahMekanik))
+        }
     }
+    
+    @ViewBuilder func UploadButton() -> some View {
+        Button("Upload photo") {
+            self.showActionSheet.toggle()
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(sourceType: self.sourceType) { image in
+                self.image = image
+            }
+        }
+        .actionSheet(isPresented: $showActionSheet) { () -> ActionSheet in
+            ActionSheet(
+                title: Text("Choose mode"),
+                message: Text("Please choose your preferred mode to set your profile image"),
+                buttons: [
+                    ActionSheet.Button.default(Text("Camera")) {
+                        self.showImagePicker.toggle()
+                        self.sourceType = .camera
+                    },
+                    ActionSheet.Button.default(Text("Photo Library")) {
+                        self.showImagePicker.toggle()
+                        self.sourceType = .photoLibrary
+                    },
+                    ActionSheet.Button.cancel()
+                ]
+            )
+        }
+    }
+    
+    func tambahMekanik(){
+        showSheetView = false
+        let calonMekanik = calonMekanik(name: mechanicName, photo: image)
+        mechanics.append(calonMekanik)
+    }
+}
+
+struct calonMekanik{
+    var name: String
+    var photo: UIImage?
 }
 
 struct AddMekanik_Previews: PreviewProvider {

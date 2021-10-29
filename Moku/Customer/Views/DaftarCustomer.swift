@@ -126,22 +126,22 @@ struct DaftarCustomer: View {
                     .opacity(0.3)
                     .padding(15)
                 Spacer()
-                Button(action: {
-                    let customer = Customer(name: name,
-                                            phoneNumber: nomorTelepon,
-                                            motors: [])
-                    customerViewModel.create(customer)
-                    NavigationLink(destination: Pengaturan)
-                }){
-                    Text("Lanjutkan")
-                        .frame(width: 310, height: 50)
-                        .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                        .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)
-                        .cornerRadius(10)
-                        .padding()
-                        .disabled(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty)
-                }
-                
+//                NavigationLink(){
+                    Button(action: {
+                        let customer = Customer(name: name,
+                                                phoneNumber: nomorTelepon,
+                                                motors: [])
+                        customerViewModel.create(customer)
+                    }){
+                        Text("Lanjutkan")
+                            .frame(width: 310, height: 50)
+                            .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
+                            .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)
+                            .cornerRadius(10)
+                            .padding()
+                            .disabled(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty)
+                    }
+//                }
             }
             .navigationTitle("Profil Diri")
             .navigationBarTitleDisplayMode(.inline)
