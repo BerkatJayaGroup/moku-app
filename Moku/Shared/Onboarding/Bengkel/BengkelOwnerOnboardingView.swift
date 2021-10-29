@@ -14,6 +14,8 @@ struct BengkelOwnerOnboardingView: View {
     @State var bengkelAddress: String = ""
     @State var bengkelPhoneNumber: String = ""
     @State var isNavigateActive = false
+    @State private var image = UIImage()
+    @State private var showSheet = false
 
     var body: some View {
         VStack {
@@ -32,8 +34,32 @@ struct BengkelOwnerOnboardingView: View {
                     TextField("08xx-xxxx-xxxx", text: $bengkelPhoneNumber).keyboardType(.numberPad)
                 }
                 Section(header: Text("FOTO BENGKEL")) {
-                    // UI IMAGE PICKER
+                    if (image != UIImage()) {
+                        Image(uiImage: self.image)
+                                      .resizable()
+                                      .cornerRadius(50)
+                                      .frame(width: 100, height: 100)
+                                      .background(Color.black.opacity(0.2))
+                                      .aspectRatio(contentMode: .fill)
+                                      .clipShape(Circle())
+                    } else {
+                        VStack {
+                            Text("+").font(.system(size: 30)).padding()
+                            Text("Tambah Foto")
+                        }
+                        .frame(maxWidth: .infinity).padding(.horizontal, 20)
+                            .onTapGesture {
+                              showSheet = true
+                            }
+                    }
                 }
+                .sheet(isPresented: $showSheet) {
+                                // Pick an image from the photo library:
+//                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+
+                                //  If you wish to take a photo from camera instead:
+                                 ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                        }
             }
             NavigationLink(destination: PengaturanBengkel(), isActive: $isNavigateActive) {
                 Button("Lanjutkan") { self.isNavigateActive = true }
