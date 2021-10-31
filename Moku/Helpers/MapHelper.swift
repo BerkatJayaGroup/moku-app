@@ -11,34 +11,40 @@ import GoogleMaps
 import SDWebImageSwiftUI
 
 struct MapHelper {
+    struct GeocodeResult {
+        let name: String?
+        let address: String?
+    }
+
     static let googleGeocoder = GMSGeocoder()
     static let clGeocoder = CLGeocoder()
 
     // Kalo absolute: lengkap -> Jl. Jalan, Gg. Gang, Kota, ...
     // Kalo ga: cuma kota ama propinsi -> Serpong, Tangerang
-    static func geocode(
-        absolute: Bool = false,
-        coordinate: CLLocationCoordinate2D,
-        completionHandler: @escaping (String) -> Void
-    ) {
-        if absolute {
-            googleGeocoder.reverseGeocodeCoordinate(coordinate) { response, _ in
-                if let address = response?.firstResult(), let lines = address.lines {
-                    completionHandler(lines.joined(separator: ", "))
-                } else {
-                    completionHandler("Location not found")
-                }
+    static func geocodeAddress(coordinate: CLLocationCoordinate2D, completionHandler: @escaping (GeocodeResult?) -> Void) {
+        googleGeocoder.reverseGeocodeCoordinate(coordinate) { response, _ in
+            if let address = response?.firstResult() {
+                completionHandler(
+                    GeocodeResult(
+                        name: address.thoroughfare,
+                        address: address.lines?.joined(separator: ", ")
+                    )
+                )
+            } else {
+                completionHandler(nil)
             }
-        } else {
-            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            clGeocoder.reverseGeocodeLocation(location) { placemarks, _ in
-                if let placemark = placemarks?.first,
-                   let city = placemark.locality,
-                   let state = placemark.administrativeArea {
-                    completionHandler("\(city), \(state)")
-                } else {
-                    completionHandler("Location not found")
-                }
+        }
+    }
+
+    static func geocodeCity(coordinate: CLLocationCoordinate2D, completionHandler: @escaping (String) -> Void) {
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        clGeocoder.reverseGeocodeLocation(location) { placemarks, _ in
+            if let placemark = placemarks?.first,
+               let city = placemark.locality,
+               let state = placemark.administrativeArea {
+                completionHandler("\(city), \(state)")
+            } else {
+                completionHandler("Location not found")
             }
         }
     }
