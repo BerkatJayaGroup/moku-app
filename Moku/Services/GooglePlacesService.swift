@@ -39,7 +39,11 @@ final class GooglePlacesService: ObservableObject {
         ) { results, _ in
             if let results = results {
                 self.results = results.map { result in
-                    Place(id: result.placeID, address: result.attributedFullText.string)
+                    Place(
+                        id: result.placeID,
+                        name: result.attributedPrimaryText.string,
+                        address: result.attributedSecondaryText?.string
+                    )
                 }
             }
         }

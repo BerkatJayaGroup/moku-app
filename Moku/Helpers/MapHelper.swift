@@ -14,20 +14,20 @@ struct MapHelper {
     struct GeocodeResult {
         let name: String?
         let address: String?
+        let coordinate: CLLocationCoordinate2D?
     }
 
     static let googleGeocoder = GMSGeocoder()
     static let clGeocoder = CLGeocoder()
 
-    // Kalo absolute: lengkap -> Jl. Jalan, Gg. Gang, Kota, ...
-    // Kalo ga: cuma kota ama propinsi -> Serpong, Tangerang
     static func geocodeAddress(coordinate: CLLocationCoordinate2D, completionHandler: @escaping (GeocodeResult?) -> Void) {
         googleGeocoder.reverseGeocodeCoordinate(coordinate) { response, _ in
             if let address = response?.firstResult() {
                 completionHandler(
                     GeocodeResult(
                         name: address.thoroughfare,
-                        address: address.lines?.joined(separator: ", ")
+                        address: address.lines?.joined(separator: ", "),
+                        coordinate: address.coordinate
                     )
                 )
             } else {
