@@ -20,7 +20,7 @@ extension BengkelDetail {
             // Temporary address, will resolve this in the future
             address = bengkel.address
 
-            MapHelper.geocode(absolute: true, coordinate: bengkel.coordinate) { address in
+            MapHelper.geocodeCity(coordinate: bengkel.coordinate) { address in
                 self.address = address
             }
         }

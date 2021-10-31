@@ -11,73 +11,48 @@ import GoogleMaps
 import CoreLocation
 
 extension BengkelOwnerOnboardingView {
+
     final class ViewModel: ObservableObject {
+        // MARK: - Form Fields
+        @Published var ownerName: String = ""
+        @Published var bengkelName: String = ""
         @Published var location: Location?
-
-        @Published var name: String = ""
-
         @Published var phoneNumber: String = ""
 
-        @Published var selectedCoordinate: CLLocationCoordinate2D = LocationService.shared.userCoordinate
+        // MARK: - View States
+        @Published var isSettingDetail = false
+        @Published var isSelectingLocation = false
 
-        @Published var query = ""
-
-        var results: [Place] {
-            googlePlaces.results
-        }
-
-        @ObservedObject var googlePlaces = GooglePlacesService.shared
-
-        @Published var isMapOpen = false
-
-        func openMap() {
-            isMapOpen = true
-        }
-
-        func closeMap() {
-            isMapOpen = false
-        }
-
-        var mapView: GMSMapView?
-
-        private var subscriptions = Set<AnyCancellable>()
-
-        init() {
-            $query.sink { [self] query in
-                googlePlaces.runQuery(query)
-            }.store(in: &subscriptions)
-        }
-
-        func setBengkelLocation(as location: Place) {
-            googlePlaces.getDetail(for: location.id) { place in
-                if let address = place.formattedAddress {
-                    let newLocation = Location(
-                        address: address,
-                        longitude: place.coordinate.longitude,
-                        latitude: place.coordinate.latitude
-                    )
-
-                    self.name = place.name ?? ""
-                    self.location = newLocation
-                    self.selectedCoordinate = CLLocationCoordinate2D(
-                        latitude: place.coordinate.latitude,
-                        longitude: place.coordinate.longitude
-                    )
-                }
-            }
-        }
-
-        func assignMapView(_ mapView: GMSMapView) {
-            self.mapView = mapView
-        }
-
-        func centerLocation() {
-            let center = GMSCameraUpdate.setTarget(selectedCoordinate)
-            mapView?.moveCamera(center)
-        }
+        @Published var isSubmitting = false
 
         var address: String? {
             location?.address
+        }
+
+        var isFormValid: Bool {
+            !ownerName.isEmpty && !bengkelName.isEmpty && !phoneNumber.isEmpty && location != nil
+        }
+
+        func openBengkelSetting() {
+            validateForm()
+            if isFormValid {
+                isSettingDetail = true
+            }
+        }
+
+        func selectLocation() {
+            isSelectingLocation = true
+        }
+
+        func updateLocation(_ location: Location) {
+            self.location = location
+            if bengkelName.isEmpty {
+                bengkelName = location.name ?? ""
+            }
+        }
+
+        func validateForm() {
+            isSubmitting = true
         }
     }
 }

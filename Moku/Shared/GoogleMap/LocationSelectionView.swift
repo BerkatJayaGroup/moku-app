@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import CoreLocation
 
 struct LocationSelectionView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel = ViewModel()
 
-    var onCommit: ((CLLocationCoordinate2D) -> Void)?
+    var onCommit: ((Location) -> Void)?
 
     var body: some View {
         ZStack {
@@ -77,7 +76,7 @@ struct LocationSelectionView: View {
 
                     // Confirm Button
                     Button {
-                        onCommit?(viewModel.selectedCoordinate)
+                        onCommit?(viewModel.selectedLocation)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         HStack {

@@ -22,6 +22,14 @@ extension LocationSelectionView {
 
         @Published var mapView: GMSMapView?
 
+        var selectedLocation: Location {
+            Location(
+                address: selectedLocationAddress,
+                longitude: selectedCoordinate.longitude,
+                latitude: selectedCoordinate.latitude
+            )
+        }
+
         var isLocationValid: Bool {
             selectedLocationName != LocationDefault.locationName && selectedLocationAddress != LocationDefault.locationAddress
         }

@@ -18,6 +18,44 @@ struct RoundedCorner: Shape {
     }
 }
 
+struct HeaderText: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.caption2).foregroundColor(.black)
+    }
+}
+
+struct RoundedTextField: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.subheadline)
+            .padding(10)
+            .background(Color(.systemGray6))
+            .cornerRadius(9)
+    }
+}
+
+struct AlertText: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.caption2).foregroundColor(.red)
+    }
+}
+
+extension Text {
+    func headerStyle() -> some View {
+        modifier(HeaderText())
+    }
+
+    func alertStyle() -> some View {
+        modifier(AlertText())
+    }
+}
+
+extension TextField {
+    func roundedStyle() -> some View {
+        modifier(RoundedTextField())
+    }
+}
+
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
