@@ -316,6 +316,7 @@
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
+				8ECD17D7272E85C200B2AB13 /* View Model */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
 				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkel.swift */,
 			);
@@ -427,6 +428,13 @@
 			name = Bengkel;
 			path = Moku/Onboarding/Bengkel;
 			sourceTree = SOURCE_ROOT;
+		};
+		8ECD17D7272E85C200B2AB13 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
 			isa = PBXGroup;

@@ -18,7 +18,7 @@ struct PickRoleView: View {
                 NavigationLink(destination: BengkelOwnerOnboardingView()) {
                     Text("Bengkel")
                 }
-                NavigationLink(destination: DaftarCustomer()){
+                NavigationLink(destination: DaftarCustomer()) {
                     Text("Customer")
                 }
             }
