@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIX
 
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
@@ -23,50 +22,50 @@ struct BengkelDate: View {
         GridItem(.fixed(60), spacing: 10)
     ]
     var body: some View {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Pilih Tanggal")
-                        .font(.headline)
-                        .padding(.horizontal)
-                    VStack(alignment: .center) {
-                        createDateView()
-                        Divider()
-                            .frame(width: UIScreen.main.bounds.width - 30)
-                            .padding(.top)
-                    }.padding(.vertical, 10)
-                    Text("Pilih Jam")
-                        .font(.headline)
-                        .padding(.horizontal)
-                    VStack(alignment: .center) {
-                        createTimeView()
-                        Divider()
-                            .frame(width: UIScreen.main.bounds.width - 30)
-                            .padding(.top)
-                    }.padding(.vertical, 10)
-                    Text("Tambah keterangan kondisi motor")
-                        .font(.headline)
-                        .padding(.horizontal)
-                    CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $text)
-                        .font(.body)
-                        .background(Color(UIColor.systemGray6))
-                        .accentColor(.green)
-                        .frame(height: 200)
-                        .cornerRadius(8)
-                        .padding(.horizontal)
-                }
-                Spacer(minLength: 100)
-                Button {
-                }label: {
-                    Text("Lanjutkan")
-                }
-                .frame(width: 300, height: 50)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                .padding() 
+        VStack {
+            VStack(alignment: .leading) {
+                Text("Pilih Tanggal")
+                    .font(.headline)
+                    .padding(.horizontal)
+                VStack(alignment: .center) {
+                    createDateView()
+                    Divider()
+                        .frame(width: UIScreen.main.bounds.width - 30)
+                        .padding(.top)
+                }.padding(.vertical, 10)
+                Text("Pilih Jam")
+                    .font(.headline)
+                    .padding(.horizontal)
+                VStack(alignment: .center) {
+                    createTimeView()
+                    Divider()
+                        .frame(width: UIScreen.main.bounds.width - 30)
+                        .padding(.top)
+                }.padding(.vertical, 10)
+                Text("Tambah keterangan kondisi motor")
+                    .font(.headline)
+                    .padding(.horizontal)
+                CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $text)
+                    .font(.body)
+                    .background(Color(UIColor.systemGray6))
+                    .accentColor(.green)
+                    .frame(height: 200)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
             }
-            .navigationTitle("Pesan")
-            .navigationBarTitleDisplayMode(.inline)
+            Spacer()
+            Button {
+            }label: {
+                Text("Lanjutkan")
+            }
+            .frame(width: 300, height: 50)
+            .background(Color("PrimaryColor"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .padding()
+        }
+        .navigationTitle("Pesan")
+        .navigationBarTitleDisplayMode(.inline)
     }
     fileprivate func createDateView() -> some View {
         VStack(alignment: .leading) {
