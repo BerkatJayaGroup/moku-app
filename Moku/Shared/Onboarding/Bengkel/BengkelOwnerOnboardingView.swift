@@ -110,7 +110,7 @@ extension BengkelOwnerOnboardingView {
 
     @ViewBuilder
     private func submitButton() -> some View {
-        NavigationLink(destination: PengaturanBengkel(), isActive: $viewModel.isSettingDetail) { EmptyView() }
+        NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $viewModel.isSettingDetail) { EmptyView() }
 
         Button {
             viewModel.openBengkelSetting()

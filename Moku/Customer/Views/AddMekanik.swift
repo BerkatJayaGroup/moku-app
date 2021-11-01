@@ -86,7 +86,7 @@ struct AddMekanik: View {
     
     func tambahMekanik(){
         showSheetView = false
-        let calonMekanik = calonMekanik(name: mechanicName!, photo: image[0])
+        let calonMekanik = CalonMekanik(name: mechanicName!, photo: image[0])
         mechanics.append(calonMekanik)
     }
 }

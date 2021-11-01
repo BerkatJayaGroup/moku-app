@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PengaturanHargaBengkel: View {
-    var bengkelOwnerForm: BengkelOwnerOnboardingView
+    var bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel
     var pengaturanBengkelForm: PengaturanBengkel
     @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
@@ -59,17 +59,18 @@ struct PengaturanHargaBengkel: View {
         }
     }
     
-    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
+    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel){
         // TODO: upload foto bengkel dan simpan di object bengkel
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
+        guard let location = bengkelOwnerForm.location else {return}
         var bengkelBaru = Bengkel(
-            owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.bengkelPhoneNumber, email: ""),
+            owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.phoneNumber, email: ""),
             name: bengkelOwnerForm.bengkelName,
-            phoneNumber: bengkelOwnerForm.bengkelPhoneNumber,
-            location: bengkelOwnerForm.bengkelAddress,
+            phoneNumber: bengkelOwnerForm.phoneNumber,
+            location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
             operationalDays: [.senin, .selasa, .rabu],
             minPrice: min,

@@ -129,7 +129,7 @@ struct PengaturanBengkel: View {
                     AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
                 }
                 Spacer()
-                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self)) {
+                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerForm: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self)) {
                     Text("Lanjutkan")
                         .padding()
                         .frame(maxWidth: .infinity)

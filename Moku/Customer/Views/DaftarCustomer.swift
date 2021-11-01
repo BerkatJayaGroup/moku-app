@@ -40,7 +40,7 @@ struct DaftarCustomer: View {
 
                     Text("NOMOR TELEPON")
                         .font(.caption2)
-                    TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: { isChanged in
+                    TextField("xxxx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: { isChanged in
                         if !isChanged {
                             viewModel.isPhoneNumberEmpty()
                         }
@@ -54,7 +54,7 @@ struct DaftarCustomer: View {
 
                     Text("EMAIL")
                         .font(.caption2)
-                    TextField("Alamat email", text: $email, onEditingChanged: { isChanged in
+                    TextField("Alamat email", text: $viewModel.email, onEditingChanged: { isChanged in
                         if !isChanged {
                             if viewModel.textFieldValidatorEmail() {
                                 viewModel.isEmailValid = true

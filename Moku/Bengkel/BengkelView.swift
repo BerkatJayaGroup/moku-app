@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct BengkelView: View {
-    @State var bengkel: Bengkel
-
-    init(for bengkel: Bengkel) {
-        _bengkel = State(wrappedValue: bengkel)
-    }
 
     var body: some View {
         Text("Bengkel View")
