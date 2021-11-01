@@ -83,7 +83,7 @@ struct BengkelTabItem: View {
     }
 
     private func googleMap() -> some View {
-        GoogleMapView(coordinate: $locationService.userCoordinate) { coordinate in
+        GoogleMapView(coordinate: $locationService.userCoordinate) { _ in } onAnimationEnded: { coordinate in
             locationService.userCoordinate = coordinate
         }.ignoresSafeArea(edges: [.top, .horizontal])
     }

@@ -6,6 +6,7 @@
 //
 
 struct Location: Codable {
+    var name: String?
     var address: String
     let longitude: Double
     let latitude: Double

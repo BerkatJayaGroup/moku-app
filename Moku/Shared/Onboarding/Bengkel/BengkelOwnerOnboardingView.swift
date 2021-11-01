@@ -6,44 +6,39 @@
 //
 
 import SwiftUI
-import Contacts
 import PhotosUI
 
 struct BengkelOwnerOnboardingView: View {
-    @State var ownerName: String = ""
-    @State var bengkelName: String = ""
-    @State var bengkelAddress: Location = Location(address: "", longitude: 0, latitude: 0)
-    @State var bengkelPhoneNumber: String = ""
-    @State var isNavigateActive = false
-    @State private var image = UIImage()
-    @State var pickerResult: [UIImage] = []
-    @State private var shouldPresentImagePicker = false
-    @State private var shouldPresentActionScheet = false
-    @State private var shouldPresentCamera = false
-
+    @StateObject var viewModel = ViewModel()
+  
     var config: PHPickerConfiguration {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images // videos, livePhotos...
         config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
         return config
     }
+  
+    @State var pickerResult: [UIImage] = []  
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionScheet = false
+    @State private var shouldPresentCamera = false
+
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+        UITableView.appearance().separatorColor = .clear
+        UITableView.appearance().sectionFooterHeight = 0
+    }
 
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("NAMA PEMILIK")) {
-                    TextField("Tulis namamu disini", text: $ownerName)
-                }
-                Section(header: Text("NAMA BENGKEL")) {
-                    TextField("Tulis nama bengkelmu disini", text: $bengkelName)
-                }
-                Section(header: Text("ALAMAT")) {
-                    TextField("Cari alamat bengkelmu disini", text:
-                                $bengkelAddress.address)
-                }
-                Section(header: Text("NOMOR TELEPON BENGKEL")) {
-                    TextField("08xx-xxxx-xxxx", text: $bengkelPhoneNumber).keyboardType(.numberPad)
-                }
+                textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
+                textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
+
+                locationField()
+
+                textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
+
                 Section(header: Text("FOTO BENGKEL")) {
                     if pickerResult != [] {
                         ScrollView(.horizontal) {
@@ -91,22 +86,99 @@ struct BengkelOwnerOnboardingView: View {
                     }), ActionSheet.Button.cancel()])
                 }
             }
-            NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $isNavigateActive) {
-                Button("Lanjutkan") { self.isNavigateActive = true }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                .padding(.horizontal)
-            }
+
+            submitButton()
+        }
+        .sheet(isPresented: $viewModel.isSelectingLocation) {
+            LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
         }
         .navigationBarTitle("Profil Bengkel", displayMode: .inline)
     }
 }
 
-//struct BengkelOwnerOnboardingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelOwnerOnboardingView()
-//    }
-//}
+struct BengkelOwnerOnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelOwnerOnboardingView()
+    }
+}
+
+// MARK: - View Components
+extension BengkelOwnerOnboardingView {
+    func header(title: String) -> some View {
+        Text(title).headerStyle()
+    }
+
+    @ViewBuilder
+    private func submitButton() -> some View {
+        NavigationLink(destination: PengaturanBengkel(), isActive: $viewModel.isSettingDetail) { EmptyView() }
+
+        Button {
+            viewModel.openBengkelSetting()
+        } label: {
+            HStack {
+                Spacer()
+                Text("Lanjutkan")
+                Spacer()
+            }
+            .padding()
+            .foregroundColor(.white)
+            .background(AppColor.primaryColor)
+            .cornerRadius(8)
+        }
+        .padding()
+        .padding(.horizontal, 32)
+    }
+
+    private func locationField() -> some View {
+        Section(header: header(title: "ALAMAT")) {
+            VStack(alignment: .trailing) {
+                HStack {
+                    Button {
+                        viewModel.selectLocation()
+                    } label: {
+                        if let address = viewModel.address {
+                            Text(address).foregroundColor(.primary)
+                        } else {
+                            HStack {
+                                Image(systemName: "mappin.circle")
+                                Text("Cari alamat bengkelmu disini")
+                            }.foregroundColor(.tertiaryLabel)
+                        }
+                    }
+                    Spacer()
+                }.modifier(RoundedTextField())
+                // Alert
+                locationAlert()
+            }
+        }
+    }
+
+    private func textField(
+        title: String,
+        placeholder: String,
+        text: Binding<String>,
+        alert: String,
+        keyboardType: UIKeyboardType = .default
+    ) -> some View {
+        Section(header: header(title: title)) {
+            VStack(alignment: .trailing) {
+                TextField(placeholder, text: text).roundedStyle().keyboardType(keyboardType)
+                emptyAlert(for: text, alert: alert)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func locationAlert() -> some View {
+        if viewModel.location == nil, viewModel.isSubmitting {
+            Text("Alamat Wajib Diisi").alertStyle()
+        }
+    }
+
+    @ViewBuilder
+    private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
+        if text.wrappedValue.isEmpty, viewModel.isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+}

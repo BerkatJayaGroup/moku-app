@@ -37,11 +37,10 @@ struct DaftarCustomer: View {
                             .font(.caption2)
                             .foregroundColor(Color.red)
                     }
-                }
-                Text("NOMOR TELEPON")
-                    .font(.caption2)
-                VStack(alignment: .trailing) {
-                    TextField("xxxx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: {(isChanged) in
+
+                    Text("NOMOR TELEPON")
+                        .font(.caption2)
+                    TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: { isChanged in
                         if !isChanged {
                             viewModel.isPhoneNumberEmpty()
                         }
@@ -52,17 +51,10 @@ struct DaftarCustomer: View {
                         .cornerRadius(8)
                         .keyboardType(.numberPad)
                         .padding(.bottom)
-                    if !viewModel.nomorCheck {
-                        Text("Nomor Telepon Wajib Diisi")
-                            .offset(y: -10)
-                            .font(.caption2)
-                            .foregroundColor(Color.red)
-                    }
-                }
-                Text("EMAIL")
-                    .font(.caption2)
-                VStack(alignment: .trailing) {
-                    TextField("Alamat email", text: $viewModel.email, onEditingChanged: {(isChanged) in
+
+                    Text("EMAIL")
+                        .font(.caption2)
+                    TextField("Alamat email", text: $email, onEditingChanged: { isChanged in
                         if !isChanged {
                             if viewModel.textFieldValidatorEmail() {
                                 viewModel.isEmailValid = true
@@ -131,15 +123,14 @@ struct DaftarCustomer: View {
                                                 motors: [viewModel.motor!] )
                         customerViewModel.create(customer)
                     }
-                }
-            label: {
+                } label: {
                 Text("Lanjutkan")
                     .frame(width: 310, height: 50)
                     .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
                     .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
                     .cornerRadius(10)
                     .padding()
-            }
+                }
             }
         }
         .navigationTitle("Profil Diri")
