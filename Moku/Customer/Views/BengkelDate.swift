@@ -23,23 +23,30 @@ struct BengkelDate: View {
         GridItem(.fixed(60), spacing: 10)
     ]
     var body: some View {
-        NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("Pilih Tanggal")
                         .font(.headline)
                         .padding(.horizontal)
-                    createDateView()
-                    Divider()
+                    VStack(alignment: .center) {
+                        createDateView()
+                        Divider()
+                            .frame(width: UIScreen.main.bounds.width - 30)
+                            .padding(.top)
+                    }.padding(.vertical, 10)
                     Text("Pilih Jam")
                         .font(.headline)
                         .padding(.horizontal)
-                    createTimeView()
-                    Divider()
+                    VStack(alignment: .center) {
+                        createTimeView()
+                        Divider()
+                            .frame(width: UIScreen.main.bounds.width - 30)
+                            .padding(.top)
+                    }.padding(.vertical, 10)
                     Text("Tambah keterangan kondisi motor")
                         .font(.headline)
                         .padding(.horizontal)
-                    CustomTextField.init(placeholder: "Start typing..", text: $text)
+                    CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $text)
                         .font(.body)
                         .background(Color(UIColor.systemGray6))
                         .accentColor(.green)
@@ -47,17 +54,19 @@ struct BengkelDate: View {
                         .cornerRadius(8)
                         .padding(.horizontal)
                 }
+                Spacer(minLength: 100)
                 Button {
                 }label: {
                     Text("Lanjutkan")
                 }
-                .frame(width: 300, height: 45)
+                .frame(width: 300, height: 50)
                 .background(Color("PrimaryColor"))
                 .foregroundColor(.white)
                 .cornerRadius(10)
-                .padding()
+                .padding() 
             }
-        }
+            .navigationTitle("Pesan")
+            .navigationBarTitleDisplayMode(.inline)
     }
     fileprivate func createDateView() -> some View {
         VStack(alignment: .leading) {
