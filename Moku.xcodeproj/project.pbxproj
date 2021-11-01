@@ -86,6 +86,8 @@
 		B80B01AB2729185000050D90 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AA2729185000050D90 /* Keychain.swift */; };
 		B80B01AF272918A500050D90 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AE272918A500050D90 /* UserData.swift */; };
 		B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01B0272918C700050D90 /* UserDataKeychain.swift */; };
+		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
+		B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8864B3A272BCD96007C4413 /* ImagePicker.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
 /* End PBXBuildFile section */
@@ -168,6 +170,8 @@
 		B80B01AE272918A500050D90 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		B80B01B0272918C700050D90 /* UserDataKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
+		B8864B3A272BCD96007C4413 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B8A0352A27286D8200243528 /* Moku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moku.entitlements; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B8CE65F82726BA2B008F4CEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -381,7 +385,8 @@
 				8E40E50E272949B6001CAEF3 /* MultiSelector.swift */,
 				6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */,
 				6FB9BD96272A679F0041469C /* SearchBarMotor.swift */,
-				6FF2D27E272BE9D400D36512 /* ImagePicker.swift */,
+				B8864B3A272BCD96007C4413 /* ImagePicker.swift */,
+				B856220A272FC72B00300EB8 /* ImagePHPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				837370AE27144701003656FC /* Resources */,
 				832AC1DE2715963200BD92E2 /* Run SwiftLint */,
 				FC047A88C7DBEF7B73CA883F /* [CP] Copy Pods Resources */,
+				987E9469A0F7A736FAD3F889 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -583,6 +589,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+		987E9469A0F7A736FAD3F889 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moku/Pods-Moku-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -685,6 +708,7 @@
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
+				B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
@@ -692,6 +716,7 @@
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				83E13E8C272AA89F008758B7 /* BengkelOwnerOnboardingView.swift in Sources */,
+				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
 				B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */,
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,

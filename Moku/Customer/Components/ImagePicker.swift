@@ -2,57 +2,51 @@
 //  ImagePicker.swift
 //  Moku
 //
-//  Created by Devin Winardi on 29/10/21.
+//  Created by Naufaldi Athallah Rifqi on 29/10/21.
 //
-
-import Foundation
-
 import SwiftUI
+import UIKit
 
-public struct ImagePicker: UIViewControllerRepresentable {
-    private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    private let onImagePicked: (UIImage) -> Void
+struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) private var presentationMode
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @Binding var pickerResult: [UIImage]
 
-    public init(sourceType: UIImagePickerController.SourceType, onImagePicked: @escaping (UIImage) -> Void) {
-        self.sourceType = sourceType
-        self.onImagePicked = onImagePicked
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+
+        return imagePicker
     }
 
-    public func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = sourceType
-        picker.delegate = context.coordinator
-        return picker
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+
     }
 
-    public func updateUIViewController(_: UIImagePickerController, context _: Context) {}
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(
-            onDismiss: { self.presentationMode.wrappedValue.dismiss() },
-            onImagePicked: onImagePicked
-        )
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
     }
 
-    public final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        private let onDismiss: () -> Void
-        private let onImagePicked: (UIImage) -> Void
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-        init(onDismiss: @escaping () -> Void, onImagePicked: @escaping (UIImage) -> Void) {
-            self.onDismiss = onDismiss
-            self.onImagePicked = onImagePicked
+        var parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
         }
 
-        public func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                onImagePicked(image)
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                parent.pickerResult.append(image)
             }
-            onDismiss()
+
+            parent.presentationMode.wrappedValue.dismiss()
         }
 
-        public func imagePickerControllerDidCancel(_: UIImagePickerController) {
-            onDismiss()
-        }
     }
+
 }
