@@ -88,9 +88,3 @@ struct PengaturanHargaBengkel: View {
         bengkelViewModel.create(bengkelBaru)
     }
 }
-
-//struct PengaturanHargaBengkel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PengaturanHargaBengkel()
-//    }
-//}
