@@ -10,7 +10,7 @@ import SwiftUI
 struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
-    @Binding var mechanics : [calonMekanik]
+    @Binding var mechanics : [CalonMekanik]
     @State var mechanicName: String?
     @State var image: [UIImage] = []
     
@@ -36,7 +36,7 @@ struct AddMekanik: View {
                             .padding(.bottom, 10.0)
                     }
                 }
-                UploadButton()
+                uploadButton()
                 VStack(alignment: .leading) {
                     Text("NAMA MEKANIK")
                         .font(Font.system(size: 11, weight: .regular))
@@ -58,7 +58,7 @@ struct AddMekanik: View {
         }
     }
     
-    @ViewBuilder func UploadButton() -> some View {
+    @ViewBuilder func uploadButton() -> some View {
         Button("Upload photo") {
             self.showActionSheet.toggle()
         }
@@ -91,7 +91,7 @@ struct AddMekanik: View {
     }
 }
 
-struct calonMekanik : Hashable{
+struct CalonMekanik : Hashable{
     var name: String
     var photo: UIImage?
 }

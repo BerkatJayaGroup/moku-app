@@ -1,9 +1,9 @@
-//
-//  StorageService.swift
-//  Moku
-//
-//  Created by Devin Winardi on 01/11/21.
-//
+////
+////  StorageService.swift
+////  Moku
+////
+////  Created by Devin Winardi on 01/11/21.
+////
 
 import FirebaseAuth
 import FirebaseFirestoreSwift
@@ -70,7 +70,6 @@ class StorageService: ObservableObject {
 //        // List the items
 //        storageRef?.list(withMaxResults: 1, completion: handler)
 //    }
-
 //    func updateImageURL(category: String) {
 //        // Create a reference
 //        if let id = Auth.auth().currentUser?.uid {
