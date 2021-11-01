@@ -47,8 +47,7 @@ struct DaftarCustomer: View {
 
                     Text("NOMOR TELEPON")
                         .font(.caption2)
-                    TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: {
-                        (isChanged) in
+                    TextField("xxxx-xxxx-xxxx", text: $nomorTelepon, onEditingChanged: { isChanged in
                         if !isChanged {
                             if self.nomorTelepon.isEmpty {
                                 self.nomorCheck = false
@@ -66,8 +65,7 @@ struct DaftarCustomer: View {
 
                     Text("EMAIL")
                         .font(.caption2)
-                    TextField("Alamat email", text: $email, onEditingChanged: {
-                        (isChanged) in
+                    TextField("Alamat email", text: $email, onEditingChanged: { isChanged in
                         if !isChanged {
                             if self.textFieldValidatorEmail(self.email) {
                                 self.isEmailValid = true
@@ -124,11 +122,11 @@ struct DaftarCustomer: View {
                     .opacity(0.3)
                     .padding(15)
                 Spacer()
-            Button {
+                Button {
 
-            } label: {
-                Text("Lanjutkan")
-            }
+                } label: {
+                    Text("Lanjutkan")
+                }
                 .frame(width: 310, height: 50)
                 .background(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
                 .foregroundColor(name.isEmpty || nomorTelepon.isEmpty || email.isEmpty ? .gray : .white)

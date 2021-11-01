@@ -82,7 +82,7 @@ extension BengkelTabItem {
 
         private func getLocation() {
             LocationService.shared.$userCoordinate.sink { coordinate in
-                MapHelper.geocode(coordinate: coordinate) { location in
+                MapHelper.geocodeCity(coordinate: coordinate) { location in
                     self.currentLocation = location
                 }
             }.store(in: &subscriptions)
