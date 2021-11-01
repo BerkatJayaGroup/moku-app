@@ -20,61 +20,72 @@ struct DaftarCustomer: View {
             VStack(alignment: .leading) {
                 Text("NAMA")
                     .font(.caption2)
-                TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { (isChanged) in
-                    if !isChanged {
-                        viewModel.validateEmptyName()
+                VStack(alignment: .trailing) {
+                    TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { (isChanged) in
+                        if !isChanged {
+                            viewModel.validateEmptyName()
+                        }
+                    })
+                        .font(.subheadline)
+                        .padding(15)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.bottom)
+                    if !viewModel.nameCheck {
+                        Text("Nama Wajib Diisi")
+                            .offset(y: -10)
+                            .font(.caption2)
+                            .foregroundColor(Color.red)
                     }
-                })
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.bottom)
-                if !viewModel.nameCheck {
-                    Text("Nama Wajib Diisi")
-                        .offset(y: -10)
-                        .font(.caption2)
-                        .foregroundColor(Color.red)
                 }
                 Text("NOMOR TELEPON")
                     .font(.caption2)
-                TextField("xxxx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: {(isChanged) in
-                    if !isChanged {
-                        viewModel.isPhoneNumberEmpty()
+                VStack(alignment: .trailing) {
+                    TextField("xxxx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: {(isChanged) in
+                        if !isChanged {
+                            viewModel.isPhoneNumberEmpty()
+                        }
+                    })
+                        .font(.subheadline)
+                        .padding(15)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .keyboardType(.numberPad)
+                        .padding(.bottom)
+                    if !viewModel.nomorCheck {
+                        Text("Nomor Telepon Wajib Diisi")
+                            .offset(y: -10)
+                            .font(.caption2)
+                            .foregroundColor(Color.red)
                     }
-                })
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .keyboardType(.numberPad)
-                    .padding(.bottom)
-
+                }
                 Text("EMAIL")
                     .font(.caption2)
-                TextField("Alamat email", text: $viewModel.email, onEditingChanged: {(isChanged) in
-                    if !isChanged {
-                        if viewModel.textFieldValidatorEmail() {
-                            viewModel.isEmailValid = true
-                        } else {
-                            viewModel.isEmailValid = false
-                            viewModel.email = ""
+                VStack(alignment: .trailing) {
+                    TextField("Alamat email", text: $viewModel.email, onEditingChanged: {(isChanged) in
+                        if !isChanged {
+                            if viewModel.textFieldValidatorEmail() {
+                                viewModel.isEmailValid = true
+                            } else {
+                                viewModel.isEmailValid = false
+                                viewModel.email = ""
+                            }
                         }
+                    })
+                        .font(.subheadline)
+                        .padding(15)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .autocapitalization(.none)
+                        .autocapitalization(.none)
+                        .padding(.bottom)
+                    if !viewModel.isEmailValid {
+                        Text("Format email tidak valid, gunakan example@domain.com")
+                            .offset(y: -10)
+                            .font(.caption2)
+                            .foregroundColor(Color.red)
                     }
-                })
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .autocapitalization(.none)
-                    .autocapitalization(.none)
-                    .padding(.bottom)
-                if !viewModel.isEmailValid {
-                    Text("Format email tidak valid, gunakan example@domain.com")
-                        .font(.caption2)
-                        .foregroundColor(Color.red)
                 }
-
                 Text("MODEL MOTOR")
                     .font(.caption2)
                 Button {
@@ -94,7 +105,6 @@ struct DaftarCustomer: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
                     .multilineTextAlignment(.leading)
-
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -109,25 +119,27 @@ struct DaftarCustomer: View {
                 .opacity(0.3)
                 .padding(15)
             Spacer()
-            NavigationLink(destination: PengaturanBengkel()) {
-                Button(action: {
+            NavigationLink(destination: BengkelTabItem()) {
+                Button {
                     if viewModel.isFormInvalid {
-                        // Alert 
-                    } else {
+                        viewModel.nameCheck = false
+                        viewModel.nomorCheck = false
+                        viewModel.isEmailValid = false
+                    }else {
                         let customer = Customer(name: viewModel.name,
                                                 phoneNumber: viewModel.nomorTelepon,
                                                 motors: [viewModel.motor!] )
                         customerViewModel.create(customer)
                     }
-
-                }) {
-                    Text("Lanjutkan")
-                        .frame(width: 310, height: 50)
-                        .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                        .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
-                        .cornerRadius(10)
-                        .padding()
                 }
+            label: {
+                Text("Lanjutkan")
+                    .frame(width: 310, height: 50)
+                    .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
+                    .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
+                    .cornerRadius(10)
+                    .padding()
+            }
             }
         }
         .navigationTitle("Profil Diri")

@@ -31,11 +31,9 @@ extension DaftarCustomer {
         func create (_ customer: Customer) {
             repository.add(customer: customer)
         }
-
         var isFormInvalid: Bool {
             motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
         }
-
         func textFieldValidatorEmail() -> Bool {
             if email.count > 100 {
                 return false
@@ -44,16 +42,13 @@ extension DaftarCustomer {
             let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
             return emailPredicate.evaluate(with: email)
         }
-
         func validateEmptyName () {
-            print("name check view model")
             if name.isEmpty {
                 nameCheck = false
             } else {
                 nameCheck = true
             }
         }
-
         func isPhoneNumberEmpty() {
             if nomorTelepon.isEmpty {
                 nomorCheck = false

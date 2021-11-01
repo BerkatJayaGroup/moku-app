@@ -39,7 +39,7 @@ struct PengaturanBengkel: View {
     @State var daySelected: [Bool] = [true, true, true, true, true, true, true]
     @State var selectedBrand = Set<Brand>()
     @State var selectedCC = Set<Motorcc>()
-    @State var mechanics = [calonMekanik]()
+    @State var mechanics = [CalonMekanik]()
     
     var body: some View {
         GeometryReader { proxy in
