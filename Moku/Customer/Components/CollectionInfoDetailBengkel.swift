@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct CollectionInfoDetailBengkel: View {
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     var titleInfo: String
     var imageInfo: String
     var mainInfo: String
@@ -23,15 +25,66 @@ struct CollectionInfoDetailBengkel: View {
                 Text("\(mainInfo)")
                     .fontWeight(.bold)
             }
-            Text("\(cta)")
-                .foregroundColor(Color("PrimaryColor"))
+            if cta == "Lihat Detail"{
+                Button(action: {
+                    self.partialSheetManager.showPartialSheet({
+                        print("normal sheet dismissed")
+                    }) {
+                        SheetView()
+                    }
+                }) {
+                    Text("\(cta)")
+                        .foregroundColor(Color("PrimaryColor"))
+                }
+            } else {
+                Text("\(cta)")
+                    .foregroundColor(Color("PrimaryColor"))
+            }
         }
     }
 }
 
 struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Semua")
-            .previewLayout(.sizeThatFits)
+        NavigationView{
+            CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Detail")
+                .previewLayout(.sizeThatFits)
+        }
+        .addPartialSheet()
+        .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(PartialSheetManager())
+    }
+}
+
+extension CollectionInfoDetailBengkel {
+    struct SheetView: View {
+        var body: some View {
+            VStack {
+                Group {
+                    HStack {
+                        Text("Jam Buka")
+                            .font(.headline)
+                        Spacer()
+                    }
+                    Spacer()
+                    HStack{
+                        VStack(spacing: 8){
+                            DayByDay(day: "Senin", time: "10.00-17.00")
+                            DayByDay(day: "Selasa", time: "10.00-17.00")
+                            DayByDay(day: "Rabu", time: "10.00-17.00")
+                            DayByDay(day: "Kamis", time: "10.00-17.00")
+                            DayByDay(day: "Jumat", time: "10.00-17.00")
+                        }
+                        VStack(spacing: 8){
+                            DayByDay(day: "Sabtu", time: "10.00-17.00")
+                            DayByDay(day: "Minggu", time: "10.00-17.00")
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            .padding()
+            .frame(height: 320)
+        }
     }
 }

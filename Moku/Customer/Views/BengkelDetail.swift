@@ -72,6 +72,7 @@ struct BengkelDetail: View {
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
+
                     }
                     .frame(width: proxy.size.width)
                     Text("Pilih Jasa")
@@ -116,8 +117,8 @@ struct BengkelDetail: View {
     }
 }
 
-//struct BengkelDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelDetail(bengkel: .preview)
-//    }
-//}
+struct BengkelDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelDetail(bengkel: .preview)
+    }
+}
