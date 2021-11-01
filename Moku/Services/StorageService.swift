@@ -13,7 +13,6 @@ import SwiftUI
 class StorageService: ObservableObject {
     let storage = Storage.storage()
     var storageRef: StorageReference?
-    @ObservedObject var companyViewModel: CompanyViewModel = .shared
 
     static let shared = StorageService()
 
@@ -52,35 +51,35 @@ class StorageService: ObservableObject {
         }
     }
 
-    func listItem(category: String) {
-        // Create a reference
-        if let id = Auth.auth().currentUser?.uid {
-            storageRef = storage.reference().child("images/\(id)/\(category)")
-        }
+//    func listItem(category: String) {
+//        // Create a reference
+//        if let id = Auth.auth().currentUser?.uid {
+//            storageRef = storage.reference().child("images/\(id)/\(category)")
+//        }
+//
+//        // Create a completion handler - aka what the function should do after it listed all the items
+//        let handler: (StorageListResult, Error?) -> Void = { result, error in
+//            if let error = error {
+//                print("error", error)
+//            }
+//
+//            let item = result.items
+//            print("item: ", item)
+//        }
+//
+//        // List the items
+//        storageRef?.list(withMaxResults: 1, completion: handler)
+//    }
 
-        // Create a completion handler - aka what the function should do after it listed all the items
-        let handler: (StorageListResult, Error?) -> Void = { result, error in
-            if let error = error {
-                print("error", error)
-            }
-
-            let item = result.items
-            print("item: ", item)
-        }
-
-        // List the items
-        storageRef?.list(withMaxResults: 1, completion: handler)
-    }
-
-    func updateImageURL(category: String) {
-        // Create a reference
-        if let id = Auth.auth().currentUser?.uid {
-            storageRef = storage.reference().child("images/\(id)/\(category).jpg")
-        }
-        storageRef?.downloadURL { url, _ in
-            self.companyViewModel.addImage(imageURL: url?.absoluteString ?? "profile")
-        }
-    }
+//    func updateImageURL(category: String) {
+//        // Create a reference
+//        if let id = Auth.auth().currentUser?.uid {
+//            storageRef = storage.reference().child("images/\(id)/\(category).jpg")
+//        }
+//        storageRef?.downloadURL { url, _ in
+//            self.companyViewModel.addImage(imageURL: url?.absoluteString ?? "profile")
+//        }
+//    }
 
     // You can use the listItem() function above to get the StorageReference of the item you want to delete
     func deleteItem(item: StorageReference) {

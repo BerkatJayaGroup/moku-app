@@ -13,6 +13,8 @@ struct PengaturanHargaBengkel: View {
     @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
     @State private var max: String = ""
+    @ObservedObject var storageService: StorageService = .shared
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -61,12 +63,15 @@ struct PengaturanHargaBengkel: View {
         var mekanikBaru = [Mekanik]()
         for mech in pengaturanBengkelForm.mechanics{
             // TODO: upload foto mekanik and assign to photo
-            //let mekBaru = Mekanik(name: mech.name, photo: mech.photo)
+            let mekBaru = Mekanik(name: mech.name)
+            if let photo = mech.photo {
+                storageService.upload(image: photo, path: mekBaru.id)
+            }
+            mekanikBaru.append(mekBaru)
         }
         
-        // TODO: ubah model bengkel(add min and max harga), pengaturanBengkelForm.min = bengkel min price
-        
         // TODO: upload foto bengkel dan simpan di object bengkel
+        
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
@@ -77,7 +82,9 @@ struct PengaturanHargaBengkel: View {
             phoneNumber: bengkelOwnerForm.bengkelPhoneNumber,
             location: bengkelOwnerForm.bengkelAddress,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: [.senin, .selasa, .rabu]
+            operationalDays: [.senin, .selasa, .rabu],
+            minPrice: min,
+            maxPrice: max
         )
         bengkelViewModel.create(bengkelBaru)
     }
