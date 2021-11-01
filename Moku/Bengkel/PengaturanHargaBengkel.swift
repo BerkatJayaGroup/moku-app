@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PengaturanHargaBengkel: View {
+    var bengkelOwnerForm: BengkelOwnerOnboardingView
+    var pengaturanBengkelForm: PengaturanBengkel
+    @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
     @State private var max: String = ""
     var body: some View {
@@ -39,23 +42,49 @@ struct PengaturanHargaBengkel: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding()
-                Button {
-                }label: {
-                    Text("Selesai")
+                NavigationLink(destination: BengkelView()) {
+                    Button("Lanjutkan"){ print("testing") }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color("PrimaryColor"))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                        .padding(.horizontal)
                 }
-                .frame(width: 300, height: 45)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                .padding()
-            }.padding()
-                .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
+            }
+            .padding()
+            .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
         }
+    }
+    
+    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
+        var mekanikBaru = [Mekanik]()
+        for mech in pengaturanBengkelForm.mechanics{
+            // TODO: upload foto mekanik and assign to photo
+            //let mekBaru = Mekanik(name: mech.name, photo: mech.photo)
+        }
+        
+        // TODO: ubah model bengkel(add min and max harga), pengaturanBengkelForm.min = bengkel min price
+        
+        // TODO: upload foto bengkel dan simpan di object bengkel
+        
+        let calendar = Calendar.current
+        let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
+        let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
+        let bengkelBaru = Bengkel(
+            owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.bengkelPhoneNumber, email: ""),
+            name: bengkelOwnerForm.bengkelName,
+            phoneNumber: bengkelOwnerForm.bengkelPhoneNumber,
+            location: bengkelOwnerForm.bengkelAddress,
+            operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
+            operationalDays: [.senin, .selasa, .rabu]
+        )
+        bengkelViewModel.create(bengkelBaru)
     }
 }
 
-struct PengaturanHargaBengkel_Previews: PreviewProvider {
-    static var previews: some View {
-        PengaturanHargaBengkel()
-    }
-}
+//struct PengaturanHargaBengkel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PengaturanHargaBengkel()
+//    }
+//}

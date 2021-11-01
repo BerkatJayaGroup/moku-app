@@ -22,7 +22,7 @@ struct Bengkel: Codable {
     var photos          = [String]()
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
-
+    
     var distance: Double?
 
     // MARK: Order Related
@@ -60,7 +60,7 @@ extension Bengkel {
     struct Owner: Codable {
         let name: String
         let phoneNumber: String
-        let email: String
+        let email: String?
     }
 }
 

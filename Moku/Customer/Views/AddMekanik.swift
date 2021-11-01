@@ -10,8 +10,8 @@ import SwiftUI
 struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
+    @Binding var mechanics : [calonMekanik]
     @State var mechanicName: String?
-    @State var mechanics = [Mekanik]()
     @State var image: UIImage?
     
     @State var showImagePicker: Bool = false
@@ -41,9 +41,11 @@ struct AddMekanik: View {
                     Text("NAMA MEKANIK")
                         .font(Font.system(size: 11, weight: .regular))
                     TextField("Tulis Nama Mekanik", text: $mechanicName)
-                        .frame(width: .infinity, height: 40)
-                        .background(Color(hex: "F3F3F3"))
+                        .font(.subheadline)
+                        .padding(15)
+                        .background(Color(.systemGray6))
                         .cornerRadius(8)
+                        .padding(.bottom)
                 }
                 Spacer()
             }
@@ -86,18 +88,12 @@ struct AddMekanik: View {
     
     func tambahMekanik(){
         showSheetView = false
-        let calonMekanik = calonMekanik(name: mechanicName, photo: image)
+        let calonMekanik = calonMekanik(name: mechanicName!, photo: image)
         mechanics.append(calonMekanik)
     }
 }
 
-struct calonMekanik{
+struct calonMekanik : Hashable{
     var name: String
     var photo: UIImage?
-}
-
-struct AddMekanik_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMekanik(showSheetView: .constant(true), mechanicName: "Heru")
-    }
 }

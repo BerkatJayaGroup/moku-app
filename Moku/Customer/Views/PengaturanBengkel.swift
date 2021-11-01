@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Combine
+import SwiftUIX
 
 struct MotorBrand: Identifiable, Hashable {
     var id: String {name}
@@ -17,25 +19,28 @@ struct Motorcc: Identifiable, Hashable {
     var ccMotor: String
 }
 struct SelectedBrand {
-    var brand: Set<MotorBrand>
+    var brand: Set<Brand>
     var cc: Set<Motorcc>
 }
 
-let allBrands: [MotorBrand] = [MotorBrand(name: "Honda"), MotorBrand(name: "Yamaha"), MotorBrand(name: "Suzuki")]
+let allBrands: [Brand] = [Brand.honda, Brand.yamaha, Brand.kawasaki, Brand.suzuki]
 let allCC: [Motorcc] = [Motorcc(ccMotor: "110"), Motorcc(ccMotor: "125")]
 
 struct PengaturanBengkel: View {
     var bengkelOwnerForm: BengkelOwnerOnboardingView
-    @State private var date = Date()
-    @State private var brandMotor: String = ""
-    @State private var ccMotor: String = ""
-    @State private var isBrandSelected: Bool = false
-    @State private var isCCSelected: Bool = false
-    @State private var isAddMekanik: Bool = false
+    @State var openTime = Date()
+    @State var closeTime = Date()
+    @State var brandMotor: String = ""
+    @State var ccMotor: String = ""
+    @State var isBrandSelected: Bool = false
+    @State var isCCSelected: Bool = false
+    @State var isAddMekanik: Bool = false
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @State var daySelected: [Bool] = [true, true, true, true, true, true, true]
-    @State var task = SelectedBrand(brand: [], cc: [])
-
+    @State var selectedBrand = Set<Brand>()
+    @State var selectedCC = Set<Motorcc>()
+    @State var mechanics = [calonMekanik]()
+    
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
@@ -44,8 +49,8 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allBrands,
-                                  optionToString: { $0.name },
-                                  selected: $task.brand
+                                  optionToString: { $0.rawValue },
+                                  selected: $selectedBrand
                     )
                         .frame(width: proxy.size.width, height: 40)
                         .background(Color(hex: "F3F3F3"))
@@ -58,7 +63,7 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allCC,
                                   optionToString: { $0.ccMotor },
-                                  selected: $task.cc
+                                  selected: $selectedCC
                     )
                         .frame(width: proxy.size.width, height: 40)
                         .background(Color(hex: "F3F3F3"))
@@ -92,43 +97,60 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, alignment: .leading)
                     DatePicker(
                         "Start Day",
-                        selection: $date,
+                        selection: $openTime,
                         displayedComponents: .hourAndMinute
                     )
                     DatePicker(
                         "End Day",
-                        selection: $date,
+                        selection: $closeTime,
                         displayedComponents: .hourAndMinute
                     )
                 }
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("MEKANIK")
-                        .font(Font.system(size: 11, weight: .regular))
+                Text("MEKANIK")
+                    .font(Font.system(size: 11, weight: .regular))
+                    .frame(width: proxy.size.width, alignment: .leading)
+                VStack(alignment: .leading){
+                    ForEach(mechanics, id: \.self) { (mech) in
+                        Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
+                        Divider()
+                            .background(Color("DarkGray"))
+                    }.onDelete(perform: self.deleteItem)
+                }
+                Button {
+                    self.isAddMekanik.toggle()
+                    print($mechanics.count)
+                } label: {
+                    Text("+Tambah Mekanik")
+                        .font(Font.system(size: 13, weight: .regular))
+                        .foregroundColor(Color("PrimaryColor"))
                         .frame(width: proxy.size.width, alignment: .leading)
-
-                    Button {
-                        self.isAddMekanik.toggle()
-                    } label: {
-                        Text("+Tambah Mekanik")
-                            .font(Font.system(size: 13, weight: .regular))
-                            .foregroundColor(Color("PrimaryColor"))
-                            .frame(width: proxy.size.width, alignment: .leading)
-                    }
-                    .sheet(isPresented: $isAddMekanik) {
-                        AddMekanik(showSheetView: self.$isAddMekanik)
-                    }
+                }
+                .sheet(isPresented: $isAddMekanik) {
+                    AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
                 }
                 Spacer()
-                NavigationLink(destination: AddMekanik( showSheetView: $isAddMekanik)) {
+                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self)) {
                     Text("Lanjutkan")
-                        .padding(.vertical, 8)
-                        .frame(width: proxy.size.width * 0.8, alignment: .center)
+                        .padding()
+                        .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
-                        .foregroundColor(Color.white)
-                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                        .padding(.horizontal)
                 }
             }
         }
         .padding()
+        .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
+    }
+    
+    private func deleteItem(at indexSet: IndexSet) {
+        self.mechanics.remove(atOffsets: indexSet)
     }
 }
+
+//struct PengaturanBengkel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
+//    }
+//}

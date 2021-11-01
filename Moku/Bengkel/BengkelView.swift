@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct BengkelView: View {
-    @State var bengkel: Bengkel
-
-    init(for bengkel: Bengkel) {
-        _bengkel = State(wrappedValue: bengkel)
-    }
+//    @State var bengkel: Bengkel
+//
+//    init(for bengkel: Bengkel) {
+//        _bengkel = State(wrappedValue: bengkel)
+//    }
 
     var body: some View {
         Text("Bengkel View")
     }
 }
 
-struct BengkelView_Previews: PreviewProvider {
-    static var previews: some View {
-        BengkelView(for: .preview)
-    }
-}
+//struct BengkelView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BengkelView(for: .preview)
+//    }
+//}

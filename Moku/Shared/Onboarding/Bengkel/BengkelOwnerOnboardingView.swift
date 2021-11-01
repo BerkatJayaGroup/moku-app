@@ -11,7 +11,7 @@ import Contacts
 struct BengkelOwnerOnboardingView: View {
     @State var ownerName: String = ""
     @State var bengkelName: String = ""
-    @State var bengkelAddress: String = ""
+    @State var bengkelAddress: Location = Location(address: "", longitude: 0, latitude: 0)
     @State var bengkelPhoneNumber: String = ""
     @State var isNavigateActive = false
 
@@ -26,7 +26,7 @@ struct BengkelOwnerOnboardingView: View {
                 }
                 Section(header: Text("ALAMAT")) {
                     TextField("Cari alamat bengkelmu disini", text:
-                                $bengkelAddress)
+                                $bengkelAddress.address)
                 }
                 Section(header: Text("NOMOR TELEPON BENGKEL")) {
                     TextField("08xx-xxxx-xxxx", text: $bengkelPhoneNumber).keyboardType(.numberPad)
@@ -44,14 +44,13 @@ struct BengkelOwnerOnboardingView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
                 .padding(.horizontal)
             }
-
         }
         .navigationBarTitle("Profil Bengkel", displayMode: .inline)
     }
 }
 
-struct BengkelOwnerOnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        BengkelOwnerOnboardingView()
-    }
-}
+//struct BengkelOwnerOnboardingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BengkelOwnerOnboardingView()
+//    }
+//}
