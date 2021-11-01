@@ -25,6 +25,7 @@ let allBrands: [MotorBrand] = [MotorBrand(name: "Honda"), MotorBrand(name: "Yama
 let allCC: [Motorcc] = [Motorcc(ccMotor: "110"), Motorcc(ccMotor: "125")]
 
 struct PengaturanBengkel: View {
+    var bengkelOwnerForm: BengkelOwnerOnboardingView
     @State private var date = Date()
     @State private var brandMotor: String = ""
     @State private var ccMotor: String = ""
@@ -129,11 +130,5 @@ struct PengaturanBengkel: View {
             }
         }
         .padding()
-    }
-}
-
-struct PengaturanBengkel_Previews: PreviewProvider {
-    static var previews: some View {
-        PengaturanBengkel()
     }
 }

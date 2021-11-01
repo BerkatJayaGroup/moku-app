@@ -35,7 +35,7 @@ struct BengkelOwnerOnboardingView: View {
                     // UI IMAGE PICKER
                 }
             }
-            NavigationLink(destination: PengaturanBengkel(), isActive: $isNavigateActive) {
+            NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $isNavigateActive) {
                 Button("Lanjutkan") { self.isNavigateActive = true }
                 .padding()
                 .frame(maxWidth: .infinity)
