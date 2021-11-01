@@ -25,12 +25,16 @@ struct BookingSummary: View {
                     VStack(alignment: .leading, spacing: 20) {
                         Text("Motor")
                             .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(AppColor.darkGray)
                         Text("Jenis Perbaikan")
                             .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(AppColor.darkGray)
                         Text("Hari")
                             .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(AppColor.darkGray)
                         Text("Jam")
                             .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(AppColor.darkGray)
                     }.padding(.vertical)
                     Spacer(minLength: 1)
                     VStack(alignment: .leading, spacing: 20) {
