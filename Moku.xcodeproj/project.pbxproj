@@ -13,7 +13,6 @@
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
 		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
-		6FF2D27F272BE9D400D36512 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF2D27E272BE9D400D36512 /* ImagePicker.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };

@@ -12,7 +12,7 @@ struct AddMekanik: View {
     @Binding var showSheetView: Bool
     @Binding var mechanics : [calonMekanik]
     @State var mechanicName: String?
-    @State var image: UIImage?
+    @State var image: [UIImage] = []
     
     @State var showImagePicker: Bool = false
     @State private var showActionSheet = false
@@ -21,7 +21,7 @@ struct AddMekanik: View {
     var body: some View {
         NavigationView{
             VStack {
-                if image == nil {
+                if image == [] {
                     Image("profile")
                         .resizable()
                         .frame(width: 100, height: 100, alignment: .center)
@@ -29,7 +29,7 @@ struct AddMekanik: View {
                         .padding(.bottom, 10.0)
                 } else {
                     if let image = image {
-                        Image(uiImage: image)
+                        Image(uiImage: image[0])
                             .resizable()
                             .frame(width: 100, height: 100, alignment: .center)
                             .clipShape(Circle())
@@ -63,9 +63,7 @@ struct AddMekanik: View {
             self.showActionSheet.toggle()
         }
         .sheet(isPresented: $showImagePicker) {
-            ImagePicker(sourceType: self.sourceType) { image in
-                self.image = image
-            }
+            ImagePicker(sourceType: self.sourceType, pickerResult: $image)
         }
         .actionSheet(isPresented: $showActionSheet) { () -> ActionSheet in
             ActionSheet(
@@ -88,7 +86,7 @@ struct AddMekanik: View {
     
     func tambahMekanik(){
         showSheetView = false
-        let calonMekanik = calonMekanik(name: mechanicName!, photo: image)
+        let calonMekanik = calonMekanik(name: mechanicName!, photo: image[0])
         mechanics.append(calonMekanik)
     }
 }

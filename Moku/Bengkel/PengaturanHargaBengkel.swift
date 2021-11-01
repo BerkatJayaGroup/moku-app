@@ -60,23 +60,12 @@ struct PengaturanHargaBengkel: View {
     }
     
     func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
-        var mekanikBaru = [Mekanik]()
-        for mech in pengaturanBengkelForm.mechanics{
-            // TODO: upload foto mekanik and assign to photo
-            let mekBaru = Mekanik(name: mech.name)
-            if let photo = mech.photo {
-                storageService.upload(image: photo, path: mekBaru.id)
-            }
-            mekanikBaru.append(mekBaru)
-        }
-        
         // TODO: upload foto bengkel dan simpan di object bengkel
-        
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
-        let bengkelBaru = Bengkel(
+        var bengkelBaru = Bengkel(
             owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.bengkelPhoneNumber, email: ""),
             name: bengkelOwnerForm.bengkelName,
             phoneNumber: bengkelOwnerForm.bengkelPhoneNumber,
@@ -86,6 +75,16 @@ struct PengaturanHargaBengkel: View {
             minPrice: min,
             maxPrice: max
         )
+        
+        for mech in pengaturanBengkelForm.mechanics{
+            // TODO: upload foto mekanik and assign to photo
+            let mekBaru = Mekanik(name: mech.name)
+            if let photo = mech.photo {
+                storageService.upload(image: photo, path: mekBaru.id)
+            }
+            bengkelBaru.mekaniks.append(mekBaru)
+        }
+        
         bengkelViewModel.create(bengkelBaru)
     }
 }

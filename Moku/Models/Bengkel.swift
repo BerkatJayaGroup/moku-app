@@ -66,27 +66,29 @@ extension Bengkel {
     }
 }
 
-//extension Bengkel {
-//    static let preview = Bengkel(
-//        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "1234", email: "johndoe@example.com"),
-//        name: "Dsdsda",
-//        phoneNumber: "Berkat Jaya",
-//        location: Location(address: "x", longitude: 1, latitude: 1),
-//        operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
-//        operationalDays: [.senin, .selasa, .rabu],
-//        reviews: [
-//            Review(
-//                user: "Devin Winardi",
-//                rating: 5,
-//                comment: "Servisnya memuaskan banget, motor langsung kenceng",
-//                timestamp: Date()
-//            ),
-//            Review(
-//                user: "Dicky Rangga Buwono",
-//                rating: 5,
-//                comment: "Servisnya memuaskan banget, motor langsung kenceng",
-//                timestamp: Date()
-//            )
-//        ]
-//    )
-//}
+extension Bengkel {
+    static let preview = Bengkel(
+        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "1234", email: "johndoe@example.com"),
+        name: "Dsdsda",
+        phoneNumber: "Berkat Jaya",
+        location: Location(address: "x", longitude: 1, latitude: 1),
+        operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
+        operationalDays: [.senin, .selasa, .rabu],
+        minPrice: "20000",
+        maxPrice: "100000",
+        reviews: [
+            Review(
+                user: "Devin Winardi",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            ),
+            Review(
+                user: "Dicky Rangga Buwono",
+                rating: 5,
+                comment: "Servisnya memuaskan banget, motor langsung kenceng",
+                timestamp: Date()
+            )
+        ]
+    )
+}

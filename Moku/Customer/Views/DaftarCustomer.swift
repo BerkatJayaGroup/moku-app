@@ -109,7 +109,7 @@ struct DaftarCustomer: View {
                 .opacity(0.3)
                 .padding(15)
             Spacer()
-            NavigationLink(destination: PengaturanBengkel()) {
+            NavigationLink(destination: BengkelTabItem()) {
                 Button(action: {
                     if viewModel.isFormInvalid {
                         // Alert 
