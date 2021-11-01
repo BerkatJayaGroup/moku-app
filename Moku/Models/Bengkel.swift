@@ -22,7 +22,9 @@ struct Bengkel: Codable {
     var photos          = [String]()
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
-
+    var minPrice        : String
+    var maxPrice        : String
+    
     var distance: Double?
 
     // MARK: Order Related
@@ -60,7 +62,7 @@ extension Bengkel {
     struct Owner: Codable {
         let name: String
         let phoneNumber: String
-        let email: String
+        let email: String?
     }
 }
 
@@ -72,6 +74,8 @@ extension Bengkel {
         location: Location(address: "x", longitude: 1, latitude: 1),
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [.senin, .selasa, .rabu],
+        minPrice: "20000",
+        maxPrice: "100000",
         reviews: [
             Review(
                 user: "Devin Winardi",

@@ -6,9 +6,22 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
+  
+    var config: PHPickerConfiguration {
+        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        config.filter = .images // videos, livePhotos...
+        config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
+        return config
+    }
+  
+    @State var pickerResult: [UIImage] = []  
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionScheet = false
+    @State private var shouldPresentCamera = false
 
     init() {
         UITableView.appearance().backgroundColor = .clear
@@ -26,8 +39,51 @@ struct BengkelOwnerOnboardingView: View {
 
                 textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
 
-                Section(header: header(title: "FOTO BENGKEL")) {
-                    // UI IMAGE PICKER
+                Section(header: Text("FOTO BENGKEL")) {
+                    if pickerResult != [] {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                VStack {
+                                    Text("+").font(.system(size: 30)).padding()
+                                    Text("Tambah Foto")
+                                }
+                                .frame(width: 100, height: 100)
+                                .onTapGesture {
+                                    self.shouldPresentActionScheet = true
+                                }
+                                ForEach(pickerResult, id: \.self) { image in
+                                    Image.init(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 100, height: 100, alignment: .center)
+                                        .aspectRatio(contentMode: .fit)
+                                }
+                            }
+                        }
+                    } else {
+                        VStack {
+                            Text("+").font(.system(size: 30)).padding()
+                            Text("Tambah Foto")
+                        }
+                        .frame(maxWidth: .infinity).padding(.horizontal, 20)
+                        .onTapGesture {
+                            self.shouldPresentActionScheet = true
+                        }
+                    }
+                }
+                .sheet(isPresented: $shouldPresentImagePicker) {
+                    if !self.shouldPresentCamera {
+                        ImagePHPicker(configuration: self.config, pickerResult: $pickerResult, isPresented: $shouldPresentImagePicker)
+                    } else {
+                        ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
+                    }
+                }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                    ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                        self.shouldPresentImagePicker = true
+                        self.shouldPresentCamera = true
+                    }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                        self.shouldPresentImagePicker = true
+                        self.shouldPresentCamera = false
+                    }), ActionSheet.Button.cancel()])
                 }
             }
 
@@ -54,7 +110,7 @@ extension BengkelOwnerOnboardingView {
 
     @ViewBuilder
     private func submitButton() -> some View {
-        NavigationLink(destination: PengaturanBengkel(), isActive: $viewModel.isSettingDetail) { EmptyView() }
+        NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $viewModel.isSettingDetail) { EmptyView() }
 
         Button {
             viewModel.openBengkelSetting()

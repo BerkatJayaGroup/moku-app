@@ -8,4 +8,5 @@ target 'Moku' do
   # Pods for Moku
   pod 'GooglePlaces', '5.1.0'
   pod 'GoogleMaps', '5.2.0'
+  pod "BSImagePicker", "~> 3.1"
 end

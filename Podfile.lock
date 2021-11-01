@@ -1,4 +1,5 @@
 PODS:
+  - BSImagePicker (3.3.1)
   - GoogleMaps (5.2.0):
     - GoogleMaps/Maps (= 5.2.0)
   - GoogleMaps/Base (5.2.0)
@@ -7,18 +8,21 @@ PODS:
   - GooglePlaces (5.1.0)
 
 DEPENDENCIES:
+  - BSImagePicker (~> 3.1)
   - GoogleMaps (= 5.2.0)
   - GooglePlaces (= 5.1.0)
 
 SPEC REPOS:
   trunk:
+    - BSImagePicker
     - GoogleMaps
     - GooglePlaces
 
 SPEC CHECKSUMS:
+  BSImagePicker: 0fe04b574d4d6b81093785d2af6c26227efc8428
   GoogleMaps: 025272d5876d3b32604e5c080dc25eaf68764693
   GooglePlaces: c57cd5aa7e91d10fa5106c792de74f3bd6436260
 
-PODFILE CHECKSUM: 594b72389bc45f9608822af0e2173171ee6dd213
+PODFILE CHECKSUM: 5489891a937882f8789d7d8555fe6287dd1b2e00
 
 COCOAPODS: 1.11.2
