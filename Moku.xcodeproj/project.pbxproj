@@ -106,7 +106,6 @@
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
 		6FB9BD98272A98070041469C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
-		6FF2D27E272BE9D400D36512 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
@@ -475,15 +474,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		83E13E88272AA85A008758B7 /* Bengkel */ = {
-			isa = PBXGroup;
-			children = (
-				83E13E8B272AA89F008758B7 /* BengkelOwnerOnboardingView.swift */,
-			);
-			name = Bengkel;
-			path = Moku/Onboarding/Bengkel;
-			sourceTree = SOURCE_ROOT;
-		};
 		8ECD17D7272E85C200B2AB13 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,7 +688,6 @@
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
-				6FF2D27F272BE9D400D36512 /* ImagePicker.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */,
@@ -753,7 +742,6 @@
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
-				83E13E8C272AA89F008758B7 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
 				B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */,
 				83DAE6CA272ECD9B002D1D6E /* LocationSelectionViewModel.swift in Sources */,
