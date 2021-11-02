@@ -10,15 +10,30 @@ import SwiftUI
 struct DayByDay: View {
     var day: String
     var time: String
-    var body: some View{
-        HStack{
+    var isToday: Bool {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "id_ID")
+        let dayToday: String = dateFormatter.string(from: date)
+        if dayToday == day {
+            return true
+        } else {
+            return false
+        }
+    }
+    var body: some View {
+        HStack {
             Image(systemName: "calendar")
                 .font(.system(size: 40))
-            VStack{
+                .foregroundColor(isToday == true ? AppColor.primaryColor : .gray)
+            VStack {
                 Text(day)
                     .font(.system(size: 15))
+                    .foregroundColor(isToday == true ? .primary : .gray)
                 Text(time)
                     .font(.system(size: 13))
+                    .foregroundColor(isToday == true ? .primary : .gray)
             }
             Spacer()
         }

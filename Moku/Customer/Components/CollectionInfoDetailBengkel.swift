@@ -30,7 +30,7 @@ struct CollectionInfoDetailBengkel: View {
                     self.partialSheetManager.showPartialSheet({
                         print("normal sheet dismissed")
                     }) {
-                        SheetView()
+                        SheetView(mainInfo: mainInfo)
                     }
                 }) {
                     Text("\(cta)")
@@ -46,7 +46,7 @@ struct CollectionInfoDetailBengkel: View {
 
 struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
+        NavigationView {
             CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Detail")
                 .previewLayout(.sizeThatFits)
         }
@@ -57,34 +57,5 @@ struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
 }
 
 extension CollectionInfoDetailBengkel {
-    struct SheetView: View {
-        var body: some View {
-            VStack {
-                Group {
-                    HStack {
-                        Text("Jam Buka")
-                            .font(.headline)
-                        Spacer()
-                    }
-                    Spacer()
-                    HStack{
-                        VStack(spacing: 8){
-                            DayByDay(day: "Senin", time: "10.00-17.00")
-                            DayByDay(day: "Selasa", time: "10.00-17.00")
-                            DayByDay(day: "Rabu", time: "10.00-17.00")
-                            DayByDay(day: "Kamis", time: "10.00-17.00")
-                            DayByDay(day: "Jumat", time: "10.00-17.00")
-                        }
-                        VStack(spacing: 8){
-                            DayByDay(day: "Sabtu", time: "10.00-17.00")
-                            DayByDay(day: "Minggu", time: "10.00-17.00")
-                            Spacer()
-                        }
-                    }
-                }
-            }
-            .padding()
-            .frame(height: 320)
-        }
-    }
+
 }

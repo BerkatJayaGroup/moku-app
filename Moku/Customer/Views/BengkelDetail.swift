@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct BengkelDetail: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -119,6 +120,11 @@ struct BengkelDetail: View {
 
 struct BengkelDetail_Previews: PreviewProvider {
     static var previews: some View {
-        BengkelDetail(bengkel: .preview)
+        NavigationView {
+            BengkelDetail(bengkel: .preview)
+        }
+        .addPartialSheet()
+        .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(PartialSheetManager())
     }
 }
