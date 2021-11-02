@@ -24,7 +24,7 @@ extension Date {
     private static func getComponent(date: Date, format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        formatter.locale = Locale.autoupdatingCurrent
+        formatter.locale = Locale(identifier: "id_ID")
         let component = formatter.string(from: date)
         return component
     }
