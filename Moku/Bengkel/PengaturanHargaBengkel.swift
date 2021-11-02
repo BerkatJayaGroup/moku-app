@@ -48,7 +48,7 @@ struct PengaturanHargaBengkel: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 NavigationLink(destination: BengkelView()) {
-                    Button("Lanjutkan"){ createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: pengaturanBengkelForm) }
+                    Button("Selesai"){ createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: pengaturanBengkelForm) }
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
@@ -87,11 +87,19 @@ struct PengaturanHargaBengkel: View {
             maxPrice: max
         )
         
+        for brand in pengaturanBengkelForm.selectedBrand{
+            bengkelBaru.brands.insert(brand)
+        }
+        
         for mech in pengaturanBengkelForm.mechanics{
             // TODO: upload foto mekanik and assign to photo
-            let mekBaru = Mekanik(name: mech.name)
+            var mekBaru = Mekanik(name: mech.name)
             if let photo = mech.photo {
                 storageService.upload(image: photo, path: mekBaru.id)
+                mekBaru.photo = mekBaru.id
+            }
+            else{
+                mekBaru.photo = ""
             }
             bengkelBaru.mekaniks.append(mekBaru)
         }
