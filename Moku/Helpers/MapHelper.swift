@@ -90,21 +90,30 @@ struct MapHelper {
     }
 
     static func direct(bengkel: Bengkel) {
-        let placemark       = MKPlacemark(coordinate: bengkel.coordinate)
+        let gmapAvailable = UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!)
 
-        let mapItem         = MKMapItem(placemark: placemark)
+        if gmapAvailable {
+            UIApplication.shared.open(URL(string: "comgooglemaps://?saddr=&daddr=\(bengkel.location.latitude),\(bengkel.location.longitude)&zoom=14")!)
 
-        mapItem.name        = bengkel.name
-        mapItem.phoneNumber = bengkel.phoneNumber
+        } else {
+            // MARK: Apple Map
 
-        let coordinateSpan =  MKCoordinateSpan(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
+            let placemark       = MKPlacemark(coordinate: bengkel.coordinate)
 
-        let launchOptions: [String: Any] = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: bengkel.coordinate),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: coordinateSpan)
-        ]
+            let mapItem         = MKMapItem(placemark: placemark)
 
-        mapItem.openInMaps(launchOptions: launchOptions)
+            mapItem.name        = bengkel.name
+            mapItem.phoneNumber = bengkel.phoneNumber
+
+            let coordinateSpan =  MKCoordinateSpan(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
+
+            let launchOptions: [String: Any] = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: bengkel.coordinate),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: coordinateSpan)
+            ]
+
+            mapItem.openInMaps(launchOptions: launchOptions)
+        }
     }
 }
 
