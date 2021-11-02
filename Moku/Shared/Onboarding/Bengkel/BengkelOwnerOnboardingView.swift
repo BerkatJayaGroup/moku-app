@@ -18,7 +18,7 @@ struct BengkelOwnerOnboardingView: View {
         return config
     }
   
-    @State var pickerResult: [UIImage] = []  
+    @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false

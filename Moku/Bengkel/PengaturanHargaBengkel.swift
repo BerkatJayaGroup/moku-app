@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import Foundation
 
 struct PengaturanHargaBengkel: View {
-    var bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerForm: BengkelOwnerOnboardingView
     var pengaturanBengkelForm: PengaturanBengkel
     @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
@@ -45,7 +48,7 @@ struct PengaturanHargaBengkel: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 NavigationLink(destination: BengkelView()) {
-                    Button("Lanjutkan"){ print("testing") }
+                    Button("Lanjutkan"){ createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: pengaturanBengkelForm) }
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
@@ -59,20 +62,27 @@ struct PengaturanHargaBengkel: View {
         }
     }
     
-    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel){
-        // TODO: upload foto bengkel dan simpan di object bengkel
+    func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
+        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
+        for day in days {
+            if let index = days.firstIndex(of: day){
+                if (pengaturanBengkelForm.daySelected[index] == false){
+                    days.remove(at: index)
+                }
+            }
+        }
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
-        guard let location = bengkelOwnerForm.location else {return}
+        guard let location = bengkelOwnerFormViewModel.location else {return}
         var bengkelBaru = Bengkel(
-            owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.phoneNumber, email: ""),
-            name: bengkelOwnerForm.bengkelName,
-            phoneNumber: bengkelOwnerForm.phoneNumber,
+            owner: Bengkel.Owner(name: bengkelOwnerFormViewModel.ownerName, phoneNumber: bengkelOwnerFormViewModel.phoneNumber, email: ""),
+            name: bengkelOwnerFormViewModel.bengkelName,
+            phoneNumber: bengkelOwnerFormViewModel.phoneNumber,
             location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: [.senin, .selasa, .rabu],
+            operationalDays: Set(days),
             minPrice: min,
             maxPrice: max
         )
@@ -84,6 +94,12 @@ struct PengaturanHargaBengkel: View {
                 storageService.upload(image: photo, path: mekBaru.id)
             }
             bengkelBaru.mekaniks.append(mekBaru)
+        }
+        
+        for img in bengkelOwnerForm.pickerResult {
+            let imgID = UUID().uuidString
+            storageService.upload(image: img, path: imgID)
+            bengkelBaru.photos.append(imgID)
         }
         
         bengkelViewModel.create(bengkelBaru)
