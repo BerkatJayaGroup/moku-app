@@ -99,9 +99,9 @@ struct MapHelper {
 
         let coordinateSpan =  MKCoordinateSpan(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
 
-        let launchOptions: [String : Any] = [
+        let launchOptions: [String: Any] = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: bengkel.coordinate),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: coordinateSpan),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: coordinateSpan)
         ]
 
         mapItem.openInMaps(launchOptions: launchOptions)

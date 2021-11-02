@@ -22,9 +22,9 @@ struct Bengkel: Codable {
     var photos          = [String]()
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
-    var minPrice        : String
-    var maxPrice        : String
-    
+    var minPrice: String
+    var maxPrice: String
+
     var distance: Double?
 
     // MARK: Order Related
