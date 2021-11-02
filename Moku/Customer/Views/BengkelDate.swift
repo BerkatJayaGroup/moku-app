@@ -11,7 +11,6 @@ import simd
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
     @State private var selectedHourndex: Int = -1
-    var operationalDay: [String] = ["Senin", "Selasa", "Rabu"]
     private let dates = Date.getWeek()
     @Binding var date: BookDate
     @Binding var hour: String
