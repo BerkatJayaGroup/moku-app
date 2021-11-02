@@ -12,6 +12,7 @@ struct CollectionInfoDetailBengkel: View {
     var imageInfo: String
     var mainInfo: String
     var cta: String
+
     var body: some View {
         VStack(spacing: 6) {
             Text("\(titleInfo)")
