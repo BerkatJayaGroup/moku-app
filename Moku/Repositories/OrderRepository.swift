@@ -8,6 +8,7 @@
 import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 // Final, biar ga bisa di extend
 final class OrderRepository: ObservableObject {
@@ -19,10 +20,13 @@ final class OrderRepository: ObservableObject {
 
     // MARK: Properties
     @Published var orders = [Order]()
+    
+    @Published var customerOrders = [Order]()
 
     // Initial Setup
     private init() {
         fetch()
+        fetchOrderForCustomer()
     }
 
     // MARK: - CRUD Operations
@@ -30,6 +34,30 @@ final class OrderRepository: ObservableObject {
         store.getDocuments { snapshot, error in
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
             self.orders = RepositoryHelper.extractData(from: documents, type: Order.self)
+        }
+//        store.addSnapshotListener { querySnapshot, error in
+//            if let error = error {
+//                print("Error getting stories: \(error.localizedDescription)")
+//                return
+//            }
+//            let orders = querySnapshot?.documents.compactMap { document in
+//                try? document.data(as: Order.self)
+//            } ?? []
+//
+//            DispatchQueue.main.async {
+//                self.orders = orders
+//            }
+//
+//        }
+    }
+    
+    func fetchOrderForCustomer() {
+        if let userId = Auth.auth().currentUser?.uid {
+            store.whereField("customer.id", isEqualTo: userId).getDocuments { snapshot, error in
+                guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+                self.customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+            }
+            print(userId)
         }
     }
 

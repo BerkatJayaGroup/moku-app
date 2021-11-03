@@ -40,7 +40,11 @@ extension Order {
     }
 
     enum Status: String, Codable {
-        case waitingConfirmation, waitingSchedule, onProgress, rejected, done
+        case waitingConfirmation = "Menunggu konfirmasi"
+        case waitingSchedule = "Menunggu penjadwalan"
+        case onProgress = "Dalam progres"
+        case rejected = "Ditolak"
+        case done = "Selesai"
     }
 
     enum Service: String, Codable {
