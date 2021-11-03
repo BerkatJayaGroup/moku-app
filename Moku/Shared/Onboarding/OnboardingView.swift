@@ -30,14 +30,15 @@ struct OnboardingView: View {
             setupAppearance()
         }
         if curSlideIndex == data.count - 1 {
-            Button("Daftar atau Masuk", action: {
-                appState.hasOnboarded = true
+            SignInWithAppleToFirebase({ response in
+                if response == .success {
+                   print("logged into Firebase through Apple!")
+                   appState.hasOnboarded = true
+                } else if response == .error {
+                   print("error. Maybe the user cancelled or there's no internet")
+                }
             })
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                .frame(height: 50, alignment: .center)
                 .padding(.horizontal)
             Button("Masuk ke halaman utama", action: {
                 appState.hasOnboarded = true
