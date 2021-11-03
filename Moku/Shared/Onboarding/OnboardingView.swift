@@ -31,12 +31,12 @@ struct OnboardingView: View {
         }
         if curSlideIndex == data.count - 1 {
             SignInWithAppleToFirebase({ response in
-                        if response == .success {
-                            print("logged into Firebase through Apple!")
-                            appState.hasOnboarded = true
-                        } else if response == .error {
-                            print("error. Maybe the user cancelled or there's no internet")
-                        }
+                if response == .success {
+                   print("logged into Firebase through Apple!")
+                   appState.hasOnboarded = true
+                } else if response == .error {
+                   print("error. Maybe the user cancelled or there's no internet")
+                }
             })
                 .frame(height: 50, alignment: .center)
                 .padding(.horizontal)
