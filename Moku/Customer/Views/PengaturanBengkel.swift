@@ -18,6 +18,7 @@ struct Motorcc: Identifiable, Hashable {
     var id: String {ccMotor}
     var ccMotor: String
 }
+
 struct SelectedBrand {
     var brand: Set<Brand>
     var cc: Set<Motorcc>
