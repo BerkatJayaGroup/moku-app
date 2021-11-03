@@ -15,14 +15,23 @@ struct PickRoleView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: BengkelOwnerOnboardingView()) {
-                    Text("Bengkel")
-                }
                 NavigationLink(destination: DaftarCustomer()) {
-                    Text("Customer")
-                }
+                    HStack {
+                        Image("pemilik-motor")
+                        Text("Pemilik Motor")
+                    }
+                }.padding(50)
+                    .border(AppColor.primaryColor)
+                NavigationLink(destination: BengkelOwnerOnboardingView()) {
+                    HStack {
+                        Image("pemilik-bengkel")
+                        Text("Pemilik Bengkel")
+                    }
+                }.padding(50)
+                    .border(AppColor.primaryColor)
+                Spacer()
             }
-        }
+        }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
     }
 
 }
