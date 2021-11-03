@@ -58,7 +58,6 @@ struct PengaturanHargaBengkel: View {
         .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
     }
     
-<<<<<<< feature/createBengkel
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
 //        Titip di command dulu barangkali besok butuh
         
