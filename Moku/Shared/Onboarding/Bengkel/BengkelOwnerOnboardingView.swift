@@ -18,7 +18,7 @@ struct BengkelOwnerOnboardingView: View {
         return config
     }
   
-    @State var pickerResult: [UIImage] = []  
+    @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
@@ -30,8 +30,8 @@ struct BengkelOwnerOnboardingView: View {
     }
 
     var body: some View {
-        VStack {
-            Form {
+        VStack(alignment: .leading, spacing:24) {
+            VStack(alignment: .leading ,spacing:8) {
                 textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                 textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
@@ -93,7 +93,8 @@ struct BengkelOwnerOnboardingView: View {
                     }), ActionSheet.Button.cancel()])
                 }
             }
-
+            .padding()
+            Spacer()
             submitButton()
         }
         .sheet(isPresented: $viewModel.isSelectingLocation) {
