@@ -59,14 +59,16 @@ struct PengaturanHargaBengkel: View {
     }
     
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel){
-        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
-        for day in days {
-            if let index = days.firstIndex(of: day){
-                if (pengaturanBengkelForm.daySelected[index] == false){
-                    days.remove(at: index)
-                }
-            }
-        }
+//        Titip di command dulu barangkali besok butuh
+        
+//        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
+//        for day in days {
+//            if let index = days.firstIndex(of: day){
+//                if (pengaturanBengkelForm.daySelected[index] == false){
+//                    days.remove(at: index)
+//                }
+//            }
+//        }
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
@@ -78,7 +80,7 @@ struct PengaturanHargaBengkel: View {
             phoneNumber: bengkelOwnerFormViewModel.phoneNumber,
             location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: Set(days),
+            operationalDays: pengaturanBengkelForm.daySelected,
             minPrice: min,
             maxPrice: max
         )
