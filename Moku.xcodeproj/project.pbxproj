@@ -368,7 +368,6 @@
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
-				8ECD17D7272E85C200B2AB13 /* View Model */,
 				6F0E4E23272FC3BB000B6EC8 /* ViewModels */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
 				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkel.swift */,
@@ -475,13 +474,6 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		8ECD17D7272E85C200B2AB13 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {

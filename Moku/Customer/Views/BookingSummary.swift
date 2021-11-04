@@ -7,13 +7,67 @@
 
 import SwiftUI
 
+extension Date {
+    func date() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, d MMM y"
+        return formatter.string(from: self)
+    }
+
+    func time() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+}
+
+extension BookingSummary {
+    class ViewModel: ObservableObject {
+        @Published private var order: Order
+
+        init(order: Order) {
+            self.order = order
+        }
+
+        var bengkel: String {
+            order.bengkel.name
+        }
+
+        var address: String {
+            order.bengkel.address
+        }
+
+        var motor: String {
+            order.motor.model
+        }
+
+        var jenisPerbaikan: String {
+            order.typeOfService.rawValue
+        }
+
+        var date: String {
+            order.schedule.date()
+        }
+
+        var time: String {
+            order.schedule.time()
+        }
+    }
+}
+
 struct BookingSummary: View {
+    @StateObject private var viewModel: ViewModel
+
+    init(order: Order) {
+        _viewModel = StateObject(wrappedValue: ViewModel(order: order))
+    }
+
     var body: some View {
         VStack {
-            Text("Berkat Jaya Group")
+            Text(viewModel.bengkel)
                 .font(.system(size: 20, weight: .semibold))
                 .padding(5)
-            Text("Jl. Sudirman 2 no 5, Jakarta Selatan, Kemang ")
+            Text(viewModel.address)
                 .font(.caption)
                 .foregroundColor(AppColor.darkGray)
             Divider()
@@ -38,20 +92,20 @@ struct BookingSummary: View {
                     }.padding(.vertical)
                     Spacer(minLength: 1)
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("Motor")
+                        Text(viewModel.motor)
                             .font(.system(size: 13, weight: .semibold))
-                        Text("Service Rutin")
+                        Text(viewModel.jenisPerbaikan)
                             .font(.system(size: 13, weight: .semibold))
-                        Text("Kamis, 7 Oktober 2021")
+                        Text(viewModel.date)
                             .font(.system(size: 13, weight: .semibold))
-                        Text("12.00")
+                        Text(viewModel.time)
                             .font(.system(size: 13, weight: .semibold))
                     }.padding(.vertical)
                 }
             }
             Spacer()
             Button {
-                
+
             } label: {
             Text("Konfirmasi Booking")
                 .frame(width: 310, height: 50)
@@ -69,6 +123,6 @@ struct BookingSummary: View {
 
 struct BookingSummary_Previews: PreviewProvider {
     static var previews: some View {
-        BookingSummary()
+        BookingSummary(order: .preview)
     }
 }
