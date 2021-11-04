@@ -29,20 +29,31 @@ extension Date {
         return component
     }
 
-    static func getWeek(for month: Int = 1) -> [BookDate] {
+    static func getWeek(for month: Int = 1, hari: Int) -> [BookDate] {
         var dates = [BookDate]()
         let calendar = Calendar.current
-
-        for number in 1...7 {
-            guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
-            let day = getComponent(date: fullDate, format: "EEE")
-            let dayNumber = getComponent(date: fullDate, format: "dd")
-            let month = getComponent(date: fullDate, format: "MM")
-            let year = getComponent(date: fullDate, format: "yy")
-            let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
-            dates.append(bookDate)
+        if hari < 7 {
+            let lastIndex = 7 + (7 - hari)
+            for number in 0...lastIndex {
+                    guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
+                    let day = getComponent(date: fullDate, format: "EEE")
+                    let dayNumber = getComponent(date: fullDate, format: "dd")
+                    let month = getComponent(date: fullDate, format: "MM")
+                    let year = getComponent(date: fullDate, format: "yy")
+                    let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
+                    dates.append(bookDate)
+                }
+        }else {
+            for number in 0...7 {
+                    guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
+                    let day = getComponent(date: fullDate, format: "EEE")
+                    let dayNumber = getComponent(date: fullDate, format: "dd")
+                    let month = getComponent(date: fullDate, format: "MM")
+                    let year = getComponent(date: fullDate, format: "yy")
+                    let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
+                    dates.append(bookDate)
+                }
         }
-
         return dates
 
     }

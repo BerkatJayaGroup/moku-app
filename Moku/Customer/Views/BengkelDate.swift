@@ -11,9 +11,10 @@ import simd
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
     @State private var selectedHourndex: Int = -1
-    private let dates = Date.getWeek()
     @Binding var date: BookDate
+    private let tggl = [true, false, true, true, false, true, false]
     @Binding var hour: String
+    @State var schedule = Date()
     @State private var text = ""
     let columns = [
         GridItem(.fixed(60), spacing: 10),
@@ -71,11 +72,16 @@ struct BengkelDate: View {
     fileprivate func createDateView() -> some View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
+                let arr = convert(hari: tggl)
+                let count = arr.filter({ $0 != ""}).count
+                let dates = Date.getWeek(hari: count)
+                let filtered = dates.filter {arr.contains($0.day)}
                 HStack {
-                    ForEach(dates, id: \.day) { date in
-                        DateStack(date: date, isSelected: self.selectedDate.day == date.day, onSelect: { selectedDate in
+                    ForEach(filtered, id: \.dayNumber) { date in
+                        DateStack(date: date, isSelected: self.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
                             self.selectedDate = selectedDate
                             self.date = selectedDate
+                    
                         })
                     }
                 }.padding(.horizontal)
@@ -89,10 +95,24 @@ struct BengkelDate: View {
                     TimeStack(index: item, isSelected: self.selectedHourndex == item, onSelect: { selectedIndex in
                         self.selectedHourndex = selectedIndex
                         self.hour = "\(selectedIndex):00"
+//                        let tggl = DateComponents(timeZone: , year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.day), hour: selectedIndex)
+//                        self.schedule = Calendar.current.date(from: tggl) ?? Date()
                     })
                 }
             }.padding(.horizontal)
         }
+    }
+    private func convert(hari: [Bool]) -> [String] {
+        var week: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
+        var test: [String] = []
+        for i in 0..<hari.count {
+            if hari[i] == false {
+                test.append("")
+            } else {
+                test.append(week[i])
+            }
+        }
+        return test
     }
 }
 
