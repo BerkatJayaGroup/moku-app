@@ -115,9 +115,3 @@ struct BengkelDetail: View {
         .padding(.horizontal, 16)
     }
 }
-
-//struct BengkelDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelDetail(bengkel: .preview)
-//    }
-//}
