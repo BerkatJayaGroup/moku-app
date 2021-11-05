@@ -6,11 +6,12 @@
 //
 
 import Combine
+import SwiftUI
 
 extension BengkelTabItem {
     class ViewModel: ObservableObject {
+        @ObservedObject var sessionService = SessionService.shared
         @Published var currentLocation = "Loading..."
-        @Published var selectedMotor: Motor?
         @Published var isCustomer = false
 
         var customerMotors = [Motor]()
@@ -40,7 +41,7 @@ extension BengkelTabItem {
             getLocation()
 //            getNearbyBengkel(for: selectedMotor?.brand)
 
-            $selectedMotor.sink { motor in
+            sessionService.$selectedMotor.sink { motor in
                 self.nearbyBengkel = MapHelper.findNearbyBengkel(
                     from: LocationService.shared.userCoordinate,
                     filter: motor?.brand
@@ -48,7 +49,7 @@ extension BengkelTabItem {
             }.store(in: &subscriptions)
 
             LocationService.shared.$userCoordinate.sink { [self] coordinate in
-                nearbyBengkel = MapHelper.findNearbyBengkel(from: coordinate, filter: selectedMotor?.brand)
+                nearbyBengkel = MapHelper.findNearbyBengkel(from: coordinate, filter: sessionService.selectedMotor?.brand)
             }.store(in: &subscriptions)
 
             // Update everytime both the location and bengkel database changes
@@ -59,7 +60,7 @@ extension BengkelTabItem {
                 nearbyBengkel = MapHelper.findNearbyBengkel(
                     data: bengkel,
                     from: coordinate,
-                    filter: selectedMotor?.brand
+                    filter: sessionService.selectedMotor?.brand
                 )
             }.store(in: &subscriptions)
         }
@@ -73,7 +74,7 @@ extension BengkelTabItem {
                     if let motors = customer.motors {
                         customerMotors = motors
                     }
-                    selectedMotor = customerMotors.first
+                    sessionService.selectedMotor = customerMotors.first
                 default:
                     isCustomer = false
                 }

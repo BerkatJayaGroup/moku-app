@@ -19,7 +19,7 @@ struct Order: Codable {
     var notes: String?
 
     let schedule: Date
-    let createdAt: Date
+    let createdAt = Date()
 
     var cancelingReason: CancelingReason?
 }
@@ -44,6 +44,19 @@ extension Order {
     }
 
     enum Service: String, Codable {
-        case servisRutin, perbaikan
+        case servisRutin = "Servis Rutin"
+        case perbaikan = "Perbaikan"
     }
+}
+
+extension Order {
+    static let preview = Order(
+        bengkel: .preview,
+        customer: .preview,
+        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
+        typeOfService: .servisRutin,
+        notes: "Lorem Ipsum.",
+        schedule: Date(),
+        createdAt: Date()
+    )
 }

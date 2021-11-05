@@ -6,52 +6,134 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+
+extension Date {
+    func date() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, d MMM y"
+        return formatter.string(from: self)
+    }
+
+    func time() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+}
+
+extension BookingSummary {
+    class ViewModel: ObservableObject {
+
+        @Published private var order: Order
+
+        @Published var isActive = false
+
+        @Published var docRef: DocumentReference?
+
+        init(order: Order) {
+            self.order = order
+
+            $docRef.sink { docRef in
+                self.isActive = docRef != nil
+            }
+        }
+
+        var bengkel: String {
+            order.bengkel.name
+        }
+
+        var address: String {
+            order.bengkel.address
+        }
+
+        var motor: String {
+            order.motor.model
+        }
+
+        var jenisPerbaikan: String {
+            order.typeOfService.rawValue
+        }
+
+        var date: String {
+            order.schedule.date()
+        }
+
+        var time: String {
+            order.schedule.time()
+        }
+
+        func placeOrder(completionHandler: ((DocumentReference) -> Void)? = nil) {
+            OrderRepository.shared.add(order: order) { docRef in
+                completionHandler?(docRef)
+            }
+        }
+    }
+}
 
 struct BookingSummary: View {
+    @StateObject private var viewModel: ViewModel
+
+    init(order: Order) {
+        _viewModel = StateObject(wrappedValue: ViewModel(order: order))
+    }
+
     var body: some View {
         VStack {
-            Text("Berkat Jaya Group")
-                .font(.system(size: 20, weight: .semibold))
-                .padding(5)
-            Text("Jl. Sudirman 2 no 5, Jakarta Selatan, Kemang ")
-                .font(.caption)
-                .foregroundColor(AppColor.darkGray)
-            Divider()
-                .padding(.vertical)
-            VStack(alignment: .leading) {
-                Text("Keterangan Booking")
-                    .font(.system(size: 17, weight: .semibold))
-                HStack {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Motor")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Jenis Perbaikan")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Hari")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Jam")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                    }.padding(.vertical)
-                    Spacer(minLength: 1)
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Motor")
-                            .font(.system(size: 13, weight: .semibold))
-                        Text("Service Rutin")
-                            .font(.system(size: 13, weight: .semibold))
-                        Text("Kamis, 7 Oktober 2021")
-                            .font(.system(size: 13, weight: .semibold))
-                        Text("12.00")
-                            .font(.system(size: 13, weight: .semibold))
-                    }.padding(.vertical)
+            VStack {
+                Text(viewModel.bengkel)
+                    .font(.system(size: 20, weight: .semibold))
+                    .padding(5)
+                Text(viewModel.address)
+                    .font(.caption)
+                    .foregroundColor(AppColor.darkGray)
+                Divider()
+                    .padding(.vertical)
+                VStack(alignment: .leading) {
+                    Text("Keterangan Booking")
+                        .font(.system(size: 17, weight: .semibold))
+                    HStack {
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text("Motor")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Jenis Perbaikan")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Hari")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Jam")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                        }.padding(.vertical)
+                        Spacer(minLength: 1)
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text(viewModel.motor)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.jenisPerbaikan)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.date)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.time)
+                                .font(.system(size: 13, weight: .semibold))
+                        }.padding(.vertical)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
+            .padding(30)
+            .navigationTitle("Booking Detail")
+            .navigationBarTitleDisplayMode(.inline)
+
+            NavigationLink(destination: BookingConfirmationView(orderID: viewModel.docRef), isActive: viewModel.isActive) {
+                EmptyView()
+            }
+
             Button {
-                
+                viewModel.placeOrder { docRef in
+                    viewModel.docRef = docRef
+                }
             } label: {
             Text("Konfirmasi Booking")
                 .frame(width: 310, height: 50)
@@ -61,14 +143,11 @@ struct BookingSummary: View {
                 .padding()
             }
         }
-        .padding(30)
-        .navigationTitle("Booking Detail")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct BookingSummary_Previews: PreviewProvider {
     static var previews: some View {
-        BookingSummary()
+        BookingSummary(order: .preview)
     }
 }
