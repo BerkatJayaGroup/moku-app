@@ -68,6 +68,7 @@ struct BengkelDate: View {
                     print("\(Date.convertDateFormaterWithHour(date: schedule))")
                     if let selectedMotor = SessionService.shared.selectedMotor {
                         let order = Order(bengkel: bengkel, customer: .preview, motor: selectedMotor, typeOfService: typeOfService, schedule: schedule)
+                        
                     }
                 }else {
                     //alert
