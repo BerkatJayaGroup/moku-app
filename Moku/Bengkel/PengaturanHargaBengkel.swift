@@ -14,7 +14,7 @@ struct PengaturanHargaBengkel: View {
     @State private var min: String = ""
     @State private var max: String = ""
     @ObservedObject var storageService: StorageService = .shared
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -45,7 +45,7 @@ struct PengaturanHargaBengkel: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 NavigationLink(destination: BengkelView()) {
-                    Button("Lanjutkan"){ print("testing") }
+                    Button("Lanjutkan") { print("testing") }
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
@@ -58,10 +58,10 @@ struct PengaturanHargaBengkel: View {
             .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
         }
     }
-    
-    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel){
+
+    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
         // TODO: upload foto bengkel dan simpan di object bengkel
-        
+
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
@@ -76,8 +76,8 @@ struct PengaturanHargaBengkel: View {
             minPrice: min,
             maxPrice: max
         )
-        
-        for mech in pengaturanBengkelForm.mechanics{
+
+        for mech in pengaturanBengkelForm.mechanics {
             // TODO: upload foto mekanik and assign to photo
             let mekBaru = Mekanik(name: mech.name)
             if let photo = mech.photo {
@@ -85,7 +85,7 @@ struct PengaturanHargaBengkel: View {
             }
             bengkelBaru.mekaniks.append(mekBaru)
         }
-        
+
         bengkelViewModel.create(bengkelBaru)
     }
 }
