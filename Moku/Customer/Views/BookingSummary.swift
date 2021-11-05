@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 extension Date {
     func date() -> String {
@@ -23,10 +24,19 @@ extension Date {
 
 extension BookingSummary {
     class ViewModel: ObservableObject {
+
         @Published private var order: Order
+
+        @Published var isActive = false
+
+        @Published var docRef: DocumentReference?
 
         init(order: Order) {
             self.order = order
+
+            $docRef.sink { docRef in
+                self.isActive = docRef != nil
+            }
         }
 
         var bengkel: String {
@@ -52,6 +62,12 @@ extension BookingSummary {
         var time: String {
             order.schedule.time()
         }
+
+        func placeOrder(completionHandler: ((DocumentReference) -> Void)? = nil) {
+            OrderRepository.shared.add(order: order) { docRef in
+                completionHandler?(docRef)
+            }
+        }
     }
 }
 
@@ -64,48 +80,60 @@ struct BookingSummary: View {
 
     var body: some View {
         VStack {
-            Text(viewModel.bengkel)
-                .font(.system(size: 20, weight: .semibold))
-                .padding(5)
-            Text(viewModel.address)
-                .font(.caption)
-                .foregroundColor(AppColor.darkGray)
-            Divider()
-                .padding(.vertical)
-            VStack(alignment: .leading) {
-                Text("Keterangan Booking")
-                    .font(.system(size: 17, weight: .semibold))
-                HStack {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Motor")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Jenis Perbaikan")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Hari")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                        Text("Jam")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(AppColor.darkGray)
-                    }.padding(.vertical)
-                    Spacer(minLength: 1)
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text(viewModel.motor)
-                            .font(.system(size: 13, weight: .semibold))
-                        Text(viewModel.jenisPerbaikan)
-                            .font(.system(size: 13, weight: .semibold))
-                        Text(viewModel.date)
-                            .font(.system(size: 13, weight: .semibold))
-                        Text(viewModel.time)
-                            .font(.system(size: 13, weight: .semibold))
-                    }.padding(.vertical)
+            VStack {
+                Text(viewModel.bengkel)
+                    .font(.system(size: 20, weight: .semibold))
+                    .padding(5)
+                Text(viewModel.address)
+                    .font(.caption)
+                    .foregroundColor(AppColor.darkGray)
+                Divider()
+                    .padding(.vertical)
+                VStack(alignment: .leading) {
+                    Text("Keterangan Booking")
+                        .font(.system(size: 17, weight: .semibold))
+                    HStack {
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text("Motor")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Jenis Perbaikan")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Hari")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                            Text("Jam")
+                                .font(.system(size: 13, weight: .regular))
+                                .foregroundColor(AppColor.darkGray)
+                        }.padding(.vertical)
+                        Spacer(minLength: 1)
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text(viewModel.motor)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.jenisPerbaikan)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.date)
+                                .font(.system(size: 13, weight: .semibold))
+                            Text(viewModel.time)
+                                .font(.system(size: 13, weight: .semibold))
+                        }.padding(.vertical)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
-            Button {
+            .padding(30)
+            .navigationTitle("Booking Detail")
+            .navigationBarTitleDisplayMode(.inline)
 
+            NavigationLink(destination: BookingConfirmationView(orderID: viewModel.docRef), isActive: viewModel.isActive) {
+                EmptyView()
+            }
+
+            Button {
+                viewModel.placeOrder { docRef in
+                    viewModel.docRef = docRef
+                }
             } label: {
             Text("Konfirmasi Booking")
                 .frame(width: 310, height: 50)
@@ -115,9 +143,6 @@ struct BookingSummary: View {
                 .padding()
             }
         }
-        .padding(30)
-        .navigationTitle("Booking Detail")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
