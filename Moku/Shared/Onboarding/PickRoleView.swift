@@ -62,7 +62,7 @@ struct PickRoleView: View {
                 }
                 .navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
             }
-        }
+        }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
     }
     
     func getDestination() -> AnyView {
