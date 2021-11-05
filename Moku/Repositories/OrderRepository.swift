@@ -12,6 +12,8 @@ import FirebaseAuth
 
 // Final, biar ga bisa di extend
 final class OrderRepository: ObservableObject {
+    typealias CompletionHandler = (DocumentReference) -> Void
+
     // Shared Instance (Singleton)
     static let shared = OrderRepository()
 
@@ -63,9 +65,15 @@ final class OrderRepository: ObservableObject {
         }
     }
 
-    func add(order: Order) {
+    func add(order: Order, completionHandler: CompletionHandler? = nil) {
         do {
-            _ = try store.addDocument(from: order)
+            let ref = try store.addDocument(from: order) { error in
+                // Unresolved Error
+                if let error = error {
+                    print("Unresolved error: Unable to place the order for \(order.schedule.date())", error.localizedDescription)
+                }
+            }
+            completionHandler?(ref)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

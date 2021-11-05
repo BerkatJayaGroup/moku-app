@@ -41,7 +41,7 @@ struct PengaturanBengkel: View {
     @State var selectedBrand = Set<Brand>()
     @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
-    
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
@@ -110,7 +110,7 @@ struct PengaturanBengkel: View {
                 Text("MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                     .frame(width: proxy.size.width, alignment: .leading)
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     ForEach(mechanics, id: \.self) { (mech) in
                         Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
                         Divider()
@@ -144,14 +144,8 @@ struct PengaturanBengkel: View {
         .padding()
         .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
     }
-    
+
     private func deleteItem(at indexSet: IndexSet) {
         self.mechanics.remove(atOffsets: indexSet)
     }
 }
-
-//struct PengaturanBengkel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
-//    }
-//}

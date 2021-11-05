@@ -10,14 +10,14 @@ import PhotosUI
 
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
-  
+
     var config: PHPickerConfiguration {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images // videos, livePhotos...
         config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
         return config
     }
-  
+
     @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false

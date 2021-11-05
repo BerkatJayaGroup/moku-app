@@ -10,16 +10,16 @@ import SwiftUI
 struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var showSheetView: Bool
-    @Binding var mechanics : [CalonMekanik]
+    @Binding var mechanics: [CalonMekanik]
     @State var mechanicName: String?
     @State var image: [UIImage] = []
-    
+
     @State var showImagePicker: Bool = false
     @State private var showActionSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
                 if image == [] {
                     Image("profile")
@@ -57,7 +57,7 @@ struct AddMekanik: View {
                                 trailing: Button("Tambah", action: tambahMekanik))
         }
     }
-    
+
     @ViewBuilder func uploadButton() -> some View {
         Button("Upload photo") {
             self.showActionSheet.toggle()
@@ -83,8 +83,8 @@ struct AddMekanik: View {
             )
         }
     }
-    
-    func tambahMekanik(){
+
+    func tambahMekanik() {
         showSheetView = false
         let calonMekanik: CalonMekanik
         if image.count > 0 {
@@ -97,7 +97,7 @@ struct AddMekanik: View {
     }
 }
 
-struct CalonMekanik : Hashable{
+struct CalonMekanik: Hashable {
     var name: String
     var photo: UIImage?
 }
