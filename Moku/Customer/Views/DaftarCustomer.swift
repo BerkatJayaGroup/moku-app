@@ -20,7 +20,7 @@ struct DaftarCustomer: View {
             VStack(alignment: .leading) {
                 Text("NAMA")
                     .font(.caption2)
-                VStack(alignment: .trailing) {
+                VStack(alignment: .leading) {
                     TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { (isChanged) in
                         if !isChanged {
                             viewModel.validateEmptyName()
@@ -40,7 +40,7 @@ struct DaftarCustomer: View {
 
                     Text("NOMOR TELEPON")
                         .font(.caption2)
-                    TextField("xxxx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: { isChanged in
+                    TextField("08xx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: { isChanged in
                         if !isChanged {
                             viewModel.isPhoneNumberEmpty()
                         }

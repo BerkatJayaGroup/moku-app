@@ -24,6 +24,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
                     .multilineTextAlignment(.trailing)
                 Spacer()
             }
+            .padding()
         }
         .sheet(isPresented: $isOpenSelector) {
             MultiSelectionView(showSheetView: $isOpenSelector,
