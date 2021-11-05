@@ -125,7 +125,7 @@ struct BengkelTabItem: View {
                 Button {
                     showingSheet = true
                 } label: {
-                    Text(viewModel.selectedMotor?.model ?? "N/A")
+                    Text(viewModel.sessionService.selectedMotor?.model ?? "N/A")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                     Image(systemName: "chevron.down")
@@ -136,7 +136,7 @@ struct BengkelTabItem: View {
                 .sheet(isPresented: $showingSheet) {
                     MotorModal(
                         availableMotors: viewModel.customerMotors,
-                        selectedMotor: $viewModel.selectedMotor,
+                        selectedMotor: $viewModel.sessionService.selectedMotor,
                         showingSheet: $showingSheet
                     )
                 }
