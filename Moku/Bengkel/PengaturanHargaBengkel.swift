@@ -72,6 +72,7 @@ struct PengaturanHargaBengkel: View {
         
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
+        let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
         guard let location = bengkelOwnerFormViewModel.location else {return}
         var bengkelBaru = Bengkel(
             owner: Bengkel.Owner(name: bengkelOwnerFormViewModel.ownerName, phoneNumber: bengkelOwnerFormViewModel.phoneNumber, email: ""),

@@ -11,6 +11,7 @@
 		6F0E4E25272FC3CD000B6EC8 /* BengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E4E24272FC3CD000B6EC8 /* BengkelViewModel.swift */; };
 		6F0E4E27272FDD2F000B6EC8 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */; };
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
+		6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
 		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
@@ -31,7 +32,6 @@
 		834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834437E7272EF37C00279392 /* LocationSearchViewModel.swift */; };
 		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
-		837370BB27144703003656FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370BA27144703003656FC /* Preview Assets.xcassets */; };
 		837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837370C1271449E4003656FC /* GoogleService-Info.plist */; };
 		837370C527144BB1003656FC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C427144BB1003656FC /* FirebaseAuth */; };
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
@@ -595,7 +595,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				837370BB27144703003656FC /* Preview Assets.xcassets in Resources */,
+				6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
