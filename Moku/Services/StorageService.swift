@@ -21,6 +21,7 @@ class StorageService: ObservableObject {
         if let id = Auth.auth().currentUser?.uid {
             storageRef = storage.reference().child("images/\(id)/\(path).jpg")
         }
+
         // Convert the image into JPEG and compress the quality to reduce its size
         let data = image.jpegData(compressionQuality: 0.2)
 
