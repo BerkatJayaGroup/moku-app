@@ -18,7 +18,7 @@ struct Bengkel: Codable {
     var phoneNumber: String
     var location: Location
     var operationalHours: OperationalHours
-    var operationalDays = Set<Day>()
+    var operationalDays = [Bool]()
     var photos          = [String]()
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
@@ -73,7 +73,7 @@ extension Bengkel {
         phoneNumber: "Berkat Jaya",
         location: Location(address: "x", longitude: 1, latitude: 1),
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
-        operationalDays: [.senin, .selasa, .rabu],
+        operationalDays: [false, true, true, true, false, false, false],
         minPrice: "20000",
         maxPrice: "100000",
         reviews: [

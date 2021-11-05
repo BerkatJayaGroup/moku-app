@@ -36,12 +36,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    //PickRoleView()
-                    //BengkelDate(typeOfService: .perbaikan, bengkel: .preview)
-                    NavigationView {
-                        
-                        BengkelDetail(bengkel: .preview)
-                    }
+                    PickRoleView()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }

@@ -42,9 +42,9 @@ struct SelectServices: View {
     }
 }
 
-//struct SelectServices_Previews: PreviewProvider {
+// struct SelectServices_Previews: PreviewProvider {
 //    static var previews: some View {
 //        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape", servicePrice: "Rp 120.000", isTap: .constant(false))
 //            .previewLayout(.sizeThatFits)
 //    }
-//}
+// }

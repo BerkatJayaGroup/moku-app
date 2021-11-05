@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import Foundation
 
 struct PengaturanHargaBengkel: View {
-    var bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerForm: BengkelOwnerOnboardingView
     var pengaturanBengkelForm: PengaturanBengkel
     @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
@@ -72,7 +75,7 @@ struct PengaturanHargaBengkel: View {
             phoneNumber: bengkelOwnerForm.phoneNumber,
             location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: [.senin, .selasa, .rabu],
+            operationalDays: [],
             minPrice: min,
             maxPrice: max
         )

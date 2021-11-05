@@ -8,6 +8,7 @@
 import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 // Final, biar ga bisa di extend
 final class OrderRepository: ObservableObject {
@@ -22,6 +23,8 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
 
+    @Published var customerOrders = [Order]()
+
     // Initial Setup
     private init() {
         fetch()
@@ -33,6 +36,20 @@ final class OrderRepository: ObservableObject {
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
             self.orders = RepositoryHelper.extractData(from: documents, type: Order.self)
         }
+    }
+
+    func fetch<T: Codable>(docRef: DocumentReference, completionHandler: ((T) -> Void)? = nil) {
+        docRef.addSnapshotListener { document, error in
+            do {
+                if let data = try document?.data(as: T.self) {
+                    completionHandler?(data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+
+        }
+
     }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {

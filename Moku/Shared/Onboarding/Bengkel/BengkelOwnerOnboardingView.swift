@@ -30,8 +30,8 @@ struct BengkelOwnerOnboardingView: View {
     }
 
     var body: some View {
-        VStack {
-            Form {
+        VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 8) {
                 textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                 textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
@@ -39,15 +39,18 @@ struct BengkelOwnerOnboardingView: View {
 
                 textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
 
-                Section(header: Text("FOTO BENGKEL")) {
+                Section(header: header(title: "FOTO BENGKEL")) {
                     if pickerResult != [] {
                         ScrollView(.horizontal) {
                             HStack {
                                 VStack {
-                                    Text("+").font(.system(size: 30)).padding()
+                                    Text("+").font(.system(size: 30))
+                                        .foregroundColor(AppColor.primaryColor)
+                                        .padding()
                                     Text("Tambah Foto")
-                                }
-                                .frame(width: 100, height: 100)
+                                        .foregroundColor(AppColor.primaryColor)
+                                        .padding(.bottom, 20)
+                                }.frame(width: 100, height: 100)
                                 .onTapGesture {
                                     self.shouldPresentActionScheet = true
                                 }
@@ -61,13 +64,17 @@ struct BengkelOwnerOnboardingView: View {
                         }
                     } else {
                         VStack {
-                            Text("+").font(.system(size: 30)).padding()
+                            Text("+").font(.system(size: 30))
+                                .foregroundColor(AppColor.primaryColor)
+                                .padding()
                             Text("Tambah Foto")
+                                .foregroundColor(AppColor.primaryColor)
+                                .padding(.bottom, 20)
                         }
-                        .frame(maxWidth: .infinity).padding(.horizontal, 20)
+                        .frame(width: 100, height: 100)
                         .onTapGesture {
                             self.shouldPresentActionScheet = true
-                        }
+                        }.border(AppColor.primaryColor)
                     }
                 }
                 .sheet(isPresented: $shouldPresentImagePicker) {
@@ -86,7 +93,8 @@ struct BengkelOwnerOnboardingView: View {
                     }), ActionSheet.Button.cancel()])
                 }
             }
-
+            .padding()
+            Spacer()
             submitButton()
         }
         .sheet(isPresented: $viewModel.isSelectingLocation) {

@@ -13,7 +13,7 @@ final class SessionService: ObservableObject {
     static let shared = SessionService()
 
     @Published var user: User?
-    
+
     @Published var selectedMotor: Motor?
 
     private init() {}

@@ -29,9 +29,10 @@ final class CustomerRepository: ObservableObject {
         }
     }
 
-    func add(customer: Customer) {
+    func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
-            _ = try store.addDocument(from: customer)
+            let docRef = try store.addDocument(from: customer)
+            completionHandler?(docRef)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

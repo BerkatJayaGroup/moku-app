@@ -31,7 +31,6 @@
 		834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834437E7272EF37C00279392 /* LocationSearchViewModel.swift */; };
 		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
-		837370BB27144703003656FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370BA27144703003656FC /* Preview Assets.xcassets */; };
 		837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837370C1271449E4003656FC /* GoogleService-Info.plist */; };
 		837370C527144BB1003656FC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C427144BB1003656FC /* FirebaseAuth */; };
 		837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C627144BB1003656FC /* FirebaseFirestore */; };
@@ -93,9 +92,12 @@
 		B80B01AF272918A500050D90 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AE272918A500050D90 /* UserData.swift */; };
 		B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01B0272918C700050D90 /* UserDataKeychain.swift */; };
 		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
+		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
+		B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */; };
 		B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8864B3A272BCD96007C4413 /* ImagePicker.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
+		B8D7F93127328078005AB37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +185,8 @@
 		B80B01B0272918C700050D90 /* UserDataKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
+		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
+		B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomerViewModel.swift; sourceTree = "<group>"; };
 		B8864B3A272BCD96007C4413 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B8A0352A27286D8200243528 /* Moku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moku.entitlements; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -395,6 +399,7 @@
 				8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */,
 				83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */,
 				8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */,
+				B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */,
 				8E40E50C272862D3001CAEF3 /* AddMekanik.swift */,
 				AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */,
+				B856220C27310F2100300EB8 /* BookingConfirmationView.swift */,
 				AE9D6F5B27302BE200E4707B /* BookingSummary.swift */,
 			);
 			path = Views;
@@ -474,6 +480,13 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8ECD17D7272E85C200B2AB13 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
@@ -580,7 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				837370BB27144703003656FC /* Preview Assets.xcassets in Resources */,
+				B8D7F93127328078005AB37A /* Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
@@ -695,6 +708,7 @@
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
+				B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
@@ -705,6 +719,7 @@
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				83E13E87272AA80C008758B7 /* OnboardingDataModel.swift in Sources */,
 				AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */,
+				B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */,
 				8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */,
 				8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */,
 				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,

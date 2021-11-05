@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import simd
+import FirebaseAuth
+import Combine
 
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
@@ -17,9 +18,16 @@ struct BengkelDate: View {
     @State var typeOfService: Order.Service
     @State var schedule = Date()
     @State private var text = ""
+    @State private var userId = ""
+
+    @ObservedObject var viewModel = ViewModel()
+
     init(typeOfService: Order.Service, bengkel: Bengkel) {
         _typeOfService = State(wrappedValue: typeOfService)
         _bengkel = State(wrappedValue: bengkel)
+        if let uid = Auth.auth().currentUser?.uid {
+            userId = uid
+        }
     }
     let columns = [
         GridItem(.fixed(60), spacing: 10),
@@ -61,17 +69,25 @@ struct BengkelDate: View {
                     .padding(.horizontal)
             }
             Spacer()
+
+            if let order = viewModel.order {
+                NavigationLink(destination: BookingSummary(order: order), isActive: $viewModel.isActive) {
+                    EmptyView()
+                }
+            }
+
             Button {
                 if hour != 0 && selectedDate != BookDate.default {
                     let tggl = DateComponents(timeZone: TimeZone(identifier: TimeZone.current.identifier), year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.dayNumber), hour: hour)
                     self.schedule = Calendar.current.date(from: tggl) ?? Date()
-                    print("\(Date.convertDateFormaterWithHour(date: schedule))")
                     if let selectedMotor = SessionService.shared.selectedMotor {
-                        let order = Order(bengkel: bengkel, customer: .preview, motor: selectedMotor, typeOfService: typeOfService, schedule: schedule)
-                        
+                        viewModel.order = Order(bengkelId: bengkel.id, customerId: userId, motor: selectedMotor, typeOfService: typeOfService, notes: text, schedule: schedule)
+
                     }
-                }else {
-                    //alert
+                    print("apa aja dah")
+                } else {
+                    // alert
+                print("apa aja dah else")
                 }
             }label: {
                 Text("Lanjutkan")
@@ -88,7 +104,7 @@ struct BengkelDate: View {
     fileprivate func createDateView() -> some View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
-                let arr = convert(hari: tggl)
+                let arr = convert(hari: bengkel.operationalDays)
                 let count = arr.filter({ $0 != ""}).count
                 let dates = Date.getWeek(hari: count)
                 let filtered = dates.filter {arr.contains($0.day)}
@@ -128,8 +144,27 @@ struct BengkelDate: View {
     }
 }
 
-//struct BengkelDate_Previews: PreviewProvider {
+// struct BengkelDate_Previews: PreviewProvider {
 //    static var previews: some View {
 //        BengkelDate(typeOfService: , Bengkel(owner: .init(name: "dicky", phoneNumber: "323", email: "ddsa"), name: "3232", phoneNumber: "00", location: Location(name: "dsds", address: "dsds", longitude: 2.32, latitude: 4.21), operationalHours: .init(open: 2, close: 22), minPrice: "8", maxPrice: "9"))
 //    }
-//}
+// }
+
+extension BengkelDate {
+
+    class ViewModel: ObservableObject {
+        @Published var isActive = false
+
+        @Published var order: Order?
+
+        private var subscription = Set<AnyCancellable>()
+
+        init() {
+            $order.sink { order in
+                self.isActive = order != nil
+            }.store(in: &subscription)
+        }
+
+    }
+
+}

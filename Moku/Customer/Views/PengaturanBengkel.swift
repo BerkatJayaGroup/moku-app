@@ -18,6 +18,7 @@ struct Motorcc: Identifiable, Hashable {
     var id: String {ccMotor}
     var ccMotor: String
 }
+
 struct SelectedBrand {
     var brand: Set<Brand>
     var cc: Set<Motorcc>
@@ -129,7 +130,7 @@ struct PengaturanBengkel: View {
                     AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
                 }
                 Spacer()
-                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerForm: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self)) {
+                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self)) {
                     Text("Lanjutkan")
                         .padding()
                         .frame(maxWidth: .infinity)
