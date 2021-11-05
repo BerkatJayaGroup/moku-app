@@ -13,7 +13,7 @@ import SwiftUI
 class OrderCustomerViewModel: ObservableObject {
     @ObservedObject private var repository: OrderRepository = .shared
     @Published var orders = [Order]()
-    @Published var customerOrders = [Order]()
+    @Published var orderConfirmation: Order?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -23,13 +23,11 @@ class OrderCustomerViewModel: ObservableObject {
         repository.$orders
             .assign(to: \.orders, on: self)
             .store(in: &cancellables)
-        repository.$customerOrders
-            .assign(to: \.customerOrders, on: self)
-            .store(in: &cancellables)
     }
 
-    func getCustomerOrder() {
-        repository.fetchOrderForCustomer()
+    func getCustomerOrder(docRef: DocumentReference) {
+        repository.fetch(docRef: docRef) { order in
+            self.orderConfirmation = order
+        }
     }
 }
-

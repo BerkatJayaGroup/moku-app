@@ -75,7 +75,7 @@ struct PengaturanHargaBengkel: View {
             phoneNumber: bengkelOwnerForm.phoneNumber,
             location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: [.senin, .selasa, .rabu],
+            operationalDays: [],
             minPrice: min,
             maxPrice: max
         )

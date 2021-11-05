@@ -36,11 +36,9 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-//                    PickRoleView()
-                    BookingConfirmationView()
+                    PickRoleView()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
-//                    BookingConfirmationView()
                 }
             }
         }

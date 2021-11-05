@@ -11,15 +11,20 @@ import FirebaseFirestore
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
-    
-    var orderId: DocumentReference
-    
+
+    init(orderId: DocumentReference?) {
+        if let id = orderId {
+            orderCustomerViewModel.getCustomerOrder(docRef: id)
+        }
+
+    }
+
     var body: some View {
         VStack {
             Text("Berkat Jaya Motor").font(.headline).padding(.top)
             Spacer()
-            if orderCustomerViewModel.orders.count != 0 {
-                switch orderCustomerViewModel.orders[0].status {
+            if let order = orderCustomerViewModel.orderConfirmation {
+                switch order.status {
                 case .waitingConfirmation:
                     Image("pendingIcon")
                         .resizable()
@@ -102,8 +107,8 @@ struct BookingConfirmationView: View {
     }
 }
 
-struct BookingConfirmation_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingConfirmationView()
-    }
-}
+// struct BookingConfirmation_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookingConfirmationView()
+//    }
+// }

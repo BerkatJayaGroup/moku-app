@@ -89,7 +89,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel)){
+                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
@@ -97,8 +97,8 @@ struct BengkelDetail: View {
                                 .frame(width: proxy.size.width * 0.85)
                                 .background(Color("PrimaryColor"))
                                 .cornerRadius(8)
-                        
-                        //.disabled(viewModel.typeOfService == nil)
+
+                        // .disabled(viewModel.typeOfService == nil)
                     }
                 }
             }

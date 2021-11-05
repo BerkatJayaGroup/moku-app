@@ -43,7 +43,7 @@ extension Date {
                     let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
                     dates.append(bookDate)
                 }
-        }else {
+        } else {
             for number in 0...7 {
                     guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
                     let day = getComponent(date: fullDate, format: "EEE")

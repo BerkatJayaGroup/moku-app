@@ -89,8 +89,7 @@ struct AddMekanik: View {
         let calonMekanik: CalonMekanik
         if image.count > 0 {
             calonMekanik = CalonMekanik(name: mechanicName!, photo: image[0])
-        }
-        else {
+        } else {
             calonMekanik = CalonMekanik(name: mechanicName!)
         }
         mechanics.append(calonMekanik)

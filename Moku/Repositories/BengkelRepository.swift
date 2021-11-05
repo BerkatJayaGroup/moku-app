@@ -33,6 +33,19 @@ final class BengkelRepository: ObservableObject {
         }
     }
 
+    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
+        store.document(id).getDocument { document, error in
+            do {
+                if let data = try document?.data(as: T.self) {
+                    completionHandler?(data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+
+        }
+    }
+
     func add(bengkel: Bengkel) {
         do {
             _ = try store.addDocument(from: bengkel)

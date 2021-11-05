@@ -13,7 +13,7 @@ struct Order: Codable {
     @DocumentID var id: String!
     let bengkelId: String
     let customerId: String
-    let motorId: String
+    let motor: Motor
     let typeOfService: Service
     var status: Status = .waitingConfirmation
     var notes: String?
@@ -55,12 +55,11 @@ extension Order {
 
 extension Order {
     static let preview = Order(
-        bengkel: .preview,
-        customer: .preview,
+        bengkelId: "",
+        customerId: ".preview",
         motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
         typeOfService: .servisRutin,
         notes: "Lorem Ipsum.",
-        schedule: Date(),
-        createdAt: Date()
+        schedule: Date()
     )
 }
