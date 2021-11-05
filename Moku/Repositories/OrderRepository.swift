@@ -31,24 +31,26 @@ final class OrderRepository: ObservableObject {
 
     // MARK: - CRUD Operations
     func fetch() {
-        store.getDocuments { snapshot, error in
-            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
-            self.orders = RepositoryHelper.extractData(from: documents, type: Order.self)
-        }
-//        store.addSnapshotListener { querySnapshot, error in
-//            if let error = error {
-//                print("Error getting stories: \(error.localizedDescription)")
-//                return
-//            }
-//            let orders = querySnapshot?.documents.compactMap { document in
-//                try? document.data(as: Order.self)
-//            } ?? []
-//
-//            DispatchQueue.main.async {
-//                self.orders = orders
-//            }
-//
+//        store.getDocuments { snapshot, error in
+//            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+//            self.orders = RepositoryHelper.extractData(from: documents, type: Order.self)
+//            print(self.orders)
 //        }
+        store.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error getting stories: \(error.localizedDescription)")
+                return
+            }
+            let orders = querySnapshot?.documents.compactMap { document in
+                try? document.data(as: Order.self)
+            } ?? []
+
+            DispatchQueue.main.async {
+                self.orders = orders
+                print(self.orders)
+            }
+
+        }
     }
     
     func fetchOrderForCustomer() {

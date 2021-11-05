@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 
 struct Order: Codable {
     @DocumentID var id: String!
-    let bengkel: Bengkel
-    let customer: Customer
-    let motor: Motor
+    let bengkelId: String
+    let customerId: String
+    let motorId: String
     let typeOfService: Service
     var status: Status = .waitingConfirmation
     var notes: String?
@@ -48,6 +48,7 @@ extension Order {
     }
 
     enum Service: String, Codable {
-        case servisRutin, perbaikan
+        case servisRutin = "Servis Rutin"
+        case perbaikan = "Perbaikan"
     }
 }

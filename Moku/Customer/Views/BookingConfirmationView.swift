@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
+    
+    var orderId: DocumentReference
     
     var body: some View {
         VStack {
