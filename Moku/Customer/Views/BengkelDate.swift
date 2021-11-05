@@ -11,11 +11,16 @@ import simd
 struct BengkelDate: View {
     @State private var selectedDate: BookDate = BookDate.default
     @State private var selectedHourndex: Int = -1
-    @Binding var date: BookDate
     private let tggl = [true, false, true, true, false, true, false]
-    @Binding var hour: String
+    @State var bengkel: Bengkel
+    @State private var hour = 0
+    @State var typeOfService: Order.Service
     @State var schedule = Date()
     @State private var text = ""
+    init(typeOfService: Order.Service, bengkel: Bengkel) {
+        _typeOfService = State(wrappedValue: typeOfService)
+        _bengkel = State(wrappedValue: bengkel)
+    }
     let columns = [
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),
@@ -57,6 +62,16 @@ struct BengkelDate: View {
             }
             Spacer()
             Button {
+                if hour != 0 && selectedDate != BookDate.default {
+                    let tggl = DateComponents(timeZone: TimeZone(identifier: TimeZone.current.identifier), year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.dayNumber), hour: hour)
+                    self.schedule = Calendar.current.date(from: tggl) ?? Date()
+                    print("\(Date.convertDateFormaterWithHour(date: schedule))")
+                    if let selectedMotor = SessionService.shared.selectedMotor {
+                        let order = Order(bengkel: bengkel, customer: .preview, motor: selectedMotor, typeOfService: typeOfService, schedule: schedule)
+                    }
+                }else {
+                    //alert
+                }
             }label: {
                 Text("Lanjutkan")
             }
@@ -80,8 +95,6 @@ struct BengkelDate: View {
                     ForEach(filtered, id: \.dayNumber) { date in
                         DateStack(date: date, isSelected: self.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
                             self.selectedDate = selectedDate
-                            self.date = selectedDate
-                    
                         })
                     }
                 }.padding(.horizontal)
@@ -91,19 +104,17 @@ struct BengkelDate: View {
     fileprivate func createTimeView() -> some View {
         VStack(alignment: .leading) {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(0..<10, id: \.self) { item in
+                ForEach(bengkel.operationalHours.open..<bengkel.operationalHours.close, id: \.self) { item in
                     TimeStack(index: item, isSelected: self.selectedHourndex == item, onSelect: { selectedIndex in
                         self.selectedHourndex = selectedIndex
-                        self.hour = "\(selectedIndex):00"
-//                        let tggl = DateComponents(timeZone: , year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.day), hour: selectedIndex)
-//                        self.schedule = Calendar.current.date(from: tggl) ?? Date()
+                        self.hour = selectedIndex
                     })
                 }
             }.padding(.horizontal)
         }
     }
     private func convert(hari: [Bool]) -> [String] {
-        var week: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
+        let week: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
         var test: [String] = []
         for i in 0..<hari.count {
             if hari[i] == false {
@@ -116,8 +127,8 @@ struct BengkelDate: View {
     }
 }
 
-struct BengkelDate_Previews: PreviewProvider {
-    static var previews: some View {
-        BengkelDate(date: .constant(BookDate.default), hour: .constant(""))
-    }
-}
+//struct BengkelDate_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BengkelDate(typeOfService: , Bengkel(owner: .init(name: "dicky", phoneNumber: "323", email: "ddsa"), name: "3232", phoneNumber: "00", location: Location(name: "dsds", address: "dsds", longitude: 2.32, latitude: 4.21), operationalHours: .init(open: 2, close: 22), minPrice: "8", maxPrice: "9"))
+//    }
+//}

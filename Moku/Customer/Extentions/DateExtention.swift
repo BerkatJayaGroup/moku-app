@@ -39,7 +39,7 @@ extension Date {
                     let day = getComponent(date: fullDate, format: "EEE")
                     let dayNumber = getComponent(date: fullDate, format: "dd")
                     let month = getComponent(date: fullDate, format: "MM")
-                    let year = getComponent(date: fullDate, format: "yy")
+                    let year = getComponent(date: fullDate, format: "yyyy")
                     let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
                     dates.append(bookDate)
                 }
@@ -49,7 +49,7 @@ extension Date {
                     let day = getComponent(date: fullDate, format: "EEE")
                     let dayNumber = getComponent(date: fullDate, format: "dd")
                     let month = getComponent(date: fullDate, format: "MM")
-                    let year = getComponent(date: fullDate, format: "yy")
+                    let year = getComponent(date: fullDate, format: "yyyy")
                     let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
                     dates.append(bookDate)
                 }
@@ -64,6 +64,16 @@ extension Date {
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
             guard let date = dateFormatter.date(from: dateString) else { return ""}
             dateFormatter.dateFormat = "dd/MM/yyy"
+            return  dateFormatter.string(from: date)
+
+        }
+    static func convertDateFormaterWithHour(date: Date) -> String {
+            let dateString = "\(date)"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+            dateFormatter.locale = Locale(identifier: "id_ID")
+            guard let date = dateFormatter.date(from: dateString) else { return ""}
+            dateFormatter.dateFormat = "dd/MM/yyyy/HH"
             return  dateFormatter.string(from: date)
 
         }
