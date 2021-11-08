@@ -10,22 +10,13 @@ import Firebase
 
 @main
 struct MokuApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @ObservedObject var session = SessionService.shared
 
     @StateObject var appState = AppState()
 
     var onboardingData = OnboardingDataModel.data
-
-    init() {
-        FirebaseApp.configure()
-
-        LocationService.shared.requestUserAuthorization()
-
-        GooglePlacesService.register()
-        GoogleMapsService.register()
-
-        BengkelRepository.shared.add(bengkel: .preview)
-    }
 
     var body: some Scene {
         WindowGroup {
@@ -44,5 +35,30 @@ struct MokuApp: App {
                 }
             }
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+
+        LocationService.shared.requestUserAuthorization()
+
+        GooglePlacesService.register()
+        GoogleMapsService.register()
+
+        BengkelRepository.shared.add(bengkel: .preview)
+
+        NotificationService.register(application: application)
+
+        return true
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
     }
 }

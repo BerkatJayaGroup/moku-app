@@ -18,6 +18,7 @@
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
 		830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D9271804D700F03CE3 /* RepositoryHelper.swift */; };
+		8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E3BC27390EE10051ECFD /* NotificationService.swift */; };
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
 		832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E32715986A00BD92E2 /* SwiftUIX */; };
 		832AC1E727159AE600BD92E2 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E627159AE600BD92E2 /* Customer.swift */; };
@@ -109,6 +110,7 @@
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
+		8319E3BC27390EE10051ECFD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				83776A6727272E70008AA404 /* GooglePlacesService.swift */,
 				B8CE65F82726BA2B008F4CEE /* AppState.swift */,
 				6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */,
+				8319E3BC27390EE10051ECFD /* NotificationService.swift */,
 			);
 			name = Services;
 			path = Moku/Services;
@@ -691,6 +694,7 @@
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
+				8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
