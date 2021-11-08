@@ -117,7 +117,7 @@ struct DaftarCustomer: View {
                         viewModel.nameCheck = false
                         viewModel.nomorCheck = false
                         viewModel.isEmailValid = false
-                    }else {
+                    } else {
                         let customer = Customer(name: viewModel.name,
                                                 phoneNumber: viewModel.nomorTelepon,
                                                 motors: [viewModel.motor!] )

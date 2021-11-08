@@ -116,8 +116,8 @@ struct BengkelDetail: View {
     }
 }
 
-//struct BengkelDetail_Previews: PreviewProvider {
+// struct BengkelDetail_Previews: PreviewProvider {
 //    static var previews: some View {
 //        BengkelDetail(bengkel: .preview)
 //    }
-//}
+// }

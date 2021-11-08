@@ -23,6 +23,8 @@ struct MokuApp: App {
 
         GooglePlacesService.register()
         GoogleMapsService.register()
+
+        BengkelRepository.shared.add(bengkel: .preview)
     }
 
     var body: some Scene {
