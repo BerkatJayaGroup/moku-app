@@ -42,7 +42,6 @@ final class BengkelRepository: ObservableObject {
             } catch {
                 print(error.localizedDescription)
             }
-
         }
     }
 
