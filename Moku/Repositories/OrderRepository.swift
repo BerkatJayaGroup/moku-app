@@ -22,6 +22,7 @@ final class OrderRepository: ObservableObject {
 
     // MARK: Properties
     @Published var orders = [Order]()
+    @Published var filteredOrders = [Order]()
 
     @Published var customerOrders = [Order]()
 
@@ -50,6 +51,25 @@ final class OrderRepository: ObservableObject {
 
         }
 
+    }
+
+    func fetch(_ bengkelId: String) {
+        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { query, error in
+            if let error = error {
+                print("Error getting stories: \(error.localizedDescription)")
+                return
+            }
+
+            let order = query?.documents.compactMap { document in
+                try? document.data(as: Order.self
+                )
+            } ?? []
+
+            DispatchQueue.main.async {
+                self.filteredOrders = order
+            }
+
+        }
     }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {

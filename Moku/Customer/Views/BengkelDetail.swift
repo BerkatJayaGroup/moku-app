@@ -89,7 +89,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel)) {
+                    NavigationLink(destination: BengkelDate(bengkel: viewModel.bengkel, typeOfService: viewModel.typeOfService)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
