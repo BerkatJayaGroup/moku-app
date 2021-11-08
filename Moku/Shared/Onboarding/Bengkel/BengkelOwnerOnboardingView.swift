@@ -10,7 +10,7 @@ import PhotosUI
 
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
-  
+
     var config: PHPickerConfiguration {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images // videos, livePhotos...

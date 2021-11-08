@@ -17,42 +17,48 @@ struct PengaturanHargaBengkel: View {
     @State private var min: String = ""
     @State private var max: String = ""
     @ObservedObject var storageService: StorageService = .shared
-    
+
     var body: some View {
-        VStack(alignment: .center) {
-            Text("Masukkan harga jasa service rutin, umumnya service rutin mencakup jasa pengecekan mesin, busa filter, pengecekan komponen ban, lampu, rantai, dan lainnya.")
-                .font(.system(size: 13))
-                .padding(.bottom)
-                .foregroundColor(.gray)
-                .padding(.horizontal)
-            HStack {
-                TextField("Rp minimum", text: $min)
-                    .font(.system(size: 15))
-                    .padding(10)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(9)
-                    .keyboardType(.numberPad)
-                Text("-")
-                TextField("Rp maksimum", text: $max)
-                    .font(.system(size: 15))
-                    .padding(10)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(9)
-                    .keyboardType(.numberPad)
-            }.padding()
-            Spacer()
-            Text("Harga yang Anda masukkan dapat diubah sesuai dengan kerusakan komponen dan kesepakatan dengan pelanggan")
-                .font(.system(size: 13))
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-                .padding()
-            Button("Selesai"){ createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: pengaturanBengkelForm) }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                .padding(.horizontal)
+        NavigationView {
+            VStack(alignment: .center) {
+                Text("Masukkan harga jasa service rutin, umumnya service rutin mencakup jasa pengecekan mesin, busa filter, pengecekan komponen ban, lampu, rantai, dan lainnya.")
+                    .font(.system(size: 13))
+                    .padding(.bottom)
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+                HStack {
+                    TextField("Rp minimum", text: $min)
+                        .font(.system(size: 15))
+                        .padding(10)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(9)
+                        .keyboardType(.numberPad)
+                    Text("-")
+                    TextField("Rp maksimum", text: $max)
+                        .font(.system(size: 15))
+                        .padding(10)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(9)
+                        .keyboardType(.numberPad)
+                }.padding()
+                Spacer()
+                Text("Harga yang Anda masukkan dapat diubah sesuai dengan kerusakan komponen dan kesepakatan dengan pelanggan")
+                    .font(.system(size: 13))
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                NavigationLink(destination: BengkelView()) {
+                    Button("Lanjutkan") { print("testing") }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color("PrimaryColor"))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                        .padding(.horizontal)
+                }
+            }
+            .padding()
+            .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
         }
         .padding()
         .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
@@ -107,7 +113,7 @@ struct PengaturanHargaBengkel: View {
             storageService.upload(image: img, path: imgID)
             bengkelBaru.photos.append(imgID)
         }
-        
+
         bengkelViewModel.create(bengkelBaru)
         
         SessionService.shared.user = .bengkel(bengkelBaru)

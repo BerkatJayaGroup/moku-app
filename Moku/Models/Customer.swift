@@ -13,12 +13,6 @@ struct Customer: Codable {
     var name: String
     var phoneNumber: String
     var motors: [Motor]?
-
-    init(name: String, phoneNumber: String, motors: [Motor]?) {
-        self.name = name
-        self.phoneNumber = phoneNumber
-        self.motors = motors ?? []
-    }
 }
 
 extension Customer {

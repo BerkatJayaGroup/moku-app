@@ -29,7 +29,23 @@ extension DaftarCustomer {
         init() {}
 
         func create (_ customer: Customer) {
-            repository.add(customer: customer)
+            repository.add(customer: customer) { docRef in
+                docRef.getDocument { doc, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    if let doc = doc {
+                        do {
+                            if let customer = try doc.data(as: Customer.self) {
+                                SessionService.shared.user = .customer(customer)
+                            }
+
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
         }
         var isFormInvalid: Bool {
             motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
