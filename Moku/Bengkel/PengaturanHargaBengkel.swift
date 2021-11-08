@@ -60,8 +60,6 @@ struct PengaturanHargaBengkel: View {
     }
 
     func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
-        // TODO: upload foto bengkel dan simpan di object bengkel
-
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
@@ -78,7 +76,6 @@ struct PengaturanHargaBengkel: View {
         )
 
         for mech in pengaturanBengkelForm.mechanics {
-            // TODO: upload foto mekanik and assign to photo
             let mekBaru = Mekanik(name: mech.name)
             if let photo = mech.photo {
                 storageService.upload(image: photo, path: mekBaru.id)

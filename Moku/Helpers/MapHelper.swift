@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 import GoogleMaps
-import SDWebImageSwiftUI
 
 struct MapHelper {
     struct GeocodeResult {
@@ -88,6 +87,33 @@ struct MapHelper {
         }
 
         return "N/A"
+    }
+
+    static func direct(bengkel: Bengkel) {
+        let gmapAvailable = UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!)
+
+        if gmapAvailable {
+            UIApplication.shared.open(URL(string: "comgooglemaps://?saddr=&daddr=\(bengkel.location.latitude),\(bengkel.location.longitude)&zoom=14")!)
+
+        } else {
+            // MARK: Apple Map
+
+            let placemark       = MKPlacemark(coordinate: bengkel.coordinate)
+
+            let mapItem         = MKMapItem(placemark: placemark)
+
+            mapItem.name        = bengkel.name
+            mapItem.phoneNumber = bengkel.phoneNumber
+
+            let coordinateSpan =  MKCoordinateSpan(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
+
+            let launchOptions: [String: Any] = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: bengkel.coordinate),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: coordinateSpan)
+            ]
+
+            mapItem.openInMaps(launchOptions: launchOptions)
+        }
     }
 }
 

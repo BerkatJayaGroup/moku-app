@@ -148,9 +148,3 @@ struct PengaturanBengkel: View {
         self.mechanics.remove(atOffsets: indexSet)
     }
 }
-
-// struct PengaturanBengkel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
-//    }
-// }

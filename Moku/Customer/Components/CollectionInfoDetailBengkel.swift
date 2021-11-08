@@ -14,16 +14,23 @@ struct CollectionInfoDetailBengkel: View {
     var imageInfo: String
     var mainInfo: String
     var cta: String
+
+    var onTap: (() -> Void)?
+
     var body: some View {
         VStack(spacing: 6) {
             Text("\(titleInfo)")
-                .font(Font.system(size: 11))
-                .foregroundColor(.gray)
+                .font(.caption2)
+                .foregroundColor(.secondaryLabel)
             HStack {
                 Image(systemName: "\(imageInfo)")
                     .foregroundColor(Color("PrimaryColor"))
-                Text("\(mainInfo)")
-                    .fontWeight(.bold)
+                Text("\(mainInfo)").font(.headline)
+            }
+            Button {
+                onTap?()
+            } label: {
+                Text(cta).font(.caption2.bold())
             }
             if cta == "Lihat Detail"{
                 Button(action: {

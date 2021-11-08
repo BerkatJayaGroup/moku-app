@@ -63,7 +63,9 @@ struct BengkelDetail: View {
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
-                        CollectionInfoDetailBengkel(titleInfo: "Jarak dari Anda", imageInfo: "", mainInfo: viewModel.distance, cta: "Lihat Peta")
+                        CollectionInfoDetailBengkel(titleInfo: "Jarak dari Anda", imageInfo: "", mainInfo: viewModel.distance, cta: "Lihat Peta") {
+                            MapHelper.direct(bengkel: viewModel.bengkel)
+                        }
                             .padding(.all, 4)
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
