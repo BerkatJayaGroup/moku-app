@@ -151,7 +151,7 @@ extension BengkelOwnerOnboardingView {
                         viewModel.selectLocation()
                     } label: {
                         if let address = viewModel.address {
-                            Text(address).foregroundColor(.primary)
+                            Text(address).foregroundColor(.primary).lineLimit(1)
                         } else {
                             HStack {
                                 Image(systemName: "mappin.circle")
