@@ -8,20 +8,28 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import Introspect
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
-
-    init(orderId: DocumentReference?) {
+    var bengkelName: String = ""
+    
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
+    
+    init(orderId: DocumentReference?, bengkelName: String, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
+        self.bengkelName = bengkelName
 
     }
 
     var body: some View {
         VStack {
-            Text("Berkat Jaya Motor").font(.headline).padding(.top)
+            Text(bengkelName).font(.headline).padding(.top)
             Spacer()
             if let order = orderCustomerViewModel.orderConfirmation {
                 switch order.status {
@@ -39,6 +47,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke Halaman Booking", action: {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -69,6 +79,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pilih Bengkel Lain", action: {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -91,6 +103,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke halaman booking", action: {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -103,7 +117,11 @@ struct BookingConfirmationView: View {
                     Text("Tidak ada booking")
                 }
             }
+        }.navigationBarHidden(true)
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
         }
+        
     }
 }
 

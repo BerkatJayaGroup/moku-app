@@ -21,13 +21,20 @@ struct BengkelDate: View {
     @State private var userId = ""
 
     @ObservedObject var viewModel = ViewModel()
+    
+    @Binding var isRootActive: Bool
+    
+    @Binding var isHideTabBar: Bool
 
-    init(typeOfService: Order.Service, bengkel: Bengkel) {
+    init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         _typeOfService = State(wrappedValue: typeOfService)
         _bengkel = State(wrappedValue: bengkel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
         if let uid = Auth.auth().currentUser?.uid {
             userId = uid
         }
+        
     }
     let columns = [
         GridItem(.fixed(60), spacing: 10),
@@ -71,7 +78,7 @@ struct BengkelDate: View {
             Spacer()
 
             if let order = viewModel.order {
-                NavigationLink(destination: BookingSummary(order: order), isActive: $viewModel.isActive) {
+                NavigationLink(destination: BookingSummary(order: order, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar), isActive: $viewModel.isActive) {
                     EmptyView()
                 }
             }

@@ -33,7 +33,7 @@ extension BookingSummary {
         @Published var docRef: DocumentReference?
 
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
-
+    
         init(order: Order) {
             self.order = order
 
@@ -77,13 +77,18 @@ extension BookingSummary {
 struct BookingSummary: View {
     @StateObject private var viewModel: ViewModel
 
-    init(order: Order) {
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
+
+    init(order: Order, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            BookingConfirmationView(orderId: docRef)
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)
         } else {
             VStack {
                 VStack {
@@ -149,8 +154,8 @@ struct BookingSummary: View {
     }
 }
 
-struct BookingSummary_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingSummary(order: .preview)
-    }
-}
+//struct BookingSummary_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookingSummary(order: .preview)
+//    }
+//}
