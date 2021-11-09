@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-final class BengkelViewModel: ObservableObject{
+final class BengkelViewModel: ObservableObject {
     private let repository: BengkelRepository = .shared
-    
+
     static let shared = BengkelViewModel()
-    
+
     private init() {}
-    
-    func create (_ bengkel: Bengkel){
-        repository.add(bengkel: bengkel)
+
+    func create (_ bengkel: Bengkel, completionHandler: ((DocumentReference) -> Void)? = nil) {
+        repository.add(bengkel: bengkel) { bengkel in completionHandler?(bengkel) }
     }
 }

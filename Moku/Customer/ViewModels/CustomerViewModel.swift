@@ -7,33 +7,48 @@
 
 import Combine
 import SwiftUI
+import FirebaseFirestore
 
 extension DaftarCustomer {
-    class CustomerViewModel: ObservableObject {
+    class ViewModel: ObservableObject {
 
-        @Published var name: String = ""
-        @Published var nomorTelepon: String = ""
-        @Published var email: String = ""
         @Published var motor: Motor?
-        @Published var query: String = ""
-        @Published var isEmailValid: Bool = true
-        @Published var nameCheck: Bool = true
-        @Published var nomorCheck: Bool = true
-        @Published var motorCheck: Bool = true
-        @Published var showModal = false
+        @Published var name         = ""
+        @Published var nomorTelepon = ""
+        @Published var email        = ""
+        @Published var query        = ""
+
+        @Published var isEmailValid = true
+        @Published var nameCheck    = true
+        @Published var nomorCheck   = true
+        @Published var motorCheck   = true
+        @Published var showModal    = false
 
         private let repository: CustomerRepository = .shared
 
-        static let shared = CustomerViewModel()
-
         init() {}
 
-        func create (_ customer: Customer) {
-            repository.add(customer: customer)
+        func create (_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
+            repository.add(customer: customer) { docRef in
+                docRef.getDocument { snapshot, _ in
+                    if let snapshot = snapshot {
+                        do {
+                            if let customer = try snapshot.data(as: Customer.self) {
+                                SessionService.shared.user = .customer(customer)
+                                completionHandler?(customer)
+                            }
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
         }
+
         var isFormInvalid: Bool {
             motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
         }
+
         func textFieldValidatorEmail() -> Bool {
             if email.count > 100 {
                 return false

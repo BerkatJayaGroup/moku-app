@@ -18,6 +18,7 @@
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
 		830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D9271804D700F03CE3 /* RepositoryHelper.swift */; };
+		8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E3BC27390EE10051ECFD /* NotificationService.swift */; };
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
 		832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E32715986A00BD92E2 /* SwiftUIX */; };
 		832AC1E727159AE600BD92E2 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1E627159AE600BD92E2 /* Customer.swift */; };
@@ -44,6 +45,8 @@
 		837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E32727CA52000E1FAA /* CustomerView.swift */; };
 		837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E52727CAD1000E1FAA /* BengkelView.swift */; };
 		837BE1E82727D580000E1FAA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E72727D580000E1FAA /* Place.swift */; };
+		838A8C16273A42FB007FEDC6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838A8C15273A42FB007FEDC6 /* NotificationService.swift */; };
+		838A8C1A273A42FB007FEDC6 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC9FD12726AD5F003039D8 /* MapHelper.swift */; };
 		83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */; };
 		83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F33272BEA11009DC400 /* ViewExtension.swift */; };
@@ -97,6 +100,30 @@
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		838A8C18273A42FB007FEDC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 837370A827144701003656FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 838A8C12273A42FB007FEDC6;
+			remoteInfo = NotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		838A8C1B273A42FB007FEDC6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				838A8C1A273A42FB007FEDC6 /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.debug.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,10 +133,10 @@
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
 		6FB9BD98272A98070041469C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
-		6FF2D27E272BE9D400D36512 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
+		8319E3BC27390EE10051ECFD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
 		832AC1EA2715A2FD00BD92E2 /* Motor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motor.swift; sourceTree = "<group>"; };
@@ -132,6 +159,9 @@
 		837BE1E32727CA52000E1FAA /* CustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerView.swift; sourceTree = "<group>"; };
 		837BE1E52727CAD1000E1FAA /* BengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelView.swift; sourceTree = "<group>"; };
 		837BE1E72727D580000E1FAA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		838A8C15273A42FB007FEDC6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		838A8C17273A42FB007FEDC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83AC9FD12726AD5F003039D8 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelOwnerOnboardingView.swift; sourceTree = "<group>"; };
 		83CA0F33272BEA11009DC400 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -201,6 +231,13 @@
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
 				837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */,
 				5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		838A8C10273A42FB007FEDC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				837370B227144701003656FC /* Moku */,
+				838A8C14273A42FB007FEDC6 /* NotificationServiceExtension */,
 				837370B127144701003656FC /* Products */,
 				830383D62718035A00F03CE3 /* Frameworks */,
 				F5E8098DE71C292574E0645A /* Pods */,
@@ -291,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				837370B027144701003656FC /* Moku.app */,
+				838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +386,15 @@
 			path = GoogleMap;
 			sourceTree = "<group>";
 		};
+		838A8C14273A42FB007FEDC6 /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				838A8C15273A42FB007FEDC6 /* NotificationService.swift */,
+				838A8C17273A42FB007FEDC6 /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		83CA0F2F272BC3A1009DC400 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +415,6 @@
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
-				8ECD17D7272E85C200B2AB13 /* View Model */,
 				6F0E4E23272FC3BB000B6EC8 /* ViewModels */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
 				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkel.swift */,
@@ -458,6 +505,7 @@
 				83776A6727272E70008AA404 /* GooglePlacesService.swift */,
 				B8CE65F82726BA2B008F4CEE /* AppState.swift */,
 				6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */,
+				8319E3BC27390EE10051ECFD /* NotificationService.swift */,
 			);
 			name = Services;
 			path = Moku/Services;
@@ -473,22 +521,6 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		83E13E88272AA85A008758B7 /* Bengkel */ = {
-			isa = PBXGroup;
-			children = (
-				83E13E8B272AA89F008758B7 /* BengkelOwnerOnboardingView.swift */,
-			);
-			name = Bengkel;
-			path = Moku/Onboarding/Bengkel;
-			sourceTree = SOURCE_ROOT;
-		};
-		8ECD17D7272E85C200B2AB13 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
@@ -533,10 +565,12 @@
 				832AC1DE2715963200BD92E2 /* Run SwiftLint */,
 				FC047A88C7DBEF7B73CA883F /* [CP] Copy Pods Resources */,
 				987E9469A0F7A736FAD3F889 /* [CP] Embed Pods Frameworks */,
+				838A8C1B273A42FB007FEDC6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				838A8C19273A42FB007FEDC6 /* PBXTargetDependency */,
 			);
 			name = Moku;
 			packageProductDependencies = (
@@ -552,6 +586,23 @@
 			productReference = 837370B027144701003656FC /* Moku.app */;
 			productType = "com.apple.product-type.application";
 		};
+		838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 838A8C1E273A42FB007FEDC6 /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
+			buildPhases = (
+				838A8C0F273A42FB007FEDC6 /* Sources */,
+				838A8C10273A42FB007FEDC6 /* Frameworks */,
+				838A8C11273A42FB007FEDC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationServiceExtension;
+			productName = NotificationServiceExtension;
+			productReference = 838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -559,11 +610,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					837370AF27144701003656FC = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					838A8C12273A42FB007FEDC6 = {
+						CreatedOnToolsVersion = 13.1;
 					};
 				};
 			};
@@ -586,6 +640,7 @@
 			projectRoot = "";
 			targets = (
 				837370AF27144701003656FC /* Moku */,
+				838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -599,6 +654,13 @@
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		838A8C11273A42FB007FEDC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,7 +760,6 @@
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
-				6FF2D27F272BE9D400D36512 /* ImagePicker.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */,
@@ -710,6 +771,7 @@
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
+				8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
@@ -753,7 +815,6 @@
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
-				83E13E8C272AA89F008758B7 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
 				B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */,
 				83DAE6CA272ECD9B002D1D6E /* LocationSelectionViewModel.swift in Sources */,
@@ -767,7 +828,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		838A8C0F273A42FB007FEDC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				838A8C16273A42FB007FEDC6 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		838A8C19273A42FB007FEDC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */;
+			targetProxy = 838A8C18273A42FB007FEDC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		837370BC27144703003656FC /* Debug */ = {
@@ -890,6 +967,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
@@ -925,6 +1003,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
@@ -956,6 +1035,60 @@
 			};
 			name = Release;
 		};
+		838A8C1C273A42FB007FEDC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		838A8C1D273A42FB007FEDC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KKWD6QU49;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -973,6 +1106,15 @@
 			buildConfigurations = (
 				837370BF27144703003656FC /* Debug */,
 				837370C027144703003656FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		838A8C1E273A42FB007FEDC6 /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				838A8C1C273A42FB007FEDC6 /* Debug */,
+				838A8C1D273A42FB007FEDC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

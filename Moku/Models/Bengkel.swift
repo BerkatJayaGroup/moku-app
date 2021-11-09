@@ -22,9 +22,10 @@ struct Bengkel: Codable {
     var photos          = [String]()
     var brands          = Set<Brand>()
     var mekaniks        = [Mekanik]()
-    var minPrice        : String
-    var maxPrice        : String
-    
+    var minPrice: String
+    var maxPrice: String
+    var fcmToken: String
+
     var distance: Double?
 
     // MARK: Order Related
@@ -76,6 +77,7 @@ extension Bengkel {
         operationalDays: [false, true, true, true, false, false, false],
         minPrice: "20000",
         maxPrice: "100000",
+        fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP",
         reviews: [
             Review(
                 user: "Devin Winardi",
