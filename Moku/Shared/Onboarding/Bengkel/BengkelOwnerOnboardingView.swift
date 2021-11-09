@@ -18,7 +18,6 @@ struct BengkelOwnerOnboardingView: View {
         return config
     }
   
-    @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
@@ -41,7 +40,7 @@ struct BengkelOwnerOnboardingView: View {
                     textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
 
                     Section(header: header(title: "FOTO BENGKEL")) {
-                        if pickerResult != [] {
+                        if viewModel.images != [] {
                             ScrollView(.horizontal) {
                                 HStack {
                                     VStack {
@@ -58,7 +57,7 @@ struct BengkelOwnerOnboardingView: View {
                                     .onTapGesture {
                                         self.shouldPresentActionScheet = true
                                     }
-                                    ForEach(pickerResult, id: \.self) { image in
+                                    ForEach(viewModel.images, id: \.self) { image in
                                         Image.init(uiImage: image)
                                             .resizable()
                                             .frame(width: 100, height: 100, alignment: .center)
@@ -84,9 +83,9 @@ struct BengkelOwnerOnboardingView: View {
                     }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
-                            ImagePHPicker(configuration: self.config, pickerResult: $pickerResult, isPresented: $shouldPresentImagePicker)
+                            ImagePHPicker(configuration: self.config, pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
                         } else {
-                            ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
+                            ImagePicker(sourceType: .camera, pickerResult: $viewModel.images)
                         }
                     }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
                         ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
@@ -97,6 +96,9 @@ struct BengkelOwnerOnboardingView: View {
                             self.shouldPresentCamera = false
                         }), ActionSheet.Button.cancel()])
                     }
+                }
+                if viewModel.images.isEmpty, viewModel.isSubmitting {
+                    Text("Minimal 1 foto").alertStyle()
                 }
                 Spacer()
                 submitButton()
