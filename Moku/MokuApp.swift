@@ -39,15 +39,13 @@ struct MokuApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
 
         LocationService.shared.requestUserAuthorization()
 
         GooglePlacesService.register()
         GoogleMapsService.register()
-
-        BengkelRepository.shared.add(bengkel: .preview)
 
         NotificationService.register(application: application)
 

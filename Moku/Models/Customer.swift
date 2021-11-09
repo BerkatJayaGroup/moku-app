@@ -13,17 +13,12 @@ struct Customer: Codable {
     var name: String
     var phoneNumber: String
     var motors: [Motor]?
-
-    init(name: String, phoneNumber: String, motors: [Motor]?) {
-        self.name = name
-        self.phoneNumber = phoneNumber
-        self.motors = motors ?? []
-    }
+    var fcmToken: String
 }
 
 extension Customer {
     static let preview = Customer(
-//        id: UUID().uuidString,
+        //        id: UUID().uuidString,
         name: "John Doe",
         phoneNumber: "082280806969",
         motors: [
@@ -31,6 +26,7 @@ extension Customer {
             Motor(brand: .suzuki, model: "Motor Suzuki", cc: 110),
             Motor(brand: .honda, model: "Motor Honda", cc: 110),
             Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
-        ]
+        ],
+        fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP"
     )
 }

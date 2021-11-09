@@ -46,13 +46,20 @@ struct PengaturanHargaBengkel: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding()
-            Button("Selesai") { createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: pengaturanBengkelForm) }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                .padding(.horizontal)
+            Button("Selesai") {
+                createBengkel(
+                    bengkelOwnerFormViewModel: bengkelOwnerFormViewModel,
+                    bengkelOwnerForm: bengkelOwnerForm,
+                    pengaturanBengkelForm: pengaturanBengkelForm
+                )
+
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color("PrimaryColor"))
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5.0))
+            .padding(.horizontal)
         }
         .padding()
         .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
@@ -74,41 +81,45 @@ struct PengaturanHargaBengkel: View {
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
         guard let location = bengkelOwnerFormViewModel.location else {return}
-        var bengkelBaru = Bengkel(
-            owner: Bengkel.Owner(name: bengkelOwnerFormViewModel.ownerName, phoneNumber: bengkelOwnerFormViewModel.phoneNumber, email: ""),
-            name: bengkelOwnerFormViewModel.bengkelName,
-            phoneNumber: bengkelOwnerFormViewModel.phoneNumber,
-            location: location,
-            operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: pengaturanBengkelForm.daySelected,
-            minPrice: min,
-            maxPrice: max
-        )
 
-        for brand in pengaturanBengkelForm.selectedBrand {
-            bengkelBaru.brands.insert(brand)
-        }
+        NotificationService.shared.getToken { token in
+            var bengkelBaru = Bengkel(
+                owner: Bengkel.Owner(name: bengkelOwnerFormViewModel.ownerName, phoneNumber: bengkelOwnerFormViewModel.phoneNumber, email: ""),
+                name: bengkelOwnerFormViewModel.bengkelName,
+                phoneNumber: bengkelOwnerFormViewModel.phoneNumber,
+                location: location,
+                operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
+                operationalDays: pengaturanBengkelForm.daySelected,
+                minPrice: min,
+                maxPrice: max,
+                fcmToken: token
+            )
 
-        for mech in pengaturanBengkelForm.mechanics {
-            // TODO: upload foto mekanik and assign to photo
-            var mekBaru = Mekanik(name: mech.name)
-            if let photo = mech.photo {
-                storageService.upload(image: photo, path: mekBaru.id)
-                mekBaru.photo = mekBaru.id
-            } else {
-                mekBaru.photo = ""
+            for brand in pengaturanBengkelForm.selectedBrand {
+                bengkelBaru.brands.insert(brand)
             }
-            bengkelBaru.mekaniks.append(mekBaru)
+
+            for mech in pengaturanBengkelForm.mechanics {
+                // upload foto mekanik and assign to photo
+                var mekBaru = Mekanik(name: mech.name)
+                if let photo = mech.photo {
+                    storageService.upload(image: photo, path: mekBaru.id)
+                    mekBaru.photo = mekBaru.id
+                } else {
+                    mekBaru.photo = ""
+                }
+                bengkelBaru.mekaniks.append(mekBaru)
+            }
+
+            for img in bengkelOwnerForm.pickerResult {
+                let imgID = UUID().uuidString
+                storageService.upload(image: img, path: imgID)
+                bengkelBaru.photos.append(imgID)
+            }
+
+            bengkelViewModel.create(bengkelBaru)
+
+            SessionService.shared.user = .bengkel(bengkelBaru)
         }
-
-        for img in bengkelOwnerForm.pickerResult {
-            let imgID = UUID().uuidString
-            storageService.upload(image: img, path: imgID)
-            bengkelBaru.photos.append(imgID)
-        }
-
-        bengkelViewModel.create(bengkelBaru)
-
-        SessionService.shared.user = .bengkel(bengkelBaru)
     }
 }

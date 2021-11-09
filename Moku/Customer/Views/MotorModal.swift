@@ -33,8 +33,7 @@ struct MotorModal: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("Daftar Motor")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Daftar Motor", displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button {

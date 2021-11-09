@@ -24,7 +24,7 @@ final class SessionService: ObservableObject {
         let plist = NSDictionary(contentsOfFile: filePath)
 
         guard let value = plist?.object(forKey: "API_KEY") as? String else {
-            fatalError("Couldn't find key 'API_KEY' in 'rawg.io-Info.plist'.")
+            fatalError("Couldn't find key 'API_KEY' in 'GoogleService-Info.plist'.")
         }
 
         return value
