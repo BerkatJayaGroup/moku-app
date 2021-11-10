@@ -31,7 +31,9 @@ class OrderCustomerViewModel: ObservableObject {
         }
     }
     
-    func cancelBooking(order: Order) {
-        repository.remove(order: order)
+    func cancelBooking(order: inout Order, alasan: Order.CancelingReason) {
+        order.cancelingReason = alasan
+        order.status = .canceled
+        repository.update(order: order)
     }
 }

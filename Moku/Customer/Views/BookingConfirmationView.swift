@@ -59,7 +59,6 @@ struct BookingConfirmationView: View {
                         .padding(.horizontal)
                     Button("Batalkan Booking", action: {
                         showInfoModalView = true
-//                        orderCustomerViewModel.cancelBooking(order: order)
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -68,7 +67,7 @@ struct BookingConfirmationView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .padding(.horizontal)
                         .sheet(isPresented: $showInfoModalView) {
-                              CancelBookingModal()
+                              CancelBookingModal(order: order)
                         }
 
                 case .rejected:

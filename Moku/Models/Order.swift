@@ -45,6 +45,7 @@ extension Order {
         case onProgress = "Dalam progres"
         case rejected = "Ditolak"
         case done = "Selesai"
+        case canceled = "Canceled"
     }
 
     enum Service: String, Codable {

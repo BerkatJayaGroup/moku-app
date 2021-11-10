@@ -116,13 +116,13 @@ struct BengkelDetail: View {
     }
 }
 
-struct BengkelDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            BengkelDetail(bengkel: .preview)
-        }
-        .addPartialSheet()
-        .navigationViewStyle(StackNavigationViewStyle())
-        .environmentObject(PartialSheetManager())
-    }
-}
+//struct BengkelDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            BengkelDetail(bengkel: .preview)
+//        }
+//        .addPartialSheet()
+//        .navigationViewStyle(StackNavigationViewStyle())
+//        .environmentObject(PartialSheetManager())
+//    }
+//}

@@ -14,7 +14,6 @@
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
 		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
-		6FFE939D273B8EB9009AEBC4 /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFE939C273B8EB9009AEBC4 /* SlideOverCard.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
 		830383D52717FF5100F03CE3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D42717FF5100F03CE3 /* Collection.swift */; };
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
@@ -115,7 +114,6 @@
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
 		6FB9BD98272A98070041469C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
-		6FFE939C273B8EB9009AEBC4 /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
 		830383D12717FD9F00F03CE3 /* BengkelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelRepository.swift; sourceTree = "<group>"; };
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				8E5C6B0027305590004EC262 /* DayByDay.swift */,
 				8E2354662731237000C0381E /* SheetView.swift */,
 				6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */,
-				6FFE939C273B8EB9009AEBC4 /* SlideOverCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -494,13 +491,6 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		8ECD17D7272E85C200B2AB13 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
@@ -708,7 +698,6 @@
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
 				83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */,
-				6FFE939D273B8EB9009AEBC4 /* SlideOverCard.swift in Sources */,
 				83CBFCB327299E5800BD64BC /* BengkelDetailViewModel.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
