@@ -20,7 +20,7 @@ struct Customer: Codable {
 
 extension Customer {
     static let preview = Customer(
-//        id: UUID().uuidString,
+        id: "L34zGzxCO6XpMOkpqR9sBYa1Rse2",
         name: "John Doe",
         phoneNumber: "082280806969",
         motors: [
@@ -29,14 +29,15 @@ extension Customer {
             Motor(brand: .honda, model: "Motor Honda", cc: 110),
             Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
         ],
-        ordersToRate: [Order(id: "1GYgKE6tXGRS3icCtVxI",
-                             bengkelId: "pX578lcGxL1I1b2j9a1y",
-                             customerId: "mRJRlGEwQ7sSOsY2xjSf",
-                             motor: Motor(brand: .honda,
-                                          model: "Beat",
-                                          cc: 110),
-                             typeOfService: .perbaikan,
-                             schedule: Date())]
+        ordersToRate: [
+            Order(id: "1GYgKE6tXGRS3icCtVxI",
+                  bengkelId: "pX578lcGxL1I1b2j9a1y",
+                  customerId: "mRJRlGEwQ7sSOsY2xjSf",
+                  motor: Motor(brand: .honda,
+                               model: "Beat",
+                               cc: 110),
+                  typeOfService: .perbaikan,
+                  schedule: Date())
+        ]
     )
 }
-

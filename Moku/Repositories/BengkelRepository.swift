@@ -13,18 +13,18 @@ import FirebaseFirestoreSwift
 final class BengkelRepository: ObservableObject {
     // Shared Instance (Singleton)
     static let shared = BengkelRepository()
-    
+
     // Firestore Setup
     private let store = Firestore.firestore().collection(Collection.bengkel)
-    
+
     // MARK: Properties
     @Published var bengkel = [Bengkel]()
-    
+
     // Initial Setup
     private init() {
         fetch()
     }
-    
+
     // MARK: - CRUD Operations
     func fetch() {
         store.getDocuments { snapshot, error in
@@ -32,7 +32,7 @@ final class BengkelRepository: ObservableObject {
             self.bengkel = RepositoryHelper.extractData(from: documents, type: Bengkel.self)
         }
     }
-    
+
     func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
@@ -44,20 +44,7 @@ final class BengkelRepository: ObservableObject {
             }
         }
     }
-    
-    func getBengkel(_ bengkelId: String) -> String{
-        var data = ""
-        store.document(bengkelId).getDocument{(document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing: )) ?? "nil"
-                print("Document Data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
-            }
-        }
-        return data
-    }
-    
+
     func add(bengkel: Bengkel) {
         do {
             _ = try store.addDocument(from: bengkel)
@@ -65,11 +52,11 @@ final class BengkelRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
-    
+
     func remove(bengkel: Bengkel) {
         store.document(bengkel.id).delete()
     }
-    
+
     func update(bengkel: Bengkel) {
         do {
             try store.document(bengkel.id).setData(from: bengkel, merge: true)
@@ -77,6 +64,5 @@ final class BengkelRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
-    
-    
+
 }

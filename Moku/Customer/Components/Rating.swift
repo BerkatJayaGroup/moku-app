@@ -6,65 +6,87 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct Rating: View {
-
     @State var selected = -1
     @State var order: Order
     @ObservedObject var bengkelRepository: BengkelRepository = .shared
-    
+    @State var bengkel: Bengkel?
+    @State private var sheetViewModal = false
     init(order: Order) {
         _order = State(wrappedValue: order)
     }
-
     var body: some View {
-        VStack(alignment: .trailing) {
-
-            Button {
-                print("Button Tap")
-
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(Color("PrimaryColor"))
+        content.onAppear {
+            BengkelRepository.shared.fetch(id: order.bengkelId) { bengkel in
+                self.bengkel = bengkel
             }
-            .padding(.top, -10)
-            .offset(x: 0, y: 10)
+        }
+    }
+    @ViewBuilder
 
-            HStack {
-                Image(systemName: "number")
-                    .resizable()
-                    .frame(width: 85, height: 85, alignment: .center)
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(8)
+    var content: some View {
+        if let bengkel = bengkel {
+            VStack(alignment: .trailing) {
+                Button {
+                    print("Button Tap")
 
-                VStack(alignment: .leading) {
-                    Text(bengkelRepository.getBengkel(order.bengkelId).name)
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                        .padding(.bottom, 0.5)
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color("PrimaryColor"))
+                }
+                .padding(.top, -10)
+                .offset(x: 0, y: 10)
 
-                    Text("\(order.typeOfService.rawValue), \(order.schedule)")
-                        .font(.system(size: 11))
-                        .foregroundColor(Color.gray)
+                HStack {
+                    if let photo = bengkel.photos.first {
+                        WebImage(url: URL(string: photo))
+                            .resizable()
+                            .frame(width: 85, height: 85, alignment: .center)
+                            .aspectRatio(contentMode: .fill)
+                            .cornerRadius(8)
 
-                    HStack(spacing: 10) {
-                        ForEach(0..<5) { item in
-
-                            Image(systemName: "star.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(self.selected >= item ? .yellow : .gray).onTapGesture {
-
-                                self.selected = item
-                            }
-
-                        }
-
-                        Spacer()
+                    } else {
+                        Image(systemName: "lasso.and.sparkles")
+                            .resizable()
+                            .frame(width: 85, height: 85, alignment: .center)
+                            .aspectRatio(contentMode: .fill)
+                            .cornerRadius(8)
                     }
 
+                    VStack(alignment: .leading) {
+                        Text(bengkel.name)
+                            .font(.system(size: 15))
+                            .fontWeight(.semibold)
+                            .padding(.bottom, 0.5)
+
+                        Text("\(order.typeOfService.rawValue), \(order.schedule)")
+                            .font(.system(size: 11))
+                            .foregroundColor(Color.gray)
+
+                        HStack(spacing: 10) {
+                            ForEach(0..<5) { item in
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(self.selected >= item ? .yellow : .gray)
+                                    .onTapGesture {
+                                        self.selected = item
+                                        sheetViewModal = true
+                                    }
+                                    .sheet(isPresented: $sheetViewModal) {
+                                        UlasanModal(selected: selected, bengkel: bengkel)
+                                    }
+                            }
+                            Spacer()
+                        }
+                    }
                 }
             }
+        } else {
+            //            TODO: Loading Screen
+            Text("Tambahin Loading Screen dong pas Production")
         }
     }
 }
@@ -84,10 +106,10 @@ struct Rating_Previews: PreviewProvider {
     }
 }
 
-extension Rating{
-    class RatingViewModel: ObservableObject{
-        func convertBengkelId(_ bengkel: Bengkel){
-            
+extension Rating {
+    class RatingViewModel: ObservableObject {
+        func convertBengkelId(_ bengkel: Bengkel) {
+
         }
     }
 }

@@ -66,13 +66,46 @@ struct BengkelTabItem: View {
                             .edgesIgnoringSafeArea(.horizontal)
 
                         ratingView()
-                        
+
                         listOfNearbyBengkel()
                     }
                 }
             }
             .edgesIgnoringSafeArea(.top)
             .navigationBarHidden(true)
+        }
+    }
+
+    @ViewBuilder
+    private func ratingView() -> some View {
+        switch SessionService.shared.user {
+        case .customer(let customer):
+            if !customer.ordersToRate.isEmpty {
+                ScrollView(.horizontal) {
+                    ForEach(customer.ordersToRate.reversed(), id: \.id) { orderRate in
+                        VStack(alignment: .leading) {
+                            Text("Kasih rating dulu yuk!")
+                                .font(.headline)
+                            Rating(order: orderRate)
+                                .frame(width: 325)
+                                .padding(10)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                        }
+                        .padding(10)
+                        .padding(.horizontal, 10)
+                        Rectangle()
+                            .fill(Color(.systemGray6))
+                            .frame(height: 5)
+                            .edgesIgnoringSafeArea(.horizontal)
+                    }
+                }
+            }
+//               let order = customer.ordersToRate.last {
+//
+//            }
+        default: EmptyView()
         }
     }
 
@@ -168,31 +201,6 @@ struct BengkelTabItem: View {
         .padding(.horizontal, 10)
     }
 
-    @ViewBuilder
-    private func ratingView() -> some View {
-        switch SessionService.shared.user {
-        case .customer(let customer):
-            if !customer.ordersToRate.isEmpty,
-               let order = customer.ordersToRate.last {
-                VStack(alignment: .leading) {
-                    Text("Kasih rating dulu yuk!")
-                        .font(.headline)
-                    Rating(order: order)
-                        .padding(10)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                }
-                .padding(10)
-                .padding(.horizontal, 10)
-                Rectangle()
-                    .fill(Color(.systemGray6))
-                    .frame(height: 5)
-                    .edgesIgnoringSafeArea(.horizontal)
-            }
-        default: EmptyView()
-        }
-    }
 }
 
 struct BengkelTabItem_Previews: PreviewProvider {

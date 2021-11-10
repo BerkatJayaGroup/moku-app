@@ -44,11 +44,11 @@ struct PengaturanBengkel: View {
     @State var mechanics = [CalonMekanik]()
 
     @State var canSubmit = false
-    
+
     var isFormValid: Bool {
         !brandMotor.isEmpty && !ccMotor.isEmpty && !mechanics.isEmpty
     }
-    
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
@@ -118,8 +118,8 @@ struct PengaturanBengkel: View {
                 Text("MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                     .frame(width: proxy.size.width, alignment: .leading)
-                if mechanics != []{
-                    VStack(alignment: .leading){
+                if mechanics != [] {
+                    VStack(alignment: .leading) {
                         ForEach(mechanics, id: \.self) { (mech) in
                             Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
                             Divider()
@@ -151,7 +151,7 @@ struct PengaturanBengkel: View {
     private func deleteItem(at indexSet: IndexSet) {
         self.mechanics.remove(atOffsets: indexSet)
     }
-    
+
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
@@ -170,22 +170,22 @@ struct PengaturanBengkel: View {
             .cornerRadius(8)
         }
     }
-    
+
     @ViewBuilder
     private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
+
     @ViewBuilder
-    private func mekanikAlert(for text: Binding<Array<CalonMekanik>>, alert: String) -> some View {
+    private func mekanikAlert(for text: Binding<[CalonMekanik]>, alert: String) -> some View {
         if text.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
-    func validateForm(){
+
+    func validateForm() {
         isSubmitting = true
         if isFormValid {
             canSubmit = true
