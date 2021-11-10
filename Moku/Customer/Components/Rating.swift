@@ -10,6 +10,12 @@ import SwiftUI
 struct Rating: View {
 
     @State var selected = -1
+    @State var order: Order
+    @ObservedObject var bengkelRepository: BengkelRepository = .shared
+    
+    init(order: Order) {
+        _order = State(wrappedValue: order)
+    }
 
     var body: some View {
         VStack(alignment: .trailing) {
@@ -32,12 +38,12 @@ struct Rating: View {
                     .cornerRadius(8)
 
                 VStack(alignment: .leading) {
-                    Text("Berkat Jaya")
+                    Text(bengkelRepository.getBengkel(order.bengkelId).name)
                         .font(.system(size: 15))
                         .fontWeight(.semibold)
                         .padding(.bottom, 0.5)
 
-                    Text("ganti oli, ganti ban, 22 Oktober 2021")
+                    Text("\(order.typeOfService.rawValue), \(order.schedule)")
                         .font(.system(size: 11))
                         .foregroundColor(Color.gray)
 
@@ -65,8 +71,23 @@ struct Rating: View {
 
 struct Rating_Previews: PreviewProvider {
     static var previews: some View {
-        Rating()
+        Rating(order: Order(id: "1GYgKE6tXGRS3icCtVxI",
+                            bengkelId: "pX578lcGxL1I1b2j9a1y",
+                            customerId: "mRJRlGEwQ7sSOsY2xjSf",
+                            motor: Motor(brand: .honda,
+                                         model: "Beat",
+                                         cc: 110),
+                            typeOfService: .perbaikan,
+                            schedule: Date()))
             .previewLayout(.sizeThatFits)
             .padding()
+    }
+}
+
+extension Rating{
+    class RatingViewModel: ObservableObject{
+        func convertBengkelId(_ bengkel: Bengkel){
+            
+        }
     }
 }

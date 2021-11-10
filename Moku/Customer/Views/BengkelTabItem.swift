@@ -65,14 +65,8 @@ struct BengkelTabItem: View {
                             .frame(height: 5)
                             .edgesIgnoringSafeArea(.horizontal)
 
-                        if lastOrder == true {
-                            rantingView()
-                            Rectangle()
-                                .fill(Color(.systemGray6))
-                                .frame(height: 5)
-                                .edgesIgnoringSafeArea(.horizontal)
-                        }
-
+                        ratingView()
+                        
                         listOfNearbyBengkel()
                     }
                 }
@@ -174,18 +168,30 @@ struct BengkelTabItem: View {
         .padding(.horizontal, 10)
     }
 
-    private func rantingView() -> some View {
-        VStack(alignment: .leading) {
-            Text("Kasih rating dulu yuk!")
-                .font(.headline)
-            Rating()
+    @ViewBuilder
+    private func ratingView() -> some View {
+        switch SessionService.shared.user {
+        case .customer(let customer):
+            if !customer.ordersToRate.isEmpty,
+               let order = customer.ordersToRate.last {
+                VStack(alignment: .leading) {
+                    Text("Kasih rating dulu yuk!")
+                        .font(.headline)
+                    Rating(order: order)
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                }
                 .padding(10)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                .padding(.horizontal, 10)
+                Rectangle()
+                    .fill(Color(.systemGray6))
+                    .frame(height: 5)
+                    .edgesIgnoringSafeArea(.horizontal)
+            }
+        default: EmptyView()
         }
-        .padding(10)
-        .padding(.horizontal, 10)
     }
 }
 

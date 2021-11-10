@@ -13,6 +13,9 @@ struct Customer: Codable {
     var name: String
     var phoneNumber: String
     var motors: [Motor]?
+//    TODO: Nunggu Bengkel Side ngetrigger Order
+//    OrdersToRate bakal keisi kalo di triger bengkel
+    var ordersToRate = [Order]()
 }
 
 extension Customer {
@@ -25,6 +28,15 @@ extension Customer {
             Motor(brand: .suzuki, model: "Motor Suzuki", cc: 110),
             Motor(brand: .honda, model: "Motor Honda", cc: 110),
             Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
-        ]
+        ],
+        ordersToRate: [Order(id: "1GYgKE6tXGRS3icCtVxI",
+                             bengkelId: "pX578lcGxL1I1b2j9a1y",
+                             customerId: "mRJRlGEwQ7sSOsY2xjSf",
+                             motor: Motor(brand: .honda,
+                                          model: "Beat",
+                                          cc: 110),
+                             typeOfService: .perbaikan,
+                             schedule: Date())]
     )
 }
+
