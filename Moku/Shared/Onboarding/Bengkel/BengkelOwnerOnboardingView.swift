@@ -17,7 +17,7 @@ struct BengkelOwnerOnboardingView: View {
         config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
         return config
     }
-  
+
     @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false

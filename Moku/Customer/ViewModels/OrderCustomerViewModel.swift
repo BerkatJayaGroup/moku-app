@@ -30,4 +30,10 @@ class OrderCustomerViewModel: ObservableObject {
             self.orderConfirmation = order
         }
     }
+    
+    func cancelBooking(order: inout Order, alasan: Order.CancelingReason) {
+        order.cancelingReason = alasan
+        order.status = .canceled
+        repository.update(order: order)
+    }
 }

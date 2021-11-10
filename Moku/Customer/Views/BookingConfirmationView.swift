@@ -14,6 +14,8 @@ struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
     var bengkelName: String = ""
     
+    @State var showInfoModalView: Bool = false
+    
     @Binding var isRootActive: Bool
     @Binding var isHideTabBar: Bool
     
@@ -24,7 +26,6 @@ struct BookingConfirmationView: View {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
         self.bengkelName = bengkelName
-
     }
 
     var body: some View {
@@ -57,6 +58,7 @@ struct BookingConfirmationView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .padding(.horizontal)
                     Button("Batalkan Booking", action: {
+                        showInfoModalView = true
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -64,6 +66,9 @@ struct BookingConfirmationView: View {
                         .foregroundColor(Color("PrimaryColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .padding(.horizontal)
+                        .sheet(isPresented: $showInfoModalView) {
+                              CancelBookingModal(order: order)
+                        }
 
                 case .rejected:
                     Image("rejectIcon")
