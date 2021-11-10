@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "EmptyBengkelPlaceholder.png",
+      "filename" : "Shape.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "EmptyBengkelPlaceholder@2x.png",
+      "filename" : "Shape@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "EmptyBengkelPlaceholder@3x.png",
+      "filename" : "Shape@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -11,15 +11,15 @@ import FirebaseFirestoreSwift
 
 struct Order: Codable {
     @DocumentID var id: String!
-    let bengkel: Bengkel
-    let customer: Customer
+    let bengkelId: String
+    let customerId: String
     let motor: Motor
     let typeOfService: Service
     var status: Status = .waitingConfirmation
     var notes: String?
 
     let schedule: Date
-    let createdAt: Date
+    let createdAt = Date()
 
     var cancelingReason: CancelingReason?
 }
@@ -40,10 +40,26 @@ extension Order {
     }
 
     enum Status: String, Codable {
-        case waitingConfirmation, waitingSchedule, onProgress, rejected, done
+        case waitingConfirmation = "Menunggu konfirmasi"
+        case waitingSchedule = "Menunggu penjadwalan"
+        case onProgress = "Dalam progres"
+        case rejected = "Ditolak"
+        case done = "Selesai"
     }
 
     enum Service: String, Codable {
-        case servisRutin, perbaikan
+        case servisRutin = "Servis Rutin"
+        case perbaikan = "Perbaikan"
     }
+}
+
+extension Order {
+    static let preview = Order(
+        bengkelId: "",
+        customerId: ".preview",
+        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
+        typeOfService: .servisRutin,
+        notes: "Lorem Ipsum.",
+        schedule: Date()
+    )
 }
