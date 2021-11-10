@@ -30,4 +30,8 @@ class OrderCustomerViewModel: ObservableObject {
             self.orderConfirmation = order
         }
     }
+    
+    func cancelBooking(order: Order) {
+        repository.remove(order: order)
+    }
 }
