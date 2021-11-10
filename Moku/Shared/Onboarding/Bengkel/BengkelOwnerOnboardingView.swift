@@ -30,7 +30,7 @@ struct BengkelOwnerOnboardingView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            VStack(alignment: .leading, spacing:24) {
+            VStack(spacing:24) {
                 VStack(alignment: .leading ,spacing:8) {
                     textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                     textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
@@ -101,7 +101,7 @@ struct BengkelOwnerOnboardingView: View {
                     Text("Minimal 1 foto").alertStyle()
                 }
                 Spacer()
-                submitButton()
+                submitButton(proxy: proxy)
             }
             .sheet(isPresented: $viewModel.isSelectingLocation) {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
@@ -125,7 +125,7 @@ extension BengkelOwnerOnboardingView {
     }
 
     @ViewBuilder
-    private func submitButton() -> some View {
+    private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $viewModel.isSettingDetail) { EmptyView() }
 
         Button {
@@ -140,6 +140,7 @@ extension BengkelOwnerOnboardingView {
             .foregroundColor(.white)
             .background(AppColor.primaryColor)
             .cornerRadius(8)
+            .frame(width: (proxy.size.width * 0.9))
         }
     }
 

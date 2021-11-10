@@ -81,6 +81,7 @@ struct PengaturanHargaBengkel: View {
             .foregroundColor(.white)
             .background(AppColor.primaryColor)
             .cornerRadius(8)
+            .frame(width: (proxy.size.width * 0.8))
         }
     }
     
