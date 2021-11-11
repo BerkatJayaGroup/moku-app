@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct CollectionInfoDetailBengkel: View {
+    @EnvironmentObject var partialSheetManager: PartialSheetManager
     var titleInfo: String
     var imageInfo: String
     var mainInfo: String
@@ -23,15 +25,37 @@ struct CollectionInfoDetailBengkel: View {
                 Text("\(mainInfo)")
                     .fontWeight(.bold)
             }
-            Text("\(cta)")
-                .foregroundColor(Color("PrimaryColor"))
+            if cta == "Lihat Detail"{
+                Button {
+                    partialSheetManager.showPartialSheet {
+                        print("normal sheet dismissed")
+                    } content: {
+                        SheetView(mainInfo: mainInfo)
+                    }
+                } label: {
+                    Text("\(cta)")
+                        .foregroundColor(Color("PrimaryColor"))
+                }
+            } else {
+                Text("\(cta)")
+                    .foregroundColor(Color("PrimaryColor"))
+            }
         }
     }
 }
 
 struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Semua")
-            .previewLayout(.sizeThatFits)
+        NavigationView {
+            CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Detail")
+                .previewLayout(.sizeThatFits)
+        }
+        .addPartialSheet()
+        .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(PartialSheetManager())
     }
+}
+
+extension CollectionInfoDetailBengkel {
+
 }

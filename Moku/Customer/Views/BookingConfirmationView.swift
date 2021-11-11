@@ -8,20 +8,29 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import Introspect
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
+    var bengkelName: String = ""
 
-    init(orderId: DocumentReference?) {
+    @State var showInfoModalView: Bool = false
+
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
+
+    init(orderId: DocumentReference?, bengkelName: String, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
-
+        self.bengkelName = bengkelName
     }
 
     var body: some View {
         VStack {
-            Text("Berkat Jaya Motor").font(.headline).padding(.top)
+            Text(bengkelName).font(.headline).padding(.top)
             Spacer()
             if let order = orderCustomerViewModel.orderConfirmation {
                 switch order.status {
@@ -39,6 +48,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke Halaman Booking", action: {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -46,14 +57,18 @@ struct BookingConfirmationView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .padding(.horizontal)
-                    Button("Batalkan Booking", action: {
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("SalmonOrange"))
-                        .foregroundColor(Color("PrimaryColor"))
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
+                    Button("Batalkan Booking") {
+                        showInfoModalView = true
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("SalmonOrange"))
+                    .foregroundColor(Color("PrimaryColor"))
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .padding(.horizontal)
+                    .sheet(isPresented: $showInfoModalView) {
+                          CancelBookingModal(order: order)
+                    }
 
                 case .rejected:
                     Image("rejectIcon")
@@ -68,8 +83,10 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pilih Bengkel Lain", action: {
-                    })
+                    Button("Pilih Bengkel Lain") {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
+                    }
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
@@ -90,25 +107,24 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke halaman booking", action: {
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
+                    Button("Pindah ke halaman booking") {
+                        self.isRootActive = false
+                        self.isHideTabBar = false
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("PrimaryColor"))
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .padding(.horizontal)
 
                 default:
                     Text("Tidak ada booking")
                 }
             }
+        }.navigationBarHidden(true)
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
         }
     }
 }
-
-// struct BookingConfirmation_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookingConfirmationView()
-//    }
-// }

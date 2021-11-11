@@ -19,7 +19,7 @@ struct Order: Codable {
     var notes: String?
 
     let schedule: Date
-    let createdAt = Date()
+    var createdAt = Date()
 
     var cancelingReason: CancelingReason?
 }
@@ -45,6 +45,7 @@ extension Order {
         case onProgress = "Dalam progres"
         case rejected = "Ditolak"
         case done = "Selesai"
+        case canceled = "Canceled"
     }
 
     enum Service: String, Codable {
