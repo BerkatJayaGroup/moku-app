@@ -10,30 +10,14 @@ import Firebase
 
 @main
 struct MokuApp: App {
-<<<<<<< HEAD
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @ObservedObject var session = SessionService.shared
-=======
-    @ObservedObject var session: SessionService
->>>>>>> dev
 
     @StateObject var appState = AppState()
 
     var onboardingData = OnboardingDataModel.data
 
-<<<<<<< HEAD
-=======
-    init() {
-        FirebaseApp.configure()
-        session = .shared
-        LocationService.shared.requestUserAuthorization()
-
-        GooglePlacesService.register()
-        GoogleMapsService.register()
-    }
-
->>>>>>> dev
     var body: some Scene {
         WindowGroup {
             if let user = session.user {

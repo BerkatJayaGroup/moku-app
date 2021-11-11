@@ -45,7 +45,7 @@ final class BengkelRepository: ObservableObject {
         }
     }
 
-    func add(bengkel: Bengkel) {
+    func add(bengkel: Bengkel, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
             let docRef = try store.addDocument(from: bengkel)
             completionHandler?(docRef)
