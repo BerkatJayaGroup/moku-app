@@ -76,7 +76,7 @@ struct Rating: View {
                                         sheetViewModal = true
                                     }
                                     .sheet(isPresented: $sheetViewModal) {
-                                        UlasanModal(selected: selected, bengkel: bengkel)
+                                        UlasanModal(bengkel: bengkel, selected: selected)
                                     }
                             }
                             Spacer()

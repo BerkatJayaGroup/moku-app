@@ -70,15 +70,15 @@ final class BengkelRepository: ObservableObject {
 
     func addRating(bengkelId: String, review: Review) {
         let reviewDict: [String: Any] = [
-            "comment" : review.comment,
-            "rating" : 5,
-            "timestamp" : Date(),
-            "user" : review.user
+            "comment": review.comment,
+            "rating": review.rating,
+            "timestamp": Date(),
+            "user": review.user
         ]
         store
             .document(bengkelId)
             .updateData(
-                ["reviews" : FieldValue.arrayUnion([reviewDict])]
+                ["reviews": FieldValue.arrayUnion([reviewDict])]
             )
     }
 }

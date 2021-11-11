@@ -9,89 +9,92 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct UlasanModal: View {
-    @State var selected: Int
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @State var bengkel: Bengkel
-    @State private var text = ""
-    @State private var isCheck: Bool = false
-    var bengkelRepository: BengkelRepository = .shared
-    var customerRepository: CustomerRepository = .shared
+    @StateObject private var viewModel: ViewModel
 
+    init(bengkel: Bengkel, selected: Int) {
+        _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, selected: selected))
+    }
     var body: some View {
-        VStack {
-            Text(bengkel.name)
-                .font(.system(size: 20, weight: .semibold))
-            Text(bengkel.address)
-                .font(.system(size: 13))
-            if let photo = bengkel.photos.first {
-                WebImage(url: URL(string: photo))
-                    .resizable()
-                    .frame(width: 220, height: 220)
-            }
-            Divider()
-            Text("Bagaimana Pengalamanmu?")
-                .font(.system(size: 17, weight: .semibold))
-            HStack(spacing: 10) {
-                ForEach(0..<5) { item in
-                    Image(systemName: "star.fill")
+        NavigationView {
+            VStack {
+                VStack{
+                    Text(viewModel.bengkel.name)
+                        .font(.system(size: 20, weight: .semibold))
+                    Text(viewModel.bengkel.address)
+                        .font(.system(size: 13))
+                }
+                .padding(.bottom, 20)
+                if let photo = viewModel.bengkel.photos.first {
+                    WebImage(url: URL(string: photo))
                         .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(self.selected >= item ? .yellow : .gray)
+                        .frame(width: 220, height: 220)
+                        .padding(.bottom, 40)
+                }
+                Divider()
+                    .padding(.horizontal)
+                Text("Bagaimana Pengalamanmu?")
+                    .font(.system(size: 17, weight: .semibold))
+                HStack(spacing: 10) {
+                    ForEach(0..<5) { item in
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                            .foregroundColor(viewModel.selected >= item ? .yellow : .gray)
+                            .onTapGesture {
+                                viewModel.selected = item
+                            }
+                    }
+                }
+                HStack {
+                    Text("Beri Komentar Tambahan")
+                        .font(.system(size: 17, weight: .semibold))
+                    Spacer()
+                }
+                .padding(.horizontal, 30)
+                CustomTextField(placeholder: "Berikan komentar anda terhadap kinerja Mekanik", text: $viewModel.text)
+                    .frame(width: 325, height: 75)
+                    .font(.body)
+                    .background(Color(UIColor.systemGray6))
+                    .accentColor(.green)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                HStack {
+                    Image(systemName: viewModel.isCheck ? "checkmark.circle.fill" : "circle")
                         .onTapGesture {
-                            selected = item
+                            if viewModel.isCheck {
+                                viewModel.isCheck = false
+                            } else {
+                                viewModel.isCheck = true
+                            }
+                        }
+                        .font(.system(size: 24))
+                        .foregroundColor(AppColor.primaryColor)
+                    Text("Tambahkan sebagai bengkel favorit")
+                }
+                .padding()
+                Button {
+                    viewModel.sendReview()
+                } label: {
+                    Text("Kirim")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 16)
+                        .frame(width: 325, height: 45)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
                         }
                 }
             }
-            HStack {
-                Text("Beri Komentar Tambahan")
-                    .font(.system(size: 17, weight: .semibold))
-                Spacer()
-            }
-            .padding(.horizontal, 30)
-            CustomTextField(placeholder: "Berikan komentar anda terhadap kinerja Mekanik", text: $text)
-                .frame(width: 325, height: 75)
-                .font(.body)
-                .background(Color(UIColor.systemGray6))
-                .accentColor(.green)
-                .cornerRadius(8)
-                .padding(.horizontal)
-            HStack {
-                Image(systemName: isCheck ? "checkmark.circle.fill" : "circle")
-                    .onTapGesture {
-                        if isCheck {
-                            isCheck = false
-                        } else {
-                            isCheck = true
-                        }
-                    }
-                Text("Tambahkan sebagai bengkel favorit")
-            }
-            .padding()
-
-            Button(action: {
-                bengkelRepository.addRating(bengkelId: bengkel.id, review: Review(user: "Buwono",
-                                                                                  rating: selected,
-                                                                                  comment: text,
-                                                                                  timestamp: Date()))
-                print("udah kekirim")
-            }) {
-                Text("Kirim")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding(.vertical, 16)
-                    .frame(width: 325, height: 45)
-                    .background(Color("PrimaryColor"))
-                    .cornerRadius(8)
-
+            .navigationTitle("Ulasan")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button("Batal") {presentationMode.wrappedValue.dismiss()})
+            .onTapGesture {
+                self.endTextEditing()
             }
         }
-        .navigationTitle("Ulasan")
-        .navigationBarTitleDisplayMode(.inline)
     }
-}
 
-struct UlasanModal_Previews: PreviewProvider {
-    static var previews: some View {
-        UlasanModal(selected: 4, bengkel: .preview)
-    }
 }

@@ -20,7 +20,7 @@ struct BengkelDate: View {
     @State private var text = ""
     @State private var userId = ""
 
-    @ObservedObject var viewModel = ViewModel()
+    @StateObject var viewModel = ViewModel()
 
     init(typeOfService: Order.Service, bengkel: Bengkel) {
         _typeOfService = State(wrappedValue: typeOfService)
