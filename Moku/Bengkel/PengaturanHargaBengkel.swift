@@ -96,15 +96,13 @@ struct PengaturanHargaBengkel: View {
         }
 
         for mech in pengaturanBengkelForm.mechanics {
-            // TODO: upload foto mekanik and assign to photo
             var mekBaru = Mekanik(name: mech.name)
-            if let photo = mech.photo {
-                storageService.upload(image: photo, path: mekBaru.id)
-                mekBaru.photo = mekBaru.id
-            } else {
-                mekBaru.photo = ""
+            guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }
+
+            storageService.upload(image: photo, path: mekBaru.id) { url, _ in
+                mekBaru.photo = url?.absoluteString
+                bengkelBaru.mekaniks.append(mekBaru)
             }
-            bengkelBaru.mekaniks.append(mekBaru)
         }
 
         for img in bengkelOwnerForm.pickerResult {

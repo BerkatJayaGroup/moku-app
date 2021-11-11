@@ -54,21 +54,19 @@ final class OrderRepository: ObservableObject {
     }
 
     func fetch(_ bengkelId: String) {
-        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { query, error in
+        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { snapshot, error in
             if let error = error {
                 print("Error getting stories: \(error.localizedDescription)")
                 return
             }
 
-            let order = query?.documents.compactMap { document in
-                try? document.data(as: Order.self
-                )
+            let order = snapshot?.documents.compactMap { document in
+                try? document.data(as: Order.self)
             } ?? []
 
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 self.filteredOrders = order
             }
-
         }
     }
 

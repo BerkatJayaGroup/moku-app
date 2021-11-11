@@ -95,7 +95,7 @@ struct BengkelDate: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 let arr = convert(hari: viewModel.bengkel.operationalDays)
                 let count = arr.filter({ $0 != ""}).count
-                let dates = Date.getWeek(hari: count)
+                let dates = Date.getWeek(day: count)
                 let filtered = dates.filter {arr.contains($0.day)}
                 HStack {
                     ForEach(filtered, id: \.dayNumber) { date in

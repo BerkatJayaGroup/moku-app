@@ -37,33 +37,36 @@ extension Date {
         return component
     }
 
-    static func getWeek(for month: Int = 1, hari: Int) -> [BookDate] {
+    private static func getBookDate(for day: Int) -> BookDate? {
+        let dateComponent = DateComponents(day: day)
+        guard let date = Calendar.current.date(byAdding: dateComponent, to: Date()) else { return nil }
+        return BookDate(
+            day: getComponent(date: date, format: "EEE"),
+            dayNumber: getComponent(date: date, format: "dd"),
+            month: getComponent(date: date, format: "MM"),
+            year: getComponent(date: date, format: "yyyy")
+        )
+    }
+
+    static func getWeek(for month: Int = 1, day: Int) -> [BookDate] {
         var dates = [BookDate]()
-        let calendar = Calendar.current
-        if hari < 7 {
-            let lastIndex = 7 + (7 - hari)
-            for number in 0...lastIndex {
-                guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
-                let day = getComponent(date: fullDate, format: "EEE")
-                let dayNumber = getComponent(date: fullDate, format: "dd")
-                let month = getComponent(date: fullDate, format: "MM")
-                let year = getComponent(date: fullDate, format: "yyyy")
-                let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
-                dates.append(bookDate)
+        let bookingRange = 7
+
+        if day < bookingRange {
+            let lastIndex = bookingRange + (bookingRange - day)
+            for day in 0...lastIndex {
+                if let bookDate = getBookDate(for: day) {
+                    dates.append(bookDate)
+                }
             }
         } else {
-            for number in 0...7 {
-                guard let fullDate = calendar.date(byAdding: DateComponents(day: number), to: Date()) else { continue }
-                let day = getComponent(date: fullDate, format: "EEE")
-                let dayNumber = getComponent(date: fullDate, format: "dd")
-                let month = getComponent(date: fullDate, format: "MM")
-                let year = getComponent(date: fullDate, format: "yyyy")
-                let bookDate = BookDate(day: day, dayNumber: dayNumber, month: month, year: year)
-                dates.append(bookDate)
+            for day in 0...bookingRange {
+                if let bookDate = getBookDate(for: day) {
+                    dates.append(bookDate)
+                }
             }
         }
         return dates
-
     }
 
     static func convertDateFormater(date: Date) -> String {
