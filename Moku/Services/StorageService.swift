@@ -18,8 +18,11 @@ class StorageService: ObservableObject {
     // MARK: - GET DOWNLOAD URL
     private func getDownloadURL(from path: String, completion: ((URL?, Error?) -> Void)? = nil) {
         storageRef.child(path).downloadURL { url, error in
-            if let error = error { completion?(nil, error) }
-            else if let url = url { completion?(url, nil) }
+            if let error = error {
+                completion?(nil, error)
+            } else if let url = url {
+                completion?(url, nil)
+            }
         }
     }
 
