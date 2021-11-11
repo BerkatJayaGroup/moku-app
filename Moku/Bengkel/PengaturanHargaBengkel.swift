@@ -66,17 +66,6 @@ struct PengaturanHargaBengkel: View {
     }
 
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel) {
-//        Titip di command dulu barangkali besok butuh
-
-//        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
-//        for day in days {
-//            if let index = days.firstIndex(of: day){
-//                if (pengaturanBengkelForm.daySelected[index] == false){
-//                    days.remove(at: index)
-//                }
-//            }
-//        }
-
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
@@ -98,17 +87,15 @@ struct PengaturanHargaBengkel: View {
             for brand in pengaturanBengkelForm.selectedBrand {
                 bengkelBaru.brands.insert(brand)
             }
-
+                        
             for mech in pengaturanBengkelForm.mechanics {
-                // upload foto mekanik and assign to photo
                 var mekBaru = Mekanik(name: mech.name)
-                if let photo = mech.photo {
-                    storageService.upload(image: photo, path: mekBaru.id)
-                    mekBaru.photo = mekBaru.id
-                } else {
-                    mekBaru.photo = ""
+                guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }
+
+                storageService.upload(image: photo, path: mekBaru.id) { url, _ in
+                    mekBaru.photo = url?.absoluteString
+                    bengkelBaru.mekaniks.append(mekBaru)
                 }
-                bengkelBaru.mekaniks.append(mekBaru)
             }
 
             for img in bengkelOwnerForm.pickerResult {

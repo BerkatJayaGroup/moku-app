@@ -41,7 +41,7 @@ final class CustomerRepository: ObservableObject {
             }
         }
     }
-
+  
     func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
             let docRef = store.document(customer.id)
