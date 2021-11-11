@@ -27,7 +27,7 @@ struct DateStack: View {
 
         }.padding()
             .frame(width: 60, height: 75)
-            .background( isSelected ? Color("PrimaryColor") : Color.white)
+            .background( isSelected ? AppColor.primaryColor : Color.white)
             .cornerRadius(10)
             .onTapGesture {
                 self.onSelect(self.date)

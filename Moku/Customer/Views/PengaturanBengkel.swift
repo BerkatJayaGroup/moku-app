@@ -42,6 +42,7 @@ struct PengaturanBengkel: View {
     @State var selectedBrand = Set<Brand>()
     @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
+
     @State var canSubmit = false
 
     var isFormValid: Bool {
@@ -197,9 +198,3 @@ struct PengaturanBengkel_Previews: PreviewProvider {
         PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
     }
 }
-
-// struct PengaturanBengkel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
-//    }
-// }

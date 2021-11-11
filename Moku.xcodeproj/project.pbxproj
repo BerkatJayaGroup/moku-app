@@ -10,8 +10,8 @@
 		5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A2DAB2A184F979EE58A637 /* Pods_Moku.framework */; };
 		6F0E4E25272FC3CD000B6EC8 /* BengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E4E24272FC3CD000B6EC8 /* BengkelViewModel.swift */; };
 		6F0E4E27272FDD2F000B6EC8 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */; };
+		6F4D388D273A7ED100BD5CF1 /* CancelBookingModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */; };
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
-		6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
 		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
@@ -51,7 +51,6 @@
 		83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */; };
 		83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F33272BEA11009DC400 /* ViewExtension.swift */; };
 		83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F39272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift */; };
-		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
 		83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22E2722BC7F00C79064 /* ShapeBg.swift */; };
 		83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22F2722BC7F00C79064 /* BengkelList.swift */; };
@@ -76,6 +75,7 @@
 		8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435772726AA2F0079DB29 /* ColorExtension.swift */; };
 		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
 		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
+		8E2354672731237000C0381E /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2354662731237000C0381E /* SheetView.swift */; };
 		8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */; };
 		8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2952062723228E00B87EB8 /* SearchBarLocation.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
@@ -83,8 +83,11 @@
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
 		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
 		8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */; };
+		8E5C6AFF27304812004EC262 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8E5C6AFE27304812004EC262 /* PartialSheet */; };
+		8E5C6B0127305590004EC262 /* DayByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C6B0027305590004EC262 /* DayByDay.swift */; };
 		8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		AE9D6F5C27302BE200E4707B /* BookingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9D6F5B27302BE200E4707B /* BookingSummary.swift */; };
 		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
 		AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9C2726A412000E2012 /* Ulasan.swift */; };
@@ -95,9 +98,12 @@
 		B80B01AF272918A500050D90 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AE272918A500050D90 /* UserData.swift */; };
 		B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01B0272918C700050D90 /* UserDataKeychain.swift */; };
 		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
+		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
+		B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */; };
 		B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8864B3A272BCD96007C4413 /* ImagePicker.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
+		B8D7F93127328078005AB37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +135,7 @@
 		13CBBA86C2A48C066F7C4E6D /* Pods-Moku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.debug.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.debug.xcconfig"; sourceTree = "<group>"; };
 		6F0E4E24272FC3CD000B6EC8 /* BengkelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelViewModel.swift; sourceTree = "<group>"; };
 		6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBookingModal.swift; sourceTree = "<group>"; };
 		6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchMotor.swift; sourceTree = "<group>"; };
 		6F6379D627270ADB006F679D /* MotorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorRepository.swift; sourceTree = "<group>"; };
 		6FB9BD96272A679F0041469C /* SearchBarMotor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarMotor.swift; sourceTree = "<group>"; };
@@ -191,6 +198,7 @@
 		8E0435772726AA2F0079DB29 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8E0435792726B1790079DB29 /* SelectServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServices.swift; sourceTree = "<group>"; };
 		8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInfoDetailBengkel.swift; sourceTree = "<group>"; };
+		8E2354662731237000C0381E /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchLocation.swift; sourceTree = "<group>"; };
 		8E2952062723228E00B87EB8 /* SearchBarLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarLocation.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
@@ -198,9 +206,11 @@
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
 		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
 		8E40E51027294A27001CAEF3 /* MultiSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
+		8E5C6B0027305590004EC262 /* DayByDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayByDay.swift; sourceTree = "<group>"; };
 		8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
+		AE9D6F5B27302BE200E4707B /* BookingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSummary.swift; sourceTree = "<group>"; };
 		AE9E6E9827269718000E2012 /* MotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorModal.swift; sourceTree = "<group>"; };
 		AE9E6E9A2726A404000E2012 /* UlasanPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanPage.swift; sourceTree = "<group>"; };
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
@@ -212,6 +222,8 @@
 		B80B01B0272918C700050D90 /* UserDataKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
+		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
+		B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomerViewModel.swift; sourceTree = "<group>"; };
 		B8864B3A272BCD96007C4413 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B8A0352A27286D8200243528 /* Moku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moku.entitlements; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -223,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E5C6AFF27304812004EC262 /* PartialSheet in Frameworks */,
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
 				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -442,6 +455,7 @@
 				8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */,
 				83CBFCB227299E5800BD64BC /* BengkelDetailViewModel.swift */,
 				8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */,
+				B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -467,6 +481,9 @@
 				6FB9BD96272A679F0041469C /* SearchBarMotor.swift */,
 				B8864B3A272BCD96007C4413 /* ImagePicker.swift */,
 				B856220A272FC72B00300EB8 /* ImagePHPicker.swift */,
+				8E5C6B0027305590004EC262 /* DayByDay.swift */,
+				8E2354662731237000C0381E /* SheetView.swift */,
+				6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -491,6 +508,8 @@
 				8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */,
 				8E40E50C272862D3001CAEF3 /* AddMekanik.swift */,
 				AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */,
+				B856220C27310F2100300EB8 /* BookingConfirmationView.swift */,
+				AE9D6F5B27302BE200E4707B /* BookingSummary.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -581,6 +600,7 @@
 				832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */,
 				832AC1E32715986A00BD92E2 /* SwiftUIX */,
 				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
+				8E5C6AFE27304812004EC262 /* PartialSheet */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -634,6 +654,7 @@
 				837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				832AC1DF2715979B00BD92E2 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				832AC1E22715986900BD92E2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 837370B127144701003656FC /* Products */;
 			projectDirPath = "";
@@ -650,7 +671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */,
+				B8D7F93127328078005AB37A /* Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
@@ -761,6 +782,7 @@
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
+				AE9D6F5C27302BE200E4707B /* BookingSummary.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
@@ -772,6 +794,7 @@
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
 				8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */,
+				B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
@@ -782,6 +805,7 @@
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				83E13E87272AA80C008758B7 /* OnboardingDataModel.swift in Sources */,
 				AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */,
+				B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */,
 				8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */,
 				8E40E51127294A27001CAEF3 /* MultiSelectionView.swift in Sources */,
 				83CBF2432722BC7F00C79064 /* DateStack.swift in Sources */,
@@ -797,6 +821,7 @@
 				6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,
 				83CBF2442722BC7F00C79064 /* CustomTextField.swift in Sources */,
+				8E5C6B0127305590004EC262 /* DayByDay.swift in Sources */,
 				83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */,
 				AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */,
 				83DAE6C6272EB447002D1D6E /* LocationSelectionView.swift in Sources */,
@@ -809,6 +834,7 @@
 				8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */,
+				6F4D388D273A7ED100BD5CF1 /* CancelBookingModal.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
@@ -818,6 +844,7 @@
 				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
 				B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */,
 				83DAE6CA272ECD9B002D1D6E /* LocationSelectionViewModel.swift in Sources */,
+				8E2354672731237000C0381E /* SheetView.swift in Sources */,
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
@@ -1146,6 +1173,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1183,6 +1218,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		8E5C6AFE27304812004EC262 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

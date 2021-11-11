@@ -34,7 +34,12 @@ struct PickRoleView: View {
                     .frame(width: proxy.size.width * 0.6, height: proxy.size.height * 0.05)
                     .padding(50)
                     .border(motorSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
+<<<<<<< HEAD
                     Button {motorSelected = false
+=======
+                    Button {
+                        motorSelected = false
+>>>>>>> dev
                         bengkelSelected = true
                     } label: {
                         HStack {

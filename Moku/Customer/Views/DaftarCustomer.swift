@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
                          Motor(brand: .kawasaki, model: "Z250", cc: 250),
