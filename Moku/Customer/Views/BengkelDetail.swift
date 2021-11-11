@@ -62,23 +62,28 @@ struct BengkelDetail: View {
                         .fontWeight(.light)
                         .frame(width: proxy.size.width)
                     HStack {
-                        CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star.fill", mainInfo: viewModel.bengkel.averageRating, cta: "Lihat Semua")
-                            .padding(.all, 4)
-                            .frame(width: proxy.size.width * 0.3, alignment: .center)
-                            .background(Color(hex: "F3F3F3"))
-                            .cornerRadius(8)
-                        CollectionInfoDetailBengkel(titleInfo: "Jarak dari Anda", imageInfo: "", mainInfo: viewModel.distance, cta: "Lihat Peta") {
+                        CollectionInfoDetailBengkel(
+                            titleInfo: "Rating",
+                            imageInfo: "star.fill",
+                            mainInfo: viewModel.bengkel.averageRating,
+                            cta: .seeDetail
+                        ).style(proxy: proxy)
+
+                        CollectionInfoDetailBengkel(
+                            titleInfo: "Jarak dari Anda",
+                            imageInfo: "",
+                            mainInfo: viewModel.distance,
+                            cta: .seeDetail
+                        ) {
                             MapHelper.direct(bengkel: viewModel.bengkel)
-                        }
-                            .padding(.all, 4)
-                            .frame(width: proxy.size.width * 0.3, alignment: .center)
-                            .background(Color(hex: "F3F3F3"))
-                            .cornerRadius(8)
-                        CollectionInfoDetailBengkel(titleInfo: "Jam Buka", imageInfo: "", mainInfo: viewModel.operationalHours, cta: "Lihat Detail")
-                            .padding(.all, 4)
-                            .frame(width: proxy.size.width * 0.3, alignment: .center)
-                            .background(Color(hex: "F3F3F3"))
-                            .cornerRadius(8)
+                        }.style(proxy: proxy)
+
+                        CollectionInfoDetailBengkel(
+                            titleInfo: "Jam Buka",
+                            imageInfo: "",
+                            mainInfo: viewModel.operationalHours,
+                            cta: .seeDetail
+                        ).style(proxy: proxy)
 
                     }
                     .frame(width: proxy.size.width)
