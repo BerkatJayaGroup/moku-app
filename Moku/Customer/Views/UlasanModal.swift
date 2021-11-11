@@ -14,13 +14,16 @@ struct UlasanModal: View {
     @State var bengkel: Bengkel
     @State private var text = ""
     @State private var isCheck: Bool = false
+    var bengkelRepository: BengkelRepository = .shared
+    var customerRepository: CustomerRepository = .shared
+
     var body: some View {
-        VStack{
+        VStack {
             Text(bengkel.name)
                 .font(.system(size: 20, weight: .semibold))
             Text(bengkel.address)
                 .font(.system(size: 13))
-            if let photo = bengkel.photos.first{
+            if let photo = bengkel.photos.first {
                 WebImage(url: URL(string: photo))
                     .resizable()
                     .frame(width: 220, height: 220)
@@ -39,7 +42,7 @@ struct UlasanModal: View {
                         }
                 }
             }
-            HStack{
+            HStack {
                 Text("Beri Komentar Tambahan")
                     .font(.system(size: 17, weight: .semibold))
                 Spacer()
@@ -52,10 +55,10 @@ struct UlasanModal: View {
                 .accentColor(.green)
                 .cornerRadius(8)
                 .padding(.horizontal)
-            HStack{
+            HStack {
                 Image(systemName: isCheck ? "checkmark.circle.fill" : "circle")
                     .onTapGesture {
-                        if isCheck{
+                        if isCheck {
                             isCheck = false
                         } else {
                             isCheck = true
@@ -64,10 +67,14 @@ struct UlasanModal: View {
                 Text("Tambahkan sebagai bengkel favorit")
             }
             .padding()
-            
+
             Button(action: {
-                print("Udah kepencet")
-            }){
+                bengkelRepository.addRating(bengkelId: bengkel.id, review: Review(user: "Buwono",
+                                                                                  rating: selected,
+                                                                                  comment: text,
+                                                                                  timestamp: Date()))
+                print("udah kekirim")
+            }) {
                 Text("Kirim")
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
@@ -75,7 +82,7 @@ struct UlasanModal: View {
                     .frame(width: 325, height: 45)
                     .background(Color("PrimaryColor"))
                     .cornerRadius(8)
-                
+
             }
         }
         .navigationTitle("Ulasan")

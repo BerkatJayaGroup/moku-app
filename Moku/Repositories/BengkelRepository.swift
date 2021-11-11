@@ -6,8 +6,11 @@
 //
 
 import Combine
+import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import Foundation
 
 // Final, biar ga bisa di extend
 final class BengkelRepository: ObservableObject {
@@ -65,4 +68,17 @@ final class BengkelRepository: ObservableObject {
         }
     }
 
+    func addRating(bengkelId: String, review: Review) {
+        let reviewDict: [String: Any] = [
+            "comment" : review.comment,
+            "rating" : 5,
+            "timestamp" : Date(),
+            "user" : review.user
+        ]
+        store
+            .document(bengkelId)
+            .updateData(
+                ["reviews" : FieldValue.arrayUnion([reviewDict])]
+            )
+    }
 }
