@@ -50,7 +50,13 @@ final class OrderRepository: ObservableObject {
             }
 
         }
+    }
 
+    func fetch(customerId: String) {
+        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+            self.customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+        }
     }
 
     func fetch(_ bengkelId: String) {
