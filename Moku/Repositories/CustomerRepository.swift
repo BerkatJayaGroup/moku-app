@@ -29,6 +29,7 @@ final class CustomerRepository: ObservableObject {
             self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
         }
     }
+
     func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
@@ -40,6 +41,7 @@ final class CustomerRepository: ObservableObject {
             }
         }
     }
+  
     func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
             let docRef = store.document(customer.id)

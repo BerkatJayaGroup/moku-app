@@ -17,7 +17,20 @@ struct BengkelDate: View {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
 
+    @Binding var isRootActive: Bool
+
+    @Binding var isHideTabBar: Bool
+
+    init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        _typeOfService = State(wrappedValue: typeOfService)
+        _bengkel = State(wrappedValue: bengkel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
+        if let uid = Auth.auth().currentUser?.uid {
+            userId = uid
+        }
     }
+
     let columns = [
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),
@@ -60,7 +73,7 @@ struct BengkelDate: View {
             Spacer()
 
             if let order = viewModel.order {
-                NavigationLink(destination: BookingSummary(order: order), isActive: $viewModel.isActive) {
+                NavigationLink(destination: BookingSummary(order: order, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar), isActive: $viewModel.isActive) {
                     EmptyView()
                 }
             }
@@ -135,9 +148,3 @@ struct BengkelDate: View {
     }
 
 }
-
-// struct BengkelDate_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelDate(typeOfService: , Bengkel(owner: .init(name: "dicky", phoneNumber: "323", email: "ddsa"), name: "3232", phoneNumber: "00", location: Location(name: "dsds", address: "dsds", longitude: 2.32, latitude: 4.21), operationalHours: .init(open: 2, close: 22), minPrice: "8", maxPrice: "9"))
-//    }
-// }
