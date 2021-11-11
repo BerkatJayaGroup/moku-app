@@ -33,7 +33,7 @@ extension BookingSummary {
         @Published var docRef: DocumentReference?
 
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
-    
+
         init(order: Order) {
             self.order = order
 
@@ -154,8 +154,8 @@ struct BookingSummary: View {
     }
 }
 
-//struct BookingSummary_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookingSummary(order: .preview)
-//    }
-//}
+struct BookingSummary_Previews: PreviewProvider {
+    static var previews: some View {
+        BookingSummary(order: .preview)
+    }
+}

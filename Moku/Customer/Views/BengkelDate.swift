@@ -34,8 +34,8 @@ struct BengkelDate: View {
         if let uid = Auth.auth().currentUser?.uid {
             userId = uid
         }
-        
     }
+
     let columns = [
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),

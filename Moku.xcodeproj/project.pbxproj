@@ -493,6 +493,12 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		8ECD17D7272E85C200B2AB13 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
 			isa = PBXGroup;
 			children = (

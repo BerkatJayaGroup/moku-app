@@ -57,18 +57,18 @@ struct BookingConfirmationView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .padding(.horizontal)
-                    Button("Batalkan Booking", action: {
+                    Button("Batalkan Booking") {
                         showInfoModalView = true
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("SalmonOrange"))
-                        .foregroundColor(Color("PrimaryColor"))
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
-                        .sheet(isPresented: $showInfoModalView) {
-                              CancelBookingModal(order: order)
-                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("SalmonOrange"))
+                    .foregroundColor(Color("PrimaryColor"))
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .padding(.horizontal)
+                    .sheet(isPresented: $showInfoModalView) {
+                          CancelBookingModal(order: order)
+                    }
 
                 case .rejected:
                     Image("rejectIcon")
@@ -83,10 +83,10 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pilih Bengkel Lain", action: {
+                    Button("Pilih Bengkel Lain") {
                         self.isRootActive = false
                         self.isHideTabBar = false
-                    })
+                    }
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("PrimaryColor"))
@@ -107,16 +107,16 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke halaman booking", action: {
+                    Button("Pindah ke halaman booking") {
                         self.isRootActive = false
                         self.isHideTabBar = false
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("PrimaryColor"))
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .padding(.horizontal)
 
                 default:
                     Text("Tidak ada booking")
@@ -126,12 +126,5 @@ struct BookingConfirmationView: View {
         .introspectTabBarController { (UITabBarController) in
             UITabBarController.tabBar.isHidden = true
         }
-        
     }
 }
-
-// struct BookingConfirmation_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookingConfirmationView()
-//    }
-// }
