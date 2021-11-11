@@ -20,7 +20,7 @@ struct PickRoleView: View {
                 VStack {
                     Button(action: {motorSelected = true
                         bengkelSelected = false
-                    }){
+                    }) {
                         HStack {
                             Image(systemName: "person")
                                 .foregroundColor(motorSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -35,7 +35,7 @@ struct PickRoleView: View {
                     .border(motorSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
                     Button(action: {motorSelected = false
                         bengkelSelected = true
-                    }){
+                    }) {
                         HStack {
                             Image(systemName: "wrench.and.screwdriver")
                                 .foregroundColor(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -64,12 +64,11 @@ struct PickRoleView: View {
             }
         }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
     }
-    
+
     func getDestination() -> AnyView {
         if motorSelected {
             return AnyView(DaftarCustomer())
-        }
-        else {
+        } else {
             return AnyView(BengkelOwnerOnboardingView())
         }
     }

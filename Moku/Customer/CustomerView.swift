@@ -21,7 +21,7 @@ struct CustomerView: View {
                     Image(systemName: "star")
                     Text("Bengkel")
                 }
-            Text("Booking View")
+            BookingsTabItem()
                 .tabItem {
                     Image(systemName: "star")
                     Text("Booking")

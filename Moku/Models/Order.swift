@@ -17,6 +17,8 @@ struct Order: Codable {
     let typeOfService: Service
     var status: Status = .waitingConfirmation
     var notes: String?
+    var mekanik: Mekanik?
+    var nota: String?
 
     let schedule: Date
     let createdAt = Date()

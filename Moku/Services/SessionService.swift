@@ -18,18 +18,18 @@ final class SessionService: ObservableObject {
     @Published var user: User?
 
     @Published var selectedMotor: Motor?
-    
+
     private init() {
         if let userId = Auth.auth().currentUser?.uid {
-            
+
             BengkelRepository.shared.fetch(id: userId) { bengkel in
                 self.user = .bengkel(bengkel)
             }
-            
+
             CustomerRepository.shared.fetch(id: userId) { customer in
                 self.user = .customer(customer)
             }
-            
+
 //            CustomerRepository.shared.customer.forEach { customer in
 //                if customer.id == userId {
 //                    user = .customer(customer)
