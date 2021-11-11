@@ -18,16 +18,12 @@ struct BengkelDate: View {
     @State var typeOfService: Order.Service
     @State var schedule = Date()
     @State private var text = ""
-    @State private var userId = ""
 
-    @ObservedObject var viewModel = ViewModel()
+    @StateObject var viewModel = ViewModel()
 
     init(typeOfService: Order.Service, bengkel: Bengkel) {
         _typeOfService = State(wrappedValue: typeOfService)
         _bengkel = State(wrappedValue: bengkel)
-        if let uid = Auth.auth().currentUser?.uid {
-            userId = uid
-        }
     }
     let columns = [
         GridItem(.fixed(60), spacing: 10),
@@ -80,8 +76,8 @@ struct BengkelDate: View {
                 if hour != 0 && selectedDate != BookDate.default {
                     let tggl = DateComponents(timeZone: TimeZone(identifier: TimeZone.current.identifier), year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.dayNumber), hour: hour)
                     self.schedule = Calendar.current.date(from: tggl) ?? Date()
-                    if let selectedMotor = SessionService.shared.selectedMotor {
-                        viewModel.order = Order(bengkelId: bengkel.id, customerId: userId, motor: selectedMotor, typeOfService: typeOfService, notes: text, schedule: schedule)
+                    if let selectedMotor = SessionService.shared.selectedMotor, let uid = Auth.auth().currentUser?.uid {
+                        viewModel.order = Order(bengkelId: bengkel.id, customerId: uid, motor: selectedMotor, typeOfService: typeOfService, notes: text, schedule: schedule)
 
                     }
                     print("apa aja dah")
