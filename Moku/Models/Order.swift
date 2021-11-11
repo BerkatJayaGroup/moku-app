@@ -19,7 +19,7 @@ struct Order: Codable {
     var notes: String?
 
     let schedule: Date
-    let createdAt = Date()
+    var createdAt = Date()
 
     var cancelingReason: CancelingReason?
 }

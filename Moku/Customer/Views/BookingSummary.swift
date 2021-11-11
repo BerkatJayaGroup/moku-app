@@ -153,9 +153,3 @@ struct BookingSummary: View {
         }
     }
 }
-
-struct BookingSummary_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingSummary(order: .preview)
-    }
-}

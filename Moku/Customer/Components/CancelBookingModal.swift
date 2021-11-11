@@ -10,18 +10,18 @@ import SwiftUI
 struct CancelBookingModal: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
-    
+
     @State var order: Order
-    
+
     var alasans: [Order.CancelingReason] = [.bengkelTutup, .bengkelLain, .tidakJadi, .ubahOrder]
 
     @State var selection: Order.CancelingReason?
     @State var isActive: Bool = false
-    
-    var body: some View{
-        NavigationView{
-            VStack{
-                List(alasans, id: \.self, selection: $selection){ alasan in
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                List(alasans, id: \.self, selection: $selection) { alasan in
                     Button { self.selection = alasan
                     } label: {
                         HStack {
@@ -36,12 +36,12 @@ struct CancelBookingModal: View {
                 .padding()
                 .navigationBarTitle(Text("Pilih alasan membatalkan booking").font(.headline), displayMode: .inline)
                 .listStyle(.plain)
-                NavigationLink(destination: BengkelTabItem(), isActive: $isActive){
+                NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
                     EmptyView()
                 }
-                
+
                 Button("Selesai", action: {
-                    if let selection = selection{
+                    if let selection = selection {
                         isActive = true
                         orderCustomerViewModel.cancelBooking(order: &order, alasan: selection)
                     }
@@ -58,9 +58,8 @@ struct CancelBookingModal: View {
 }
 
 //
-//struct CancelBookingModal_Previews: PreviewProvider {
+// struct CancelBookingModal_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CancelBookingModal()
 //    }
-//}
-
+// }

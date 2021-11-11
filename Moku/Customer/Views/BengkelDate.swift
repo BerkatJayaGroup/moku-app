@@ -21,9 +21,9 @@ struct BengkelDate: View {
     @State private var userId = ""
 
     @ObservedObject var viewModel = ViewModel()
-    
+
     @Binding var isRootActive: Bool
-    
+
     @Binding var isHideTabBar: Bool
 
     init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {

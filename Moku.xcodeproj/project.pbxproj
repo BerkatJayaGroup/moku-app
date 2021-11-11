@@ -48,7 +48,6 @@
 		83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */; };
 		83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F33272BEA11009DC400 /* ViewExtension.swift */; };
 		83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F39272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift */; };
-		83CBF23E2722BC7F00C79064 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22C2722BC7F00C79064 /* BookDate.swift */; };
 		83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22E2722BC7F00C79064 /* ShapeBg.swift */; };
 		83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF22F2722BC7F00C79064 /* BengkelList.swift */; };
@@ -499,6 +498,7 @@
 			);
 			path = "View Model";
 			sourceTree = "<group>";
+		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
 			isa = PBXGroup;
 			children = (

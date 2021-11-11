@@ -13,12 +13,12 @@ import Introspect
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
     var bengkelName: String = ""
-    
+
     @State var showInfoModalView: Bool = false
-    
+
     @Binding var isRootActive: Bool
     @Binding var isHideTabBar: Bool
-    
+
     init(orderId: DocumentReference?, bengkelName: String, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         _isRootActive = isRootActive
         _isHideTabBar = isHideTabBar
