@@ -18,6 +18,7 @@ struct Motorcc: Identifiable, Hashable {
     var id: String {ccMotor}
     var ccMotor: String
 }
+
 struct SelectedBrand {
     var brand: Set<Brand>
     var cc: Set<Motorcc>
@@ -35,16 +36,23 @@ struct PengaturanBengkel: View {
     @State var isBrandSelected: Bool = false
     @State var isCCSelected: Bool = false
     @State var isAddMekanik: Bool = false
+    @State var isSubmitting: Bool = false
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @State var daySelected: [Bool] = [true, true, true, true, true, true, true]
     @State var selectedBrand = Set<Brand>()
     @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
 
+    @State var canSubmit = false
+
+    var isFormValid: Bool {
+        !brandMotor.isEmpty && !ccMotor.isEmpty && !mechanics.isEmpty
+    }
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("BRAND MOTOR YANG BISA DIPERBAIKI")
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
@@ -52,12 +60,12 @@ struct PengaturanBengkel: View {
                                   optionToString: { $0.rawValue },
                                   selected: $selectedBrand
                     )
-                        .frame(width: proxy.size.width, height: 40)
-                        .background(Color(hex: "F3F3F3"))
-                        .cornerRadius(8)
-
+                    .frame(width: proxy.size.width, height: 40)
+                    .background(Color(hex: "F3F3F3"))
+                    .cornerRadius(8)
+                    emptyAlert(for: $brandMotor, alert: "Brand motor harus diisi")
                 }
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("CC MOTOR YANG BISA DIPERBAIKI")
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
@@ -68,6 +76,7 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, height: 40)
                         .background(Color(hex: "F3F3F3"))
                         .cornerRadius(8)
+                    emptyAlert(for: $ccMotor, alert: "CC motor harus diisi")
                 }
                 VStack(spacing: 8) {
                     Text("HARI OPERASIONAL")
@@ -109,13 +118,17 @@ struct PengaturanBengkel: View {
                 Text("MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                     .frame(width: proxy.size.width, alignment: .leading)
-                VStack(alignment: .leading) {
-                    ForEach(mechanics, id: \.self) { (mech) in
-                        Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
-                        Divider()
-                            .background(Color("DarkGray"))
-                    }.onDelete(perform: self.deleteItem)
+
+                if !mechanics.isEmpty {
+                    VStack(alignment: .leading) {
+                        ForEach(mechanics, id: \.self) { (mech) in
+                            Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
+                            Divider()
+                                .background(Color("DarkGray"))
+                        }.onDelete(perform: self.deleteItem)
+                    }
                 }
+
                 Button {
                     self.isAddMekanik.toggle()
                     print($mechanics.count)
@@ -128,16 +141,9 @@ struct PengaturanBengkel: View {
                 .sheet(isPresented: $isAddMekanik) {
                     AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
                 }
+                mekanikAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 Spacer()
-                NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerForm: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self)) {
-                    Text("Lanjutkan")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
-                }
+                submitButton(proxy: proxy)
             }
         }
         .padding()
@@ -146,5 +152,45 @@ struct PengaturanBengkel: View {
 
     private func deleteItem(at indexSet: IndexSet) {
         self.mechanics.remove(atOffsets: indexSet)
+    }
+
+    @ViewBuilder
+    private func submitButton(proxy: GeometryProxy) -> some View {
+        NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
+
+        Button {
+            validateForm()
+        } label: {
+            HStack {
+                Spacer()
+                Text("Lanjutkan")
+                Spacer()
+            }
+            .padding()
+            .foregroundColor(.white)
+            .background(AppColor.primaryColor)
+            .cornerRadius(8)
+        }
+    }
+
+    @ViewBuilder
+    private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
+        if text.wrappedValue.isEmpty, isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+
+    @ViewBuilder
+    private func mekanikAlert(for text: Binding<[CalonMekanik]>, alert: String) -> some View {
+        if text.isEmpty, isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+
+    func validateForm() {
+        isSubmitting = true
+        if isFormValid {
+            canSubmit = true
+        }
     }
 }

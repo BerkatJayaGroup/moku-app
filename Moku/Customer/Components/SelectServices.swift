@@ -12,7 +12,7 @@ struct SelectServices: View {
     var serviceTitle: String
     var serviceIcon: String
     var servicePrice: String
-    @Binding var isTap: Bool
+    var isTap: Bool
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .center, spacing: 8) {
@@ -42,9 +42,9 @@ struct SelectServices: View {
     }
 }
 
-struct SelectServices_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape", servicePrice: "Rp 120.000", isTap: .constant(false))
-            .previewLayout(.sizeThatFits)
-    }
-}
+// struct SelectServices_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape", servicePrice: "Rp 120.000", isTap: .constant(false))
+//            .previewLayout(.sizeThatFits)
+//    }
+// }

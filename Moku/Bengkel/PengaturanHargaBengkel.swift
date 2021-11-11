@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import Foundation
 
 struct PengaturanHargaBengkel: View {
-    var bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel
+    var bengkelOwnerForm: BengkelOwnerOnboardingView
     var pengaturanBengkelForm: PengaturanBengkel
     @ObservedObject var bengkelViewModel: BengkelViewModel = .shared
     @State private var min: String = ""
@@ -57,32 +60,48 @@ struct PengaturanHargaBengkel: View {
             .padding()
             .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
         }
+        .padding()
+        .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
     }
 
-    func createBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
+    func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel) {
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
-        guard let location = bengkelOwnerForm.location else {return}
+        guard let location = bengkelOwnerFormViewModel.location else {return}
         var bengkelBaru = Bengkel(
-            owner: Bengkel.Owner(name: bengkelOwnerForm.ownerName, phoneNumber: bengkelOwnerForm.phoneNumber, email: ""),
-            name: bengkelOwnerForm.bengkelName,
-            phoneNumber: bengkelOwnerForm.phoneNumber,
+            owner: Bengkel.Owner(name: bengkelOwnerFormViewModel.ownerName, phoneNumber: bengkelOwnerFormViewModel.phoneNumber, email: ""),
+            name: bengkelOwnerFormViewModel.bengkelName,
+            phoneNumber: bengkelOwnerFormViewModel.phoneNumber,
             location: location,
             operationalHours: Bengkel.OperationalHours(open: openTime, close: closeTime),
-            operationalDays: [.senin, .selasa, .rabu],
+            operationalDays: pengaturanBengkelForm.daySelected,
             minPrice: min,
             maxPrice: max
         )
 
+        for brand in pengaturanBengkelForm.selectedBrand {
+            bengkelBaru.brands.insert(brand)
+        }
+
         for mech in pengaturanBengkelForm.mechanics {
-            let mekBaru = Mekanik(name: mech.name)
-            if let photo = mech.photo {
-                storageService.upload(image: photo, path: mekBaru.id)
+            var mekBaru = Mekanik(name: mech.name)
+            guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }
+
+            storageService.upload(image: photo, path: mekBaru.id) { url, _ in
+                mekBaru.photo = url?.absoluteString
+                bengkelBaru.mekaniks.append(mekBaru)
             }
-            bengkelBaru.mekaniks.append(mekBaru)
+        }
+
+        for img in bengkelOwnerForm.pickerResult {
+            let imgID = UUID().uuidString
+            storageService.upload(image: img, path: imgID)
+            bengkelBaru.photos.append(imgID)
         }
 
         bengkelViewModel.create(bengkelBaru)
+
+        SessionService.shared.user = .bengkel(bengkelBaru)
     }
 }

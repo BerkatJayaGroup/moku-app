@@ -47,6 +47,21 @@ struct CollectionInfoDetailBengkel: View {
                 Text("\(cta)")
                     .foregroundColor(Color("PrimaryColor"))
             }
+            if cta == "Lihat Detail"{
+                Button {
+                    partialSheetManager.showPartialSheet {
+                        print("normal sheet dismissed")
+                    } content: {
+                        SheetView(mainInfo: mainInfo)
+                    }
+                } label: {
+                    Text("\(cta)")
+                        .foregroundColor(Color("PrimaryColor"))
+                }
+            } else {
+                Text("\(cta)")
+                    .foregroundColor(Color("PrimaryColor"))
+            }
         }
     }
 }

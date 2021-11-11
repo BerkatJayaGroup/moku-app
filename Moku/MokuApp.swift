@@ -10,7 +10,7 @@ import Firebase
 
 @main
 struct MokuApp: App {
-    @ObservedObject var session = SessionService.shared
+    @ObservedObject var session: SessionService
 
     @StateObject var appState = AppState()
 
@@ -18,7 +18,7 @@ struct MokuApp: App {
 
     init() {
         FirebaseApp.configure()
-
+        session = .shared
         LocationService.shared.requestUserAuthorization()
 
         GooglePlacesService.register()

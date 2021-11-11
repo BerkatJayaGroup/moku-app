@@ -12,14 +12,18 @@ struct BengkelDetail: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var heartTap: [String] = ["heart", "heart.fill"]
     @State private var indexHeart = 0
-    @State var service1: Bool = false
+    @State var service1: Bool = true
     @State var service2: Bool = false
 
     @StateObject private var viewModel: ViewModel
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
 
-    init(bengkel: Bengkel) {
+    init(bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
     }
 
     var btnBack: some View {
@@ -82,34 +86,28 @@ struct BengkelDetail: View {
                         .fontWeight(.semibold)
                         .frame(width: proxy.size.width, alignment: .leading)
                     HStack {
-                        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape.2", servicePrice: "Rp 40.000 - Rp 150.000", isTap: $service1)
+                        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape.2", servicePrice: "Rp 40.000 - Rp 150.000", isTap: viewModel.typeOfService == .servisRutin)
                             .onTapGesture {
-                                if service1 == false {
-                                    service1 = true
-                                    service2 = false
-                                } else {
-                                    service1 = false
-                                }
+                                viewModel.typeOfService = .servisRutin
                             }
-                        SelectServices(serviceTitle: "Perbaikan", serviceIcon: "wrench.and.screwdriver", servicePrice: "Tanya bengkel", isTap: $service2)
+                        SelectServices(serviceTitle: "Perbaikan", serviceIcon: "wrench.and.screwdriver", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
                             .onTapGesture {
-                                if service2 == false {
-                                    service2 = true
-                                    service1 = false
-                                } else {
-                                    service2 = false
-                                }
+                                viewModel.typeOfService = .perbaikan
                             }
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    Text("Pesan")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.vertical, 16)
-                        .frame(width: proxy.size.width * 0.85)
-                        .background(Color("PrimaryColor"))
-                        .cornerRadius(8)
+                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)) {
+                            Text("Pesan")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 16)
+                                .frame(width: proxy.size.width * 0.85)
+                                .background(Color("PrimaryColor"))
+                                .cornerRadius(8)
+
+                        // .disabled(viewModel.typeOfService == nil)
+                    }
                 }
             }
         }
@@ -117,16 +115,5 @@ struct BengkelDetail: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
-    }
-}
-
-struct BengkelDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            BengkelDetail(bengkel: .preview)
-        }
-        .addPartialSheet()
-        .navigationViewStyle(StackNavigationViewStyle())
-        .environmentObject(PartialSheetManager())
     }
 }

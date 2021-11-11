@@ -30,69 +30,83 @@ struct BengkelOwnerOnboardingView: View {
     }
 
     var body: some View {
-        VStack {
-            Form {
-                textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
-                textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
+        GeometryReader { _ in
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
+                    textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
+                    textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
-                locationField()
+                    locationField()
 
-                textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
+                    textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
 
-                Section(header: Text("FOTO BENGKEL")) {
-                    if pickerResult != [] {
-                        ScrollView(.horizontal) {
-                            HStack {
-                                VStack {
-                                    Text("+").font(.system(size: 30)).padding()
-                                    Text("Tambah Foto")
-                                }
-                                .frame(width: 100, height: 100)
-                                .onTapGesture {
-                                    self.shouldPresentActionScheet = true
-                                }
-                                ForEach(pickerResult, id: \.self) { image in
-                                    Image.init(uiImage: image)
-                                        .resizable()
-                                        .frame(width: 100, height: 100, alignment: .center)
-                                        .aspectRatio(contentMode: .fit)
+                    Section(header: header(title: "FOTO BENGKEL")) {
+                        if pickerResult != [] {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    VStack {
+                                        Text("+").font(.system(size: 30))
+                                            .foregroundColor(AppColor.primaryColor)
+                                        Text("Tambah Foto")
+                                            .font(.system(size: 15))
+                                            .foregroundColor(AppColor.primaryColor)
+                                            .padding(.bottom, 20)
+                                    }
+                                    .frame(width: 100, height: 100)
+                                    .background(AppColor.lightGray)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        self.shouldPresentActionScheet = true
+                                    }
+                                    ForEach(pickerResult, id: \.self) { image in
+                                        Image.init(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 100, height: 100, alignment: .center)
+                                            .aspectRatio(contentMode: .fit)
+                                    }
                                 }
                             }
-                        }
-                    } else {
-                        VStack {
-                            Text("+").font(.system(size: 30)).padding()
-                            Text("Tambah Foto")
-                        }
-                        .frame(maxWidth: .infinity).padding(.horizontal, 20)
-                        .onTapGesture {
-                            self.shouldPresentActionScheet = true
+                        } else {
+                            VStack {
+                                Text("+").font(.system(size: 40))
+                                    .foregroundColor(AppColor.primaryColor)
+                                Text("Tambah Foto")
+                                    .foregroundColor(AppColor.primaryColor)
+                                    .padding(.bottom, 20)
+                            }
+                            .frame(width: 150, height: 100)
+                            .background(AppColor.lightGray)
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                self.shouldPresentActionScheet = true
+                            }
                         }
                     }
-                }
-                .sheet(isPresented: $shouldPresentImagePicker) {
-                    if !self.shouldPresentCamera {
-                        ImagePHPicker(configuration: self.config, pickerResult: $pickerResult, isPresented: $shouldPresentImagePicker)
-                    } else {
-                        ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
+                    .sheet(isPresented: $shouldPresentImagePicker) {
+                        if !self.shouldPresentCamera {
+                            ImagePHPicker(configuration: self.config, pickerResult: $pickerResult, isPresented: $shouldPresentImagePicker)
+                        } else {
+                            ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
+                        }
+                    }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                        ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                            self.shouldPresentImagePicker = true
+                            self.shouldPresentCamera = true
+                        }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                            self.shouldPresentImagePicker = true
+                            self.shouldPresentCamera = false
+                        }), ActionSheet.Button.cancel()])
                     }
-                }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
-                    ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
-                        self.shouldPresentImagePicker = true
-                        self.shouldPresentCamera = true
-                    }), ActionSheet.Button.default(Text("Photo Library"), action: {
-                        self.shouldPresentImagePicker = true
-                        self.shouldPresentCamera = false
-                    }), ActionSheet.Button.cancel()])
                 }
+                Spacer()
+                submitButton()
             }
-
-            submitButton()
+            .sheet(isPresented: $viewModel.isSelectingLocation) {
+                LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
+            }
+            .navigationBarTitle("Profil Bengkel", displayMode: .inline)
         }
-        .sheet(isPresented: $viewModel.isSelectingLocation) {
-            LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
-        }
-        .navigationBarTitle("Profil Bengkel", displayMode: .inline)
+        .padding()
     }
 }
 
@@ -125,8 +139,6 @@ extension BengkelOwnerOnboardingView {
             .background(AppColor.primaryColor)
             .cornerRadius(8)
         }
-        .padding()
-        .padding(.horizontal, 32)
     }
 
     private func locationField() -> some View {
@@ -142,11 +154,15 @@ extension BengkelOwnerOnboardingView {
                             HStack {
                                 Image(systemName: "mappin.circle")
                                 Text("Cari alamat bengkelmu disini")
-                            }.foregroundColor(.tertiaryLabel)
+                            }
+                            .foregroundColor(.tertiaryLabel)
                         }
                     }
                     Spacer()
-                }.modifier(RoundedTextField())
+                }
+                .padding(10)
+                .background(AppColor.lightGray)
+                .cornerRadius(8)
                 // Alert
                 locationAlert()
             }
@@ -162,7 +178,12 @@ extension BengkelOwnerOnboardingView {
     ) -> some View {
         Section(header: header(title: title)) {
             VStack(alignment: .trailing) {
-                TextField(placeholder, text: text).roundedStyle().keyboardType(keyboardType)
+                TextField(placeholder, text: text)
+                    .font(.subheadline)
+                    .keyboardType(keyboardType)
+                    .padding(10)
+                    .background(AppColor.lightGray)
+                    .cornerRadius(8)
                 emptyAlert(for: text, alert: alert)
             }
         }
