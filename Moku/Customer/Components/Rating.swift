@@ -13,7 +13,7 @@ struct Rating: View {
     @State var order: Order
     @ObservedObject var bengkelRepository: BengkelRepository = .shared
     @State var bengkel: Bengkel?
-    @State private var sheetViewModal = false
+    @State var isActive: Bool = false
     init(order: Order) {
         _order = State(wrappedValue: order)
     }
@@ -31,7 +31,6 @@ struct Rating: View {
             VStack(alignment: .trailing) {
                 Button {
                     print("Button Tap")
-
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(Color("PrimaryColor"))
@@ -73,10 +72,10 @@ struct Rating: View {
                                     .foregroundColor(self.selected >= item ? .yellow : .gray)
                                     .onTapGesture {
                                         self.selected = item
-                                        sheetViewModal = true
+                                        self.isActive = true
                                     }
-                                    .sheet(isPresented: $sheetViewModal) {
-                                        UlasanModal(bengkel: bengkel, selected: selected)
+                                    .sheet(isPresented: self.$isActive) {
+                                        UlasanModal(bengkel: bengkel, selected: selected, isActive: self.$isActive)
                                     }
                             }
                             Spacer()
@@ -85,7 +84,7 @@ struct Rating: View {
                 }
             }
         } else {
-            //            TODO: Loading Screen
+            // TODO: Loading Screen
             Text("Tambahin Loading Screen dong pas Production")
         }
     }
@@ -94,7 +93,7 @@ struct Rating: View {
 struct Rating_Previews: PreviewProvider {
     static var previews: some View {
         Rating(order: Order(id: "1GYgKE6tXGRS3icCtVxI",
-                            bengkelId: "pX578lcGxL1I1b2j9a1y",
+                            bengkelId: "yn2iMDl1Kc0Orv6tb3vx",
                             customerId: "mRJRlGEwQ7sSOsY2xjSf",
                             motor: Motor(brand: .honda,
                                          model: "Beat",
@@ -103,13 +102,5 @@ struct Rating_Previews: PreviewProvider {
                             schedule: Date()))
             .previewLayout(.sizeThatFits)
             .padding()
-    }
-}
-
-extension Rating {
-    class RatingViewModel: ObservableObject {
-        func convertBengkelId(_ bengkel: Bengkel) {
-
-        }
     }
 }

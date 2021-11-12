@@ -14,9 +14,10 @@ extension UlasanModal {
         @Published var text = ""
         @Published var isCheck: Bool = false
         @Published var bengkel: Bengkel
-
+        @Published var isDoneReview: Bool = false
         var bengkelRepository: BengkelRepository = .shared
         var customerRepository: CustomerRepository = .shared
+        
 
         init(bengkel: Bengkel, selected: Int) {
             self.bengkel = bengkel
@@ -35,6 +36,5 @@ extension UlasanModal {
             default: return
             }
         }
-
     }
 }

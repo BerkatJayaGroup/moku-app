@@ -11,9 +11,12 @@ import SDWebImageSwiftUI
 struct UlasanModal: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: ViewModel
-
-    init(bengkel: Bengkel, selected: Int) {
+    @Binding var isRootActive: Bool
+    
+    init(bengkel: Bengkel, selected: Int, isActive: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, selected: selected))
+        _isRootActive = isActive
+        print(isRootActive)
     }
     var body: some View {
         NavigationView {
@@ -24,7 +27,7 @@ struct UlasanModal: View {
                     Text(viewModel.bengkel.address)
                         .font(.system(size: 13))
                 }
-                .padding(.bottom, 20)
+                .padding()
                 if let photo = viewModel.bengkel.photos.first {
                     WebImage(url: URL(string: photo))
                         .resizable()
@@ -75,6 +78,7 @@ struct UlasanModal: View {
                 .padding()
                 Button {
                     viewModel.sendReview()
+                    viewModel.isDoneReview = true
                 } label: {
                     Text("Kirim")
                         .fontWeight(.semibold)
@@ -83,14 +87,18 @@ struct UlasanModal: View {
                         .frame(width: 325, height: 45)
                         .background(Color("PrimaryColor"))
                         .cornerRadius(8)
-                        .onTapGesture {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+                }
+                .sheet(isPresented: $viewModel.isDoneReview) {
+                    isRootActive = false
+                } content: {
+                    UlasanAftarSend()
                 }
             }
             .navigationTitle("Ulasan")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("Batal") {presentationMode.wrappedValue.dismiss()})
+            .navigationBarItems(leading: Button("Batal") {presentationMode.wrappedValue.dismiss()
+                self.isRootActive = false
+            })
             .onTapGesture {
                 self.endTextEditing()
             }

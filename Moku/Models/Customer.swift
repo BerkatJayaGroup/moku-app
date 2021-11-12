@@ -31,7 +31,7 @@ extension Customer {
         ],
         ordersToRate: [
             Order(id: "1GYgKE6tXGRS3icCtVxI",
-                  bengkelId: "pX578lcGxL1I1b2j9a1y",
+                  bengkelId: "yn2iMDl1Kc0Orv6tb3vx",
                   customerId: "mRJRlGEwQ7sSOsY2xjSf",
                   motor: Motor(brand: .honda,
                                model: "Beat",
