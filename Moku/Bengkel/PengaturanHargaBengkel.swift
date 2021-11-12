@@ -87,7 +87,7 @@ struct PengaturanHargaBengkel: View {
             for brand in pengaturanBengkelForm.selectedBrand {
                 bengkelBaru.brands.insert(brand)
             }
-                        
+
             for mech in pengaturanBengkelForm.mechanics {
                 var mekBaru = Mekanik(name: mech.name)
                 guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }

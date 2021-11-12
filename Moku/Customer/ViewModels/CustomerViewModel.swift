@@ -28,7 +28,7 @@ extension DaftarCustomer {
 
         init() {}
 
-        func create (_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
+        func create(_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
             repository.add(customer: customer) { docRef in
                 docRef.getDocument { snapshot, _ in
                     if let snapshot = snapshot {

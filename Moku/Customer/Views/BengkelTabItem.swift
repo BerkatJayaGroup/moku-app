@@ -97,7 +97,7 @@ struct BengkelTabItem: View {
 
     @ViewBuilder
     private func listOfNearbyBengkel() -> some View {
-        if viewModel.filteredNearbyBengkel.isEmpty {
+        if BengkelRepository.shared.bengkel.isEmpty {
             VStack {
                 Image("EmptyBengkelPlaceholder")
                     .resizable()
@@ -106,9 +106,13 @@ struct BengkelTabItem: View {
             }
         } else {
             LazyVStack {
-                ForEach(viewModel.filteredNearbyBengkel, id: \.name) { bengkel in
+                ForEach(BengkelRepository.shared.bengkel, id: \.name) { bengkel in
                     NavigationLink(
-                        destination: BengkelDetail(bengkel: bengkel, isRootActive: self.$isActive, isHideTabBar: self.$isHideTabBar),
+                        destination: BengkelDetail(
+                            bengkel: bengkel, 
+                            isRootActive: self.$isActive, 
+                            isHideTabBar: self.$isHideTabBar
+                        ),
                         isActive: self.$isActive) {
                         BengkelList(bengkel: bengkel)
                             .padding(5)

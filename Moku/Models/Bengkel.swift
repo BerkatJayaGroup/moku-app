@@ -69,12 +69,15 @@ extension Bengkel {
 
 extension Bengkel {
     static let preview = Bengkel(
-        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "1234", email: "johndoe@example.com"),
-        name: "Dsdsda",
-        phoneNumber: "Berkat Jaya",
-        location: Location(address: "x", longitude: 1, latitude: 1),
+        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "082280698758", email: "johndoe@example.com"),
+        name: "Berkat Jaya Motor",
+        phoneNumber: "082280698758",
+        location: Location(
+            address: "Sampora Kecamatan Cisauk Kawasan Taman Kota Barat, Gg. Kavling 2 No.3, Bumi, Serpong Damai, Tangerang, Banten 15345",
+            longitude: 106.65203368260228, latitude: -6.305695785964465),
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [false, true, true, true, false, false, false],
+        brands: [.honda, .yamaha, .kawasaki],
         minPrice: "20000",
         maxPrice: "100000",
         fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP",

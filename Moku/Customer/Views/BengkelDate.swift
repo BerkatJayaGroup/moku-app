@@ -13,22 +13,14 @@ struct BengkelDate: View {
     private let tggl = [true, false, true, true, false, true, false]
     @StateObject private var viewModel: ViewModel
 
-    init(bengkel: Bengkel, typeOfService: Order.Service) {
-        let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
-        _viewModel = StateObject(wrappedValue: viewModel)
-
     @Binding var isRootActive: Bool
-
     @Binding var isHideTabBar: Bool
 
     init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
-        _typeOfService = State(wrappedValue: typeOfService)
-        _bengkel = State(wrappedValue: bengkel)
+        let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
+        _viewModel = StateObject(wrappedValue: viewModel)
         _isRootActive = isRootActive
         _isHideTabBar = isHideTabBar
-        if let uid = Auth.auth().currentUser?.uid {
-            userId = uid
-        }
     }
 
     let columns = [
@@ -38,6 +30,7 @@ struct BengkelDate: View {
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10)
     ]
+
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -88,10 +81,9 @@ struct BengkelDate: View {
                     }
                     print("apa aja dah")
                 } else {
-                    // alert
-                print("apa aja dah else")
+                    print("apa aja dah else")
                 }
-            }label: {
+            } label: {
                 Text("Lanjutkan")
             }
             .frame(width: 300, height: 50)

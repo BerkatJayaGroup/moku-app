@@ -65,20 +65,20 @@ struct AddMekanik: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: self.sourceType, pickerResult: $image)
         }
-        .actionSheet(isPresented: $showActionSheet) { () -> ActionSheet in
+        .actionSheet(isPresented: $showActionSheet) {
             ActionSheet(
                 title: Text("Choose mode"),
                 message: Text("Please choose your preferred mode to set your profile image"),
                 buttons: [
-                    ActionSheet.Button.default(Text("Camera")) {
+                    .default(Text("Camera")) {
                         self.showImagePicker.toggle()
                         self.sourceType = .camera
                     },
-                    ActionSheet.Button.default(Text("Photo Library")) {
+                    .default(Text("Photo Library")) {
                         self.showImagePicker.toggle()
                         self.sourceType = .photoLibrary
                     },
-                    ActionSheet.Button.cancel()
+                    .cancel()
                 ]
             )
         }

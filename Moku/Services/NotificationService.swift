@@ -15,6 +15,21 @@ final class NotificationService: NSObject, ObservableObject {
         var body: String
     }
 
+    enum Notification {
+        case orderPlaced
+        case orderCanceled(_ reason: Order.CancelingReason)
+
+        var content: Content {
+            switch self {
+            case .orderPlaced:
+                return Content(title: "Yay, ada pesanan yang masuk!", body: "Silahkan cek pesanan yang masuk.")
+
+            case .orderCanceled(let reason):
+                return Content(title: "Yah, pesanan dibatalkan!", body: reason.rawValue)
+            }
+        }
+    }
+
     static let shared = NotificationService()
 
     private override init() {}
@@ -23,7 +38,7 @@ final class NotificationService: NSObject, ObservableObject {
         Messaging.messaging().delegate = shared
         UNUserNotificationCenter.current().delegate = shared
 
-        let authOptions: UNAuthorizationOptions = [.badge, .sound, .alert, .provisional]
+        let authOptions: UNAuthorizationOptions = [.badge, .sound, .alert]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in }
 
         application.registerForRemoteNotifications()
@@ -35,7 +50,7 @@ final class NotificationService: NSObject, ObservableObject {
         }
     }
 
-    func send(to identifiers: [String], content: Content, imageUrl: String? = nil) {
+    func send(to identifiers: [String], notification: Notification, imageUrl: String? = nil) {
         // JSON Data
         var json: [String: Any] = [
             "content_available": true,
@@ -43,8 +58,8 @@ final class NotificationService: NSObject, ObservableObject {
             "registration_ids": identifiers,
             "priority": "high",
             "notification": [
-                "title": content.title,
-                "body": content.body
+                "title": notification.content.title,
+                "body": notification.content.body
             ]
         ]
 
@@ -65,6 +80,9 @@ final class NotificationService: NSObject, ObservableObject {
         request.httpBody = jsonData
 
         URLSession.shared.dataTask(with: request) { _, _, _  in }.resume()
+        identifiers.forEach { token in
+            print(token)
+        }
     }
 
     func schedule() {

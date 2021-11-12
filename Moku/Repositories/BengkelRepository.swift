@@ -18,7 +18,13 @@ final class BengkelRepository: ObservableObject {
     private let store = Firestore.firestore().collection(Collection.bengkel)
 
     // MARK: Properties
-    @Published var bengkel = [Bengkel]()
+    @Published var bengkel = [Bengkel]() {
+        didSet {
+            bengkel.forEach { bengkel in
+                print("lmao", bengkel.name)
+            }
+        }
+    }
 
     // Initial Setup
     private init() {
@@ -33,10 +39,10 @@ final class BengkelRepository: ObservableObject {
         }
     }
 
-    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
+    func fetch(id: String, completionHandler: ((Bengkel) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
-                if let data = try document?.data(as: T.self) {
+                if let data = try document?.data(as: Bengkel.self) {
                     completionHandler?(data)
                 }
             } catch {

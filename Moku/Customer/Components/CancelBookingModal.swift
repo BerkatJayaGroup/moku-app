@@ -40,12 +40,12 @@ struct CancelBookingModal: View {
                     EmptyView()
                 }
 
-                Button("Selesai", action: {
+                Button("Selesai") {
                     if let selection = selection {
                         isActive = true
-                        orderCustomerViewModel.cancelBooking(order: &order, alasan: selection)
+                        orderCustomerViewModel.cancelBooking(order: order, reason: selection)
                     }
-                })
+                }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color("PrimaryColor"))

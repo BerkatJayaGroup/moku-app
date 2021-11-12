@@ -41,14 +41,16 @@ final class CustomerRepository: ObservableObject {
             }
         }
     }
-  
+
     func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
-        do {
-            let docRef = store.document(customer.id)
-            try docRef.setData(from: customer)
-            completionHandler?(docRef)
-        } catch {
-            RepositoryHelper.handleParsingError(error)
+        if let id = Auth.auth().currentUser?.uid {
+            let docRef = store.document(id)
+            do {
+                try docRef.setData(from: customer)
+                completionHandler?(docRef)
+            } catch {
+                RepositoryHelper.handleParsingError(error)
+            }
         }
     }
 

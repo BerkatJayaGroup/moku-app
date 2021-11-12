@@ -88,9 +88,11 @@ final class OrderRepository: ObservableObject {
         store.document(order.id).delete()
     }
 
-    func update(order: Order) {
+    func update(order: Order, completioHandler: ((Error?) -> Void)? = nil) {
         do {
-            try store.document(order.id).setData(from: order, merge: true)
+            try store.document(order.id).setData(from: order, merge: true) { error in
+                completioHandler?(error)
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

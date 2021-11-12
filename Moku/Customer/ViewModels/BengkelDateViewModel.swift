@@ -38,9 +38,7 @@ extension BengkelDate {
                         hours[String(number.schedule.get(.hour))] = 1
                     }
                 }
-                print("Disini Hours: \(hours)")
             }
-            print(hours)
             return hours
         }
 
@@ -58,7 +56,6 @@ extension BengkelDate {
         }
 
         func checkAvailability(index: Int) -> Bool {
-            print("Coba disini")
 //        TODO: GET MEKANIK MOTOR.COUNT
             if occupiedHours.keys.contains(String(index)) && /* bengkel.mekaniks.count */ 4  <= occupiedHours[String(index)] ?? 0 {
                 return true

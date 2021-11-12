@@ -88,14 +88,22 @@ struct BengkelOwnerOnboardingView: View {
                         } else {
                             ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
                         }
-                    }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
-                        ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
-                            self.shouldPresentImagePicker = true
-                            self.shouldPresentCamera = true
-                        }), ActionSheet.Button.default(Text("Photo Library"), action: {
-                            self.shouldPresentImagePicker = true
-                            self.shouldPresentCamera = false
-                        }), ActionSheet.Button.cancel()])
+                    }.actionSheet(isPresented: $shouldPresentActionScheet) {
+                        ActionSheet(
+                            title: Text("Choose mode"),
+                            message: Text("Please choose your preferred mode to set your profile image"),
+                            buttons: [
+                                .default(Text("Camera")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = true
+                                },
+                                .default(Text("Photo Library")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = false
+                                },
+                                .cancel()
+                            ]
+                        )
                     }
                 }
                 Spacer()
@@ -154,8 +162,7 @@ extension BengkelOwnerOnboardingView {
                             HStack {
                                 Image(systemName: "mappin.circle")
                                 Text("Cari alamat bengkelmu disini")
-                            }
-                            .foregroundColor(.tertiaryLabel)
+                            }.foregroundColor(.tertiaryLabel)
                         }
                     }
                     Spacer()
