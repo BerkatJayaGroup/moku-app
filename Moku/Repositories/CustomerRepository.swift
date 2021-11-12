@@ -41,7 +41,7 @@ final class CustomerRepository: ObservableObject {
             }
         }
     }
-  
+
     func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
             let docRef = store.document(customer.id)
@@ -56,9 +56,12 @@ final class CustomerRepository: ObservableObject {
         store.document(customer.id).delete()
     }
 
-    func update(customer: Customer) {
+    func update(customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
         do {
             try store.document(customer.id).setData(from: customer, merge: true)
+            fetch(id: customer.id) { updatedCustomer in
+                completionHandler?(updatedCustomer)
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

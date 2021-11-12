@@ -13,23 +13,16 @@ struct BengkelDate: View {
     private let tggl = [true, false, true, true, false, true, false]
     @StateObject private var viewModel: ViewModel
 
-    init(bengkel: Bengkel, typeOfService: Order.Service) {
+    init(bengkel: Bengkel, typeOfService: Order.Service, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
+    }
 
     @Binding var isRootActive: Bool
 
     @Binding var isHideTabBar: Bool
-
-    init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
-        _typeOfService = State(wrappedValue: typeOfService)
-        _bengkel = State(wrappedValue: bengkel)
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
-        if let uid = Auth.auth().currentUser?.uid {
-            userId = uid
-        }
-    }
 
     let columns = [
         GridItem(.fixed(60), spacing: 10),

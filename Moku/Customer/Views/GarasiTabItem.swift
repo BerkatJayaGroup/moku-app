@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct GarasiTabItem: View {
-    @State private var isModalPresented = false
     @State private var index = 0
 
-    @ObservedObject private var viewModel: GarageTabViewModel = .shared
+    @State private var isProfileModalPresented = false
+    @State private var isAddMotorModalPresented = false
 
-    let dateFormatter = DateFormatter()
-    
+    @ObservedObject private var viewModel: GarageTabViewModel = .shared
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -50,10 +49,15 @@ struct GarasiTabItem: View {
 
     private func profileSection() -> some View {
         HStack {
-            if let name = viewModel.customer?.name {
-                Text(name)
+            if let customer = viewModel.customer {
+                Text(customer.name)
                 Spacer()
                 Text("Profil").foregroundColor(AppColor.primaryColor)
+                    .onTapGesture {
+                        isProfileModalPresented.toggle()
+                    }.sheet(isPresented: $isProfileModalPresented) {
+                        EditProfileModal(customer: customer)
+                    }
             } else {
                 Text("Loading...")
             }
@@ -70,7 +74,20 @@ struct GarasiTabItem: View {
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                            .frame(width: 300, height: 300)
                     }
+                    VStack {
+                        Image("MotorGray")
+                        Button("+ Tambah Motor Baru") {
+                            // TODO: add modal tambah motor
+                        }.padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color("PrimaryColor"))
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                            .padding(.horizontal)
+                    }.padding()
+                        .frame(width: 300, height: 300)
                 }
                 .padding()
             }
@@ -93,6 +110,7 @@ struct GarasiTabItem: View {
                     Text("Servis Selanjutnya")
                     Text("Tanggal Bayar Pajak")
                 }
+                Spacer()
                 VStack(alignment: .leading) {
                     Text("B 1111 xxx")
                     Text("2017")
@@ -110,32 +128,47 @@ struct GarasiTabItem: View {
                 Text("Belum ada riwayat servis")
             } else {
                 ForEach(0..<orders.count) { index in
-                    orderCards(order: orders[index])
+                    OrderCards(order: orders[index])
                 }
             }
 
         }
     }
+}
 
-    private func orderCards(order: Order) -> some View {
+struct OrderCards: View {
+    @ObservedObject private var viewModel: GarageTabViewModel = .shared
+    @State private var isModalPresented = false
+    var orderDetail: Order
+    let dateFormatter = DateFormatter()
+
+    init(order: Order) {
+        orderDetail = order
+        viewModel.getBengkelFromOrder(bengkelId: order.bengkelId)
+    }
+
+    var body: some View {
         VStack(alignment: .leading) {
             Text(viewModel.bengkel?.name ?? "Loading...")
             HStack {
                 VStack(alignment: .leading) {
-                    Text(order.motor.brand.rawValue)
-                    Text(order.typeOfService.rawValue)
+                    Text(orderDetail.motor.brand.rawValue)
+                    Text(orderDetail.typeOfService.rawValue)
                 }
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text(dateFormatter.string(from: order.createdAt))
-                    Text(viewModel.customer?.name ?? "Loading...")
+                    Text(dateFormatter.string(from: orderDetail.createdAt))
+                    Text(viewModel.bengkel?.name ?? "Loading...")
                 }
             }
         }.onTapGesture {
             isModalPresented.toggle()
-        }.fullScreenCover(isPresented: $isModalPresented, content: OrderHistoryDetailModal.init)
+        }.sheet(isPresented: $isModalPresented) {
+            if let bengkelDetail = viewModel.bengkel {
+                OrderHistoryDetailModal(bengkel: bengkelDetail, order: orderDetail)
+            }
+        }
     }
-    
 }
 
 struct GarasiTabItem_Previews: PreviewProvider {

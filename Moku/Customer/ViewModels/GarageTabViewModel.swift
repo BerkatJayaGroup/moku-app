@@ -15,12 +15,13 @@ class GarageTabViewModel: ObservableObject {
     @Published var isCustomer = false
     @ObservedObject private var orderRepository: OrderRepository = .shared
     @ObservedObject private var bengkelRepository: BengkelRepository = .shared
+    @ObservedObject private var customerRepository: CustomerRepository = .shared
 
     static let shared = GarageTabViewModel()
 
-    var customerMotors = [Motor]()
-    var customerOrders = [Order]()
-    var bengkel: Bengkel?
+    @Published var customerMotors = [Motor]()
+    @Published var customerOrders = [Order]()
+    @Published var bengkel: Bengkel?
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -50,11 +51,19 @@ class GarageTabViewModel: ObservableObject {
         }.store(in: &subscriptions)
     }
 
-    private func getOrders(customerId: String) {
-        orderRepository.fetch(customerId: customerId)
+    func update(_ customer: Customer) {
+        customerRepository.update(customer: customer) { updatedCustomer in
+            self.customer = updatedCustomer
+        }
     }
 
-    private func getBengkelFromOrder(bengkelId: String) {
+    private func getOrders(customerId: String) {
+        orderRepository.fetch(customerId: customerId) { order in
+            self.customerOrders = order
+        }
+    }
+
+    func getBengkelFromOrder(bengkelId: String) {
         bengkelRepository.fetch(id: bengkelId) { bengkel in
             self.bengkel = bengkel
         }
