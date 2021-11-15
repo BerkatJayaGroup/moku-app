@@ -10,15 +10,18 @@ import SwiftUI
 struct TimeStack: View {
     var index: Int
     var isSelected: Bool
+    var isDisabled = false
     var onSelect: ((Int) -> Void) = {_ in }
     var body: some View {
         Text("\(index):00")
             .frame(width: 50, height: 30)
-            .foregroundColor(isSelected ? .white : AppColor.darkGray)
+            .foregroundColor(isDisabled ? Color.white : isSelected ? .white : AppColor.darkGray)
             .padding(5)
-            .background( isSelected ? AppColor.primaryColor : AppColor.lightGray)
+            .background(isDisabled ? AppColor.darkGray : isSelected ? AppColor.primaryColor : AppColor.lightGray)
             .cornerRadius(10).onTapGesture {
-                self.onSelect(self.index)
+                if !isDisabled {
+                    self.onSelect(self.index)
+                }
             }
     }
 }

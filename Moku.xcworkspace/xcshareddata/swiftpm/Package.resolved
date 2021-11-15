@@ -74,6 +74,15 @@
         }
       },
       {
+        "package": "SnapToScroll",
+        "repositoryURL": "https://github.com/swiftui-library/hstack-snap-to-scroll.git",
+        "state": {
+          "branch": null,
+          "revision": "e2729c551de062bb8a1500ceee9f898f8d5313cb",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "leveldb",
         "repositoryURL": "https://github.com/firebase/leveldb.git",
         "state": {
@@ -89,6 +98,15 @@
           "branch": null,
           "revision": "7ee9ef9f627d85cbe1b8c4f49a3ed26eed216c77",
           "version": "2.30908.0"
+        }
+      },
+      {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/AndreaMiotto/PartialSheet",
+        "state": {
+          "branch": null,
+          "revision": "422d748bfb149b2af4b48e43b7b6197bd8a727c1",
+          "version": "2.1.14"
         }
       },
       {

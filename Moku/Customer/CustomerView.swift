@@ -26,10 +26,10 @@ struct CustomerView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            Text("Garasi View")
+            GarasiTabItem()
                 .tabItem {
                     Image(systemName: "star")
-                    Text("Bengkel")
+                    Text("Garasi")
                 }
         }
     }

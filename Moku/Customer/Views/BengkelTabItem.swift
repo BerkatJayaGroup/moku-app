@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct BengkelTabItem: View {
     @StateObject private var viewModel = ViewModel()
@@ -13,6 +14,9 @@ struct BengkelTabItem: View {
 
     @State private var showingSheet = false
     @State private var showModal = false
+
+    @State var isActive: Bool = false
+    @State var isHideTabBar: Bool = false
 
     var lastOrder = true
 
@@ -79,6 +83,9 @@ struct BengkelTabItem: View {
             }
             .edgesIgnoringSafeArea(.top)
             .navigationBarHidden(true)
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = self.isHideTabBar
+            }
         }
     }
 
@@ -100,7 +107,9 @@ struct BengkelTabItem: View {
         } else {
             LazyVStack {
                 ForEach(viewModel.filteredNearbyBengkel, id: \.name) { bengkel in
-                    NavigationLink(destination: BengkelDetail(bengkel: bengkel)) {
+                    NavigationLink(
+                        destination: BengkelDetail(bengkel: bengkel, isRootActive: self.$isActive, isHideTabBar: self.$isHideTabBar),
+                        isActive: self.$isActive) {
                         BengkelList(bengkel: bengkel)
                             .padding(5)
                             .background(Color.white)
