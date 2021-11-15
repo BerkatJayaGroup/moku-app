@@ -117,17 +117,18 @@ struct PengaturanBengkel: View {
                 Text("MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                     .frame(width: proxy.size.width, alignment: .leading)
+
                 if !mechanics.isEmpty {
-                    List {
-                        ForEach(mechanics) { mech in
-                            HStack {
-                                Text(mech.name)
-                                Spacer()
-                            }
-                        }.onDelete(perform: deleteItem)
+                    VStack(alignment: .leading) {
+                        ForEach(mechanics, id: \.self) { (mech) in
+                            Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
+                            Divider()
+                                .background(Color("DarkGray"))
+                        }.onDelete(perform: self.deleteItem)
                     }
                     Divider()
                 }
+
                 Button {
                     self.isAddMekanik.toggle()
                     print($mechanics.count)
