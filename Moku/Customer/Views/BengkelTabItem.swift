@@ -14,7 +14,7 @@ struct BengkelTabItem: View {
 
     @State private var showingSheet = false
     @State private var showModal = false
-
+    
     @State var isActive: Bool = false
     @State var isHideTabBar: Bool = false
 
@@ -69,13 +69,7 @@ struct BengkelTabItem: View {
                             .frame(height: 5)
                             .edgesIgnoringSafeArea(.horizontal)
 
-                        if lastOrder == true {
-                            rantingView()
-                            Rectangle()
-                                .fill(Color(.systemGray6))
-                                .frame(height: 5)
-                                .edgesIgnoringSafeArea(.horizontal)
-                        }
+                        ratingView()
 
                         listOfNearbyBengkel()
                     }
@@ -86,6 +80,39 @@ struct BengkelTabItem: View {
             .introspectTabBarController { (UITabBarController) in
                 UITabBarController.tabBar.isHidden = self.isHideTabBar
             }
+        }
+    }
+
+    @ViewBuilder
+    private func ratingView() -> some View {
+        switch SessionService.shared.user {
+        case .customer(let customer):
+            if !customer.ordersToRate.isEmpty {
+                ScrollView(.horizontal) {
+                    ForEach(customer.ordersToRate.reversed(), id: \.id) { orderRate in
+                        VStack(alignment: .leading) {
+                            Text("Kasih rating dulu yuk!")
+                                .font(.headline)
+                            Rating(order: orderRate)
+                                .frame(width: 325)
+                                .padding(10)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                        }
+                        .padding(10)
+                        .padding(.horizontal, 10)
+                        Rectangle()
+                            .fill(Color(.systemGray6))
+                            .frame(height: 5)
+                            .edgesIgnoringSafeArea(.horizontal)
+                    }
+                }
+            }
+//               let order = customer.ordersToRate.last {
+//
+//            }
+        default: EmptyView()
         }
     }
 
@@ -187,19 +214,6 @@ struct BengkelTabItem: View {
         .padding(.horizontal, 10)
     }
 
-    private func rantingView() -> some View {
-        VStack(alignment: .leading) {
-            Text("Kasih rating dulu yuk!")
-                .font(.headline)
-            Rating()
-                .padding(10)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-        }
-        .padding(10)
-        .padding(.horizontal, 10)
-    }
 }
 
 struct BengkelTabItem_Previews: PreviewProvider {

@@ -40,6 +40,9 @@ extension DaftarCustomer {
                         } catch {
                             print(error.localizedDescription)
                         }
+
+                    } catch {
+                        print(error.localizedDescription)
                     }
                 }
             }
@@ -57,6 +60,7 @@ extension DaftarCustomer {
             let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
             return emailPredicate.evaluate(with: email)
         }
+      
         func validateEmptyName () {
             if name.isEmpty {
                 nameCheck = false
@@ -64,6 +68,7 @@ extension DaftarCustomer {
                 nameCheck = true
             }
         }
+
         func isPhoneNumberEmpty() {
             if nomorTelepon.isEmpty {
                 nomorCheck = false

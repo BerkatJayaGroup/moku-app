@@ -26,6 +26,8 @@ extension BengkelTabItem {
 
         @Published var nearbyBengkel = [Bengkel]()
 
+        @ObservedObject var orderRepository: OrderRepository = .shared
+
         var filteredNearbyBengkel: [Bengkel] {
             let query = searchQuery.lowercased().trimmingCharacters(in: .whitespaces)
 

@@ -33,7 +33,6 @@ extension BookingSummary {
         @Published var docRef: DocumentReference?
 
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
-
         init(order: Order) {
             self.order = order
 

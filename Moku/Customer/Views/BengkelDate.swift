@@ -9,8 +9,9 @@ import SwiftUI
 import FirebaseAuth
 import Combine
 
+private let tggl = [true, false, true, true, false, true, false]
+
 struct BengkelDate: View {
-    private let tggl = [true, false, true, true, false, true, false]
     @StateObject private var viewModel: ViewModel
 
     @Binding var isRootActive: Bool
@@ -77,7 +78,6 @@ struct BengkelDate: View {
                     viewModel.schedule = Calendar.current.date(from: tggl) ?? Date()
                     if let selectedMotor = SessionService.shared.selectedMotor {
                         viewModel.order = Order(bengkelId: viewModel.bengkel.id, customerId: viewModel.userId, motor: selectedMotor, typeOfService: viewModel.typeOfService, notes: viewModel.text, schedule: viewModel.schedule)
-
                     }
                     print("apa aja dah")
                 } else {

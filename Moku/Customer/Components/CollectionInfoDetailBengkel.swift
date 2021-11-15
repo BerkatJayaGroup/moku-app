@@ -13,19 +13,28 @@ struct CollectionInfoDetailBengkel: View {
     var titleInfo: String
     var imageInfo: String
     var mainInfo: String
-    var cta: String
+    var cta: CallToAction
+
+    var onTap: (() -> Void)?
+
     var body: some View {
         VStack(spacing: 6) {
             Text("\(titleInfo)")
-                .font(Font.system(size: 11))
-                .foregroundColor(.gray)
+                .font(.caption2)
+                .foregroundColor(.secondaryLabel)
             HStack {
                 Image(systemName: "\(imageInfo)")
-                    .foregroundColor(Color("PrimaryColor"))
-                Text("\(mainInfo)")
-                    .fontWeight(.bold)
+                    .foregroundColor(AppColor.primaryColor)
+                Text("\(mainInfo)").font(.headline)
             }
-            if cta == "Lihat Detail"{
+
+            Button {
+                onTap?()
+            } label: {
+                Text(cta.rawValue).font(.caption2.bold())
+            }
+
+            if cta == .seeDetail {
                 Button {
                     partialSheetManager.showPartialSheet {
                         print("normal sheet dismissed")
@@ -33,22 +42,32 @@ struct CollectionInfoDetailBengkel: View {
                         SheetView(mainInfo: mainInfo)
                     }
                 } label: {
-                    Text("\(cta)")
-                        .foregroundColor(Color("PrimaryColor"))
+                    Text("\(cta.rawValue)").foregroundColor(AppColor.primaryColor)
                 }
             } else {
-                Text("\(cta)")
-                    .foregroundColor(Color("PrimaryColor"))
+                Text("\(cta.rawValue)").foregroundColor(AppColor.primaryColor)
             }
         }
+    }
+
+    func style(proxy: GeometryProxy) -> some View {
+        body
+            .padding(.all, 4)
+            .frame(width: proxy.size.width * 0.3, alignment: .center)
+            .background(AppColor.lightGray)
+            .cornerRadius(8)
     }
 }
 
 struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CollectionInfoDetailBengkel(titleInfo: "Rating", imageInfo: "star", mainInfo: "5.0", cta: "Lihat Detail")
-                .previewLayout(.sizeThatFits)
+            CollectionInfoDetailBengkel(
+                titleInfo: "Rating",
+                imageInfo: "star",
+                mainInfo: "5.0",
+                cta: .seeDetail
+            ).previewLayout(.sizeThatFits)
         }
         .addPartialSheet()
         .navigationViewStyle(StackNavigationViewStyle())
@@ -57,5 +76,7 @@ struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
 }
 
 extension CollectionInfoDetailBengkel {
-
+    enum CallToAction: String {
+        case seeDetail = "Lihat Detail"
+    }
 }

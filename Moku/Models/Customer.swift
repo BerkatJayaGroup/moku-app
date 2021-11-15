@@ -14,11 +14,14 @@ struct Customer: Codable {
     var phoneNumber: String
     var motors: [Motor]?
     var fcmToken: String
+//    TODO: Nunggu Bengkel Side ngetrigger Order
+//    OrdersToRate bakal keisi kalo di triger bengkel
+    var ordersToRate = [Order]()
 }
 
 extension Customer {
     static let preview = Customer(
-        //        id: UUID().uuidString,
+        id: "L34zGzxCO6XpMOkpqR9sBYa1Rse2",
         name: "John Doe",
         phoneNumber: "082280806969",
         motors: [
@@ -28,5 +31,15 @@ extension Customer {
             Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
         ],
         fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP"
+        ordersToRate: [
+            Order(id: "1GYgKE6tXGRS3icCtVxI",
+                  bengkelId: "yn2iMDl1Kc0Orv6tb3vx",
+                  customerId: "mRJRlGEwQ7sSOsY2xjSf",
+                  motor: Motor(brand: .honda,
+                               model: "Beat",
+                               cc: 110),
+                  typeOfService: .perbaikan,
+                  schedule: Date())
+        ]
     )
 }

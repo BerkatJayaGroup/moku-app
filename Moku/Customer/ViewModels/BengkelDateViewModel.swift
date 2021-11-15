@@ -49,7 +49,7 @@ extension BengkelDate {
             if let uid = Auth.auth().currentUser?.uid {
                 userId = uid
             }
-            orderRepository.fetch(bengkel.id)
+            orderRepository.fetch(bengkelId: bengkel.id)
             $order.sink { order in
                 self.isActive = order != nil
             }.store(in: &subscription)
