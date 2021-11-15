@@ -48,7 +48,6 @@ struct PengaturanBengkel: View {
     var isFormValid: Bool {
         !brandMotor.isEmpty && !ccMotor.isEmpty && !mechanics.isEmpty
     }
-
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {

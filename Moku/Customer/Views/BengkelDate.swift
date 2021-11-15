@@ -15,7 +15,6 @@ struct BengkelDate: View {
     @StateObject private var viewModel: ViewModel
 
     @Binding var isRootActive: Bool
-
     @Binding var isHideTabBar: Bool
 
     init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
@@ -78,7 +77,6 @@ struct BengkelDate: View {
                     viewModel.schedule = Calendar.current.date(from: tggl) ?? Date()
                     if let selectedMotor = SessionService.shared.selectedMotor {
                         viewModel.order = Order(bengkelId: viewModel.bengkel.id, customerId: viewModel.userId, motor: selectedMotor, typeOfService: viewModel.typeOfService, notes: viewModel.text, schedule: viewModel.schedule)
-
                     }
                     print("apa aja dah")
                 } else {

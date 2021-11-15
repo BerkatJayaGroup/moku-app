@@ -24,6 +24,8 @@ final class OrderRepository: ObservableObject {
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
 
+    @Published var filteredOrdersStatus = [Order]()
+
     @Published var customerOrders = [Order]()
 
     // Initial Setup
@@ -50,11 +52,18 @@ final class OrderRepository: ObservableObject {
             }
 
         }
-
     }
 
-    func fetch(_ bengkelId: String) {
-        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { snapshot, error in
+    func fetchOrderHistory(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
+        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+            let customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+            completionHandler?(customerOrders)
+        }
+    }
+
+    func fetch(bengkelId: String) {
+        store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
                 print("Error getting stories: \(error.localizedDescription)")
                 return
@@ -69,6 +78,22 @@ final class OrderRepository: ObservableObject {
             }
         }
     }
+
+    func fetch(_ customerId: String) {
+            store.whereField("customerId", isEqualTo: customerId).addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    print("Error getting stories: \(error.localizedDescription)")
+                    return
+                }
+                let order = querySnapshot?.documents.compactMap { document in
+                    try? document.data(as: Order.self
+                    )
+                } ?? []
+                DispatchQueue.main.async {
+                    self.filteredOrdersStatus = order
+                }
+            }
+        }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {
         do {

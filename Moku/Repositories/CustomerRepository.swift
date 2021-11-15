@@ -29,7 +29,6 @@ final class CustomerRepository: ObservableObject {
             self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
         }
     }
-
     func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
@@ -56,9 +55,12 @@ final class CustomerRepository: ObservableObject {
         store.document(customer.id).delete()
     }
 
-    func update(customer: Customer) {
+    func update(customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
         do {
             try store.document(customer.id).setData(from: customer, merge: true)
+            fetch(id: customer.id) { updatedCustomer in
+                completionHandler?(updatedCustomer)
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
