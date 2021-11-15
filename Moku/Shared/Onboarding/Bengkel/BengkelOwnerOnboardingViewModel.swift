@@ -24,7 +24,7 @@ extension BengkelOwnerOnboardingView {
         @Published var isSelectingLocation = false
 
         @Published var isSubmitting = false
-        
+
         @Published var images: [UIImage] = []
 
         var address: String? {

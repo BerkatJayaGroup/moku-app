@@ -16,10 +16,10 @@ struct PengaturanHargaBengkel: View {
     @State private var min: String = ""
     @State private var max: String = ""
     @ObservedObject var storageService: StorageService = .shared
-    
+
     @State var canSubmit = false
     @State var isSubmitting: Bool = false
-    
+
     var isFormValid: Bool {
         !min.isEmpty && !max.isEmpty
     }
@@ -63,7 +63,7 @@ struct PengaturanHargaBengkel: View {
             }
         }
     }
-    
+
   @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: BengkelView(), isActive: $canSubmit) {EmptyView()}
@@ -84,22 +84,22 @@ struct PengaturanHargaBengkel: View {
             .frame(width: (proxy.size.width * 0.8))
         }
     }
-    
+
     @ViewBuilder
     private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
-    func validateForm(){
+
+    func validateForm() {
         isSubmitting = true
         if isFormValid {
             canSubmit = true
         }
     }
-    
-    func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel){
+
+    func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
 //        Titip di command dulu barangkali besok butuh
 
 //        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
@@ -110,7 +110,7 @@ struct PengaturanHargaBengkel: View {
 //                }
 //            }
 //        }
-      
+
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
@@ -142,7 +142,7 @@ struct PengaturanHargaBengkel: View {
                     bengkelBaru.mekaniks.append(mekBaru)
                 }
             }
-        
+
             for img in bengkelOwnerFormViewModel.images {
                 let imgID = UUID().uuidString
                 storageService.upload(image: img, path: imgID)

@@ -22,7 +22,7 @@ struct DaftarCustomer: View {
                 Text("NAMA")
                     .font(.caption2)
                 VStack(alignment: .leading) {
-                    TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { (isChanged) in
+                    TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { isChanged in
                         if !isChanged {
                             viewModel.validateEmptyName()
                         }

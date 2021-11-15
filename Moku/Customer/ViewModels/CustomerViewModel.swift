@@ -40,14 +40,10 @@ extension DaftarCustomer {
                         } catch {
                             print(error.localizedDescription)
                         }
-
-                    } catch {
-                        print(error.localizedDescription)
                     }
                 }
             }
         }
-
         var isFormInvalid: Bool {
             motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
         }
@@ -60,7 +56,7 @@ extension DaftarCustomer {
             let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
             return emailPredicate.evaluate(with: email)
         }
-      
+
         func validateEmptyName () {
             if name.isEmpty {
                 nameCheck = false

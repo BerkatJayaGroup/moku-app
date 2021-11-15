@@ -30,8 +30,8 @@ struct BengkelOwnerOnboardingView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            VStack(spacing:24) {
-                VStack(alignment: .leading ,spacing:8) {
+            VStack(spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
                     textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                     textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 

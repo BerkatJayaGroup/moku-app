@@ -10,8 +10,8 @@ import SwiftUI
 struct UlasanAftarSend: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     var body: some View {
-        NavigationView{
-            VStack(alignment: .center, spacing: 12){
+        NavigationView {
+            VStack(alignment: .center, spacing: 12) {
                 Image(systemName: "hand.thumbsup.fill")
                     .foregroundColor(AppColor.primaryColor)
                     .font(.system(size: 120))

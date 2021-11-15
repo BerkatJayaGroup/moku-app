@@ -12,7 +12,7 @@ struct UlasanModal: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: ViewModel
     @Binding var isRootActive: Bool
-    
+
     init(bengkel: Bengkel, selected: Int, isActive: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, selected: selected))
         _isRootActive = isActive
@@ -21,7 +21,7 @@ struct UlasanModal: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack{
+                VStack {
                     Text(viewModel.bengkel.name)
                         .font(.system(size: 20, weight: .semibold))
                     Text(viewModel.bengkel.address)

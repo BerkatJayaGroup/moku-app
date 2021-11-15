@@ -75,10 +75,10 @@ struct GarasiTabItem: View {
                     VStack {
                         Image("MotorGray")
                         Button("+ Tambah Motor Baru") {
-                            // TODO: add modal tambah motor
+//                         TODO: add modal tambah motor
                         }.padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color("PrimaryColor"))
+                            .background(AppColor.primaryColor)
                             .foregroundColor(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 5.0))
                             .padding(.horizontal)

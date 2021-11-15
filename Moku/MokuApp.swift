@@ -17,7 +17,7 @@ struct MokuApp: App {
     @StateObject var appState = AppState()
 
     var onboardingData = OnboardingDataModel.data
-  
+
     init() {
         FirebaseApp.configure()
         session = .shared

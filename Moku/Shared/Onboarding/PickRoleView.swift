@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct PickRoleView: View {
-
     //    @State var isNavigateToBengkelOnboarding = false
     @State var motorSelected: Bool = false
     @State var bengkelSelected: Bool = false
@@ -18,9 +17,10 @@ struct PickRoleView: View {
         NavigationView {
             GeometryReader { proxy in
                 VStack {
-                    Button(action: {motorSelected = true
+                    Button {
+                        motorSelected = true
                         bengkelSelected = false
-                    }){
+                    } label: {
                         HStack {
                             Image(systemName: "person")
                                 .foregroundColor(motorSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -33,9 +33,10 @@ struct PickRoleView: View {
                     .frame(width: proxy.size.width * 0.6, height: proxy.size.height * 0.05)
                     .padding(50)
                     .border(motorSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
-                    Button(action: {motorSelected = false
+                    Button {
+                        motorSelected = false
                         bengkelSelected = true
-                    }){
+                    } label: {
                         HStack {
                             Image(systemName: "wrench.and.screwdriver")
                                 .foregroundColor(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -69,6 +70,7 @@ struct PickRoleView: View {
             DaftarCustomer()
         } else {
             BengkelOwnerOnboardingView()
+        }
     }
 }
 

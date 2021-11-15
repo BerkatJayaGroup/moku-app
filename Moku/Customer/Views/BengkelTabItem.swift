@@ -14,7 +14,7 @@ struct BengkelTabItem: View {
 
     @State private var showingSheet = false
     @State private var showModal = false
-    
+
     @State var isActive: Bool = false
     @State var isHideTabBar: Bool = false
 
@@ -136,8 +136,8 @@ struct BengkelTabItem: View {
                 ForEach(BengkelRepository.shared.bengkel, id: \.name) { bengkel in
                     NavigationLink(
                         destination: BengkelDetail(
-                            bengkel: bengkel, 
-                            isRootActive: self.$isActive, 
+                            bengkel: bengkel,
+                            isRootActive: self.$isActive,
                             isHideTabBar: self.$isHideTabBar
                         ),
                         isActive: self.$isActive) {
