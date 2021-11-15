@@ -18,17 +18,6 @@ struct MokuApp: App {
 
     var onboardingData = OnboardingDataModel.data
 
-    init() {
-        FirebaseApp.configure()
-        session = .shared
-        LocationService.shared.requestUserAuthorization()
-
-        GooglePlacesService.register()
-        GoogleMapsService.register()
-
-        CustomerRepository.shared.add(customer: .preview)
-    }
-
     var body: some Scene {
         WindowGroup {
             if let user = session.user {
