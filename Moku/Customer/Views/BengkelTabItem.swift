@@ -14,6 +14,9 @@ struct BengkelTabItem: View {
 
     @State private var showingSheet = false
     @State private var showModal = false
+    
+    @State var isActive: Bool = false
+    @State var isHideTabBar: Bool = false
 
     @State var isActive: Bool = false
     @State var isHideTabBar: Bool = false

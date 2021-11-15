@@ -26,6 +26,8 @@ final class OrderRepository: ObservableObject {
 
     @Published var filteredOrdersStatus = [Order]()
 
+    @Published var customerOrders = [Order]()
+
     // Initial Setup
     private init() {
         fetch()
