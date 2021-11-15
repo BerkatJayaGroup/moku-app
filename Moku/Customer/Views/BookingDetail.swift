@@ -114,7 +114,7 @@ struct BookingDetail: View {
                             Divider()
                             Text("Kasih Rating Dulu Yuk!")
                                 .font(.system(size: 17, weight: .semibold))
-                            Rating()
+                            Rating(order: order)
                                 .padding(10)
                                 .background(Color.white)
                                 .cornerRadius(10)
