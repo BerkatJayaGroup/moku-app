@@ -24,8 +24,6 @@ final class OrderRepository: ObservableObject {
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
 
-    @Published var customerOrders = [Order]()
-
     // Initial Setup
     private init() {
         fetch()
@@ -50,11 +48,32 @@ final class OrderRepository: ObservableObject {
             }
 
         }
+    }
 
+    func fetch(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
+//        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+//            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+//            self.customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+//
+//
+//        }
+
+        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+            let customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+            completionHandler?(customerOrders)
+//                if let documents = querySnapshot?.documents {
+//                    for document in documents {
+//                        if let data = try document.data(as: T.self) {
+//                            completionHandler?(data)
+//                        }
+//                    }
+//                }
+        }
     }
 
     func fetch(_ bengkelId: String) {
-        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { snapshot, error in
+        store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
                 print("Error getting stories: \(error.localizedDescription)")
                 return

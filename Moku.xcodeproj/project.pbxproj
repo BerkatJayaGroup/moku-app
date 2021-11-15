@@ -98,7 +98,13 @@
 		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
 		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
 		B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */; };
+		B85A3236273A780A00AF4E17 /* GarasiTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A3235273A780A00AF4E17 /* GarasiTabItem.swift */; };
 		B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8864B3A272BCD96007C4413 /* ImagePicker.swift */; };
+		B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C742FD273BC56500E34B5C /* GarageTabViewModel.swift */; };
+		B8C74301273D194D00E34B5C /* SnapToScroll in Frameworks */ = {isa = PBXBuildFile; productRef = B8C74300273D194D00E34B5C /* SnapToScroll */; };
+		B8C74303273D2ABD00E34B5C /* OrderHistoryDetailModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C74302273D2ABD00E34B5C /* OrderHistoryDetailModal.swift */; };
+		B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C74304273D834300E34B5C /* EditProfileModal.swift */; };
+		B8C74307273E3D4900E34B5C /* AddMotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C74306273E3D4900E34B5C /* AddMotorModal.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
 		B8D7F93127328078005AB37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
@@ -195,8 +201,13 @@
 		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
 		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
 		B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomerViewModel.swift; sourceTree = "<group>"; };
+		B85A3235273A780A00AF4E17 /* GarasiTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarasiTabItem.swift; sourceTree = "<group>"; };
 		B8864B3A272BCD96007C4413 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B8A0352A27286D8200243528 /* Moku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moku.entitlements; sourceTree = "<group>"; };
+		B8C742FD273BC56500E34B5C /* GarageTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageTabViewModel.swift; sourceTree = "<group>"; };
+		B8C74302273D2ABD00E34B5C /* OrderHistoryDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailModal.swift; sourceTree = "<group>"; };
+		B8C74304273D834300E34B5C /* EditProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileModal.swift; sourceTree = "<group>"; };
+		B8C74306273E3D4900E34B5C /* AddMotorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMotorModal.swift; sourceTree = "<group>"; };
 		B8CE28632727E93A00464E64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B8CE65F82726BA2B008F4CEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +221,7 @@
 				832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */,
 				837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */,
 				830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				B8C74301273D194D00E34B5C /* SnapToScroll in Frameworks */,
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
@@ -410,6 +422,7 @@
 				8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */,
 				B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */,
 				8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */,
+				B8C742FD273BC56500E34B5C /* GarageTabViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -438,6 +451,9 @@
 				8E5C6B0027305590004EC262 /* DayByDay.swift */,
 				8E2354662731237000C0381E /* SheetView.swift */,
 				6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */,
+				B8C74302273D2ABD00E34B5C /* OrderHistoryDetailModal.swift */,
+				B8C74304273D834300E34B5C /* EditProfileModal.swift */,
+				B8C74306273E3D4900E34B5C /* AddMotorModal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -464,6 +480,7 @@
 				AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */,
 				B856220C27310F2100300EB8 /* BookingConfirmationView.swift */,
 				AE9D6F5B27302BE200E4707B /* BookingSummary.swift */,
+				B85A3235273A780A00AF4E17 /* GarasiTabItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,13 +510,6 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		8ECD17D7272E85C200B2AB13 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
 			sourceTree = "<group>";
 		};
 		B80B01A6272917C800050D90 /* SignInWithApple */ = {
@@ -559,6 +569,7 @@
 				832AC1E32715986A00BD92E2 /* SwiftUIX */,
 				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
 				8E5C6AFE27304812004EC262 /* PartialSheet */,
+				B8C74300273D194D00E34B5C /* SnapToScroll */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -593,6 +604,7 @@
 				832AC1DF2715979B00BD92E2 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				832AC1E22715986900BD92E2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */,
 			);
 			productRefGroup = 837370B127144701003656FC /* Products */;
 			projectDirPath = "";
@@ -611,7 +623,6 @@
 				B8D7F93127328078005AB37A /* Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
-				83CBF23E2722BC7F00C79064 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +726,7 @@
 				AE9D6F5C27302BE200E4707B /* BookingSummary.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
 				AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */,
+				B8C74303273D2ABD00E34B5C /* OrderHistoryDetailModal.swift in Sources */,
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */,
 				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
@@ -727,6 +739,7 @@
 				B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,
+				B8C74307273E3D4900E34B5C /* AddMotorModal.swift in Sources */,
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */,
@@ -760,6 +773,7 @@
 				6F0E4E25272FC3CD000B6EC8 /* BengkelViewModel.swift in Sources */,
 				834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */,
 				8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */,
+				B85A3236273A780A00AF4E17 /* GarasiTabItem.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
 				8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
@@ -768,6 +782,7 @@
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
+				B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */,
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
@@ -778,6 +793,7 @@
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
+				B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */,
 				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,
 				8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */,
 				83DAE6C8272ECD72002D1D6E /* LocationSearchView.swift in Sources */,
@@ -1030,6 +1046,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-library/hstack-snap-to-scroll.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1072,6 +1096,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
+		};
+		B8C74300273D194D00E34B5C /* SnapToScroll */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */;
+			productName = SnapToScroll;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
