@@ -18,9 +18,6 @@ struct BengkelTabItem: View {
     @State var isActive: Bool = false
     @State var isHideTabBar: Bool = false
 
-    @State var isActive: Bool = false
-    @State var isHideTabBar: Bool = false
-
     var lastOrder = true
 
     var body: some View {

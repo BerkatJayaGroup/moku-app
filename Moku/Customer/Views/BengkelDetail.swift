@@ -102,7 +102,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(bengkel: viewModel.bengkel, typeOfService: viewModel.typeOfService, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)) {
+                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
