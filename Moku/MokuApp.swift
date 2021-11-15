@@ -10,7 +10,7 @@ import Firebase
 
 @main
 struct MokuApp: App {
-    @ObservedObject var session = SessionService.shared
+    @ObservedObject var session: SessionService
 
     @StateObject var appState = AppState()
 
@@ -18,11 +18,14 @@ struct MokuApp: App {
 
     init() {
         FirebaseApp.configure()
-
+        session = .shared
         LocationService.shared.requestUserAuthorization()
 
         GooglePlacesService.register()
         GoogleMapsService.register()
+
+        CustomerRepository.shared.add(customer: .preview)
+//        BengkelRepository.shared.add(bengkel: .preview)
     }
 
     var body: some Scene {
@@ -36,7 +39,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    PickRoleView()
+                    BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }

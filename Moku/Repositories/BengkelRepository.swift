@@ -6,8 +6,11 @@
 //
 
 import Combine
+import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import Foundation
 
 // Final, biar ga bisa di extend
 final class BengkelRepository: ObservableObject {
@@ -33,6 +36,18 @@ final class BengkelRepository: ObservableObject {
         }
     }
 
+    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
+        store.document(id).getDocument { document, error in
+            do {
+                if let data = try document?.data(as: T.self) {
+                    completionHandler?(data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
     func add(bengkel: Bengkel) {
         do {
             _ = try store.addDocument(from: bengkel)
@@ -51,5 +66,19 @@ final class BengkelRepository: ObservableObject {
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
+    }
+
+    func addRating(bengkelId: String, review: Review) {
+        let reviewDict: [String: Any] = [
+            "comment": review.comment,
+            "rating": review.rating,
+            "timestamp": Date(),
+            "user": review.user
+        ]
+        store
+            .document(bengkelId)
+            .updateData(
+                ["reviews": FieldValue.arrayUnion([reviewDict])]
+            )
     }
 }

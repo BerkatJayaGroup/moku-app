@@ -23,7 +23,7 @@ class Motor: Codable, Identifiable {
     }
 }
 
-enum Brand: String, Codable, CaseIterable, Identifiable{
+enum Brand: String, Codable, CaseIterable, Identifiable {
     var id: RawValue { rawValue }
     case honda = "Honda"
     case yamaha = "Yamaha"

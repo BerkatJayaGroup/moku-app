@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
                          Motor(brand: .kawasaki, model: "Z250", cc: 250),
@@ -15,6 +16,10 @@ let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
 struct DaftarCustomer: View {
     @StateObject private var viewModel = CustomerViewModel()
     @ObservedObject var customerViewModel: CustomerViewModel = .shared
+    @State private var isActive = false
+
+    @State var userId = Auth.auth().currentUser?.uid
+
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .leading) {
@@ -111,17 +116,18 @@ struct DaftarCustomer: View {
                 .opacity(0.3)
                 .padding(15)
             Spacer()
-            NavigationLink(destination: BengkelTabItem()) {
+            NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
                 Button {
                     if viewModel.isFormInvalid {
                         viewModel.nameCheck = false
                         viewModel.nomorCheck = false
                         viewModel.isEmailValid = false
-                    }else {
-                        let customer = Customer(name: viewModel.name,
+                    } else {
+                        let customer = Customer(id: userId, name: viewModel.name,
                                                 phoneNumber: viewModel.nomorTelepon,
                                                 motors: [viewModel.motor!] )
                         customerViewModel.create(customer)
+                        isActive = true
                     }
                 } label: {
                 Text("Lanjutkan")

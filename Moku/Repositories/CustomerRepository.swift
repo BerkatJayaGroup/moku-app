@@ -6,6 +6,7 @@
 //
 
 import Combine
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -29,9 +30,23 @@ final class CustomerRepository: ObservableObject {
         }
     }
 
-    func add(customer: Customer) {
+    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
+        store.document(id).getDocument { document, error in
+            do {
+                if let data = try document?.data(as: T.self) {
+                    completionHandler?(data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func add(customer: Customer, completionHandler: ((DocumentReference) -> Void)? = nil) {
         do {
-            _ = try store.addDocument(from: customer)
+            let docRef = store.document(customer.id)
+            try docRef.setData(from: customer)
+            completionHandler?(docRef)
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
@@ -41,9 +56,12 @@ final class CustomerRepository: ObservableObject {
         store.document(customer.id).delete()
     }
 
-    func update(customer: Customer) {
+    func update(customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
         do {
             try store.document(customer.id).setData(from: customer, merge: true)
+            fetch(id: customer.id) { updatedCustomer in
+                completionHandler?(updatedCustomer)
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

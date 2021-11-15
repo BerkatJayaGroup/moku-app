@@ -73,6 +73,14 @@ struct PickRoleView: View {
             return AnyView(BengkelOwnerOnboardingView())
         }
     }
+
+    func getDestination() -> AnyView {
+        if motorSelected {
+            return AnyView(DaftarCustomer())
+        } else {
+            return AnyView(BengkelOwnerOnboardingView())
+        }
+    }
 }
 
 struct PickRoleView_Previews: PreviewProvider {

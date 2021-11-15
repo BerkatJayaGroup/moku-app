@@ -63,7 +63,6 @@ struct PengaturanHargaBengkel: View {
             }
         }
     }
-    
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: BengkelView(), isActive: $canSubmit) {EmptyView()}
@@ -101,7 +100,7 @@ struct PengaturanHargaBengkel: View {
     
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel){
 //        Titip di command dulu barangkali besok butuh
-        
+
 //        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
 //        for day in days {
 //            if let index = days.firstIndex(of: day){
@@ -110,7 +109,7 @@ struct PengaturanHargaBengkel: View {
 //                }
 //            }
 //        }
-        
+
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
@@ -125,22 +124,19 @@ struct PengaturanHargaBengkel: View {
             minPrice: min,
             maxPrice: max
         )
-        
-        for brand in pengaturanBengkelForm.selectedBrand{
+
+        for brand in pengaturanBengkelForm.selectedBrand {
             bengkelBaru.brands.insert(brand)
         }
-        
-        for mech in pengaturanBengkelForm.mechanics{
-            // TODO: upload foto mekanik and assign to photo
+
+        for mech in pengaturanBengkelForm.mechanics {
             var mekBaru = Mekanik(name: mech.name)
-            if let photo = mech.photo {
-                storageService.upload(image: photo, path: mekBaru.id)
-                mekBaru.photo = mekBaru.id
+            guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }
+
+            storageService.upload(image: photo, path: mekBaru.id) { url, _ in
+                mekBaru.photo = url?.absoluteString
+                bengkelBaru.mekaniks.append(mekBaru)
             }
-            else{
-                mekBaru.photo = ""
-            }
-            bengkelBaru.mekaniks.append(mekBaru)
         }
         
         for img in bengkelOwnerFormViewModel.images {
@@ -148,9 +144,9 @@ struct PengaturanHargaBengkel: View {
             storageService.upload(image: img, path: imgID)
             bengkelBaru.photos.append(imgID)
         }
-        
+
         bengkelViewModel.create(bengkelBaru)
-        
+
         SessionService.shared.user = .bengkel(bengkelBaru)
     }
 }
