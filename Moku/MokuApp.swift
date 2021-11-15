@@ -23,6 +23,9 @@ struct MokuApp: App {
 
         GooglePlacesService.register()
         GoogleMapsService.register()
+
+        CustomerRepository.shared.add(customer: .preview)
+//        BengkelRepository.shared.add(bengkel: .preview)
     }
 
     var body: some Scene {
@@ -36,7 +39,7 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    PickRoleView()
+                    BengkelTabItem()
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
