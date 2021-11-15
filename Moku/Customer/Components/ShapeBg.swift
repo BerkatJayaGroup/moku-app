@@ -19,6 +19,18 @@ struct ShapeBg: Shape {
     }
 }
 
+struct RactBg: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: rect.maxX, y: 0))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addQuadCurve(to: CGPoint(x: 0, y: rect.maxY), control: CGPoint(x: rect.midX, y: rect.maxY))
+        path.closeSubpath()
+        return path
+    }
+}
+
 struct ShapeBg_Previews: PreviewProvider {
     static var previews: some View {
         ShapeBg()
