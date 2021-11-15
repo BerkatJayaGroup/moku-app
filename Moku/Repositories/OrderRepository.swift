@@ -24,6 +24,8 @@ final class OrderRepository: ObservableObject {
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
 
+    @Published var filteredOrdersStatus = [Order]()
+
     // Initial Setup
     private init() {
         fetch()
@@ -88,6 +90,22 @@ final class OrderRepository: ObservableObject {
             }
         }
     }
+
+    func fetch(_ customerId: String) {
+            store.whereField("customerId", isEqualTo: customerId).addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    print("Error getting stories: \(error.localizedDescription)")
+                    return
+                }
+                let order = querySnapshot?.documents.compactMap { document in
+                    try? document.data(as: Order.self
+                    )
+                } ?? []
+                DispatchQueue.main.async {
+                    self.filteredOrdersStatus = order
+                }
+            }
+        }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {
         do {
