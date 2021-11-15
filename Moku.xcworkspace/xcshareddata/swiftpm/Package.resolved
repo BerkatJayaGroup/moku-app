@@ -74,6 +74,15 @@
         }
       },
       {
+        "package": "SnapToScroll",
+        "repositoryURL": "https://github.com/swiftui-library/hstack-snap-to-scroll.git",
+        "state": {
+          "branch": null,
+          "revision": "e2729c551de062bb8a1500ceee9f898f8d5313cb",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "leveldb",
         "repositoryURL": "https://github.com/firebase/leveldb.git",
         "state": {
