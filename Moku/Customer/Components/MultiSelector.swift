@@ -20,7 +20,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
         } label: {
             HStack {
                 Text(formattedSelectedListString)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.trailing)
                 Spacer()
             }

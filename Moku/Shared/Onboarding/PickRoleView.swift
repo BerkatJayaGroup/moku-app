@@ -18,10 +18,9 @@ struct PickRoleView: View {
         GeometryReader { proxy in
             NavigationView {
                 VStack {
-                    Button {
-                        motorSelected = true
+                    Button(action: {motorSelected = true
                         bengkelSelected = false
-                    } label: {
+                    }){
                         HStack {
                             Image(systemName: "person")
                                 .foregroundColor(motorSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -34,10 +33,9 @@ struct PickRoleView: View {
                     .frame(width: proxy.size.width * 0.6, height: proxy.size.height * 0.05)
                     .padding(50)
                     .border(motorSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
-                    Button {
-                        motorSelected = false
+                    Button(action: {motorSelected = false
                         bengkelSelected = true
-                    } label: {
+                    }){
                         HStack {
                             Image(systemName: "wrench.and.screwdriver")
                                 .foregroundColor(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray)
@@ -66,11 +64,12 @@ struct PickRoleView: View {
             }
         }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
     }
-
+    
     func getDestination() -> AnyView {
         if motorSelected {
             return AnyView(DaftarCustomer())
-        } else {
+        }
+        else {
             return AnyView(BengkelOwnerOnboardingView())
         }
     }
