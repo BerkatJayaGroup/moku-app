@@ -17,7 +17,6 @@ extension UlasanModal {
         @Published var isDoneReview: Bool = false
         var bengkelRepository: BengkelRepository = .shared
         var customerRepository: CustomerRepository = .shared
-        
 
         init(bengkel: Bengkel, selected: Int) {
             self.bengkel = bengkel

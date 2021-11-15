@@ -13,6 +13,7 @@ struct Customer: Codable {
     var name: String
     var phoneNumber: String
     var motors: [Motor]?
+    var fcmToken: String?
 //    TODO: Nunggu Bengkel Side ngetrigger Order
 //    OrdersToRate bakal keisi kalo di triger bengkel
     var ordersToRate = [Order]()
@@ -29,6 +30,7 @@ extension Customer {
             Motor(brand: .honda, model: "Motor Honda", cc: 110),
             Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
         ],
+        fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP",
         ordersToRate: [
             Order(id: "1GYgKE6tXGRS3icCtVxI",
                   bengkelId: "yn2iMDl1Kc0Orv6tb3vx",

@@ -18,7 +18,8 @@ struct BengkelDate: View {
     @Binding var isHideTabBar: Bool
 
     init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
-        _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, typeOfService: typeOfService))
+        let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
+        _viewModel = StateObject(wrappedValue: viewModel)
         _isRootActive = isRootActive
         _isHideTabBar = isHideTabBar
     }
@@ -80,10 +81,9 @@ struct BengkelDate: View {
                     }
                     print("apa aja dah")
                 } else {
-                    // alert
-                print("apa aja dah else")
+                    print("apa aja dah else")
                 }
-            }label: {
+            } label: {
                 Text("Lanjutkan")
             }
             .frame(width: 300, height: 50)

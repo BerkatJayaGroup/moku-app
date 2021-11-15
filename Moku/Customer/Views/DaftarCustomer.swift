@@ -14,11 +14,7 @@ let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
 ]
 
 struct DaftarCustomer: View {
-    @StateObject private var viewModel = CustomerViewModel()
-    @ObservedObject var customerViewModel: CustomerViewModel = .shared
-    @State private var isActive = false
-
-    @State var userId = Auth.auth().currentUser?.uid
+    @StateObject private var viewModel = ViewModel()
 
     var body: some View {
         VStack(alignment: .center) {
@@ -26,7 +22,7 @@ struct DaftarCustomer: View {
                 Text("NAMA")
                     .font(.caption2)
                 VStack(alignment: .leading) {
-                    TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { (isChanged) in
+                    TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { isChanged in
                         if !isChanged {
                             viewModel.validateEmptyName()
                         }
@@ -116,31 +112,34 @@ struct DaftarCustomer: View {
                 .opacity(0.3)
                 .padding(15)
             Spacer()
-            NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
-                Button {
-                    if viewModel.isFormInvalid {
-                        viewModel.nameCheck = false
-                        viewModel.nomorCheck = false
-                        viewModel.isEmailValid = false
-                    } else {
-                        let customer = Customer(id: userId, name: viewModel.name,
-                                                phoneNumber: viewModel.nomorTelepon,
-                                                motors: [viewModel.motor!] )
-                        customerViewModel.create(customer)
-                        isActive = true
+
+            Button {
+                if viewModel.isFormInvalid {
+                    viewModel.nameCheck = false
+                    viewModel.nomorCheck = false
+                    viewModel.isEmailValid = false
+                } else {
+                    NotificationService.shared.getToken { token in
+                        let customer = Customer(
+                            name: viewModel.name,
+                            phoneNumber: viewModel.nomorTelepon,
+                            motors: [viewModel.motor!],
+                            fcmToken: token
+                        )
+
+                        viewModel.create(customer)
                     }
-                } label: {
-                Text("Lanjutkan")
-                    .frame(width: 310, height: 50)
-                    .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                    .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
-                    .cornerRadius(10)
-                    .padding()
                 }
+            } label: {
+            Text("Lanjutkan")
+                .frame(width: 310, height: 50)
+                .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
+                .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
+                .cornerRadius(10)
+                .padding()
             }
         }
-        .navigationTitle("Profil Diri")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Profil Diri", displayMode: .inline)
     }
 }
 

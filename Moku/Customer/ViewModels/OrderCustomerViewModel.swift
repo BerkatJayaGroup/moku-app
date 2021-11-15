@@ -30,9 +30,19 @@ class OrderCustomerViewModel: ObservableObject {
             self.orderConfirmation = order
         }
     }
-    func cancelBooking(order: inout Order, alasan: Order.CancelingReason) {
-        order.cancelingReason = alasan
-        order.status = .canceled
-        repository.update(order: order)
+
+    func cancelBooking(order: Order, reason: Order.CancelingReason) {
+
+        DispatchQueue.main.async {[order] in
+            var order = order
+            order.cancelingReason = reason
+            order.status = .canceled
+
+            self.repository.update(order: order) { _ in
+                BengkelRepository.shared.fetch(id: order.bengkelId) { bengkel in
+                    NotificationService.shared.send(to: [bengkel.fcmToken], notification: .orderCanceled(reason))
+                }
+            }
+        }
     }
 }

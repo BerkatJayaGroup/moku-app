@@ -15,26 +15,19 @@ import SwiftUI
 final class SessionService: ObservableObject {
     // Shared Instance
     static let shared = SessionService()
-    @Published var user: User?
 
+    @Published var user: User?
     @Published var selectedMotor: Motor?
 
-    private init() {
+    func setup() {
         if let userId = Auth.auth().currentUser?.uid {
-
-            BengkelRepository.shared.fetch(id: userId) { bengkel in
-                self.user = .bengkel(bengkel)
+            BengkelRepository.shared.fetch(id: userId) { [weak self] bengkel in
+                self?.user = .bengkel(bengkel)
             }
 
-            CustomerRepository.shared.fetch(id: userId) { customer in
-                self.user = .customer(customer)
+            CustomerRepository.shared.fetch(id: userId) { [weak self] customer in
+                self?.user = .customer(customer)
             }
-
-//            CustomerRepository.shared.customer.forEach { customer in
-//                if customer.id == userId {
-//                    user = .customer(customer)
-//                }
-//            }
         }
     }
 
@@ -46,7 +39,7 @@ final class SessionService: ObservableObject {
         let plist = NSDictionary(contentsOfFile: filePath)
 
         guard let value = plist?.object(forKey: "API_KEY") as? String else {
-            fatalError("Couldn't find key 'API_KEY' in 'rawg.io-Info.plist'.")
+            fatalError("Couldn't find key 'API_KEY' in 'GoogleService-Info.plist'.")
         }
 
         return value

@@ -43,7 +43,7 @@ struct PengaturanBengkel: View {
     @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
     @State var canSubmit = false
-    
+
     var isFormValid: Bool {
         !selectedBrand.isEmpty && !selectedCC.isEmpty && !mechanics.isEmpty
     }
@@ -155,7 +155,7 @@ struct PengaturanBengkel: View {
             mechanics.remove(at: index)
         }
     }
-    
+
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
@@ -175,36 +175,36 @@ struct PengaturanBengkel: View {
             .frame(width: (proxy.size.width * 0.9))
         }
     }
-    
+
     @ViewBuilder
     private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
+
     @ViewBuilder
-    private func mekanikEmptyAlert(for text: Binding<Array<CalonMekanik>>, alert: String) -> some View {
+    private func mekanikEmptyAlert(for text: Binding<[CalonMekanik]>, alert: String) -> some View {
         if text.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
+
     @ViewBuilder
     private func brandEmptyAlert(for text: Binding<Set<Brand>>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
+
     @ViewBuilder
     private func ccEmptyAlert(for text: Binding<Set<Motorcc>>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-    
-    func validateForm(){
+
+    func validateForm() {
         isSubmitting = true
         if isFormValid {
             canSubmit = true

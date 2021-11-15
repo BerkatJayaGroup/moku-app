@@ -24,6 +24,7 @@ struct Bengkel: Codable {
     var mekaniks        = [Mekanik]()
     var minPrice: String
     var maxPrice: String
+    var fcmToken: String
 
     var distance: Double?
 
@@ -68,14 +69,18 @@ extension Bengkel {
 
 extension Bengkel {
     static let preview = Bengkel(
-        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "1234", email: "johndoe@example.com"),
+        owner: Bengkel.Owner(name: "John Doe", phoneNumber: "082280698758", email: "johndoe@example.com"),
         name: "Berkat Jaya Motor",
-        phoneNumber: "0217549236",
-        location: Location(address: "Blok M, Jalan Cinere Raya Ruko Blok. M No. 3", longitude: 106.78029, latitude: -6.33449),
-        operationalHours: Bengkel.OperationalHours(open: 8, close: 18),
+        phoneNumber: "082280698758",
+        location: Location(
+            address: "Sampora Kecamatan Cisauk Kawasan Taman Kota Barat, Gg. Kavling 2 No.3, Bumi, Serpong Damai, Tangerang, Banten 15345",
+            longitude: 106.65203368260228, latitude: -6.305695785964465),
+        operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [false, true, true, true, false, false, false],
+        brands: [.honda, .yamaha, .kawasaki],
         minPrice: "20000",
         maxPrice: "100000",
+        fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP",
         reviews: [
             Review(
                 user: "Devin Winardi",

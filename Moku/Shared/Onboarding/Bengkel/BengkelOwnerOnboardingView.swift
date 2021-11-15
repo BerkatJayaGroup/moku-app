@@ -30,8 +30,8 @@ struct BengkelOwnerOnboardingView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            VStack(spacing:24) {
-                VStack(alignment: .leading ,spacing:8) {
+            VStack(spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
                     textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                     textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
@@ -87,14 +87,22 @@ struct BengkelOwnerOnboardingView: View {
                         } else {
                             ImagePicker(sourceType: .camera, pickerResult: $viewModel.images)
                         }
-                    }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
-                        ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
-                            self.shouldPresentImagePicker = true
-                            self.shouldPresentCamera = true
-                        }), ActionSheet.Button.default(Text("Photo Library"), action: {
-                            self.shouldPresentImagePicker = true
-                            self.shouldPresentCamera = false
-                        }), ActionSheet.Button.cancel()])
+                    }.actionSheet(isPresented: $shouldPresentActionScheet) {
+                        ActionSheet(
+                            title: Text("Choose mode"),
+                            message: Text("Please choose your preferred mode to set your profile image"),
+                            buttons: [
+                                .default(Text("Camera")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = true
+                                },
+                                .default(Text("Photo Library")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = false
+                                },
+                                .cancel()
+                            ]
+                        )
                     }
                 }
                 if viewModel.images.isEmpty, viewModel.isSubmitting {
@@ -157,8 +165,7 @@ extension BengkelOwnerOnboardingView {
                             HStack {
                                 Image(systemName: "mappin.circle")
                                 Text("Cari alamat bengkelmu disini")
-                            }
-                            .foregroundColor(.tertiaryLabel)
+                            }.foregroundColor(.tertiaryLabel)
                         }
                     }
                     Spacer()

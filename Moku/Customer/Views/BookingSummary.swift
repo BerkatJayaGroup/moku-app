@@ -28,7 +28,7 @@ extension BookingSummary {
 
         @Published private var order: Order
 
-        @Published private var bengkel: Bengkel?
+        @Published var bengkel: Bengkel?
 
         @Published var docRef: DocumentReference?
 
@@ -139,14 +139,20 @@ struct BookingSummary: View {
                 Button {
                     viewModel.placeOrder { docRef in
                         viewModel.docRef = docRef
+                        if let bengkelIdentifier = viewModel.bengkel?.fcmToken {
+                            NotificationService.shared.send(
+                                to: [bengkelIdentifier],
+                                notification: .orderPlaced
+                            )
+                        }
                     }
                 } label: {
-                Text("Konfirmasi Booking")
-                    .frame(width: 310, height: 50)
-                    .background(AppColor.primaryColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding()
+                    Text("Konfirmasi Booking")
+                        .frame(width: 310, height: 50)
+                        .background(AppColor.primaryColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding()
                 }
             }
         }

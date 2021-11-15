@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct AddMotorModal: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var customerViewModel: CustomerViewModel = .shared
+    @ObservedObject var viewModel = DaftarCustomer.ViewModel()
     @State private var isActive = false
 
     @State var userId = Auth.auth().currentUser?.uid
@@ -21,10 +21,10 @@ struct AddMotorModal: View {
             Text("MODEL MOTOR")
                 .font(.caption2)
             Button {
-                customerViewModel.showModal.toggle()
+                viewModel.showModal.toggle()
             } label: {
                 HStack {
-                    if let motor = customerViewModel.motor {
+                    if let motor = viewModel.motor {
                         Text(motor.model)
                             .foregroundColor(.black)
                     } else {
@@ -41,10 +41,10 @@ struct AddMotorModal: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
-            .sheet(isPresented: $customerViewModel.showModal) {
+            .sheet(isPresented: $viewModel.showModal) {
                 MotorModal(availableMotors: allMotor,
-                           selectedMotor: $customerViewModel.motor,
-                           showingSheet: $customerViewModel.showModal)
+                           selectedMotor: $viewModel.motor,
+                           showingSheet: $viewModel.showModal)
             }
             Image("MotorGray")
                 .opacity(0.3)

@@ -7,68 +7,70 @@
 
 import Combine
 import SwiftUI
+import FirebaseFirestore
 
-class CustomerViewModel: ObservableObject {
+extension DaftarCustomer {
+    class ViewModel: ObservableObject {
 
-    @Published var name: String = ""
-    @Published var nomorTelepon: String = ""
-    @Published var email: String = ""
-    @Published var motor: Motor?
-    @Published var query: String = ""
-    @Published var isEmailValid: Bool = true
-    @Published var nameCheck: Bool = true
-    @Published var nomorCheck: Bool = true
-    @Published var motorCheck: Bool = true
-    @Published var showModal = false
+        @Published var motor: Motor?
+        @Published var name         = ""
+        @Published var nomorTelepon = ""
+        @Published var email        = ""
+        @Published var query        = ""
 
-    private let repository: CustomerRepository = .shared
+        @Published var isEmailValid = true
+        @Published var nameCheck    = true
+        @Published var nomorCheck   = true
+        @Published var motorCheck   = true
+        @Published var showModal    = false
 
-    static let shared = CustomerViewModel()
+        private let repository: CustomerRepository = .shared
 
-    init() {}
+        init() {}
 
-    func create (_ customer: Customer) {
-        repository.add(customer: customer) { docRef in
-            docRef.getDocument { doc, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                if let doc = doc {
-                    do {
-                        if let customer = try doc.data(as: Customer.self) {
-                            SessionService.shared.user = .customer(customer)
+        func create(_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
+            repository.add(customer: customer) { docRef in
+                docRef.getDocument { snapshot, _ in
+                    if let snapshot = snapshot {
+                        do {
+                            if let customer = try snapshot.data(as: Customer.self) {
+                                SessionService.shared.user = .customer(customer)
+                                completionHandler?(customer)
+                            }
+                        } catch {
+                            print(error.localizedDescription)
                         }
-
-                    } catch {
-                        print(error.localizedDescription)
                     }
                 }
             }
         }
-    }
-    var isFormInvalid: Bool {
-        motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
-    }
-    func textFieldValidatorEmail() -> Bool {
-        if email.count > 100 {
-            return false
+        var isFormInvalid: Bool {
+            motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
         }
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: email)
-    }
-    func validateEmptyName () {
-        if name.isEmpty {
-            nameCheck = false
-        } else {
-            nameCheck = true
+
+        func textFieldValidatorEmail() -> Bool {
+            if email.count > 100 {
+                return false
+            }
+            let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+            return emailPredicate.evaluate(with: email)
         }
-    }
-    func isPhoneNumberEmpty() {
-        if nomorTelepon.isEmpty {
-            nomorCheck = false
-        } else {
-            nomorCheck = true
+
+        func validateEmptyName () {
+            if name.isEmpty {
+                nameCheck = false
+            } else {
+                nameCheck = true
+            }
+        }
+
+        func isPhoneNumberEmpty() {
+            if nomorTelepon.isEmpty {
+                nomorCheck = false
+            } else {
+                nomorCheck = true
+            }
         }
     }
 }

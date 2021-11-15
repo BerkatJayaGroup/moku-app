@@ -41,7 +41,6 @@ extension BengkelTabItem {
         init() {
             getMotors()
             getLocation()
-//            getNearbyBengkel(for: selectedMotor?.brand)
 
             sessionService.$selectedMotor.sink { motor in
                 self.nearbyBengkel = MapHelper.findNearbyBengkel(
