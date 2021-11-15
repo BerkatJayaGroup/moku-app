@@ -24,7 +24,7 @@ struct SheetView: View {
                 Spacer()
                 HStack {
                     VStack(spacing: 8) {
-                        ForEach(dayInAWeek, id: \.self){ dayIndex in
+                        ForEach(dayInAWeek, id: \.self) { dayIndex in
                             DayByDay(day: dayIndex, time: mainInfo)
                         }
                     }

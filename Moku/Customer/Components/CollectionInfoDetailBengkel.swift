@@ -26,13 +26,13 @@ struct CollectionInfoDetailBengkel: View {
                     .fontWeight(.bold)
             }
             if cta == "Lihat Detail"{
-                Button(action: {
-                    self.partialSheetManager.showPartialSheet({
+                Button {
+                    partialSheetManager.showPartialSheet {
                         print("normal sheet dismissed")
-                    }) {
+                    } content: {
                         SheetView(mainInfo: mainInfo)
                     }
-                }) {
+                } label: {
                     Text("\(cta)")
                         .foregroundColor(Color("PrimaryColor"))
                 }

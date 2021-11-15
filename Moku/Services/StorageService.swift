@@ -11,17 +11,22 @@ import FirebaseStorage
 import SwiftUI
 
 class StorageService: ObservableObject {
-    let storage = Storage.storage()
-    var storageRef: StorageReference?
+    var storageRef = Storage.storage().reference()
 
     static let shared = StorageService()
 
-    func upload(image: UIImage, path: String, completion: ((StorageMetadata?, Error?) -> Void)? = nil) {
-        // Create a storage reference
-        if let id = Auth.auth().currentUser?.uid {
-            storageRef = storage.reference().child("images/\(id)/\(path).jpg")
+    // MARK: - GET DOWNLOAD URL
+    private func getDownloadURL(from path: String, completion: ((URL?, Error?) -> Void)? = nil) {
+        storageRef.child(path).downloadURL { url, error in
+            if let error = error {
+                completion?(nil, error)
+            } else if let url = url {
+                completion?(url, nil)
+            }
         }
+    }
 
+    func upload(image: UIImage, path: String, completion: ((URL?, Error?) -> Void)? = nil) {
         // Convert the image into JPEG and compress the quality to reduce its size
         let data = image.jpegData(compressionQuality: 0.2)
 
@@ -30,17 +35,37 @@ class StorageService: ObservableObject {
         metadata.contentType = "image/jpg"
 
         // Upload the image
-        if let data = data, let storage = storageRef {
-            storage.putData(data, metadata: metadata, completion: completion)
+        if let data = data, let id = Auth.auth().currentUser?.uid {
+            DispatchQueue.global(qos: .background).async {
+                self.storageRef.child("images/\(id)/\(path).jpg").putData(data, metadata: metadata) { metadata, error in
+                    if let error = error {
+                        completion?(nil, error)
+                        return
+                    }
+
+                    // then we check if the metadata and path exists
+                    // if the error was nil, we expect the metadata and path to exist
+                    // therefore if not, we return an error
+                    guard let metadata = metadata, let path = metadata.path else {
+                        completion?(nil, NSError(
+                            domain: "core",
+                            code: 0,
+                            userInfo: [NSLocalizedDescriptionKey: "Unexpected error. Path is nil."])
+                        )
+                        return
+                    }
+
+                    // now we get the download url using the path
+                    // and the basic reference object (without child paths)
+                    self.getDownloadURL(from: path, completion: completion)
+                }
+            }
         }
     }
 
     func listAllFiles() {
-        // Create a reference
-        let storageRef = storage.reference().child("images")
-
         // List all items in the images folder
-        storageRef.listAll { result, error in
+        storageRef.child("images").listAll { result, error in
             if let error = error {
                 print("Error while listing all files: ", error)
             }
@@ -50,35 +75,6 @@ class StorageService: ObservableObject {
             }
         }
     }
-
-//    func listItem(category: String) {
-//        // Create a reference
-//        if let id = Auth.auth().currentUser?.uid {
-//            storageRef = storage.reference().child("images/\(id)/\(category)")
-//        }
-//
-//        // Create a completion handler - aka what the function should do after it listed all the items
-//        let handler: (StorageListResult, Error?) -> Void = { result, error in
-//            if let error = error {
-//                print("error", error)
-//            }
-//
-//            let item = result.items
-//            print("item: ", item)
-//        }
-//
-//        // List the items
-//        storageRef?.list(withMaxResults: 1, completion: handler)
-//    }
-//    func updateImageURL(category: String) {
-//        // Create a reference
-//        if let id = Auth.auth().currentUser?.uid {
-//            storageRef = storage.reference().child("images/\(id)/\(category).jpg")
-//        }
-//        storageRef?.downloadURL { url, _ in
-//            self.companyViewModel.addImage(imageURL: url?.absoluteString ?? "profile")
-//        }
-//    }
 
     // You can use the listItem() function above to get the StorageReference of the item you want to delete
     func deleteItem(item: StorageReference) {
