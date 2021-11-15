@@ -58,7 +58,7 @@ class GarageTabViewModel: ObservableObject {
     }
 
     private func getOrders(customerId: String) {
-        orderRepository.fetch(customerId: customerId) { order in
+        orderRepository.fetchOrderHistory(customerId: customerId) { order in
             self.customerOrders = order
         }
     }

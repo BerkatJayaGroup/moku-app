@@ -37,10 +37,6 @@ struct GarasiTabItem: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                 serviceHistorySection().padding(10)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                    .padding(.horizontal)
             }.navigationTitle("Garasi")
                 .navigationBarColor(AppColor.primaryColor)
         }.background(Color(.systemGroupedBackground))
@@ -128,7 +124,10 @@ struct GarasiTabItem: View {
                 Text("Belum ada riwayat servis")
             } else {
                 ForEach(0..<orders.count) { index in
-                    OrderCards(order: orders[index])
+                    OrderCards(order: orders[index]).background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                        .padding()
                 }
             }
 

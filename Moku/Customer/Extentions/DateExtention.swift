@@ -76,6 +76,7 @@ extension Date {
         guard let date = dateFormatter.date(from: dateString) else { return ""}
         dateFormatter.dateFormat = "dd/MM/yyy"
         return  dateFormatter.string(from: date)
+    }
 
     static func convertDateFormaterWithHour(date: Date) -> String {
         let dateString = "\(date)"
@@ -85,16 +86,16 @@ extension Date {
         guard let date = dateFormatter.date(from: dateString) else { return ""}
         dateFormatter.dateFormat = "dd/MM/yyyy/HH"
         return  dateFormatter.string(from: date)
+    }
 
     static func convertDateFormat(date: Date, format: String) -> String {
-            let dateString = "\(date)"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
-            dateFormatter.locale = Locale(identifier: "id_ID")
-            guard let date = dateFormatter.date(from: dateString) else { return ""}
-            dateFormatter.dateFormat = format
-            return  dateFormatter.string(from: date)
+        let dateString = "\(date)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+        dateFormatter.locale = Locale(identifier: "id_ID")
+        guard let date = dateFormatter.date(from: dateString) else { return ""}
+        dateFormatter.dateFormat = format
+        return  dateFormatter.string(from: date)
 
-        }
-
+    }
 }

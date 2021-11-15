@@ -52,29 +52,15 @@ final class OrderRepository: ObservableObject {
         }
     }
 
-    func fetch(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
-//        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
-//            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
-//            self.customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
-//
-//
-//        }
-
+    func fetchOrderHistory(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
             let customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
             completionHandler?(customerOrders)
-//                if let documents = querySnapshot?.documents {
-//                    for document in documents {
-//                        if let data = try document.data(as: T.self) {
-//                            completionHandler?(data)
-//                        }
-//                    }
-//                }
         }
     }
 
-    func fetch(_ bengkelId: String) {
+    func fetch(bengkelId: String) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
                 print("Error getting stories: \(error.localizedDescription)")
