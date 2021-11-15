@@ -10,25 +10,20 @@ import FirebaseAuth
 import Combine
 
 struct BengkelDate: View {
-    @State private var selectedDate: BookDate = BookDate.default
-    @State private var selectedHourndex: Int = -1
     private let tggl = [true, false, true, true, false, true, false]
-    @State var bengkel: Bengkel
-    @State private var hour = 0
-    @State var typeOfService: Order.Service
-    @State var schedule = Date()
-    @State private var text = ""
-    @State private var userId = ""
+    @StateObject private var viewModel: ViewModel
 
-    @StateObject var viewModel = ViewModel()
-
-    init(typeOfService: Order.Service, bengkel: Bengkel) {
-        _typeOfService = State(wrappedValue: typeOfService)
-        _bengkel = State(wrappedValue: bengkel)
-        if let uid = Auth.auth().currentUser?.uid {
-            userId = uid
-        }
+    init(bengkel: Bengkel, typeOfService: Order.Service, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
+        _viewModel = StateObject(wrappedValue: viewModel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
     }
+
+    @Binding var isRootActive: Bool
+
+    @Binding var isHideTabBar: Bool
+
     let columns = [
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),
@@ -60,7 +55,7 @@ struct BengkelDate: View {
                 Text("Tambah keterangan kondisi motor")
                     .font(.headline)
                     .padding(.horizontal)
-                CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $text)
+                CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $viewModel.text)
                     .font(.body)
                     .background(Color(UIColor.systemGray6))
                     .accentColor(.green)
@@ -71,17 +66,17 @@ struct BengkelDate: View {
             Spacer()
 
             if let order = viewModel.order {
-                NavigationLink(destination: BookingSummary(order: order), isActive: $viewModel.isActive) {
+                NavigationLink(destination: BookingSummary(order: order, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar), isActive: $viewModel.isActive) {
                     EmptyView()
                 }
             }
 
             Button {
-                if hour != 0 && selectedDate != BookDate.default {
-                    let tggl = DateComponents(timeZone: TimeZone(identifier: TimeZone.current.identifier), year: Int(self.selectedDate.year), month: Int(self.selectedDate.month), day: Int(self.selectedDate.dayNumber), hour: hour)
-                    self.schedule = Calendar.current.date(from: tggl) ?? Date()
+                if viewModel.hour != 0 && viewModel.selectedDate != BookDate.default {
+                    let tggl = DateComponents(timeZone: TimeZone(identifier: TimeZone.current.identifier), year: Int(viewModel.selectedDate.year), month: Int(viewModel.selectedDate.month), day: Int(viewModel.selectedDate.dayNumber), hour: viewModel.hour)
+                    viewModel.schedule = Calendar.current.date(from: tggl) ?? Date()
                     if let selectedMotor = SessionService.shared.selectedMotor {
-                        viewModel.order = Order(bengkelId: bengkel.id, customerId: userId, motor: selectedMotor, typeOfService: typeOfService, notes: text, schedule: schedule)
+                        viewModel.order = Order(bengkelId: viewModel.bengkel.id, customerId: viewModel.userId, motor: selectedMotor, typeOfService: viewModel.typeOfService, notes: viewModel.text, schedule: viewModel.schedule)
 
                     }
                     print("apa aja dah")
@@ -104,14 +99,16 @@ struct BengkelDate: View {
     fileprivate func createDateView() -> some View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
-                let arr = convert(hari: bengkel.operationalDays)
+                let arr = convert(hari: viewModel.bengkel.operationalDays)
                 let count = arr.filter({ $0 != ""}).count
-                let dates = Date.getWeek(hari: count)
+                let dates = Date.getWeek(day: count)
                 let filtered = dates.filter {arr.contains($0.day)}
                 HStack {
                     ForEach(filtered, id: \.dayNumber) { date in
-                        DateStack(date: date, isSelected: self.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
-                            self.selectedDate = selectedDate
+                        DateStack(date: date, isSelected: viewModel.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
+                            viewModel.selectedDate = selectedDate
+                            viewModel.selectedHourndex = -1
+                            viewModel.hour = 0
                         })
                     }
                 }.padding(.horizontal)
@@ -121,10 +118,10 @@ struct BengkelDate: View {
     fileprivate func createTimeView() -> some View {
         VStack(alignment: .leading) {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(bengkel.operationalHours.open..<bengkel.operationalHours.close, id: \.self) { item in
-                    TimeStack(index: item, isSelected: self.selectedHourndex == item, onSelect: { selectedIndex in
-                        self.selectedHourndex = selectedIndex
-                        self.hour = selectedIndex
+                ForEach(viewModel.bengkel.operationalHours.open..<viewModel.bengkel.operationalHours.close, id: \.self) { item in
+                    TimeStack(index: item, isSelected: viewModel.selectedHourndex == item && viewModel.checkAvailability(index: item) == false, isDisabled: viewModel.checkAvailability(index: item), onSelect: { selectedIndex in
+                        viewModel.selectedHourndex = selectedIndex
+                        viewModel.hour = selectedIndex
                     })
                 }
             }.padding(.horizontal)
@@ -141,30 +138,6 @@ struct BengkelDate: View {
             }
         }
         return test
-    }
-}
-
-// struct BengkelDate_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelDate(typeOfService: , Bengkel(owner: .init(name: "dicky", phoneNumber: "323", email: "ddsa"), name: "3232", phoneNumber: "00", location: Location(name: "dsds", address: "dsds", longitude: 2.32, latitude: 4.21), operationalHours: .init(open: 2, close: 22), minPrice: "8", maxPrice: "9"))
-//    }
-// }
-
-extension BengkelDate {
-
-    class ViewModel: ObservableObject {
-        @Published var isActive = false
-
-        @Published var order: Order?
-
-        private var subscription = Set<AnyCancellable>()
-
-        init() {
-            $order.sink { order in
-                self.isActive = order != nil
-            }.store(in: &subscription)
-        }
-
     }
 
 }

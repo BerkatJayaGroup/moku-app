@@ -22,8 +22,7 @@ final class OrderRepository: ObservableObject {
 
     // MARK: Properties
     @Published var orders = [Order]()
-
-    @Published var customerOrders = [Order]()
+    @Published var filteredOrders = [Order]()
 
     // Initial Setup
     private init() {
@@ -49,7 +48,45 @@ final class OrderRepository: ObservableObject {
             }
 
         }
+    }
 
+    func fetch(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
+//        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+//            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+//            self.customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+//
+//
+//        }
+
+        store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
+            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+            let customerOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+            completionHandler?(customerOrders)
+//                if let documents = querySnapshot?.documents {
+//                    for document in documents {
+//                        if let data = try document.data(as: T.self) {
+//                            completionHandler?(data)
+//                        }
+//                    }
+//                }
+        }
+    }
+
+    func fetch(_ bengkelId: String) {
+        store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error getting stories: \(error.localizedDescription)")
+                return
+            }
+
+            let order = snapshot?.documents.compactMap { document in
+                try? document.data(as: Order.self)
+            } ?? []
+
+            DispatchQueue.global(qos: .background).async {
+                self.filteredOrders = order
+            }
+        }
     }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {

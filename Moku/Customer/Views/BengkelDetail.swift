@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct BengkelDetail: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -15,10 +16,14 @@ struct BengkelDetail: View {
     @State var service2: Bool = false
 
     @StateObject private var viewModel: ViewModel
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
 
-    init(bengkel: Bengkel) {
+    init(bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
     }
 
     var btnBack: some View {
@@ -72,6 +77,7 @@ struct BengkelDetail: View {
                             .frame(width: proxy.size.width * 0.3, alignment: .center)
                             .background(Color(hex: "F3F3F3"))
                             .cornerRadius(8)
+
                     }
                     .frame(width: proxy.size.width)
                     Text("Pilih Jasa")
@@ -89,7 +95,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel)) {
+                    NavigationLink(destination: BengkelDate(bengkel: viewModel.bengkel, typeOfService: viewModel.typeOfService, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
@@ -97,8 +103,6 @@ struct BengkelDetail: View {
                                 .frame(width: proxy.size.width * 0.85)
                                 .background(Color("PrimaryColor"))
                                 .cornerRadius(8)
-
-                        // .disabled(viewModel.typeOfService == nil)
                     }
                 }
             }
