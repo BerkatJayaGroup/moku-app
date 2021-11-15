@@ -100,3 +100,7 @@ struct CalonMekanik: Hashable {
     var name: String
     var photo: UIImage?
 }
+
+extension CalonMekanik: Identifiable {
+    var id: String { name }
+}

@@ -12,6 +12,7 @@
 		6F0E4E27272FDD2F000B6EC8 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E4E26272FDD2F000B6EC8 /* StorageService.swift */; };
 		6F4D388D273A7ED100BD5CF1 /* CancelBookingModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4D388C273A7ED100BD5CF1 /* CancelBookingModal.swift */; };
 		6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */; };
+		6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 		6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD96272A679F0041469C /* SearchBarMotor.swift */; };
 		6FB9BD99272A98070041469C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9BD98272A98070041469C /* AppColor.swift */; };
 		830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D12717FD9F00F03CE3 /* BengkelRepository.swift */; };
@@ -730,7 +731,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D7F93127328078005AB37A /* Assets.xcassets in Resources */,
+				6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */,
 				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 			);

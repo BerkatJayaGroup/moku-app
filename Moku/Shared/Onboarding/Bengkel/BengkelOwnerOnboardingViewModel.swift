@@ -24,13 +24,15 @@ extension BengkelOwnerOnboardingView {
         @Published var isSelectingLocation = false
 
         @Published var isSubmitting = false
+        
+        @Published var images: [UIImage] = []
 
         var address: String? {
             location?.address
         }
 
         var isFormValid: Bool {
-            !ownerName.isEmpty && !bengkelName.isEmpty && !phoneNumber.isEmpty && location != nil
+            !ownerName.isEmpty && !bengkelName.isEmpty && !phoneNumber.isEmpty && location != nil && images != []
         }
 
         func openBengkelSetting() {

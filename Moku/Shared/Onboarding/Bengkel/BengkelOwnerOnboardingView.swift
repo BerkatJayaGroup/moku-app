@@ -18,7 +18,6 @@ struct BengkelOwnerOnboardingView: View {
         return config
     }
 
-    @State var pickerResult: [UIImage] = []
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
@@ -30,9 +29,9 @@ struct BengkelOwnerOnboardingView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
-            VStack(alignment: .leading, spacing: 24) {
-                VStack(alignment: .leading, spacing: 8) {
+        GeometryReader { proxy in
+            VStack(spacing:24) {
+                VStack(alignment: .leading ,spacing:8) {
                     textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
                     textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
@@ -41,7 +40,7 @@ struct BengkelOwnerOnboardingView: View {
                     textField(title: "NOMOR TELEPON BENGKEL", placeholder: "08xx-xxxx-xxxx", text: $viewModel.phoneNumber, alert: "Nomor Telepon Wajib Diisi", keyboardType: .numberPad)
 
                     Section(header: header(title: "FOTO BENGKEL")) {
-                        if pickerResult != [] {
+                        if viewModel.images != [] {
                             ScrollView(.horizontal) {
                                 HStack {
                                     VStack {
@@ -58,7 +57,7 @@ struct BengkelOwnerOnboardingView: View {
                                     .onTapGesture {
                                         self.shouldPresentActionScheet = true
                                     }
-                                    ForEach(pickerResult, id: \.self) { image in
+                                    ForEach(viewModel.images, id: \.self) { image in
                                         Image.init(uiImage: image)
                                             .resizable()
                                             .frame(width: 100, height: 100, alignment: .center)
@@ -84,9 +83,9 @@ struct BengkelOwnerOnboardingView: View {
                     }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
-                            ImagePHPicker(configuration: self.config, pickerResult: $pickerResult, isPresented: $shouldPresentImagePicker)
+                            ImagePHPicker(configuration: self.config, pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
                         } else {
-                            ImagePicker(sourceType: .camera, pickerResult: $pickerResult)
+                            ImagePicker(sourceType: .camera, pickerResult: $viewModel.images)
                         }
                     }.actionSheet(isPresented: $shouldPresentActionScheet) {
                         ActionSheet(
@@ -106,8 +105,11 @@ struct BengkelOwnerOnboardingView: View {
                         )
                     }
                 }
+                if viewModel.images.isEmpty, viewModel.isSubmitting {
+                    Text("Minimal 1 foto").alertStyle()
+                }
                 Spacer()
-                submitButton()
+                submitButton(proxy: proxy)
             }
             .sheet(isPresented: $viewModel.isSelectingLocation) {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
@@ -131,7 +133,7 @@ extension BengkelOwnerOnboardingView {
     }
 
     @ViewBuilder
-    private func submitButton() -> some View {
+    private func submitButton(proxy: GeometryProxy) -> some View {
         NavigationLink(destination: PengaturanBengkel(bengkelOwnerForm: self), isActive: $viewModel.isSettingDetail) { EmptyView() }
 
         Button {
@@ -146,6 +148,7 @@ extension BengkelOwnerOnboardingView {
             .foregroundColor(.white)
             .background(AppColor.primaryColor)
             .cornerRadius(8)
+            .frame(width: (proxy.size.width * 0.9))
         }
     }
 
@@ -157,7 +160,7 @@ extension BengkelOwnerOnboardingView {
                         viewModel.selectLocation()
                     } label: {
                         if let address = viewModel.address {
-                            Text(address).foregroundColor(.primary)
+                            Text(address).foregroundColor(.primary).lineLimit(1)
                         } else {
                             HStack {
                                 Image(systemName: "mappin.circle")

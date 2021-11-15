@@ -42,12 +42,12 @@ struct PengaturanBengkel: View {
     @State var selectedBrand = Set<Brand>()
     @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
-
     @State var canSubmit = false
-
+    
     var isFormValid: Bool {
-        !brandMotor.isEmpty && !ccMotor.isEmpty && !mechanics.isEmpty
+        !selectedBrand.isEmpty && !selectedCC.isEmpty && !mechanics.isEmpty
     }
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
@@ -62,7 +62,7 @@ struct PengaturanBengkel: View {
                     .frame(width: proxy.size.width, height: 40)
                     .background(Color(hex: "F3F3F3"))
                     .cornerRadius(8)
-                    emptyAlert(for: $brandMotor, alert: "Brand motor harus diisi")
+                    brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("CC MOTOR YANG BISA DIPERBAIKI")
@@ -75,7 +75,7 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, height: 40)
                         .background(Color(hex: "F3F3F3"))
                         .cornerRadius(8)
-                    emptyAlert(for: $ccMotor, alert: "CC motor harus diisi")
+                    ccEmptyAlert(for: $selectedCC, alert: "CC motor harus diisi")
                 }
                 VStack(spacing: 8) {
                     Text("HARI OPERASIONAL")
@@ -126,6 +126,7 @@ struct PengaturanBengkel: View {
                                 .background(Color("DarkGray"))
                         }.onDelete(perform: self.deleteItem)
                     }
+                    Divider()
                 }
 
                 Button {
@@ -140,7 +141,7 @@ struct PengaturanBengkel: View {
                 .sheet(isPresented: $isAddMekanik) {
                     AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
                 }
-                mekanikAlert(for: $mechanics, alert: "Mekanik harus diisi")
+                mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 Spacer()
                 submitButton(proxy: proxy)
             }
@@ -149,13 +150,15 @@ struct PengaturanBengkel: View {
         .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
     }
 
-    private func deleteItem(at indexSet: IndexSet) {
-        self.mechanics.remove(atOffsets: indexSet)
+    private func deleteItem(_ indexSet: IndexSet) {
+        indexSet.forEach { index in
+            mechanics.remove(at: index)
+        }
     }
-
+    
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
-        NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, bengkelOwnerForm: bengkelOwnerForm, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
+        NavigationLink(destination: PengaturanHargaBengkel(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
 
         Button {
             validateForm()
@@ -169,24 +172,39 @@ struct PengaturanBengkel: View {
             .foregroundColor(.white)
             .background(AppColor.primaryColor)
             .cornerRadius(8)
+            .frame(width: (proxy.size.width * 0.9))
         }
     }
-
+    
     @ViewBuilder
     private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-
+    
     @ViewBuilder
-    private func mekanikAlert(for text: Binding<[CalonMekanik]>, alert: String) -> some View {
+    private func mekanikEmptyAlert(for text: Binding<Array<CalonMekanik>>, alert: String) -> some View {
         if text.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }
     }
-
-    func validateForm() {
+    
+    @ViewBuilder
+    private func brandEmptyAlert(for text: Binding<Set<Brand>>, alert: String) -> some View {
+        if text.wrappedValue.isEmpty, isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+    
+    @ViewBuilder
+    private func ccEmptyAlert(for text: Binding<Set<Motorcc>>, alert: String) -> some View {
+        if text.wrappedValue.isEmpty, isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+    
+    func validateForm(){
         isSubmitting = true
         if isFormValid {
             canSubmit = true
