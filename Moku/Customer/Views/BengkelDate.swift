@@ -9,21 +9,19 @@ import SwiftUI
 import FirebaseAuth
 import Combine
 
-struct BengkelDate: View {
-    private let tggl = [true, false, true, true, false, true, false]
+private let tggl = [true, false, true, true, false, true, false]
 
+struct BengkelDate: View {
     @StateObject private var viewModel: ViewModel
 
-    init(bengkel: Bengkel, typeOfService: Order.Service, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
-        let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
-        _viewModel = StateObject(wrappedValue: viewModel)
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
+
+    init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, typeOfService: typeOfService))
         _isRootActive = isRootActive
         _isHideTabBar = isHideTabBar
     }
-
-    @Binding var isRootActive: Bool
-
-    @Binding var isHideTabBar: Bool
 
     let columns = [
         GridItem(.fixed(60), spacing: 10),
@@ -32,6 +30,7 @@ struct BengkelDate: View {
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10)
     ]
+
     var body: some View {
         VStack {
             VStack(alignment: .leading) {

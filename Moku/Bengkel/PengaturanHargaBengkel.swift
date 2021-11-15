@@ -65,17 +65,6 @@ struct PengaturanHargaBengkel: View {
     }
 
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, bengkelOwnerForm: BengkelOwnerOnboardingView, pengaturanBengkelForm: PengaturanBengkel) {
-//        Titip di command dulu barangkali besok butuh
-
-//        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
-//        for day in days {
-//            if let index = days.firstIndex(of: day){
-//                if (pengaturanBengkelForm.daySelected[index] == false){
-//                    days.remove(at: index)
-//                }
-//            }
-//        }
-      
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
         let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)

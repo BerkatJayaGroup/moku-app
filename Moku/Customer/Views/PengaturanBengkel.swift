@@ -117,7 +117,8 @@ struct PengaturanBengkel: View {
                 Text("MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                     .frame(width: proxy.size.width, alignment: .leading)
-                if mechanics != [] {
+
+                if !mechanics.isEmpty {
                     VStack(alignment: .leading) {
                         ForEach(mechanics, id: \.self) { (mech) in
                             Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
@@ -126,6 +127,7 @@ struct PengaturanBengkel: View {
                         }.onDelete(perform: self.deleteItem)
                     }
                 }
+
                 Button {
                     self.isAddMekanik.toggle()
                     print($mechanics.count)
@@ -189,11 +191,5 @@ struct PengaturanBengkel: View {
         if isFormValid {
             canSubmit = true
         }
-    }
-}
-
-struct PengaturanBengkel_Previews: PreviewProvider {
-    static var previews: some View {
-        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
     }
 }

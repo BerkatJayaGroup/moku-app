@@ -31,7 +31,7 @@ struct MokuApp: App {
         WindowGroup {
             if let user = session.user {
                 switch user {
-                case let .bengkel(bengkel):
+                case .bengkel(_):
                     BengkelView()
                 case let .customer(customer):
                     CustomerView(for: customer)

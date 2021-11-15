@@ -6,5 +6,9 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We&apos;ll only use your location when you&apos;re using the app</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+    <string>comgooglemaps</string>
+    </array>
 </dict>
 </plist>

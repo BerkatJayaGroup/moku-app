@@ -69,10 +69,10 @@ extension Bengkel {
 extension Bengkel {
     static let preview = Bengkel(
         owner: Bengkel.Owner(name: "John Doe", phoneNumber: "1234", email: "johndoe@example.com"),
-        name: "Dsdsda",
-        phoneNumber: "Berkat Jaya",
-        location: Location(address: "x", longitude: 1, latitude: 1),
-        operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
+        name: "Berkat Jaya Motor",
+        phoneNumber: "0217549236",
+        location: Location(address: "Blok M, Jalan Cinere Raya Ruko Blok. M No. 3", longitude: 106.78029, latitude: -6.33449),
+        operationalHours: Bengkel.OperationalHours(open: 8, close: 18),
         operationalDays: [false, true, true, true, false, false, false],
         minPrice: "20000",
         maxPrice: "100000",
