@@ -13,6 +13,7 @@ struct MokuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @ObservedObject var session = SessionService.shared
+    @ObservedObject var dynamicLinkService = DynamicLinksService.shared
 
     @StateObject var appState = AppState()
 
@@ -29,7 +30,9 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    PickRoleView()
+                    PickRoleView().onAppear {
+                        dynamicLinkService.shortenURL()
+                    }
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
