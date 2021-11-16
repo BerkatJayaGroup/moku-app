@@ -67,7 +67,6 @@ struct DetailBooking: View {
                 Spacer()
                 Button(action: {
                     print("Terima Booking")
-                    AssignMechanics(order: viewModel.order, showMechs: true, title: "Tugaskan Mekanik")
                     viewModel.showModal = true
                 }, label: {
                     Text("Terima Booking")
@@ -78,7 +77,7 @@ struct DetailBooking: View {
                         .frame(width: 320, height: 45, alignment: .center)
                 })
                     .partialSheet(isPresented: $viewModel.showModal){
-                        AssignMechanics(order: viewModel.order, showMechs: true, title: "Tugaskan Mekanik")
+                        AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
                     }
                     .padding(.bottom, 16)
                 Button(action: {

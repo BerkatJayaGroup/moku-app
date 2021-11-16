@@ -12,10 +12,11 @@ import PartialSheet
 
 struct AssignMechanics: View {
     @StateObject private var viewModel: ViewModel
-
-    init(order: Order, showMechs: Bool, title: String) {
-        let viewModel = ViewModel(order: order, showMechs: showMechs, title: title)
+    @Binding var isActive: Bool
+    init(order: Order, isRootActive: Binding<Bool>) {
+        let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
+        _isActive = isRootActive
     }
 
     var body: some View {
@@ -24,7 +25,7 @@ struct AssignMechanics: View {
                 .font(.system(size: 18))
                 .fontWeight(.bold)
             ScrollView(.horizontal) {
-                LazyHStack {
+                LazyHStack(spacing: 24) {
                     if let bengkel = viewModel.bengkel {
                         ForEach(0..<bengkel.mekaniks.count, id: \.self) { mech in
                             VStack {
@@ -48,8 +49,6 @@ struct AssignMechanics: View {
                                                 viewModel.selectedMechanics = mech
                                             }
                                     }
-                                    
-                                               
                                 }
                                 Text(viewModel.bengkel?.mekaniks[mech].name ?? "Tono")
                                     .font(.system(size: 14))
@@ -61,13 +60,15 @@ struct AssignMechanics: View {
             }
             Spacer()
             Button(action:{
-                OrderRepository.shared.addMekanik(orderId: viewModel.order.id, mechanicsName: viewModel.bengkel?.mekaniks[viewModel.selectedMechanics].name ?? "")
+                self.isActive = false
+                viewModel.addMekanik()
+                print("Sudah di add brou")
             }, label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
+                    .background(AppColor.primaryColor)
                     .cornerRadius(8)
                     .foregroundColor(.white)
-                    .background(AppColor.primaryColor)
             })
         }
         .padding()
@@ -75,10 +76,3 @@ struct AssignMechanics: View {
 
     }
 }
-
- struct AssignMechanics_Previews: PreviewProvider {
-    static var previews: some View {
-        AssignMechanics(order: .preview, showMechs: true, title: "Tugaskan Mekanik")
-            .previewLayout(.sizeThatFits)
-    }
- }

@@ -12,23 +12,12 @@ extension AssignMechanics {
     class ViewModel: ObservableObject {
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
         @Published var order: Order
-        @Published var bengkel: Bengkel? {
-            didSet {
-                print("bengkel cok: \(bengkel)")
-            }
-        }
+        @Published var bengkel: Bengkel? 
         
         @Published var selectedMechanics = -1
 
-        @Published var showMechs: Bool = true
-        @Published var showDetailBook: Bool = false
-
-        @Published var title: String
-
-        init(order: Order, showMechs: Bool, title: String) {
+        init(order: Order) {
             self.order = order
-            self.showMechs = showMechs
-            self.title = title
             fetchBengkel()
         }
 
@@ -36,6 +25,12 @@ extension AssignMechanics {
             print("Chris Test")
             bengkelRepository.fetch(id: order.bengkelId) { bengkelData in
                 self.bengkel = bengkelData
+            }
+        }
+        
+        func addMekanik() {
+            if let bengkel = bengkel {
+                OrderRepository.shared.addMekanik(orderId: self.order.id, mechanicsName: bengkel.mekaniks[selectedMechanics].name)
             }
         }
     }
