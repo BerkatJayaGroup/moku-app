@@ -19,7 +19,8 @@ struct Order: Codable {
     var notes: String?
     var mekanik: Mekanik?
     var nota: String?
-
+    var mechanicName: String?
+    
     let schedule: Date
     var createdAt = Date()
 
@@ -58,8 +59,8 @@ extension Order {
 
 extension Order {
     static let preview = Order(
-        bengkelId: "",
-        customerId: ".preview",
+        bengkelId: "Z01EToNtnRn6MRYawf6U",
+        customerId: "SAOWguECBrZUNhc3EnT1LUl2YFh2",
         motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
         typeOfService: .servisRutin,
         notes: "Lorem Ipsum.",

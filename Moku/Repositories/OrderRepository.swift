@@ -122,4 +122,12 @@ final class OrderRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
+    
+    func addMekanik(orderId: String, mechanicsName: String){
+        store
+            .document(orderId)
+            .updateData(
+                ["mechanicName" : mechanicsName]
+            )
+    }
 }
