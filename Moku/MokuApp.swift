@@ -21,7 +21,9 @@ struct MokuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if let user = session.user {
+            if case .bookingDetail(_) = dynamicLinkService.dynamicLinkTarget {
+                BookingDetail(order: .preview, bengkel: .preview)
+            } else if let user = session.user {
                 switch user {
                 case .bengkel(_):
                     BengkelView()
@@ -30,9 +32,25 @@ struct MokuApp: App {
                 }
             } else {
                 if appState.hasOnboarded {
-                    PickRoleView().onAppear {
-                        dynamicLinkService.shortenURL()
-                    }
+                    PickRoleView()
+                        .onAppear {
+                            dynamicLinkService.generateDynamicLink(order: .preview) { url in
+                                print("Your short link is", url)
+                            }
+                        }
+                        .onOpenURL { url in
+                            print("Incoming URL parameter is: \(url)")
+                            let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
+                                guard let dynamicLink = dynamicLink else { return }
+                                self.dynamicLinkService.handleDynamicLink(dynamicLink)
+                            }
+
+                            if linkHandled {
+                                print("Link Handled")
+                            } else {
+                                print("No Link Handled")
+                            }
+                        }
                 } else {
                     OnboardingView(data: onboardingData).environmentObject(appState)
                 }
@@ -53,8 +71,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         GoogleMapsService.register()
 
         NotificationService.register(application: application)
-
-//        BengkelRepository.shared.add(bengkel: .preview)
 
         return true
     }
