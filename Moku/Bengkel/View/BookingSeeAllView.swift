@@ -17,7 +17,7 @@ struct BookingSeeAllView: View {
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
-    
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -60,7 +60,7 @@ struct BookingSeeAllView: View {
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
                 Button("Terima") {
-                
+
                 }.padding()
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)

@@ -11,9 +11,9 @@ import FirebaseAuth
 
 struct BookingTabItemView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
-    
+
     @State private var isDetailBookingModalPresented = false
-    
+
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -71,7 +71,7 @@ struct BookingTabItemView: View {
                                 .foregroundColor(AppColor.darkGray)
                                 .multilineTextAlignment(.center)
                         }.padding(70)
-                        
+
                     } else {
                         currentBookingSection(order: currentOrder)
                     }
@@ -108,7 +108,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-    
+
     private func bookingCards(order: Order) -> some View {
         VStack(alignment: .leading) {
             Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
@@ -133,7 +133,7 @@ struct BookingTabItemView: View {
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
                 Button("Terima") {
-                    
+
                 }.padding()
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
@@ -144,8 +144,8 @@ struct BookingTabItemView: View {
         }.onTapGesture {
             isDetailBookingModalPresented.toggle()
         }.sheet(isPresented: $isDetailBookingModalPresented) {
-            //TODO: Navigate to modal Detail Booking
-            //ex: DetailBooking(order)
+            // TODO: Navigate to modal Detail Booking
+            // ex: DetailBooking(order)
         }
     }
 
@@ -165,13 +165,13 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-    
+
     private func currentBookingCard(order: Order) -> some View {
         VStack {
             if let customer = viewModel.customer {
                 Text(customer.name)
             }
-            
+
             HStack {
                 Image("pemilik-bengkel")
                     .resizable()
@@ -206,8 +206,8 @@ struct BookingTabItemView: View {
         .onTapGesture {
             isDetailBookingModalPresented.toggle()
         }.sheet(isPresented: $isDetailBookingModalPresented) {
-            //TODO: navigate to detail booking
-            //ex: DetailBooking(order)
+            // TODO: navigate to detail booking
+            // ex: DetailBooking(order)
         }
     }
 }

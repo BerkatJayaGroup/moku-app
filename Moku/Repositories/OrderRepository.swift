@@ -61,7 +61,7 @@ final class OrderRepository: ObservableObject {
             completionHandler?(customerOrders)
         }
     }
-    
+
     func fetchBengkelOrder(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { snapshot, error in
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }

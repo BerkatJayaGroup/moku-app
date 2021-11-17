@@ -23,13 +23,13 @@ class BookingTabItemViewModel: ObservableObject {
             getBengkelOrders(bengkelId: id)
         }
     }
-    
+
     func getBengkelOrders(bengkelId: String) {
         orderRepository.fetchBengkelOrder(bengkelId: bengkelId) { order in
             self.bengkelOrders = order
         }
     }
-    
+
     func getCustomerFromOrders(customerId: String) {
         customerRepository.fetch(id: customerId) { customer in
             self.customer = customer
