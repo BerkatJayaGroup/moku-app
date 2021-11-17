@@ -18,7 +18,7 @@ struct AssignMechanics: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         _isActive = isRootActive
     }
-
+    
     var body: some View {
         VStack{
             Text("Tugaskan Mekanik")
@@ -28,30 +28,10 @@ struct AssignMechanics: View {
                 LazyHStack(spacing: 24) {
                     if let bengkel = viewModel.bengkel {
                         ForEach(0..<bengkel.mekaniks.count, id: \.self) { mech in
-                            VStack {
-                                if let mechPhoto = viewModel.bengkel?.mekaniks[mech].photo {
-                                    if viewModel.selectedMechanics == mech{
-                                        WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
-                                            .resizable()
-                                            .frame(width: 80, height: 80)
-                                            .clipShape(Circle())
-                                            .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 5))
-                                            .onTapGesture{
-                                                viewModel.selectedMechanics = mech
-                                            }
-                                    }
-                                    else{
-                                        WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
-                                            .resizable()
-                                            .frame(width: 80, height: 80)
-                                            .clipShape(Circle())
-                                            .onTapGesture{
-                                                viewModel.selectedMechanics = mech
-                                            }
-                                    }
-                                }
-                                Text(viewModel.bengkel?.mekaniks[mech].name ?? "Tono")
-                                    .font(.system(size: 14))
+                            if viewModel.availableMechs.contains(bengkel.mekaniks[mech].name){
+                                EmptyView()
+                            } else{
+                                componentMechanics(mech: mech)
                             }
                         }
                     }
@@ -62,7 +42,7 @@ struct AssignMechanics: View {
             Button(action:{
                 self.isActive = false
                 viewModel.addMekanik()
-                print("Sudah di add brou")
+                viewModel.updateStatusOrder()
             }, label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
@@ -73,6 +53,35 @@ struct AssignMechanics: View {
         }
         .padding()
         .frame(height: 240)
-
+        
     }
+    
+    private func componentMechanics(mech: Int) -> some View{
+        VStack{
+            if let mechPhoto = viewModel.bengkel?.mekaniks[mech].photo {
+                if viewModel.selectedMechanics == mech{
+                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 5))
+                        .onTapGesture{
+                            viewModel.selectedMechanics = mech
+                        }
+                }
+                else{
+                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .onTapGesture{
+                            viewModel.selectedMechanics = mech
+                        }
+                }
+            }
+            Text(viewModel.bengkel?.mekaniks[mech].name ?? "Tono")
+                .font(.system(size: 14))
+        }
+    }
+    
 }
