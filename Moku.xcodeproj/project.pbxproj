@@ -110,7 +110,6 @@
 		B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01B0272918C700050D90 /* UserDataKeychain.swift */; };
 		B855B0A12743939D0006302E /* BookingTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855B0A02743939D0006302E /* BookingTabItemView.swift */; };
 		B855B0A427439FC80006302E /* BookingTabItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */; };
-		B855B0A62743C5FE0006302E /* BookingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855B0A52743C5FE0006302E /* BookingDetailView.swift */; };
 		B855B0A82743C6270006302E /* BookingSeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855B0A72743C6270006302E /* BookingSeeAllView.swift */; };
 		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
 		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
@@ -254,7 +253,6 @@
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B855B0A02743939D0006302E /* BookingTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTabItemView.swift; sourceTree = "<group>"; };
 		B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTabItemViewModel.swift; sourceTree = "<group>"; };
-		B855B0A52743C5FE0006302E /* BookingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailView.swift; sourceTree = "<group>"; };
 		B855B0A72743C6270006302E /* BookingSeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSeeAllView.swift; sourceTree = "<group>"; };
 		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
 		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
@@ -632,7 +630,6 @@
 			isa = PBXGroup;
 			children = (
 				B855B0A02743939D0006302E /* BookingTabItemView.swift */,
-				B855B0A52743C5FE0006302E /* BookingDetailView.swift */,
 				B855B0A72743C6270006302E /* BookingSeeAllView.swift */,
 			);
 			path = View;
@@ -886,7 +883,6 @@
 				8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */,
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */,
-				B855B0A62743C5FE0006302E /* BookingDetailView.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
 				837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */,
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
