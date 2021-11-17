@@ -23,7 +23,7 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
-
+    
     @Published var filteredOrdersStatus = [Order]()
 
     @Published var customerOrders = [Order]()
@@ -69,8 +69,8 @@ final class OrderRepository: ObservableObject {
             completionHandler?(bengkelOrders)
         }
     }
-
-    func fetch(bengkelId: String) {
+    
+    func fetch(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
                 print("Error getting stories: \(error.localizedDescription)")
@@ -83,6 +83,7 @@ final class OrderRepository: ObservableObject {
 
             DispatchQueue.global(qos: .background).async {
                 self.filteredOrders = order
+                completionHandler?(order)
             }
         }
     }
@@ -121,7 +122,7 @@ final class OrderRepository: ObservableObject {
         store.document(order.id).delete()
     }
 
-    func update(order: Order, completioHandler: ((Error?) -> Void)? = nil) {
+    func updateStatus(order: Order, completioHandler: ((Error?) -> Void)? = nil) {
         do {
             try store.document(order.id).setData(from: order, merge: true) { error in
                 completioHandler?(error)
@@ -129,5 +130,13 @@ final class OrderRepository: ObservableObject {
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
+    }
+    
+    func addMekanik(orderId: String, mechanicsName: String){
+        store
+            .document(orderId)
+            .updateData(
+                ["mechanicName" : mechanicsName]
+            )
     }
 }
