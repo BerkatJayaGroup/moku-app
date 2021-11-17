@@ -28,7 +28,7 @@ struct AssignMechanics: View {
                 LazyHStack(spacing: 24) {
                     if let bengkel = viewModel.bengkel {
                         ForEach(0..<bengkel.mekaniks.count, id: \.self) { mech in
-                            if viewModel.availableMechs.contains(bengkel.mekaniks[mech].name){
+                            if viewModel.unavailableMechs.contains(bengkel.mekaniks[mech].name){
                                 EmptyView()
                             } else{
                                 componentMechanics(mech: mech)
