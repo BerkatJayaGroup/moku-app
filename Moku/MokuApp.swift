@@ -22,8 +22,7 @@ struct MokuApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            contentView()
-            DetailBooking(order: .preview)
+            contentView()
                 .environmentObject(sheetManager)
         }
     }
@@ -33,8 +32,7 @@ struct MokuApp: App {
             case .bengkel(_):
                 BengkelView()
             case let .customer(customer):
-//                CustomerView(for: customer)
-                AssignMechanicsView().environmentObject(sheetManager)
+                CustomerView(for: customer)
             }
         } else {
             if appState.hasOnboarded {
