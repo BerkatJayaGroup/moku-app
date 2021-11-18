@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseDynamicLinks
+import UIKit
 
 extension DynamicLinksService {
     enum DynamicLinkTarget {
@@ -35,24 +36,33 @@ final class DynamicLinksService: ObservableObject {
     }
 
     func generateDynamicLink(
-        order: Order,
+        orderID: String,
         metaTag: SocialMetaTag = SocialMetaTag(),
         completionHandler: ((String) -> Void)? = nil
     ) {
-        guard let linkBuilder = createLinkBuilder(order: order, metaTag: metaTag) else { return }
+        guard let linkBuilder = createLinkBuilder(orderID: orderID, metaTag: metaTag) else { return }
         shortenURL(linkBuilder: linkBuilder) { url in
             completionHandler?(url.absoluteString)
         }
     }
 
-    func handleDynamicLink(_ dynamicLink: DynamicLink) {
+    func handleNotification(userInfo: [AnyHashable: Any]) {
+        guard
+            let deepLink = userInfo["deepLink"] as? String,
+            let deepLinkURL = URL(string: deepLink)
+        else { return }
+
+        DynamicLinks.dynamicLinks().handleUniversalLink(deepLinkURL) { dynamicLink, _ in
+            guard let dynamicLink = dynamicLink else { return }
+            DynamicLinksService.shared.handleDynamicLink(dynamicLink: dynamicLink)
+        }
+    }
+
+    func handleDynamicLink(dynamicLink: DynamicLink) {
         guard let url = dynamicLink.url,
               url.scheme == "https",
               let query = url.query
         else { return }
-
-        print("Your incoming link parameter is \(url.absoluteString)")
-        print("Your query is \(query)")
 
         let components = query.split(separator: ",").flatMap { substring in
             substring.split(separator: "=")
@@ -87,8 +97,8 @@ final class DynamicLinksService: ObservableObject {
 
     }
 
-    private func createLinkBuilder(order: Order, metaTag: SocialMetaTag) -> DynamicLinkComponents? {
-        let urlComponent = createURLComponents(for: .bookingDetail(id: order.id))
+    private func createLinkBuilder(orderID: String, metaTag: SocialMetaTag) -> DynamicLinkComponents? {
+        let urlComponent = createURLComponents(for: .bookingDetail(id: orderID))
 
         guard let link = urlComponent?.url,
               let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: "https://moku.page.link") else { return nil }

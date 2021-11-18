@@ -12,6 +12,7 @@ struct BookingDetail: View {
     let order: Order
     @State private var showingSheet = false
     @State var bengkel: Bengkel?
+
     var body: some View {
         content.onAppear {
             BengkelRepository.shared.fetch(id: order.bengkelId) { bengkel in
@@ -19,6 +20,7 @@ struct BookingDetail: View {
             }
         }
     }
+
     @ViewBuilder private var content: some View {
         if let bengkel = bengkel {
             VStack {
