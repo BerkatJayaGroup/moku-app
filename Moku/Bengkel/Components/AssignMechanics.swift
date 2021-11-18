@@ -60,17 +60,17 @@ struct AssignMechanics: View {
         VStack{
             if let mechPhoto = viewModel.bengkel?.mekaniks[mech].photo {
                 if viewModel.selectedMechanics == mech{
-                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                    WebImage(url: URL(string: mechPhoto))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 5))
+                        .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 2))
                         .onTapGesture{
                             viewModel.selectedMechanics = mech
                         }
                 }
                 else{
-                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                    WebImage(url: URL(string: mechPhoto))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())

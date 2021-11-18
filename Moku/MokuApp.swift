@@ -22,7 +22,8 @@ struct MokuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            contentView()
+//             contentView()
+            DetailBooking(order: .preview)
                 .environmentObject(sheetManager)
         }
     }

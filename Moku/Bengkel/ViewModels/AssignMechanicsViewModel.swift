@@ -57,11 +57,6 @@ extension AssignMechanics {
             self.order.status = .onProgress
             
             //            TODO: PushNotif Chris
-            orderRepository.updateStatus(order: order){ _ in
-                CustomerRepository.shared.fetch(id: order.customerId, completionHandler: { customer in
-                    NotificationService.shared.send(to: [customer.fcmToken], notification: .updateOrderStatus(.onProgress))
-                })
-            }
             orderRepository.updateStatus(order: order)
 //            { _ in
 //                CustomerRepository.shared.fetch(id: order.customerId, completionHandler: { customer in
