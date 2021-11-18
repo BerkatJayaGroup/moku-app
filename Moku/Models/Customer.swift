@@ -17,6 +17,7 @@ struct Customer: Codable {
 //    TODO: Nunggu Bengkel Side ngetrigger Order
 //    OrdersToRate bakal keisi kalo di triger bengkel
     var ordersToRate = [Order]()
+    var favoriteBengkel = [Bengkel]()
 }
 
 extension Customer {

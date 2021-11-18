@@ -89,6 +89,7 @@
 		8E5C6B0127305590004EC262 /* DayByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C6B0027305590004EC262 /* DayByDay.swift */; };
 		8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
+		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		8EE4F504273D5939001D6C5A /* UlasanModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE4F503273D5939001D6C5A /* UlasanModalViewModel.swift */; };
 		8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE4F505273E3C66001D6C5A /* UlasanAftarSend.swift */; };
 		AE26C05327391483005D06E5 /* BookingsTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26C05227391483005D06E5 /* BookingsTabItem.swift */; };
@@ -96,7 +97,6 @@
 		AE26C057273932ED005D06E5 /* BookingsTabItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26C056273932ED005D06E5 /* BookingsTabItemViewModel.swift */; };
 		AE37C6A2273A645400B5B320 /* BookingEmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37C6A1273A645400B5B320 /* BookingEmptyComponent.swift */; };
 		AE37C6A4273A79B700B5B320 /* BookingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37C6A3273A79B700B5B320 /* BookingDetail.swift */; };
-		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		AE9D6F5C27302BE200E4707B /* BookingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9D6F5B27302BE200E4707B /* BookingSummary.swift */; };
 		AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9827269718000E2012 /* MotorModal.swift */; };
 		AE9E6E9B2726A404000E2012 /* UlasanPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9A2726A404000E2012 /* UlasanPage.swift */; };
@@ -120,7 +120,6 @@
 		B8C74307273E3D4900E34B5C /* AddMotorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C74306273E3D4900E34B5C /* AddMotorModal.swift */; };
 		B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE28632727E93A00464E64 /* UserDefaults.swift */; };
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
-		B8D7F93127328078005AB37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CBF24C2722BE6D00C79064 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,10 +226,10 @@
 		8E5C6B0027305590004EC262 /* DayByDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayByDay.swift; sourceTree = "<group>"; };
 		8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDateViewModel.swift; sourceTree = "<group>"; };
 		8EE4F503273D5939001D6C5A /* UlasanModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanModalViewModel.swift; sourceTree = "<group>"; };
 		8EE4F505273E3C66001D6C5A /* UlasanAftarSend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanAftarSend.swift; sourceTree = "<group>"; };
 		8EE4F508273E633F001D6C5A /* SheetKit-main */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SheetKit-main"; path = "../../../SheetKit-main"; sourceTree = "<group>"; };
-		8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDateViewModel.swift; sourceTree = "<group>"; };
 		8FF073A12E58B79AD292B8A1 /* Pods-Moku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moku.release.xcconfig"; path = "Target Support Files/Pods-Moku/Pods-Moku.release.xcconfig"; sourceTree = "<group>"; };
 		AE26C05227391483005D06E5 /* BookingsTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsTabItem.swift; sourceTree = "<group>"; };
 		AE26C05427391718005D06E5 /* BookingComponentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingComponentList.swift; sourceTree = "<group>"; };

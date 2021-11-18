@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BengkelList: View {
+    
     let bengkel: Bengkel
 
     init(bengkel: Bengkel) {
