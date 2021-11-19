@@ -133,7 +133,7 @@ struct BookingTabItemView: View {
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
                 Button("Terima") {
-
+                    isDetailBookingModalPresented.toggle()
                 }.padding()
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
@@ -144,8 +144,7 @@ struct BookingTabItemView: View {
         }.onTapGesture {
             isDetailBookingModalPresented.toggle()
         }.sheet(isPresented: $isDetailBookingModalPresented) {
-            // TODO: Navigate to modal Detail Booking
-            // ex: DetailBooking(order)
+            DetailBooking(order: order)
         }
     }
 
@@ -153,7 +152,7 @@ struct BookingTabItemView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 ForEach(0..<order.count) { index in
-                    bookingCards(order: order[index])
+                    currentBookingCard(order: order[index])
                         .padding(10)
                         .frame(width: .infinity)
                         .background(Color.white)
@@ -206,8 +205,7 @@ struct BookingTabItemView: View {
         .onTapGesture {
             isDetailBookingModalPresented.toggle()
         }.sheet(isPresented: $isDetailBookingModalPresented) {
-            // TODO: navigate to detail booking
-            // ex: DetailBooking(order)
+            DetailBooking(order: order)
         }
     }
 }

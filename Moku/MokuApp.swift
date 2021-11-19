@@ -37,7 +37,8 @@ struct MokuApp: App {
         } else {
             if appState.hasOnboarded {
 //                AssignMechanicsView().environmentObject(sheetManager)
-                PickRoleView()
+//                PickRoleView()
+                BengkelView()
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }

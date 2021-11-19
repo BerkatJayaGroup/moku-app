@@ -22,8 +22,11 @@ struct BookingSeeAllView: View {
         ScrollView {
             LazyVStack {
                 if let order = viewModel.bengkelOrders {
-                    ForEach(0..<order.count) { index in
-                        orderCards(order: order[index]).padding(10)
+                    let newOrder = order.filter { order in
+                        return order.status == .waitingConfirmation
+                    }
+                    ForEach(0..<newOrder.count) { index in
+                        orderCards(order: newOrder[index]).padding(10)
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
