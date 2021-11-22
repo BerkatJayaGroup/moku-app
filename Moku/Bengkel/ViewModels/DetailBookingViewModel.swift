@@ -49,6 +49,5 @@ extension DetailBooking {
         var notes: String {
             order.notes ?? ""
         }
-
     }
 }

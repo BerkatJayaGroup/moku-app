@@ -46,7 +46,7 @@ extension AssignMechanics {
                 self.bengkel = bengkelData
             }
         }
-
+        
         func addMekanik() {
             if let bengkel = bengkel {
                 OrderRepository.shared.addMekanik(orderId: self.order.id, mechanicsName: bengkel.mekaniks[selectedMechanics].name)
@@ -55,19 +55,15 @@ extension AssignMechanics {
 
         func updateStatusOrder() {
             self.order.status = .onProgress
-
-            //            TODO: PushNotif Chris
-//            orderRepository.updateStatus(order: order){ _ in
-//                CustomerRepository.shared.fetch(id: order.customerId, completionHandler: { customer in
-//                    NotificationService.shared.send(to: [customer.fcmToken], notification: .updateOrderStatus(.onProgress))
-//                })
-//            }
-            orderRepository.updateStatus(order: order)
-//            { _ in
-//                CustomerRepository.shared.fetch(id: order.customerId, completionHandler: { customer in
-//                    NotificationService.shared.send(to: [customer.fcmToken], notification: .updateOrderStatus(.onProgress))
-//                })
-//            }
+            orderRepository.updateStatus(order: order) { _ in
+                CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
+                    guard let fcmToken = customer.fcmToken else { return }
+                    NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(.onProgress))
+                }
+                self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId) { orders in
+                    self.orders = orders
+                }
+            }
         }
     }
 }

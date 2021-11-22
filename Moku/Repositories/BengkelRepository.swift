@@ -109,4 +109,8 @@ final class BengkelRepository: ObservableObject {
                 ["reviews": FieldValue.arrayUnion([reviewDict])]
             )
     }
+
+    func getMechanics(bengkelId: String) {
+
+    }
 }

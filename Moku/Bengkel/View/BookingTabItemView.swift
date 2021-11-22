@@ -80,6 +80,11 @@ struct BookingTabItemView: View {
             }.navigationTitle("Booking")
                 .navigationBarColor(AppColor.primaryColor)
         }.background(Color(.systemGroupedBackground))
+            .onAppear {
+                if let id = Auth.auth().currentUser?.uid {
+                    viewModel.getBengkelOrders(bengkelId: id)
+                }
+            }
     }
     private func newBookingSection(order: [Order]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -142,7 +147,11 @@ struct BookingTabItemView: View {
             }
         }.onTapGesture {
             isDetailBookingModalPresented.toggle()
-        }.sheet(isPresented: $isDetailBookingModalPresented) {
+        }.sheet(isPresented: $isDetailBookingModalPresented, onDismiss: {
+            if let id = Auth.auth().currentUser?.uid {
+                viewModel.getBengkelOrders(bengkelId: id)
+            }
+        }) {
             DetailBooking(order: order)
         }
     }
@@ -190,20 +199,48 @@ struct BookingTabItemView: View {
                     .resizable()
                     .frame(width: 20, height: 20)
                 if let mekanik = order.mekanik {
-                    Text(mekanik.name).font(.caption)
+                    if mekanik.name.isEmpty {
+                        Text("Tidak ada nama mekanik").font(.caption)
+                    } else {
+                        Text(mekanik.name).font(.caption)
+                    }
+                } else {
+                    Text("Tidak ada nama mekanik").font(.caption)
                 }
             }
             HStack {
                 Spacer()
-                Text(order.status.rawValue).font(.caption)
+                showStatus(status: order.status)
             }
         }.onAppear {
             viewModel.getCustomerFromOrders(customerId: order.customerId)
         }
         .onTapGesture {
             isDetailBookingModalPresented.toggle()
-        }.sheet(isPresented: $isDetailBookingModalPresented) {
+        }.sheet(isPresented: $isDetailBookingModalPresented, onDismiss: {
+            if let id = Auth.auth().currentUser?.uid {
+                viewModel.getBengkelOrders(bengkelId: id)
+            }
+        }) {
             DetailBooking(order: order)
+        }
+    }
+    
+    @ViewBuilder private func showStatus(status: Order.Status) -> some View {
+        if status == .onProgress {
+            Text(status.rawValue)
+                .font(.caption)
+                .padding(5)
+                .background(AppColor.salmonOrange)
+                .foregroundColor(AppColor.primaryColor)
+                .cornerRadius(15)
+        } else if status == .done {
+            Text(status.rawValue)
+                .font(.caption)
+                .padding(5)
+                .background(Color.systemBlue)
+                .foregroundColor(Color.blue)
+                .cornerRadius(15)
         }
     }
 }
