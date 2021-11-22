@@ -942,6 +942,7 @@
 				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				6F0E4E25272FC3CD000B6EC8 /* BengkelViewModel.swift in Sources */,
 				834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */,
+				B83315CD27475DF40052D2DD /* (null) in Sources */,
 				8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */,
 				B85A3236273A780A00AF4E17 /* GarasiTabItem.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
