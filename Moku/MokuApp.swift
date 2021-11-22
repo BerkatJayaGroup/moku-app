@@ -36,7 +36,7 @@ struct MokuApp: App {
             }
         } else {
             if appState.hasOnboarded {
-                PickRoleView()
+                BengkelView()
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }
