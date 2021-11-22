@@ -48,6 +48,7 @@ struct CollectionInfoDetailBengkel: View {
                 Text("\(cta.rawValue)").foregroundColor(AppColor.primaryColor)
             }
         }
+        .addPartialSheet()
     }
 
     func style(proxy: GeometryProxy) -> some View {
