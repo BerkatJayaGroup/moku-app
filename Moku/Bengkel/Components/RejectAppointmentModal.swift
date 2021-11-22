@@ -16,11 +16,11 @@ struct RejectAppointmentModal: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    let rejectReason = [
-        Order.CancelingReason.tidakMemilikiAlat,
-        Order.CancelingReason.sparepartKosong,
-        Order.CancelingReason.bengkelTutup,
-        Order.CancelingReason.kurangMekanik
+    let rejectReason: [Order.CancelingReason] = [
+        .tidakMemilikiAlat,
+        .sparepartKosong,
+        .bengkelTutup,
+        .kurangMekanik
     ]
 
     var body: some View {

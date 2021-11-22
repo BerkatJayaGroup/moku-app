@@ -40,7 +40,6 @@ class AssignMechanicsViewModel: ObservableObject {
     }
 
     private func fetchBengkel() {
-        print("Chris Test")
         bengkelRepository.fetch(id: order.bengkelId) { bengkelData in
             self.bengkel = bengkelData
         }

@@ -40,18 +40,18 @@ struct AssignMechanics: View {
                 .padding(.horizontal, 8)
             }
             Spacer()
-            Button(action: {
+            Button {
                 self.isActive = false
                 viewModel.addMekanik()
                 viewModel.updateStatusOrder(status: Order.Status.onProgress)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-            }, label: {
+            } label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
                     .background(AppColor.primaryColor)
                     .cornerRadius(8)
                     .foregroundColor(.white)
-            })
+            }
         }
         .padding()
         .frame(height: 240)
