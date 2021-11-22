@@ -122,21 +122,21 @@ final class OrderRepository: ObservableObject {
         store.document(order.id).delete()
     }
 
-    func updateStatus(order: Order, completioHandler: ((Error?) -> Void)? = nil) {
+    func updateStatus(order: Order, onComplete: ((Error?) -> Void)?) {
         do {
             try store.document(order.id).setData(from: order, merge: true) { error in
-                completioHandler?(error)
+                onComplete?(error)
             }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
     }
-    
-    func addMekanik(orderId: String, mechanicsName: String){
+
+    func addMekanik(orderId: String, mechanicsName: String) {
         store
             .document(orderId)
             .updateData(
-                ["mechanicName" : mechanicsName]
+                ["mechanicName": mechanicsName]
             )
     }
 }
