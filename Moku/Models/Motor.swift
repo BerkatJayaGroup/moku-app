@@ -10,16 +10,19 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class Motor: Codable, Identifiable {
-    @DocumentID var id: String!
+    let id = UUID().uuidString
     let brand: Brand
     let model: String
     let cc: Int
-    var year: Int?
+    var licensePlate: String?
+    var year: String?
 
-    init(brand: Brand, model: String, cc: Int) {
+    init(brand: Brand, model: String, cc: Int, licensePlate: String? = "", year: String? = "") {
         self.brand  = brand
         self.model  = model
         self.cc     = cc
+        self.licensePlate = licensePlate
+        self.year = year
     }
 }
 

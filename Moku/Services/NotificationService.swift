@@ -24,7 +24,6 @@ final class NotificationService: NSObject, ObservableObject {
             switch self {
             case .orderPlaced:
                 return Content(title: "Yay, ada pesanan yang masuk!", body: "Silahkan cek pesanan yang masuk.")
-
             case .orderCanceled(let reason):
                 return Content(title: "Yah, pesanan dibatalkan!", body: reason.rawValue)
             case .updateOrderStatus(let status):
