@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 import FirebaseAuth
 
 struct BookingTabItemView: View {
@@ -53,7 +52,7 @@ struct BookingTabItemView: View {
                         newBookingSection(order: newOrder)
                     }
                 } else {
-                    ActivityIndicator(.constant(true))
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
                 Text("Pekerjaan Hari Ini")
                     .font(.title2)
@@ -76,7 +75,7 @@ struct BookingTabItemView: View {
                         currentBookingSection(order: currentOrder)
                     }
                 } else {
-                    ActivityIndicator(.constant(true))
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
             }.navigationTitle("Booking")
                 .navigationBarColor(AppColor.primaryColor)

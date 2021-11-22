@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
@@ -34,7 +33,7 @@ struct BookingSeeAllView: View {
                             .padding(.horizontal)
                     }
                 } else {
-                    ActivityIndicator(.constant(true))
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
             }
         }.navigationBarTitle("Booking Masuk", displayMode: .inline)
