@@ -92,7 +92,6 @@
 		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		8ED7362C2742AF640043B882 /* AssignMechanicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362B2742AF640043B882 /* AssignMechanicsView.swift */; };
 		8ED7362F2742B93D0043B882 /* AssignMechanics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362E2742B93D0043B882 /* AssignMechanics.swift */; };
-		8ED736342742CA010043B882 /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8ED736332742CA010043B882 /* HalfASheet */; };
 		8ED7363627436AE50043B882 /* AssignMechanicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */; };
 		8ED736382743992A0043B882 /* DetailBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED736372743992A0043B882 /* DetailBooking.swift */; };
 		8ED7363A2743C05C0043B882 /* DetailBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */; };
@@ -287,7 +286,6 @@
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
 				837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */,
-				8ED736342742CA010043B882 /* HalfASheet in Frameworks */,
 				5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,7 +690,6 @@
 				830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */,
 				8E5C6AFE27304812004EC262 /* PartialSheet */,
 				B8C74300273D194D00E34B5C /* SnapToScroll */,
-				8ED736332742CA010043B882 /* HalfASheet */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
@@ -748,7 +745,6 @@
 				832AC1E22715986900BD92E2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 				B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */,
-				8ED736322742CA010043B882 /* XCRemoteSwiftPackageReference "HalfASheet" */,
 			);
 			productRefGroup = 837370B127144701003656FC /* Products */;
 			projectDirPath = "";
@@ -1294,14 +1290,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		8ED736322742CA010043B882 /* XCRemoteSwiftPackageReference "HalfASheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/franklynw/HalfASheet";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
 		B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swiftui-library/hstack-snap-to-scroll.git";
@@ -1352,11 +1340,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
-		};
-		8ED736332742CA010043B882 /* HalfASheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8ED736322742CA010043B882 /* XCRemoteSwiftPackageReference "HalfASheet" */;
-			productName = HalfASheet;
 		};
 		B8C74300273D194D00E34B5C /* SnapToScroll */ = {
 			isa = XCSwiftPackageProductDependency;

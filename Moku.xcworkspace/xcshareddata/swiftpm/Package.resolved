@@ -74,15 +74,6 @@
         }
       },
       {
-        "package": "HalfASheet",
-        "repositoryURL": "https://github.com/franklynw/HalfASheet",
-        "state": {
-          "branch": "develop",
-          "revision": "5d1ade1157f87c4f922f4aa1af318f53fa1a3764",
-          "version": null
-        }
-      },
-      {
         "package": "SnapToScroll",
         "repositoryURL": "https://github.com/swiftui-library/hstack-snap-to-scroll.git",
         "state": {
