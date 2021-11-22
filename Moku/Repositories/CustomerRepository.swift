@@ -29,6 +29,7 @@ final class CustomerRepository: ObservableObject {
             self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
         }
     }
+
     func fetch(id: String, completionHandler: ((Customer) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {

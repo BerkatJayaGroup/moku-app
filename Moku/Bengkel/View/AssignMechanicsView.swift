@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PartialSheet
-import HalfASheet
 
 struct AssignMechanicsView: View {
     @EnvironmentObject var partialSheetManager: PartialSheetManager

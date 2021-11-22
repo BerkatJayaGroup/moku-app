@@ -23,7 +23,7 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
-
+    
     @Published var filteredOrdersStatus = [Order]()
 
     @Published var customerOrders = [Order]()
@@ -62,6 +62,14 @@ final class OrderRepository: ObservableObject {
         }
     }
 
+    func fetchBengkelOrder(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
+        store.whereField("bengkelId", isEqualTo: bengkelId).addSnapshotListener { snapshot, error in
+            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }
+            let bengkelOrders = RepositoryHelper.extractData(from: documents, type: Order.self)
+            completionHandler?(bengkelOrders)
+        }
+    }
+    
     func fetch(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
