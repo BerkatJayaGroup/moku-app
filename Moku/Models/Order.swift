@@ -20,10 +20,8 @@ struct Order: Codable {
     var mekanik: Mekanik?
     var nota: String?
     var mechanicName: String?
-
     let schedule: Date
     var createdAt = Date()
-
     var cancelingReason: CancelingReason?
 }
 

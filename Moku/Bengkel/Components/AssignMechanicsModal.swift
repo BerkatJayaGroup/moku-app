@@ -13,6 +13,8 @@ import PartialSheet
 struct AssignMechanics: View {
     @StateObject private var viewModel: ViewModel
     @Binding var isActive: Bool
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+
     init(order: Order, isRootActive: Binding<Bool>) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -43,6 +45,7 @@ struct AssignMechanics: View {
                 self.isActive = false
                 viewModel.addMekanik()
                 viewModel.updateStatusOrder()
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }, label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
@@ -53,23 +56,22 @@ struct AssignMechanics: View {
         }
         .padding()
         .frame(height: 240)
-
     }
 
     private func componentMechanics(mech: Int) -> some View {
         VStack {
             if let mechPhoto = viewModel.bengkel?.mekaniks[mech].photo {
                 if viewModel.selectedMechanics == mech {
-                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                    WebImage(url: URL(string: mechPhoto))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 5))
+                        .overlay(Circle().stroke(AppColor.primaryColor, lineWidth: 2))
                         .onTapGesture {
                             viewModel.selectedMechanics = mech
                         }
                 } else {
-                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/53547157?v=4"))
+                    WebImage(url: URL(string: mechPhoto))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())
@@ -82,5 +84,4 @@ struct AssignMechanics: View {
                 .font(.system(size: 14))
         }
     }
-
 }
