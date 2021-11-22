@@ -23,7 +23,7 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
-    
+
     @Published var filteredOrdersStatus = [Order]()
 
     @Published var customerOrders = [Order]()
@@ -69,7 +69,7 @@ final class OrderRepository: ObservableObject {
             completionHandler?(bengkelOrders)
         }
     }
-    
+
     func fetch(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
@@ -131,12 +131,12 @@ final class OrderRepository: ObservableObject {
             RepositoryHelper.handleParsingError(error)
         }
     }
-    
-    func addMekanik(orderId: String, mechanicsName: String){
+
+    func addMekanik(orderId: String, mechanicsName: String) {
         store
             .document(orderId)
             .updateData(
-                ["mechanicName" : mechanicsName]
+                ["mechanicName": mechanicsName]
             )
     }
 }

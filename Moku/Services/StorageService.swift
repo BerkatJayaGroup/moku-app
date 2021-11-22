@@ -12,9 +12,9 @@ import SwiftUI
 
 class StorageService: ObservableObject {
     var storageRef = Storage.storage().reference()
-    
+
     static let shared = StorageService()
-    
+
     // MARK: - GET DOWNLOAD URL
     private func getDownloadURL(from path: String, completion: ((URL?, Error?) -> Void)? = nil) {
         storageRef.child(path).downloadURL { url, error in

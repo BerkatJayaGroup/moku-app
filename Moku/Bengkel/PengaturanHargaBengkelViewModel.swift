@@ -61,7 +61,6 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
         }
     }
 
-
     private func uploadMedia(bengkelId: String, images: [UIImage], mechanics: [CalonMekanik], completion: (() -> Void)? = nil) {
         let dispatchGroup = DispatchGroup()
         mechanics.forEach { mechanic in
