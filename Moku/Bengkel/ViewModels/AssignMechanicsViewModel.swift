@@ -54,12 +54,13 @@ extension AssignMechanics {
 
         func updateStatusOrder() {
             self.order.status = .onProgress
-
-            //            TODO: PushNotif
             orderRepository.updateStatus(order: order) { _ in
                 CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
                     guard let fcmToken = customer.fcmToken else { return }
                     NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(.onProgress))
+                }
+                self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId) { orders in
+                    self.orders = orders
                 }
             }
         }

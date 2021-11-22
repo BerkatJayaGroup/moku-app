@@ -13,6 +13,8 @@ import PartialSheet
 struct AssignMechanics: View {
     @StateObject private var viewModel: ViewModel
     @Binding var isActive: Bool
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+
     init(order: Order, isRootActive: Binding<Bool>) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -43,6 +45,7 @@ struct AssignMechanics: View {
                 self.isActive = false
                 viewModel.addMekanik()
                 viewModel.updateStatusOrder()
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }, label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
