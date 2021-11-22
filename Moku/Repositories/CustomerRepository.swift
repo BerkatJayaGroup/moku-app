@@ -29,10 +29,10 @@ final class CustomerRepository: ObservableObject {
             self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
         }
     }
-    func fetch(id: String, completionHandler: ((Customer) -> Void)? = nil) {
+    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
-                if let data = try document?.data(as: Customer.self) {
+                if let data = try document?.data(as: T.self) {
                     completionHandler?(data)
                 }
             } catch {
