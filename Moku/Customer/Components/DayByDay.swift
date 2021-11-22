@@ -10,17 +10,11 @@ import SwiftUI
 struct DayByDay: View {
     var day: String
     var time: String
-
-    let dateFormatter: DateFormatter = {
-        var formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        formatter.locale = Locale(identifier: "id_ID")
-
-        return formatter
-    }()
-
     var isToday: Bool {
         let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "id_ID")
         let dayToday: String = dateFormatter.string(from: date)
         if dayToday == day {
             return true
