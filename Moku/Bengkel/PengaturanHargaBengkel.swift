@@ -98,18 +98,19 @@ struct PengaturanHargaBengkel: View {
             canSubmit = true
         }
     }
+    
+    func createMechanic(calonMechanic: CalonMekanik) -> Mekanik{
+        var newMech = Mekanik(name: calonMechanic.name)
+        if let photo = calonMechanic.photo {
+            storageService.upload(image: photo, path: newMech.id){ url, _ in
+                print(url?.absoluteString)
+                newMech.photo = url?.absoluteString
+            }
+        }
+        return newMech
+    }
 
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
-//        Titip di command dulu barangkali besok butuh
-
-//        var days: [Day] = [.senin, .selasa, .rabu, .kamis, .jumat, .sabtu, .minggu]
-//        for day in days {
-//            if let index = days.firstIndex(of: day){
-//                if (pengaturanBengkelForm.daySelected[index] == false){
-//                    days.remove(at: index)
-//                }
-//            }
-//        }
 
         let calendar = Calendar.current
         let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
@@ -128,29 +129,24 @@ struct PengaturanHargaBengkel: View {
                 maxPrice: max,
                 fcmToken: token
             )
-
+            
             for brand in pengaturanBengkelForm.selectedBrand {
                 bengkelBaru.brands.insert(brand)
             }
-
+            
             for mech in pengaturanBengkelForm.mechanics {
-                var mekBaru = Mekanik(name: mech.name)
-                guard let photo = mech.photo else { return bengkelBaru.mekaniks.append(mekBaru) }
-
-                storageService.upload(image: photo, path: mekBaru.id) { url, _ in
-                    mekBaru.photo = url?.absoluteString
-                    bengkelBaru.mekaniks.append(mekBaru)
-                }
+                let newMech = createMechanic(calonMechanic: mech)
+                bengkelBaru.mekaniks.append(newMech)
             }
-
+            
             for img in bengkelOwnerFormViewModel.images {
                 let imgID = UUID().uuidString
-                storageService.upload(image: img, path: imgID)
-                bengkelBaru.photos.append(imgID)
+                storageService.upload(image: img, path: imgID) { url, _ in
+                    bengkelBaru.photos.append(url!.absoluteString)
+                }
             }
-
+            
             bengkelViewModel.create(bengkelBaru)
-
             SessionService.shared.user = .bengkel(bengkelBaru)
         }
     }
