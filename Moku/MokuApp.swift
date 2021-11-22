@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import PartialSheet
 
 @main
 struct MokuApp: App {
@@ -17,22 +18,27 @@ struct MokuApp: App {
     @StateObject var appState = AppState()
 
     var onboardingData = OnboardingDataModel.data
+    @StateObject var sheetManager = PartialSheetManager()
 
     var body: some Scene {
         WindowGroup {
-            if let user = session.user {
-                switch user {
-                case .bengkel:
-                    BengkelView()
-                case let .customer(customer):
-                    CustomerView(for: customer)
-                }
+            contentView()
+                .environmentObject(sheetManager)
+        }
+    }
+    @ViewBuilder func contentView() -> some View {
+        if let user = session.user {
+            switch user {
+            case .bengkel(_):
+                BengkelView()
+            case let .customer(customer):
+                CustomerView(for: customer)
+            }
+        } else {
+            if appState.hasOnboarded {
+                PickRoleView()
             } else {
-                if appState.hasOnboarded {
-                    PickRoleView()
-                } else {
-                    OnboardingView(data: onboardingData).environmentObject(appState)
-                }
+                OnboardingView(data: onboardingData).environmentObject(appState)
             }
         }
     }
@@ -51,7 +57,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         NotificationService.register(application: application)
 
-//        BengkelRepository.shared.add(bengkel: .preview)
+        //        BengkelRepository.shared.add(bengkel: .preview)
 
         return true
     }

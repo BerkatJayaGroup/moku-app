@@ -38,7 +38,7 @@ class OrderCustomerViewModel: ObservableObject {
             order.cancelingReason = reason
             order.status = .canceled
 
-            self.repository.update(order: order) { _ in
+            self.repository.updateStatus(order: order) { _ in
                 BengkelRepository.shared.fetch(id: order.bengkelId) { bengkel in
                     NotificationService.shared.send(to: [bengkel.fcmToken], notification: .orderCanceled(reason))
                 }

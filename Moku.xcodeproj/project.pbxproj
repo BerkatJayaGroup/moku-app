@@ -90,6 +90,11 @@
 		8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */; };
 		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
+		8ED7362C2742AF640043B882 /* AssignMechanicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362B2742AF640043B882 /* AssignMechanicsView.swift */; };
+		8ED7362F2742B93D0043B882 /* AssignMechanics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362E2742B93D0043B882 /* AssignMechanics.swift */; };
+		8ED7363627436AE50043B882 /* AssignMechanicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */; };
+		8ED736382743992A0043B882 /* DetailBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED736372743992A0043B882 /* DetailBooking.swift */; };
+		8ED7363A2743C05C0043B882 /* DetailBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */; };
 		8EE4F504273D5939001D6C5A /* UlasanModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE4F503273D5939001D6C5A /* UlasanModalViewModel.swift */; };
 		8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE4F505273E3C66001D6C5A /* UlasanAftarSend.swift */; };
 		AE26C05327391483005D06E5 /* BookingsTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26C05227391483005D06E5 /* BookingsTabItem.swift */; };
@@ -112,6 +117,9 @@
 		B80B01AB2729185000050D90 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AA2729185000050D90 /* Keychain.swift */; };
 		B80B01AF272918A500050D90 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01AE272918A500050D90 /* UserData.swift */; };
 		B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B01B0272918C700050D90 /* UserDataKeychain.swift */; };
+		B83315D02747602C0052D2DD /* BookingSeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */; };
+		B83315D12747602C0052D2DD /* BookingTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83315CF2747602C0052D2DD /* BookingTabItemView.swift */; };
+		B855B0A427439FC80006302E /* BookingTabItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */; };
 		B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220A272FC72B00300EB8 /* ImagePHPicker.swift */; };
 		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
 		B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */; };
@@ -231,6 +239,11 @@
 		8E66947B272ABD2D000CCD6C /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
 		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDateViewModel.swift; sourceTree = "<group>"; };
+		8ED7362B2742AF640043B882 /* AssignMechanicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanicsView.swift; sourceTree = "<group>"; };
+		8ED7362E2742B93D0043B882 /* AssignMechanics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanics.swift; sourceTree = "<group>"; };
+		8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanicsViewModel.swift; sourceTree = "<group>"; };
+		8ED736372743992A0043B882 /* DetailBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBooking.swift; sourceTree = "<group>"; };
+		8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookingViewModel.swift; sourceTree = "<group>"; };
 		8EE4F503273D5939001D6C5A /* UlasanModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanModalViewModel.swift; sourceTree = "<group>"; };
 		8EE4F505273E3C66001D6C5A /* UlasanAftarSend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanAftarSend.swift; sourceTree = "<group>"; };
 		8EE4F508273E633F001D6C5A /* SheetKit-main */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SheetKit-main"; path = "../../../SheetKit-main"; sourceTree = "<group>"; };
@@ -255,7 +268,10 @@
 		B80B01AA2729185000050D90 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B80B01AE272918A500050D90 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		B80B01B0272918C700050D90 /* UserDataKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
+		B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingSeeAllView.swift; sourceTree = "<group>"; };
+		B83315CF2747602C0052D2DD /* BookingTabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTabItemView.swift; sourceTree = "<group>"; };
 		B854B923271EBD0800DCFAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTabItemViewModel.swift; sourceTree = "<group>"; };
 		B856220A272FC72B00300EB8 /* ImagePHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPicker.swift; sourceTree = "<group>"; };
 		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
 		B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomerViewModel.swift; sourceTree = "<group>"; };
@@ -302,6 +318,9 @@
 			isa = PBXGroup;
 			children = (
 				6F0E4E24272FC3CD000B6EC8 /* BengkelViewModel.swift */,
+				B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */,
+				8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */,
+				8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -470,6 +489,8 @@
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
+				8ED7362D2742B90F0043B882 /* Components */,
+				8ED7362A2742AF4B0043B882 /* View */,
 				6F0E4E23272FC3BB000B6EC8 /* ViewModels */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
 				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkel.swift */,
@@ -603,6 +624,25 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		8ED7362A2742AF4B0043B882 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */,
+				B83315CF2747602C0052D2DD /* BookingTabItemView.swift */,
+				8ED7362B2742AF640043B882 /* AssignMechanicsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8ED7362D2742B90F0043B882 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8ED7362E2742B93D0043B882 /* AssignMechanics.swift */,
+				8ED736372743992A0043B882 /* DetailBooking.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		8EE4F507273E633F001D6C5A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +766,7 @@
 				832AC1E22715986900BD92E2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				8E5C6AFD27304812004EC262 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 				B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */,
+				8ED736322742CA010043B882 /* XCRemoteSwiftPackageReference "HalfASheet" */,
 			);
 			productRefGroup = 837370B127144701003656FC /* Products */;
 			projectDirPath = "";
@@ -840,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EE4F504273D5939001D6C5A /* UlasanModalViewModel.swift in Sources */,
+				B83315D02747602C0052D2DD /* BookingSeeAllView.swift in Sources */,
 				AE9E6E9927269718000E2012 /* MotorModal.swift in Sources */,
 				6F0E4E27272FDD2F000B6EC8 /* StorageService.swift in Sources */,
 				AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */,
@@ -851,12 +893,14 @@
 				83CBF2472722BC7F00C79064 /* DateExtention.swift in Sources */,
 				B8CE28642727E93A00464E64 /* UserDefaults.swift in Sources */,
 				83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */,
+				8ED7363A2743C05C0043B882 /* DetailBookingViewModel.swift in Sources */,
 				83CBFCB327299E5800BD64BC /* BengkelDetailViewModel.swift in Sources */,
 				AE6C90312746181100FB9FEF /* SuntingMotorModal.swift in Sources */,
 				83CBF23F2722BC7F00C79064 /* BookDate.swift in Sources */,
 				830383D22717FD9F00F03CE3 /* BengkelRepository.swift in Sources */,
 				837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */,
 				83CBF2452722BC7F00C79064 /* TimeStack.swift in Sources */,
+				8ED7363627436AE50043B882 /* AssignMechanicsViewModel.swift in Sources */,
 				8E14612D273C306F0057C469 /* UlasanModal.swift in Sources */,
 				AE9D6F5C27302BE200E4707B /* BookingSummary.swift in Sources */,
 				8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */,
@@ -865,6 +909,7 @@
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */,
 				AE26C05327391483005D06E5 /* BookingsTabItem.swift in Sources */,
+				8ED7362F2742B93D0043B882 /* AssignMechanics.swift in Sources */,
 				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				837BE1E82727D580000E1FAA /* Place.swift in Sources */,
@@ -913,6 +958,7 @@
 				83CBF2462722BC7F00C79064 /* FavoriteList.swift in Sources */,
 				6F0E4E25272FC3CD000B6EC8 /* BengkelViewModel.swift in Sources */,
 				834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */,
+				B83315CD27475DF40052D2DD /* (null) in Sources */,
 				8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */,
 				B85A3236273A780A00AF4E17 /* GarasiTabItem.swift in Sources */,
 				832AC1ED2715A42300BD92E2 /* Review.swift in Sources */,
@@ -928,7 +974,9 @@
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
+				B855B0A427439FC80006302E /* BookingTabItemViewModel.swift in Sources */,
 				B80B01B1272918C700050D90 /* UserDataKeychain.swift in Sources */,
+				B83315D12747602C0052D2DD /* BookingTabItemView.swift in Sources */,
 				83DAE6CA272ECD9B002D1D6E /* LocationSelectionViewModel.swift in Sources */,
 				8E2354672731237000C0381E /* SheetView.swift in Sources */,
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
@@ -936,10 +984,12 @@
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 				B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */,
 				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,
+				8ED7362C2742AF640043B882 /* AssignMechanicsView.swift in Sources */,
 				AE26C057273932ED005D06E5 /* BookingsTabItemViewModel.swift in Sources */,
 				AEBD8371273C360200588D1A /* ImageFullComp.swift in Sources */,
 				8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */,
 				83DAE6C8272ECD72002D1D6E /* LocationSearchView.swift in Sources */,
+				8ED736382743992A0043B882 /* DetailBooking.swift in Sources */,
 				837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1268,6 +1318,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		8ED736322742CA010043B882 /* XCRemoteSwiftPackageReference "HalfASheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/franklynw/HalfASheet";
+			requirement = {
+				branch = develop;
+				kind = branch;
 			};
 		};
 		B8C742FF273D194D00E34B5C /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */ = {

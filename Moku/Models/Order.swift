@@ -19,7 +19,8 @@ struct Order: Codable {
     var notes: String?
     var mekanik: Mekanik?
     var nota: String?
-
+    var mechanicName: String?
+    
     let schedule: Date
     var createdAt = Date()
 
