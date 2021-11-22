@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import PartialSheet
 
 @main
 struct MokuApp: App {
@@ -20,6 +21,7 @@ struct MokuApp: App {
     @State var order: Order?
 
     var onboardingData = OnboardingDataModel.data
+    @StateObject var sheetManager = PartialSheetManager()
 
     var body: some Scene {
         WindowGroup {

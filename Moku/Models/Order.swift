@@ -19,10 +19,9 @@ struct Order: Codable {
     var notes: String?
     var mekanik: Mekanik?
     var nota: String?
-
+    var mechanicName: String?
     let schedule: Date
     var createdAt = Date()
-
     var cancelingReason: CancelingReason?
 }
 
@@ -61,7 +60,7 @@ extension Order {
         id: "NqrRsFb6xJbM7LOO6vVW",
         bengkelId: "Br5I1rVwV2C9icKQiBh6",
         customerId: "4zhS88bLKogOksVZg43BCgQNanE2",
-        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
+        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155, licensePlate: "BG 999 UI", year: "2017"),
         typeOfService: .servisRutin,
         notes: "Lorem Ipsum.",
         schedule: Date()
