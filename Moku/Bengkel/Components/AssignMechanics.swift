@@ -18,7 +18,7 @@ struct AssignMechanics: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         _isActive = isRootActive
     }
-
+    
     var body: some View {
         VStack {
             Text("Tugaskan Mekanik")
@@ -53,7 +53,6 @@ struct AssignMechanics: View {
         }
         .padding()
         .frame(height: 240)
-
     }
 
     private func componentMechanics(mech: Int) -> some View {
@@ -82,5 +81,4 @@ struct AssignMechanics: View {
                 .font(.system(size: 14))
         }
     }
-
 }

@@ -19,7 +19,7 @@ struct MokuApp: App {
     
     var onboardingData = OnboardingDataModel.data
     @StateObject var sheetManager = PartialSheetManager()
-    
+
     var body: some Scene {
         WindowGroup {
             contentView()
@@ -56,7 +56,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         GoogleMapsService.register()
         
         NotificationService.register(application: application)
-        
+
         return true
     }
     
