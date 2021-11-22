@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We&apos;ll only use your location when you&apos;re using the app</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-    <string>comgooglemaps</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 </dict>
 </plist>

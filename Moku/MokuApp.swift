@@ -14,20 +14,63 @@ struct MokuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @ObservedObject var session = SessionService.shared
+    @ObservedObject var dynamicLinksService = DynamicLinksService.shared
 
     @StateObject var appState = AppState()
+
+    @State var order: Order?
 
     var onboardingData = OnboardingDataModel.data
     @StateObject var sheetManager = PartialSheetManager()
 
     var body: some Scene {
         WindowGroup {
-            contentView()
-                .environmentObject(sheetManager)
+            if case .bookingDetail(let orderID) = dynamicLinksService.dynamicLinkTarget {
+                NavigationView {
+                    bookingDetail().onAppear {
+                        OrderRepository.shared.fetch(orderID: orderID) { order in
+                            self.order = order
+                        }
+                    }
+                    .navigationBarTitle("Booking Detail", displayMode: .inline)
+                    .navigationBarItems(leading: dismissButton())
+                }
+            } else {
+                contentView()
+                    .onOpenURL { url in
+                        DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
+                            guard let dynamicLink = dynamicLink else { return }
+                            DynamicLinksService.shared.handleDynamicLink(dynamicLink: dynamicLink)
+                        }
+                    }
+            }
         }
     }
 
-    @ViewBuilder func contentView() -> some View {
+    @ViewBuilder
+    private func bookingDetail() -> some View {
+        if let order = order {
+            BookingDetail(order: order).padding(.top, .large)
+        } else {
+            VStack(spacing: 24) {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                Text("Loading...")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func dismissButton() -> some View {
+        Button {
+            dynamicLinksService.dynamicLinkTarget = nil
+        } label: {
+            Image(systemName: "chevron.backward")
+        }
+    }
+
+    @ViewBuilder
+    private func contentView() -> some View {
         if let user = session.user {
             switch user {
             case .bengkel(_):

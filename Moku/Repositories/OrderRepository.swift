@@ -54,12 +54,11 @@ final class OrderRepository: ObservableObject {
         }
     }
 
-    func fetchId(id: String, completionHandler: ((Order) -> Void)? = nil) {
-        store.document(id).getDocument { document, error in
+    func fetch(orderID: String, completionHandler: ((Order) -> Void)? = nil) {
+        store.document(orderID).getDocument { snapshot, error in
             do {
-                if let data = try document?.data(as: Order.self) {
-                    completionHandler?(data)
-                }
+                guard let order = try snapshot?.data(as: Order.self) else { return }
+                completionHandler?(order)
             } catch {
                 print(error.localizedDescription)
             }

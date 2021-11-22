@@ -21,7 +21,9 @@ extension AssignMechanics {
 
         var unavailableMechs: [String] {
             var mechs: [String] = []
-            var incomingOrder = order.schedule
+
+            let incomingOrder = order.schedule
+
             for existingOrder in orders {
                 if Int(incomingOrder.get(.day)) == Int(existingOrder.schedule.get(.day)) &&
                     Int(incomingOrder.get(.month)) == Int(existingOrder.schedule.get(.month)) &&
@@ -29,6 +31,7 @@ extension AssignMechanics {
                     mechs.append(existingOrder.mechanicName ?? "")
                 }
             }
+
             return mechs
         }
 
