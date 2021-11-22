@@ -76,7 +76,7 @@ struct DetailBooking: View {
                         .cornerRadius(8)
                         .frame(width: 320, height: 45, alignment: .center)
                 })
-                    .partialSheet(isPresented: $viewModel.showModal){
+                    .partialSheet(isPresented: $viewModel.showModal) {
                         AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
                     }
                     .padding(.bottom, 16)

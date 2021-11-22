@@ -13,13 +13,13 @@ extension AssignMechanics {
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
         @ObservedObject var orderRepository: OrderRepository = .shared
         @Published var order: Order
-        
+
         @Published var orders = [Order]()
         @Published var bengkel: Bengkel?
-        
+
         @Published var selectedMechanics = -1
-        
-        var unavailableMechs: [String]{
+
+        var unavailableMechs: [String] {
             var mechs: [String] = []
             var incomingOrder = order.schedule
             for existingOrder in orders {
@@ -31,7 +31,7 @@ extension AssignMechanics {
             }
             return mechs
         }
-        
+
         init(order: Order) {
             self.order = order
             fetchBengkel()
@@ -39,23 +39,23 @@ extension AssignMechanics {
                 self.orders = orders
             }
         }
-        
+
         private func fetchBengkel() {
             print("Chris Test")
             bengkelRepository.fetch(id: order.bengkelId) { bengkelData in
                 self.bengkel = bengkelData
             }
         }
-        
+
         func addMekanik() {
             if let bengkel = bengkel {
                 OrderRepository.shared.addMekanik(orderId: self.order.id, mechanicsName: bengkel.mekaniks[selectedMechanics].name)
             }
         }
-        
-        func updateStatusOrder(){
+
+        func updateStatusOrder() {
             self.order.status = .onProgress
-            
+
             //            TODO: PushNotif Chris
 //            orderRepository.updateStatus(order: order){ _ in
 //                CustomerRepository.shared.fetch(id: order.customerId, completionHandler: { customer in

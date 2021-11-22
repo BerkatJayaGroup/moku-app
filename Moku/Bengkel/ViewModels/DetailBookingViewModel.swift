@@ -13,7 +13,7 @@ extension DetailBooking {
         @Published var customer: Customer?
         @Published var order: Order
         @Published var showModal: Bool
-        
+
         init(order: Order, showModal: Bool) {
             self.order = order
             self.showModal = showModal
@@ -21,34 +21,34 @@ extension DetailBooking {
                 self.customer = customer
             }
         }
-        
+
         var motorModel: String {
             order.motor.model
         }
-        
+
         var customerName: String {
             customer?.name ?? ""
         }
-        
+
         var customerNumber: String {
             customer?.phoneNumber ?? "-"
         }
-        
+
         var orderDate: String {
             Date.convertDateFormat(date: order.schedule, format: "EEE, MMM d, yyyy")
         }
-        
+
         var orderHour: String {
             "\(order.schedule.get(.hour)):00"
         }
-        
+
         var typeOfService: String {
             order.typeOfService.rawValue
         }
-        
+
         var notes: String {
             order.notes ?? ""
         }
-        
+
     }
 }
