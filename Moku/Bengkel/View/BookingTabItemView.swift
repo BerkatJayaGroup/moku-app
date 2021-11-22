@@ -154,7 +154,6 @@ struct BookingTabItemView: View {
                 ForEach(0..<order.count) { index in
                     currentBookingCard(order: order[index])
                         .padding(10)
-                        .frame(width: .infinity)
                         .background(Color.white)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
