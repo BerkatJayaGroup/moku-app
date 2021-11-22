@@ -57,8 +57,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         NotificationService.register(application: application)
 
-        //        BengkelRepository.shared.add(bengkel: .preview)
-
         return true
     }
 
