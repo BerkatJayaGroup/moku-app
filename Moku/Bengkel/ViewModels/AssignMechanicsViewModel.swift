@@ -31,7 +31,7 @@ extension AssignMechanics {
             }
             return mechs
         }
-      
+
         init(order: Order) {
             self.order = order
             fetchBengkel()
@@ -39,7 +39,7 @@ extension AssignMechanics {
                 self.orders = orders
             }
         }
-      
+
         private func fetchBengkel() {
             print("Chris Test")
             bengkelRepository.fetch(id: order.bengkelId) { bengkelData in
