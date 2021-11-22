@@ -31,26 +31,23 @@ class GarageTabViewModel: ObservableObject {
         if let id = Auth.auth().currentUser?.uid {
             getOrders(customerId: id)
         }
-        getMotors()
-
-    }
-
-    private func getMotors() {
-        SessionService.shared.$user.sink { [self] user in
-            switch user {
-            case .customer(let customer):
-                isCustomer = true
+        sessionService.$user.sink { user in
+            if case .customer(let customer) = user {
                 self.customer = customer
-                if let motors = customer.motors {
-                    customerMotors = motors
-                }
-                sessionService.selectedMotor = customerMotors.first
-            default:
-                isCustomer = false
+                self.customerMotors = customer.motors ?? []
             }
         }.store(in: &subscriptions)
     }
 
+    func removeMotor(motorID: String) {
+        if case .customer(var customer) = sessionService.user {
+            guard let index = customerMotors.firstIndex(where: { $0.id == motorID }) else { return }
+            customer.motors?.remove(at: index)
+            customerRepository.update(customer: customer) { customer in
+                self.customer = customer
+            }
+        }
+    }
     func update(_ customer: Customer) {
         customerRepository.update(customer: customer) { updatedCustomer in
             self.customer = updatedCustomer
@@ -66,6 +63,24 @@ class GarageTabViewModel: ObservableObject {
     func getBengkelFromOrder(bengkelId: String) {
         bengkelRepository.fetch(id: bengkelId) { bengkel in
             self.bengkel = bengkel
+        }
+    }
+
+    func addNew(motor: Motor) {
+        if case .customer(var customer) = sessionService.user {
+            customer.motors?.append(motor)
+            customerRepository.update(customer: customer) { customer in
+                self.customer = customer
+            }
+        }
+    }
+    func updateMotor(motorID: String, updatedMotor: Motor) {
+        if case .customer(var customer) = sessionService.user {
+            guard let index = customerMotors.firstIndex(where: { $0.id == motorID }) else { return }
+            customer.motors?[index] = updatedMotor
+            customerRepository.update(customer: customer) { customer in
+                self.customer = customer
+            }
         }
     }
 }

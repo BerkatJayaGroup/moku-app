@@ -26,6 +26,7 @@ struct MokuApp: App {
                 .environmentObject(sheetManager)
         }
     }
+
     @ViewBuilder func contentView() -> some View {
         if let user = session.user {
             switch user {
