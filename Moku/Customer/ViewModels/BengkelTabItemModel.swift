@@ -28,6 +28,10 @@ extension BengkelTabItem {
 
         @ObservedObject var orderRepository: OrderRepository = .shared
 
+        @Published var ordersToRate = [Order]()
+
+        static let shared = ViewModel()
+
         var filteredNearbyBengkel: [Bengkel] {
             let query = searchQuery.lowercased().trimmingCharacters(in: .whitespaces)
 
@@ -64,6 +68,21 @@ extension BengkelTabItem {
                     filter: sessionService.selectedMotor?.brand
                 )
             }.store(in: &subscriptions)
+
+            getOrdersToRate(from: customer?.ordersToRate)
+
+        }
+
+        func getOrdersToRate(from identifiers: [String]? = nil) {
+            guard let identifiers = identifiers else { return }
+
+            ordersToRate = []
+
+            identifiers.forEach { orderID in
+                OrderRepository.shared.fetchId(id: orderID) { [self] order in
+                    ordersToRate.append(order)
+                }
+            }
         }
 
         private func getMotors() {

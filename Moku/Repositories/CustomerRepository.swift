@@ -30,7 +30,7 @@ final class CustomerRepository: ObservableObject {
         }
     }
     func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
-        store.document(id).getDocument { document, error in
+        store.document(id).addSnapshotListener { document, error in
             do {
                 if let data = try document?.data(as: T.self) {
                     completionHandler?(data)

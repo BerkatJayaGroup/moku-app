@@ -54,6 +54,18 @@ final class OrderRepository: ObservableObject {
         }
     }
 
+    func fetchId(id: String, completionHandler: ((Order) -> Void)? = nil) {
+        store.document(id).getDocument { document, error in
+            do {
+                if let data = try document?.data(as: Order.self) {
+                    completionHandler?(data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
     func fetchOrderHistory(customerId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("customerId", isEqualTo: customerId).getDocuments { snapshot, error in
             guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else { return }

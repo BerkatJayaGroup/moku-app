@@ -60,7 +60,7 @@ extension Order {
     static let preview = Order(
         bengkelId: "",
         customerId: ".preview",
-        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155),
+        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155, licensePlate: "BG 999 UI", year: "2017"),
         typeOfService: .servisRutin,
         notes: "Lorem Ipsum.",
         schedule: Date()

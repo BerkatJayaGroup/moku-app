@@ -12,12 +12,12 @@ struct CancelBookingModal: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
 
     @State var order: Order
+    @State var activeFrom: Bool
 
     var alasans: [Order.CancelingReason] = [.bengkelTutup, .bengkelLain, .tidakJadi, .ubahOrder]
 
     @State var selection: Order.CancelingReason?
     @State var isActive: Bool = false
-
     var body: some View {
         NavigationView {
             VStack {
@@ -39,10 +39,13 @@ struct CancelBookingModal: View {
                 NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
                     EmptyView()
                 }
-
                 Button("Selesai") {
                     if let selection = selection {
-                        isActive = true
+                        if activeFrom == true {
+                            isActive = true
+                        } else {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                         orderCustomerViewModel.cancelBooking(order: order, reason: selection)
                     }
                 }
