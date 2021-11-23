@@ -12,13 +12,22 @@ struct BookingDetail: View {
     let order: Order
     @State private var showingSheet = false
     @State var bengkel: Bengkel?
+
+    @State var showInfoModalView: Bool = false
+    let customer = SessionService.shared.user
+    @State var customerAsli: Customer?
+
     var body: some View {
         content.onAppear {
             BengkelRepository.shared.fetch(id: order.bengkelId) { bengkel in
                 self.bengkel = bengkel
             }
+            CustomerRepository.shared.fetch(id: order.customerId) { cust in
+                self.customerAsli = cust
+            }
         }
     }
+
     @ViewBuilder private var content: some View {
         if let bengkel = bengkel {
             VStack {
@@ -111,21 +120,27 @@ struct BookingDetail: View {
                                     .cornerRadius(9)
                                     .padding(.vertical, 10)
                             }
-                            Divider()
-                            Text("Kasih Rating Dulu Yuk!")
-                                .font(.system(size: 17, weight: .semibold))
-                            Rating(order: order)
-                                .padding(10)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                                .padding(.horizontal, 5)
-                        }
-                        .padding(.bottom)
+                            if let customer = customerAsli {
+                                if let toRate = customer.ordersToRate {
+                                    if toRate.contains(order.id) {
+                                        Divider()
+                                        Text("Kasih Rating Dulu Yuk!")
+                                            .font(.system(size: 17, weight: .semibold))
+                                        Rating(order: order, isFrom: false)
+                                            .padding(10)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                                            .padding(.horizontal, 5)
+                                    }
+                                }
+                            }
+                        }.padding(.bottom)
                     }
                 }
                 if order.status == Order.Status.waitingSchedule {
                     Button {
+                        showInfoModalView = true
                     }label: {
                         Text("Batalkan Booking")
                     }
@@ -134,6 +149,9 @@ struct BookingDetail: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
+                    .sheet(isPresented: $showInfoModalView) {
+                        CancelBookingModal(order: order, activeFrom: false)
+                    }
                 }
             }
             .padding(.bottom, 30)
