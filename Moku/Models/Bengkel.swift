@@ -10,7 +10,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import MapKit
 
-struct Bengkel: Codable {
+struct Bengkel: Codable, Equatable {
+    static func == (lhs: Bengkel, rhs: Bengkel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     // MARK: - Registration Related
     @DocumentID var id: String!
     var owner: Owner

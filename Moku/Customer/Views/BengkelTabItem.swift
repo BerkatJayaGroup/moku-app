@@ -13,6 +13,8 @@ import FirebaseFirestoreSwift
 struct BengkelTabItem: View {
     @ObservedObject private var viewModel = ViewModel.shared
     @ObservedObject private var locationService = LocationService.shared
+    @ObservedObject var session = SessionService.shared
+
     @State private var showingSheet = false
     @State private var showModal = false
     @State var isActive: Bool = false
@@ -57,7 +59,11 @@ struct BengkelTabItem: View {
                         .cornerRadius(7)
                         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
                         .padding(.horizontal, 20)
-                        bengkelFavoriteView()
+
+                        if case .customer(let user) = session.user {
+                            bengkelFavoriteView(user: user)
+                        }
+                      
                         Rectangle()
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
@@ -72,6 +78,9 @@ struct BengkelTabItem: View {
             .introspectTabBarController { (UITabBarController) in
                 UITabBarController.tabBar.isHidden = self.isHideTabBar
             }
+        }
+        .onAppear{
+            session.setup()
         }
     }
     @ViewBuilder
@@ -113,20 +122,19 @@ struct BengkelTabItem: View {
             }
         } else {
             LazyVStack {
-                ForEach(BengkelRepository.shared.bengkel, id: \.name) { bengkel in
+                ForEach(BengkelRepository.shared.bengkel, id: \.id) { bengkel in
                     NavigationLink(
                         destination: BengkelDetail(
                             bengkel: bengkel,
                             isRootActive: self.$isActive,
                             isHideTabBar: self.$isHideTabBar
-                        ),
-                        isActive: self.$isActive) {
-                            BengkelList(bengkel: bengkel)
-                                .padding(5)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                        }
+                        )) {
+                        BengkelList(bengkel: bengkel)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
+                    }
                 }
             }
             .padding(10)
@@ -173,14 +181,14 @@ struct BengkelTabItem: View {
         }
     }
 
-    private func bengkelFavoriteView() -> some View {
+    private func bengkelFavoriteView(user: Customer) -> some View {
         VStack(alignment: .leading) {
             Text("Bengkel Favorit")
                 .font(.headline)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(0..<5) { _ in
-                        FavoriteList()
+                    ForEach(user.favoriteBengkel, id: \.name) { bengkel in
+                        FavoriteList(bengkel: bengkel)
                             .padding(10)
                             .background(Color.white)
                             .cornerRadius(10)
