@@ -22,13 +22,21 @@ class AssignMechanicsViewModel: ObservableObject {
         var mechs: [String] = []
         let incomingOrder = order.schedule
         for existingOrder in orders {
-            if Int(incomingOrder.get(.day)) == Int(existingOrder.schedule.get(.day)) &&
-                Int(incomingOrder.get(.month)) == Int(existingOrder.schedule.get(.month)) &&
-                Int(incomingOrder.get(.hour)) == Int(existingOrder.schedule.get(.hour)) {
+            if isToday(incomingOrder: incomingOrder, existingOrder: existingOrder.schedule) {
                 mechs.append(existingOrder.mechanicName ?? "")
             }
         }
         return mechs
+    }
+    
+    private func isToday(incomingOrder: Date, existingOrder: Date) -> Bool {
+        if Int(incomingOrder.get(.day)) == Int(existingOrder.get(.day)) &&
+            Int(incomingOrder.get(.month)) == Int(existingOrder.get(.month)) &&
+            Int(incomingOrder.get(.hour)) == Int(existingOrder.get(.hour)) {
+            return true
+        } else {
+            return false
+        }
     }
 
     init(order: Order) {
@@ -44,7 +52,7 @@ class AssignMechanicsViewModel: ObservableObject {
             self.bengkel = bengkelData
         }
     }
-  
+
     func addMekanik() {
         if let bengkel = bengkel {
             OrderRepository.shared.addMekanik(orderId: self.order.id, mechanicsName: bengkel.mekaniks[selectedMechanics].name)
