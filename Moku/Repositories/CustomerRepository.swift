@@ -15,24 +15,12 @@ final class CustomerRepository: ObservableObject {
 
     private let store = Firestore.firestore().collection(Collection.customer)
 
-    @Published var customer = [Customer]()
+    private init() {}
 
-    private init() {
-        fetch()
-    }
-
-    func fetch() {
-        store.getDocuments { snapshot, error in
-            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else {
-                return
-            }
-            self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
-        }
-    }
-    func fetch<T: Codable>(id: String, completionHandler: ((T) -> Void)? = nil) {
+    func fetch(id: String, completionHandler: ((Customer) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
             do {
-                if let data = try document?.data(as: T.self) {
+                if let data = try document?.data(as: Customer.self) {
                     completionHandler?(data)
                 }
             } catch {

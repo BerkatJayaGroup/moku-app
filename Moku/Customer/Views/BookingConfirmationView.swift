@@ -67,7 +67,7 @@ struct BookingConfirmationView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 5.0))
                     .padding(.horizontal)
                     .sheet(isPresented: $showInfoModalView) {
-                          CancelBookingModal(order: order)
+                        CancelBookingModal(order: order, activeFrom: true)
                     }
 
                 case .rejected:

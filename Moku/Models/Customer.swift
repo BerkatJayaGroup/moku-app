@@ -16,8 +16,8 @@ struct Customer: Codable {
     var fcmToken: String?
 //    TODO: Nunggu Bengkel Side ngetrigger Order
 //    OrdersToRate bakal keisi kalo di triger bengkel
-    var ordersToRate = [Order]()
     var favoriteBengkel = [Bengkel]()
+    var ordersToRate: [String]?
 }
 
 extension Customer {
@@ -26,21 +26,12 @@ extension Customer {
         name: "John Doe",
         phoneNumber: "082280806969",
         motors: [
-            Motor(brand: .yamaha, model: "Motor Yamaha", cc: 155),
-            Motor(brand: .suzuki, model: "Motor Suzuki", cc: 110),
-            Motor(brand: .honda, model: "Motor Honda", cc: 110),
-            Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120)
+            Motor(brand: .yamaha, model: "Motor Yamaha", cc: 155, licensePlate: "B 7261 SRS", year: "2012"),
+            Motor(brand: .suzuki, model: "Motor Suzuki", cc: 110, licensePlate: "BG 2190 UIT", year: "2020"),
+            Motor(brand: .honda, model: "Motor Honda", cc: 110, licensePlate: "BG 8212 UI", year: "1920"),
+            Motor(brand: .kawasaki, model: "Motor Kawasaki", cc: 120, licensePlate: "B 7821 UT", year: "2015")
         ],
         fcmToken: "cp_FfaoY1UoPmCEKVaO6GA:APA91bGf4BFHWUgYAORP9QVrVYILftl2znuEnGDi-nfzunC8UybNeRJIftjEOwd79tdOjRZzsPYQmBMloJzsVx-94J0kUqj_eFScUd3P5w_ePCy3qHXqkQ5Jje_XsZY6Gk-npDz_w9qP",
-        ordersToRate: [
-            Order(id: "1GYgKE6tXGRS3icCtVxI",
-                  bengkelId: "yn2iMDl1Kc0Orv6tb3vx",
-                  customerId: "mRJRlGEwQ7sSOsY2xjSf",
-                  motor: Motor(brand: .honda,
-                               model: "Beat",
-                               cc: 110),
-                  typeOfService: .perbaikan,
-                  schedule: Date())
-        ]
+        ordersToRate: ["NqrRsFb6xJbM7LOO6vVW"]
     )
 }

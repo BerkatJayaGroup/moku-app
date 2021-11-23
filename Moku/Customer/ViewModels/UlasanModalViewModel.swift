@@ -15,12 +15,15 @@ extension UlasanModal {
         @Published var isCheck: Bool = false
         @Published var bengkel: Bengkel
         @Published var isDoneReview: Bool = false
+        @Published var order: Order
         var bengkelRepository: BengkelRepository = .shared
         var customerRepository: CustomerRepository = .shared
+        @ObservedObject var bengkelViewModel = BengkelTabItem.ViewModel.shared
 
-        init(bengkel: Bengkel, selected: Int) {
+        init(bengkel: Bengkel, selected: Int, order: Order) {
             self.bengkel = bengkel
             self.selected = selected
+            self.order = order
         }
 
         func sendReview() {
@@ -31,8 +34,20 @@ extension UlasanModal {
                                                            rating: selected,
                                                            comment: text,
                                                            timestamp: Date()))
-                print("udah kekirim")
+               removeFromToRate(order: order, customer: customer)
             default: return
+            }
+        }
+        func removeFromToRate(order: Order, customer: Customer) {
+            DispatchQueue.main.async { [customer] in
+                var customer = customer
+                if let index = customer.ordersToRate?.firstIndex(of: order.id) {
+                    customer.ordersToRate?.remove(at: index)
+                }
+
+                self.customerRepository.update(customer: customer) { newCustomer in
+                    self.bengkelViewModel.getOrdersToRate(from: newCustomer.ordersToRate)
+                }
             }
         }
     }
