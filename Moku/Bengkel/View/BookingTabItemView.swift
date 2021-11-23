@@ -225,7 +225,7 @@ struct BookingTabItemView: View {
             DetailBooking(order: order)
         }
     }
-    
+
     @ViewBuilder private func showStatus(status: Order.Status) -> some View {
         if status == .onProgress {
             Text(status.rawValue)
