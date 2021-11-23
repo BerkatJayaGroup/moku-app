@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import PartialSheet
+import FirebaseDynamicLinks
 
 @main
 struct MokuApp: App {
