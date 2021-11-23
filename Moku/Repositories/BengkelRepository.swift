@@ -21,13 +21,7 @@ final class BengkelRepository: ObservableObject {
     private let store = Firestore.firestore().collection(Collection.bengkel)
 
     // MARK: Properties
-    @Published var bengkel = [Bengkel]() {
-        didSet {
-            bengkel.forEach { bengkel in
-                print("lmao", bengkel.name)
-            }
-        }
-    }
+    @Published var bengkel = [Bengkel]()
 
     // Initial Setup
     private init() {
@@ -55,11 +49,14 @@ final class BengkelRepository: ObservableObject {
     }
 
     func add(bengkel: Bengkel, completionHandler: ((DocumentReference) -> Void)? = nil) {
-        do {
-            let docRef = try store.addDocument(from: bengkel)
-            completionHandler?(docRef)
-        } catch {
-            RepositoryHelper.handleParsingError(error)
+        if let id = Auth.auth().currentUser?.uid {
+            let docRef = store.document(id)
+            do {
+                try docRef.setData(from: bengkel)
+                completionHandler?(docRef)
+            } catch {
+                RepositoryHelper.handleParsingError(error)
+            }
         }
     }
 
@@ -73,6 +70,26 @@ final class BengkelRepository: ObservableObject {
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
+    }
+
+    func appendMechanic(mechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil) {
+        guard let photoUrl = mechanic.photo else { return }
+        let mechanic: [String: Any] = [
+            "id": mechanic.id,
+            "name": mechanic.name,
+            "photo": photoUrl
+        ]
+        store.document(bengkelId).updateData(
+            ["mekaniks": FieldValue.arrayUnion([mechanic])],
+            completion: completion
+        )
+    }
+
+    func appendBengkelPhoto(photoUrl: String, to bengkelId: String, completion: ((Error?) -> Void)? = nil) {
+        store.document(bengkelId).updateData(
+            ["photos": FieldValue.arrayUnion([photoUrl])],
+            completion: completion
+        )
     }
 
     func addRating(bengkelId: String, review: Review) {

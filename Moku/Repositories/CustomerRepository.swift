@@ -15,20 +15,7 @@ final class CustomerRepository: ObservableObject {
 
     private let store = Firestore.firestore().collection(Collection.customer)
 
-    @Published var customer = [Customer]()
-
-    private init() {
-        fetch()
-    }
-
-    func fetch() {
-        store.getDocuments { snapshot, error in
-            guard let documents = RepositoryHelper.extractDocuments(snapshot, error) else {
-                return
-            }
-            self.customer = RepositoryHelper.extractData(from: documents, type: Customer.self)
-        }
-    }
+    private init() {}
 
     func fetch(id: String, completionHandler: ((Customer) -> Void)? = nil) {
         store.document(id).getDocument { document, error in
