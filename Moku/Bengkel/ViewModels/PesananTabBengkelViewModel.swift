@@ -23,7 +23,7 @@ extension PesananTabBengkelView {
             }
         }
 
-        func showUlasan() {
+        @ViewBuilder func showUlasan() -> some View {
             if let bengkelOrders = bengkelOrders {
                 LazyVStack {
                     ForEach(bengkelOrders, id: \.id) { order in

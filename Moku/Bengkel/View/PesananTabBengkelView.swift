@@ -29,8 +29,10 @@ struct PesananTabBengkelView: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                         }
+                        .padding(.horizontal)
+                        
+                        viewModel.showUlasan()
                     }
-                    Review
                 }
             }
             .edgesIgnoringSafeArea(.top)
