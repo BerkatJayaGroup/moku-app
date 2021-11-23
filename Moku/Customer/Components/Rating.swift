@@ -14,8 +14,10 @@ struct Rating: View {
     @ObservedObject var bengkelRepository: BengkelRepository = .shared
     @State var bengkel: Bengkel?
     @State var isActive: Bool = false
-    init(order: Order) {
+    var isFrom: Bool
+    init(order: Order, isFrom: Bool) {
         _order = State(wrappedValue: order)
+        self.isFrom = isFrom
     }
     var body: some View {
         content.onAppear {
@@ -29,15 +31,16 @@ struct Rating: View {
     var content: some View {
         if let bengkel = bengkel {
             VStack(alignment: .trailing) {
-                Button {
-                    print("Button Tap")
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(Color("PrimaryColor"))
+                if isFrom == true {
+                    Button {
+                        print("Button Tap")
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color("PrimaryColor"))
+                    }
+                    .padding(.top, -10)
+                    .offset(x: 0, y: 10)
                 }
-                .padding(.top, -10)
-                .offset(x: 0, y: 10)
-
                 HStack {
                     if let photo = bengkel.photos.first {
                         WebImage(url: URL(string: photo))
@@ -75,7 +78,7 @@ struct Rating: View {
                                         self.isActive = true
                                     }
                                     .sheet(isPresented: self.$isActive) {
-                                        UlasanModal(bengkel: bengkel, selected: selected, isActive: self.$isActive)
+                                        UlasanModal(bengkel: bengkel, selected: selected, order: order)
                                     }
                             }
                             Spacer()
@@ -84,23 +87,7 @@ struct Rating: View {
                 }
             }
         } else {
-            // TODO: Loading Screen
-            Text("Tambahin Loading Screen dong pas Production")
+            ActivityIndicator(.constant(true))
         }
-    }
-}
-
-struct Rating_Previews: PreviewProvider {
-    static var previews: some View {
-        Rating(order: Order(id: "1GYgKE6tXGRS3icCtVxI",
-                            bengkelId: "yn2iMDl1Kc0Orv6tb3vx",
-                            customerId: "mRJRlGEwQ7sSOsY2xjSf",
-                            motor: Motor(brand: .honda,
-                                         model: "Beat",
-                                         cc: 110),
-                            typeOfService: .perbaikan,
-                            schedule: Date()))
-            .previewLayout(.sizeThatFits)
-            .padding()
     }
 }

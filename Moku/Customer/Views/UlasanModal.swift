@@ -11,12 +11,9 @@ import SDWebImageSwiftUI
 struct UlasanModal: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: ViewModel
-    @Binding var isRootActive: Bool
-
-    init(bengkel: Bengkel, selected: Int, isActive: Binding<Bool>) {
-        _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, selected: selected))
-        _isRootActive = isActive
-        print(isRootActive)
+    @State private var test: Bool = false
+    init(bengkel: Bengkel, selected: Int, order: Order) {
+        _viewModel = StateObject(wrappedValue: ViewModel(bengkel: bengkel, selected: selected, order: order))
     }
     var body: some View {
         NavigationView {
@@ -78,7 +75,7 @@ struct UlasanModal: View {
                 .padding()
                 Button {
                     viewModel.sendReview()
-                    viewModel.isDoneReview = true
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Kirim")
                         .fontWeight(.semibold)
@@ -88,16 +85,11 @@ struct UlasanModal: View {
                         .background(Color("PrimaryColor"))
                         .cornerRadius(8)
                 }
-                .sheet(isPresented: $viewModel.isDoneReview) {
-                    isRootActive = false
-                } content: {
-                    UlasanAftarSend()
-                }
             }
             .navigationTitle("Ulasan")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("Batal") {presentationMode.wrappedValue.dismiss()
-                self.isRootActive = false
+            .navigationBarItems(leading: Button("Batal") {
+               presentationMode.wrappedValue.dismiss()
             })
             .onTapGesture {
                 self.endTextEditing()

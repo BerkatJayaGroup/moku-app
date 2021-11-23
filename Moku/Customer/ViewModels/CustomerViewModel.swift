@@ -17,12 +17,14 @@ extension DaftarCustomer {
         @Published var nomorTelepon = ""
         @Published var email        = ""
         @Published var query        = ""
+        @Published var licensePlate = ""
+        @Published var year         = ""
 
-        @Published var isEmailValid = true
-        @Published var nameCheck    = true
-        @Published var nomorCheck   = true
-        @Published var motorCheck   = true
-        @Published var showModal    = false
+        @Published var isEmailValid         = true
+        @Published var nameCheck            = true
+        @Published var nomorCheck           = true
+        @Published var motorCheck           = true
+        @Published var showModal            = false
 
         private let repository: CustomerRepository = .shared
 

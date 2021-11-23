@@ -19,11 +19,11 @@ final class NotificationService: NSObject, ObservableObject {
         case orderPlaced
         case orderCanceled(_ reason: Order.CancelingReason)
         case updateOrderStatus(_ status: Order.Status)
+
         var content: Content {
             switch self {
             case .orderPlaced:
                 return Content(title: "Yay, ada pesanan yang masuk!", body: "Silahkan cek pesanan yang masuk.")
-
             case .orderCanceled(let reason):
                 return Content(title: "Yah, pesanan dibatalkan!", body: reason.rawValue)
             case .updateOrderStatus(let status):
@@ -52,7 +52,7 @@ final class NotificationService: NSObject, ObservableObject {
         }
     }
 
-    func send(to identifiers: [String], notification: Notification, imageUrl: String? = nil) {
+    func send(to identifiers: [String], notification: Notification, imageUrl: String? = nil, withUrl url: String? = nil) {
         // JSON Data
         var json: [String: Any] = [
             "content_available": true,
@@ -61,9 +61,14 @@ final class NotificationService: NSObject, ObservableObject {
             "priority": "high",
             "notification": [
                 "title": notification.content.title,
-                "body": notification.content.body
+                "body": notification.content.body,
+                "sound": "default"
             ]
         ]
+
+        if let deepLink = url {
+            json["data"] = [ "deepLink": deepLink ]
+        }
 
         if let imageUrl = imageUrl {
             json["data"] = [ "imageUrl": imageUrl ]
@@ -82,13 +87,6 @@ final class NotificationService: NSObject, ObservableObject {
         request.httpBody = jsonData
 
         URLSession.shared.dataTask(with: request) { _, _, _  in }.resume()
-        identifiers.forEach { token in
-            print(token)
-        }
-    }
-
-    func schedule() {
-
     }
 }
 
@@ -98,10 +96,6 @@ extension NotificationService: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        let userInfo = notification.request.content.userInfo
-
-        print("userInfo", userInfo)
-
         completionHandler([[.badge, .banner, .sound]])
     }
 
@@ -112,7 +106,7 @@ extension NotificationService: UNUserNotificationCenterDelegate {
     ) {
         let userInfo = response.notification.request.content.userInfo
 
-        print("userInfo", userInfo)
+        DynamicLinksService.shared.handleNotification(userInfo: userInfo)
 
         completionHandler()
     }
@@ -121,7 +115,7 @@ extension NotificationService: UNUserNotificationCenterDelegate {
 extension NotificationService: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let fcmToken = fcmToken {
-            print(fcmToken)
+            print("fcmToken", fcmToken)
             switch SessionService.shared.user {
             case .bengkel(var bengkel):
                 bengkel.fcmToken = fcmToken

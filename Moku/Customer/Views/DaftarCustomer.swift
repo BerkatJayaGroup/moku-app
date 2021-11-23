@@ -15,9 +15,10 @@ let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
 
 struct DaftarCustomer: View {
     @StateObject private var viewModel = ViewModel()
-
+    @State var isInputActive: Bool = false
     var body: some View {
         VStack(alignment: .center) {
+            ScrollView {
             VStack(alignment: .leading) {
                 Text("NAMA")
                     .font(.caption2)
@@ -111,6 +112,33 @@ struct DaftarCustomer: View {
             Image("MotorGray")
                 .opacity(0.3)
                 .padding(15)
+
+            VStack(alignment: .leading) {
+                Text("PLAT MOTOR")
+                    .font(.caption2)
+                TextField("Plat Motor", text: $viewModel.licensePlate)
+                    .font(.subheadline)
+                    .padding(15)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .autocapitalization(.none)
+                    .autocapitalization(.none)
+                    .padding(.bottom)
+
+                Text("Tahun Beli")
+                    .font(.caption2)
+                TextField("Tahun beli", text: $viewModel.year)
+                    .keyboardType(.numberPad)
+                    .font(.subheadline)
+                    .padding(15)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .autocapitalization(.none)
+                    .autocapitalization(.none)
+                    .padding(.bottom)
+            }.padding()
+
+        }
             Spacer()
 
             Button {
@@ -120,6 +148,8 @@ struct DaftarCustomer: View {
                     viewModel.isEmailValid = false
                 } else {
                     NotificationService.shared.getToken { token in
+                        viewModel.motor?.licensePlate = viewModel.licensePlate
+                        viewModel.motor?.year = viewModel.year
                         let customer = Customer(
                             name: viewModel.name,
                             phoneNumber: viewModel.nomorTelepon,
