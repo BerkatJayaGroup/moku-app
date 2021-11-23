@@ -17,10 +17,18 @@ struct FavoriteList: View {
     var body: some View {
         VStack(alignment: .trailing) {
             VStack(alignment: .leading) {
-                Image(systemName: "number")
-                    .resizable()
-                    .frame(width: 175, height: 110)
-                    .aspectRatio(contentMode: .fill)
+                if let photo = bengkel.photos[0] {
+                    WebImage(url: URL(string: photo))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 175, height: 110)
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    Image(systemName: "number")
+                        .resizable()
+                        .frame(width: 175, height: 110)
+                        .aspectRatio(contentMode: .fill)
+                }
                 Text(bengkel.name)
                     .font(.headline)
                 Text(distanceBengkel(bengkel: bengkel))

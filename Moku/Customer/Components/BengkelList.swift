@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct BengkelList: View {
     
@@ -17,12 +18,24 @@ struct BengkelList: View {
 
     var body: some View {
         HStack {
+            if bengkel.photos.count > 0 {
+                if let photo = bengkel.photos[0] {
+                    WebImage(url: URL(string: photo))
+                        .resizable()
+                        .background(Color.gray)
+                        .frame(width: 85, height: 85, alignment: .center)
+                        .aspectRatio(contentMode: .fill)
+                        .cornerRadius(8)
+                }
+            }
+            else {
             Image(systemName: "number")
                 .resizable()
                 .background(Color.gray)
                 .frame(width: 85, height: 85, alignment: .center)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(8)
+            }
 
             VStack(alignment: .leading) {
                 Text(bengkel.name)

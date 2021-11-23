@@ -8,6 +8,7 @@
 import SwiftUI
 import PartialSheet
 import SwiftUIX
+import SDWebImageSwiftUI
 
 struct BengkelDetail: View {
     @ObservedObject var session = SessionService.shared
@@ -44,10 +45,20 @@ struct BengkelDetail: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .center, spacing: 8) {
+                    if viewModel.bengkel.photos.count > 0 {
+                        if let photo = viewModel.bengkel.photos[0] {
+                            WebImage(url: URL(string: photo))
+                                .resizable()
+                                .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
+                                .scaledToFit()
+                        }
+                    }
+                    else {
                     Image(systemName: "number")
-                        .resizable()
-                        .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
-                        .scaledToFit()
+                            .resizable()
+                            .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
+                            .scaledToFit()
+                    }
 
                     HStack {
                         Text(viewModel.bengkel.name)
