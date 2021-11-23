@@ -11,6 +11,7 @@ import PartialSheet
 struct DetailBooking: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
+    @State var isShowRejectModal = false
 
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
@@ -81,7 +82,7 @@ struct DetailBooking: View {
                     }
                     .padding(.bottom, 16)
                 Button(action: {
-                    print("Tolak Booking")
+                    isShowRejectModal.toggle()
                 }, label: {
                     Text("Tolak Booking")
                         .frame(width: 310, height: 44)
@@ -89,7 +90,9 @@ struct DetailBooking: View {
                         .cornerRadius(8)
                         .foregroundColor(AppColor.primaryColor)
                         .frame(width: 320, height: 45, alignment: .center)
-                })
+                }).partialSheet(isPresented: $isShowRejectModal) {
+                    RejectAppointmentModal(order: viewModel.order)
+                }
             }
             .padding()
             .addPartialSheet()

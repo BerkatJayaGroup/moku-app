@@ -21,58 +21,65 @@ struct BookingTabItemView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                HStack {
-                    Text("Booking masuk")
-                        .font(.title2)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top)
-                        .padding(.horizontal)
-                    Spacer()
-                    NavigationLink(destination: BookingSeeAllView()) {
-                        Text("Lihat semua")
-                            .font(.caption2)
-                            .foregroundColor(AppColor.primaryColor)
-                            .padding(.top)
-                            .padding(.horizontal)
+            VStack {
+                if let orders = viewModel.bengkelOrders {
+                    let waitingConfirmationOrder = orders.filter { filteredOrder in
+                        return filteredOrder.status == .waitingConfirmation
                     }
-                }
-                if let order = viewModel.bengkelOrders {
-                    let newOrder = order.filter { order in
-                        return order.status == .waitingConfirmation
+                    let onProgressOrder = orders.filter { filteredOrder in
+                        return filteredOrder.status == .onProgress && filteredOrder.schedule.date() == Date().date()
                     }
-                    if newOrder.isEmpty {
-                        VStack {
-                            Image("pemilik-bengkel")
-                            Text("Belum ada bookingan masuk")
-                                .foregroundColor(AppColor.darkGray)
-                                .multilineTextAlignment(.center)
-                        }.padding(70)
+                    if !waitingConfirmationOrder.isEmpty || !onProgressOrder.isEmpty {
+                        ScrollView {
+                            HStack {
+                                Text("Booking masuk")
+                                    .font(.title2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.top)
+                                    .padding(.horizontal)
+                                Spacer()
+                                if !waitingConfirmationOrder.isEmpty {
+                                    NavigationLink(destination: BookingSeeAllView()) {
+                                        Text("Lihat semua")
+                                            .font(.caption2)
+                                            .foregroundColor(AppColor.primaryColor)
+                                            .padding(.top)
+                                            .padding(.horizontal)
+                                    }
+                                }
+                            }
+                            if waitingConfirmationOrder.isEmpty {
+                                VStack {
+                                    Image("pemilik-bengkel")
+                                    Text("Belum ada bookingan masuk")
+                                        .foregroundColor(AppColor.darkGray)
+                                        .multilineTextAlignment(.center)
+                                }.padding(70)
+                            } else {
+                                newBookingSection(order: waitingConfirmationOrder)
+                            }
+                            Text("Pekerjaan Hari Ini")
+                                .font(.title2)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top)
+                                .padding(.horizontal)
+                            if onProgressOrder.isEmpty {
+                                VStack {
+                                    Image("pemilik-bengkel")
+                                    Text("Tidak ada bookingan terjadwal pada hari ini")
+                                        .foregroundColor(AppColor.darkGray)
+                                        .multilineTextAlignment(.center)
+                                }.padding(70)
+                            } else {
+                                currentBookingSection(order: onProgressOrder)
+                            }
+                        }
                     } else {
-                        newBookingSection(order: newOrder)
-                    }
-                } else {
-                    ProgressView().progressViewStyle(CircularProgressViewStyle())
-                }
-                Text("Pekerjaan Hari Ini")
-                    .font(.title2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top)
-                    .padding(.horizontal)
-                if let order = viewModel.bengkelOrders {
-                    let currentOrder = order.filter { order in
-                        return order.status == .onProgress && order.schedule.date() == Date().date()
-                    }
-                    if currentOrder.isEmpty {
-                        VStack {
-                            Image("pemilik-bengkel")
-                            Text("Tidak ada bookingan terjadwal pada hari ini")
-                                .foregroundColor(AppColor.darkGray)
-                                .multilineTextAlignment(.center)
-                        }.padding(70)
-
-                    } else {
-                        currentBookingSection(order: currentOrder)
+                        Image("EmptyStateBengkel")
+                        Text("Tidak ada bookingan masuk ataupun terjadwal pada hari ini")
+                            .font(.subheadline)
+                            .foregroundColor(.systemGray)
+                            .padding()
                     }
                 } else {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
@@ -177,35 +184,39 @@ struct BookingTabItemView: View {
             if let customer = viewModel.customer {
                 Text(customer.name)
             }
-
             HStack {
-                Image("pemilik-bengkel")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
-                Spacer()
-                Image("pemilik-bengkel")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                Text(order.schedule.time()).font(.caption)
-            }
-            HStack {
-                Image("pemilik-bengkel")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                Text(order.typeOfService.rawValue).font(.subheadline).fontWeight(.bold)
-                Spacer()
-                Image("pemilik-bengkel")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                if let mekanik = order.mekanik {
-                    if mekanik.name.isEmpty {
-                        Text("Tidak ada nama mekanik").font(.caption)
-                    } else {
-                        Text(mekanik.name).font(.caption)
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image("MotorIcon")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.caption)
                     }
-                } else {
-                    Text("Tidak ada nama mekanik").font(.caption)
+                    HStack {
+                        Image("pemilik-bengkel")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text(order.typeOfService.rawValue).font(.caption)
+                    }
+                }
+                Spacer()
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image("pemilik-bengkel")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text(order.schedule.time()).font(.caption)
+                    }
+                    HStack {
+                        Image("MekanikIcon")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        if let mekanik = order.mekanik {
+                            Text(mekanik.name).font(.caption)
+                        } else {
+                            Text("Tidak ada nama mekanik").font(.caption)
+                        }
+                    }
                 }
             }
             HStack {
@@ -225,22 +236,24 @@ struct BookingTabItemView: View {
             DetailBooking(order: order)
         }
     }
-    
+
     @ViewBuilder private func showStatus(status: Order.Status) -> some View {
         if status == .onProgress {
             Text(status.rawValue)
                 .font(.caption)
+                .fontWeight(.bold)
                 .padding(5)
                 .background(AppColor.salmonOrange)
                 .foregroundColor(AppColor.primaryColor)
-                .cornerRadius(15)
+                .cornerRadius(5)
         } else if status == .done {
             Text(status.rawValue)
                 .font(.caption)
+                .fontWeight(.bold)
                 .padding(5)
                 .background(Color.systemBlue)
                 .foregroundColor(Color.blue)
-                .cornerRadius(15)
+                .cornerRadius(5)
         }
     }
 }
