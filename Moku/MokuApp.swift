@@ -38,6 +38,7 @@ struct MokuApp: App {
                 }
             } else {
                 contentView()
+                    .environmentObject(sheetManager)
                     .onOpenURL { url in
                         DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
                             guard let dynamicLink = dynamicLink else { return }

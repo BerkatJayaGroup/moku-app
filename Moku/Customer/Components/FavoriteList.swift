@@ -53,7 +53,7 @@ struct FavoriteList: View {
             for review in bengkel.reviews{
                 rating += Double(review.rating)
             }
-            rating = rating/Double((bengkel.reviews.count))
+            rating /= Double((bengkel.reviews.count))
             rating = roundToPlaces(rating, places: 1)
             return "\(rating)"
         }
