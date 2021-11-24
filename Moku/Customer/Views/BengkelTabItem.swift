@@ -61,7 +61,9 @@ struct BengkelTabItem: View {
                         .padding(.horizontal, 20)
 
                         if case .customer(let user) = session.user {
-                            bengkelFavoriteView(user: user)
+                            if !user.favoriteBengkel.isEmpty{
+                                bengkelFavoriteView(user: user)
+                            }
                         }
                       
                         Rectangle()
@@ -188,11 +190,18 @@ struct BengkelTabItem: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(user.favoriteBengkel, id: \.name) { bengkel in
-                        FavoriteList(bengkel: bengkel)
-                            .padding(10)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                        NavigationLink(
+                            destination: BengkelDetail(
+                                bengkel: bengkel,
+                                isRootActive: self.$isActive,
+                                isHideTabBar: self.$isHideTabBar
+                            )) {
+                            FavoriteList(bengkel: bengkel)
+                                .padding(10)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                            }
                     }
                 }
                 .padding(5)

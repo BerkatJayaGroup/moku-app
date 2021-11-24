@@ -40,35 +40,15 @@ struct FavoriteList: View {
                     .offset(x: 10, y: -0.5)
                     .font(.system(size: 14))
                     .foregroundColor(Color("PrimaryColor"))
-                Text(rateBengkel(bengkel: bengkel))
+                Text(bengkel.averageRating)
                     .font(.system(size: 17))
                     .fontWeight(.heavy)
             }
         }
     }
     
-    func rateBengkel(bengkel: Bengkel) -> String{
-        if !bengkel.reviews.isEmpty{
-            var rating: Double = 0.0
-            for review in bengkel.reviews{
-                rating += Double(review.rating)
-            }
-            rating = rating/Double((bengkel.reviews.count))
-            rating = roundToPlaces(rating, places: 1)
-            return "\(rating)"
-        }
-        else{
-            return "Baru"
-        }
-    }
-    
     func distanceBengkel(bengkel: Bengkel) -> String{
         return MapHelper.stringify(distance: bengkel.distance)
-    }
-    
-    func roundToPlaces(_ value: Double, places: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (value * divisor).rounded(rule) / divisor
     }
 }
 
