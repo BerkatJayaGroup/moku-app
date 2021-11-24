@@ -26,25 +26,8 @@ struct MokuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if case .bookingDetail(let orderID) = dynamicLinksService.dynamicLinkTarget {
-                NavigationView {
-                    bookingDetail().onAppear {
-                        OrderRepository.shared.fetch(orderID: orderID) { order in
-                            self.order = order
-                        }
-                    }
-                    .navigationBarTitle("Booking Detail", displayMode: .inline)
-                    .navigationBarItems(leading: dismissButton())
-                }
-            } else {
-                contentView()
-                    .onOpenURL { url in
-                        DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
-                            guard let dynamicLink = dynamicLink else { return }
-                            DynamicLinksService.shared.handleDynamicLink(dynamicLink: dynamicLink)
-                        }
-                    }
-            }
+            contentView()
+                .environmentObject(sheetManager)
         }
     }
 
@@ -74,14 +57,14 @@ struct MokuApp: App {
     private func contentView() -> some View {
         if let user = session.user {
             switch user {
-            case .bengkel(_):
+            case .bengkel:
                 BengkelView()
             case let .customer(customer):
-                CustomerView(for: customer)
+                CustomerView()
             }
         } else {
             if appState.hasOnboarded {
-                PickRoleView()
+                CustomerView()
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }

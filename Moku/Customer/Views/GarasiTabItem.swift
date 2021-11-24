@@ -67,13 +67,7 @@ struct GarasiTabItem: View {
     @State private var newMotorSheet: Bool = false
     @State private var isSuntingModalPresented = false
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
     var body: some View {
-        NavigationView {
             ZStack(alignment: .top) {
                 Rectangle()
                     .foregroundColor(AppColor.primaryColor)
@@ -95,11 +89,8 @@ struct GarasiTabItem: View {
                         .padding(.horizontal)
                         .padding(.top)
                     serviceHistorySection().padding(10)
-                }.navigationTitle("Garasi")
-                    .navigationBarColor(AppColor.primaryColor)
+                }
             }
-        }
-        .background(Color(.systemGroupedBackground))
     }
     private func profileSection() -> some View {
         HStack {

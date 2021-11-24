@@ -16,62 +16,60 @@ struct BengkelTabItem: View {
     @State private var showingSheet = false
     @State private var showModal = false
     @State var isActive: Bool = false
-    @State var isHideTabBar: Bool = false
+    @Binding var tab: Tabs
     var lastOrder = true
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                ZStack(alignment: .top) {
-                    ShapeBg()
-                        .frame(height: 140)
-                        .foregroundColor(Color("PrimaryColor"))
-                    VStack(alignment: .leading) {
-                        Spacer(minLength: 40)
-                        NavigationLink(destination: googleMap()) {
-                            Image(systemName: "mappin")
-                                .padding(.vertical, 7)
-                                .padding(.leading, 10)
-                                .font(.system(size: 25))
-                            Text(viewModel.currentLocation)
-                                .font(.headline)
-                                .padding(.vertical, 7)
-                                .padding(.trailing, 15)
-                        }
-                        .sheet(isPresented: $showModal) {
-                            ModalSearchLocation(showModal: $showModal)
-                        }
-                        .foregroundColor(Color.white)
-                        .background(Color.black.opacity(0.2))
-                        .cornerRadius(20)
-                        .padding(.horizontal, 20)
-                        motorSelection()
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(.systemGray3))
-                            TextField("Cari Bengkel", text: $viewModel.searchQuery)
-                        }
-                        .padding(8)
-                        .padding(.leading, 5)
-                        .background(Color.white, alignment: .center)
-                        .cornerRadius(7)
-                        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
-                        .padding(.horizontal, 20)
-                        bengkelFavoriteView()
-                        Rectangle()
-                            .fill(Color(.systemGray6))
-                            .frame(height: 5)
-                            .edgesIgnoringSafeArea(.horizontal)
-                        ratingView()
-                        listOfNearbyBengkel()
-                    }
+        ZStack(alignment: .top) {
+            ShapeBg()
+                .frame(height: 185)
+                .foregroundColor(Color("PrimaryColor"))
+                .ignoresSafeArea()
+            VStack(alignment: .leading) {
+                NavigationLink(destination: googleMap()) {
+                    Image(systemName: "mappin")
+                        .padding(.vertical, 7)
+                        .padding(.leading, 10)
+                        .font(.system(size: 25))
+                    Text(viewModel.currentLocation)
+                        .font(.headline)
+                        .padding(.vertical, 7)
+                        .padding(.trailing, 15)
                 }
-            }
-            .edgesIgnoringSafeArea(.top)
-            .navigationBarHidden(true)
-            .introspectTabBarController { (UITabBarController) in
-                UITabBarController.tabBar.isHidden = self.isHideTabBar
-            }
+                .sheet(isPresented: $showModal) {
+                    ModalSearchLocation(showModal: $showModal)
+                }
+                .foregroundColor(Color.white)
+                .background(Color.black.opacity(0.2))
+                .cornerRadius(20)
+                .padding(.horizontal, 20)
+
+                motorSelection()
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(Color(.systemGray3))
+                    TextField("Cari Bengkel", text: $viewModel.searchQuery)
+                }
+                .padding(8)
+                .padding(.leading, 5)
+                .background(Color.white, alignment: .center)
+                .cornerRadius(7)
+                .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
+                .padding(.horizontal, 20)
+
+                ScrollView {
+                        VStack(alignment: .leading) {
+                            bengkelFavoriteView()
+                                .padding(.top, 10)
+                            Rectangle()
+                                .fill(Color(.systemGray6))
+                                .frame(height: 5)
+                                .edgesIgnoringSafeArea(.horizontal)
+                            ratingView()
+                            listOfNearbyBengkel()
+                        }
+                }
+            }.padding(.top, 40)
         }
     }
     @ViewBuilder
@@ -112,15 +110,10 @@ struct BengkelTabItem: View {
                     .padding(72)
             }
         } else {
-            LazyVStack {
-                ForEach(BengkelRepository.shared.bengkel, id: \.name) { bengkel in
+            VStack {
+                ForEach(BengkelRepository.shared.bengkel, id: \.id) { bengkel in
                     NavigationLink(
-                        destination: BengkelDetail(
-                            bengkel: bengkel,
-                            isRootActive: self.$isActive,
-                            isHideTabBar: self.$isHideTabBar
-                        ),
-                        isActive: self.$isActive) {
+                        destination: BengkelDetail(bengkel: bengkel, tab: $tab) ) {
                             BengkelList(bengkel: bengkel)
                                 .padding(5)
                                 .background(Color.white)
@@ -162,13 +155,11 @@ struct BengkelTabItem: View {
                 }
             }
         } else {
-            Button {
-
-            } label: {
+            NavigationLink(destination: PickRoleView()) {
                 Text("Daftar atau Masuk")
                     .foregroundColor(Color.white)
                     .padding(.leading, 20)
-                    .font(.system(size: 17))
+                    .font(.system(size: 17), weight: .bold)
             }
         }
     }
@@ -190,14 +181,13 @@ struct BengkelTabItem: View {
                 .padding(5)
             }
         }
-        .padding(10)
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
     }
 
 }
 
-struct BengkelTabItem_Previews: PreviewProvider {
-    static var previews: some View {
-        BengkelTabItem()
-    }
-}
+//struct BengkelTabItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BengkelTabItem()
+//    }
+//}

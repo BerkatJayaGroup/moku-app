@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SheetView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     var dayInAWeek: [String] = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]
     var dayInAWeek2: [String] = ["Sabtu", "Minggu"]
     var isToday: Bool = false
