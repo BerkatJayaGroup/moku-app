@@ -46,7 +46,7 @@ struct FavoriteList: View {
             }
         }
     }
-    
+
     func distanceBengkel(bengkel: Bengkel) -> String{
         return MapHelper.stringify(distance: bengkel.distance)
     }
