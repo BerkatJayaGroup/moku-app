@@ -27,7 +27,7 @@ struct BengkelTabItem: View {
                 ZStack(alignment: .top) {
                     ShapeBg()
                         .frame(height: 140)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(AppColor.primaryColor)
                     VStack(alignment: .leading) {
                         Spacer(minLength: 40)
                         NavigationLink(destination: googleMap()) {
@@ -61,11 +61,11 @@ struct BengkelTabItem: View {
                         .padding(.horizontal, 20)
 
                         if case .customer(let user) = session.user {
-                            if !user.favoriteBengkel.isEmpty{
+                            if !user.favoriteBengkel.isEmpty {
                                 bengkelFavoriteView(user: user)
                             }
                         }
-                      
+
                         Rectangle()
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
@@ -77,11 +77,12 @@ struct BengkelTabItem: View {
             }
             .edgesIgnoringSafeArea(.top)
             .navigationBarHidden(true)
-            .introspectTabBarController { (UITabBarController) in
+            .introspectTabBarController { UITabBarController in
                 UITabBarController.tabBar.isHidden = self.isHideTabBar
             }
         }
-        .onAppear{
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
             session.setup()
         }
     }

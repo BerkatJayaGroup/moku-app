@@ -10,13 +10,6 @@ import SwiftUI
 struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
 
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = .white
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -26,7 +19,7 @@ struct BookingSeeAllView: View {
                     }
                     ForEach(0..<newOrder.count) { index in
                         orderCards(order: newOrder[index]).padding(10)
-                            .background(Color.white)
+                            .background(AppColor.primaryBackground)
                             .cornerRadius(10)
                             .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                             .padding(.top)
