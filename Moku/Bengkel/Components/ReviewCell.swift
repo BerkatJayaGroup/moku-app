@@ -27,8 +27,8 @@ struct ReviewCell: View {
                 Text(order.typeOfService.rawValue)
                     .font(.system(size: 13))
                 HStack {
-                    Text("order.schedule")
-                    //                Text(order.schedule.formatted("EEEE, d MMM yyyy HH:mm"))
+                    //                    Text("order.schedule")
+                    Text(Date.convertDateFormat(date: order.schedule, format: "EEEE, d MMM yyyy HH:mm"))
                         .font(.system(size: 13))
                     Spacer()
                     Text(order.status.rawValue)
@@ -43,6 +43,8 @@ struct ReviewCell: View {
             }
         }
         .padding()
+        .border(Color(hex: "979797") , width: 1, cornerRadius: 6)
+        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
     }
 }
 

@@ -9,34 +9,33 @@ import SwiftUI
 
 struct PesananTabBengkelView: View {
     @StateObject private var viewModel = ViewModel()
-
+    
+    init() {
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     var body: some View {
         NavigationView {
-            ScrollView {
-                ZStack(alignment: .top) {
-                    RactBg()
-                        .frame(height: 104)
-                        .foregroundColor(Color("PrimaryColor"))
-                    VStack {
-                        Spacer(minLength: 35)
-                        HStack {
-                            Text("Pesanan")
-                                .foregroundColor(.white)
-                                .font(.system(size: 34))
-                                .fontWeight(.bold)
-                            Spacer()
-                            Image(systemName: "clock.arrow.circlepath")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                        }
-                        .padding(.horizontal)
-                        
-                        viewModel.showUlasan()
-                    }
+            VStack {
+                ScrollView{
+                    viewModel.showUlasan()
                 }
             }
-            .edgesIgnoringSafeArea(.top)
-            .navigationBarHidden(true)
+            .navigationTitle("Pesanan")
+            .navigationBarColor(AppColor.primaryColor)
+            .onDisappear(perform: {
+                UINavigationBar.appearance().backgroundColor = nil
+            })
+            .navigationBarItems(trailing: Button(action: {
+                
+            }, label: {
+                Image(systemName: "clock.arrow.circlepath")
+                    .imageScale(.large)
+                    .foregroundColor(.white)
+                    .font(.system(size: 20))
+            }))
         }
     }
 }

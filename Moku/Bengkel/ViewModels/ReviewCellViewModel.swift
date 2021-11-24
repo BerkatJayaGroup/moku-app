@@ -12,9 +12,17 @@ extension ReviewCell{
         @Published var order: Order?
         @Published var customer: Customer?
         
+        var schedule: String{
+            var scheduleTime: String
+            if let schedule = order?.schedule{
+                scheduleTime = Date.convertDateFormat(date: schedule, format: "EEEE, MMM d, yyyy")
+            }
+            return schedule
+        }
+        
         init(order: Order){
             self.order = order
-            getCustomerFromOrders(customerId: order.id)
+            getCustomerFromOrders(customerId: order.customerId)
         }
         
         func getCustomerFromOrders(customerId: String) {
@@ -22,5 +30,7 @@ extension ReviewCell{
                 self.customer = customer
             }
         }
+        
+        
     }
 }

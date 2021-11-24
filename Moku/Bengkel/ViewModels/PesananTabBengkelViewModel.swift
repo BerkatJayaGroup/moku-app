@@ -27,9 +27,18 @@ extension PesananTabBengkelView {
             if let bengkelOrders = bengkelOrders {
                 LazyVStack {
                     ForEach(bengkelOrders, id: \.id) { order in
-                        ReviewCell(order: order)
+                        if !(order.schedule.get(.day) == Date().get(.day)) && order.status == .onProgress {
+                            NavigationLink(destination: {
+                                DetailBooking(order: order)
+                            }, label: {
+                                ReviewCell(order: order)
+                            })
+                            
+                        }
+                        
                     }
                 }
+                .padding()
             }
             
         }

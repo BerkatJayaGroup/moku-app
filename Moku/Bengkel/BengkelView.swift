@@ -60,9 +60,9 @@ struct BengkelView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            BengkelTabItemView()
+            PesananTabBengkelView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "newspaper.fill")
                     Text("Pesanan")
                 }
             Text("Bengkel")
