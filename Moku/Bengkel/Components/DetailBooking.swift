@@ -65,10 +65,11 @@ struct DetailBooking: View {
                     }
                 }
                 Spacer()
-                if viewModel.order.status == .onProgress{
+                if viewModel.order.status == .scheduled{
                     Button(action: {
                         print("Selesaikan Booking")
                         UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                        viewModel.updateStatusOrder()
                     }, label: {
                         Text("Pesanan Selesai")
                             .frame(width: 310, height: 44)
@@ -104,6 +105,23 @@ struct DetailBooking: View {
                             .foregroundColor(AppColor.primaryColor)
                             .frame(width: 320, height: 45, alignment: .center)
                     })
+                }
+                else if viewModel.order.status == .scheduled {
+                    Divider()
+                        .padding(.horizontal)
+                    Text("Mekanik yang ditugaskan")
+                        .font(.system(17))
+                        .fontWeight(.semibold)
+                    HStack{
+                        Image(systemName: "profile")
+                            .clipShape(Circle())
+                        VStack{
+                            Text(viewModel.order.mechanicName)
+                                .font(.system(17))
+                            Text("Mekanik")
+                                .font(.system(13))
+                        }
+                    }
                 }
             }
             .padding()
