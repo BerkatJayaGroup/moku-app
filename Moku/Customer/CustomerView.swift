@@ -7,36 +7,82 @@
 
 import SwiftUI
 
-struct CustomerView: View {
-    @State var customer: Customer
+enum Tabs {
+    case tab1, tab2, tab3
+}
 
-    init(for customer: Customer) {
-        _customer = State(wrappedValue: customer)
+struct CustomerView: View {
+//    @State var customer: Customer
+    @State var tabSelection: Tabs = .tab1
+
+    init() {
+//        _customer                                       = State(wrappedValue: customer)
+        let appearance                                  = UITabBarAppearance()
+        UITabBar.appearance().isTranslucent             = true
+        UITabBar.appearance().backgroundColor           = UIColor(AppColor.grayTab)
+        appearance.shadowColor                          = UIColor.gray
+
+        let coloredAppearance                           = UINavigationBarAppearance()
+        coloredAppearance.backgroundColor               = UIColor(AppColor.primaryColor)
+        coloredAppearance.titleTextAttributes           = [.foregroundColor: UIColor.black]
+        coloredAppearance.largeTitleTextAttributes      = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().tintColor          = UIColor(AppColor.primaryColor)
     }
 
     var body: some View {
-        TabView {
-            BengkelTabItem()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Bengkel")
-                }
-            BookingsTabItem()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Booking")
-                }
-            GarasiTabItem()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Garasi")
-                }
+        NavigationView {
+            TabView(selection: $tabSelection) {
+                BengkelTabItem(tab: $tabSelection)
+                    .tabItem {
+                        Image(systemName: "wrench.and.screwdriver.fill")
+                        Text("Bengkel")
+                    }
+                    .tag(Tabs.tab1)
+                    .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
+                BookingsTabItem()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("Booking")
+                    }
+                    .tag(Tabs.tab2)
+                    .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
+                GarasiTabItem()
+                    .tabItem {
+                        Image(systemName: "bicycle")
+                        Text("Garasi")
+                    }
+                    .tag(Tabs.tab3)
+                  .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
+            }
+            .accentColor(AppColor.primaryColor)
+            .navigationBarTitle(returnNaviBarTitle(tabSelection: self.tabSelection))
+        }
+    }
+
+    func returnNaviBarTitle(tabSelection: Tabs) -> String {
+        switch tabSelection {
+        case .tab1: return ""
+        case .tab2: return "Bookings"
+        case .tab3: return "Garasi"
+        }
+    }
+
+    func returnNavbarHide(tabSelection: Tabs) -> Bool {
+        switch tabSelection {
+        case .tab1:
+            return true
+        case .tab2:
+            return false
+        case .tab3:
+            return false
         }
     }
 }
 
-struct CustomerView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomerView(for: .preview)
-    }
-}
+// struct CustomerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CustomerView(for: .preview)
+//    }
+// }

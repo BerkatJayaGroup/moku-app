@@ -21,15 +21,13 @@ struct BengkelDetail: View {
     @State var isFavorite: Bool = false
 
     @StateObject private var viewModel: ViewModel
-    @Binding var isRootActive: Bool
-    @Binding var isHideTabBar: Bool
-    
-    
-    init(bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+
+    @Binding var tab: Tabs
+
+    init(bengkel: Bengkel, tab: Binding<Tabs>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
+        self._tab = tab
     }
 
     var btnBack: some View {
@@ -43,7 +41,7 @@ struct BengkelDetail: View {
 
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .center, spacing: 8) {
                     if viewModel.bengkel.photos.count > 0 {
                         if let photo = viewModel.bengkel.photos[0] {
@@ -55,9 +53,9 @@ struct BengkelDetail: View {
                     }
                     else {
                     Image(systemName: "number")
-                            .resizable()
-                            .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
-                            .scaledToFit()
+                        .resizable()
+                        .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
+                        .scaledToFill()
                     }
 
                     HStack {
@@ -78,23 +76,26 @@ struct BengkelDetail: View {
                                 }
                         }
                     }
-                    .font(Font.system(size: 22))
+                    .font(.system(size: 22, weight: .semibold))
+                    .padding(.bottom, 5)
                     Text(viewModel.address)
-                        .fontWeight(.light)
+                        .font(.system(size: 13, weight: .regular))
                         .frame(width: proxy.size.width)
+                        .foregroundColor(AppColor.darkGray)
+                        .padding(.bottom, 10)
                     HStack {
                         CollectionInfoDetailBengkel(
                             titleInfo: "Rating",
                             imageInfo: "star.fill",
                             mainInfo: viewModel.bengkel.averageRating,
-                            cta: .seeDetail
+                            cta: .seeAll
                         ).style(proxy: proxy)
 
                         CollectionInfoDetailBengkel(
                             titleInfo: "Jarak dari Anda",
                             imageInfo: "",
                             mainInfo: viewModel.distance,
-                            cta: .seeDetail
+                            cta: .seeMap
                         ) {
                             MapHelper.direct(bengkel: viewModel.bengkel)
                         }.style(proxy: proxy)
@@ -104,13 +105,20 @@ struct BengkelDetail: View {
                             imageInfo: "",
                             mainInfo: viewModel.operationalHours,
                             cta: .seeDetail
-                        ).style(proxy: proxy)
-
+                        ) {
+                            viewModel.isOperatinalHoursSheetShowing.toggle()
+                            print(viewModel.isOperatinalHoursSheetShowing)
+                        }
+                        .style(proxy: proxy)
+                        .partialSheet(isPresented: $viewModel.isOperatinalHoursSheetShowing) {
+                            SheetView(mainInfo: viewModel.operationalHours)
+                        }
                     }
                     .frame(width: proxy.size.width)
                     Text("Pilih Jasa")
                         .fontWeight(.semibold)
                         .frame(width: proxy.size.width, alignment: .leading)
+                        .padding(.top)
                     HStack {
                         SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape.2", servicePrice: "Rp 40.000 - Rp 150.000", isTap: viewModel.typeOfService == .servisRutin)
                             .onTapGesture {
@@ -123,7 +131,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)) {
+                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
@@ -150,6 +158,7 @@ struct BengkelDetail: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
+        .addPartialSheet()
     }
     
     func favoriteToggle(){
