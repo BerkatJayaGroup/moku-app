@@ -82,7 +82,7 @@ struct MokuApp: App {
             }
         } else {
             if appState.hasOnboarded {
-                CustomerView()
+                PickRoleView()
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }
