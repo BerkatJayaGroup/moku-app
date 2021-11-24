@@ -96,8 +96,8 @@ struct BookingTabItemView: View {
     private func newBookingSection(order: [Order]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(0..<order.count) { index in
-                    bookingCards(order: order[index])
+                ForEach(order, id: \.id ) { order in
+                    bookingCards(order: order)
                         .padding(10)
                         .frame(width: 300)
                         .background(Color.white)
@@ -166,9 +166,9 @@ struct BookingTabItemView: View {
 
     private func currentBookingSection(order: [Order]) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                ForEach(0..<order.count) { index in
-                    currentBookingCard(order: order[index])
+            LazyVStack {
+                ForEach(order, id: \.id) { order in
+                    currentBookingCard(order: order)
                         .padding(10)
                         .background(Color.white)
                         .cornerRadius(10)

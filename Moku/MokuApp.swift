@@ -26,8 +26,26 @@ struct MokuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            contentView()
-                .environmentObject(sheetManager)
+            if case .bookingDetail(let orderID) = dynamicLinksService.dynamicLinkTarget {
+                NavigationView {
+                    bookingDetail().onAppear {
+                        OrderRepository.shared.fetch(orderID: orderID) { order in
+                            self.order = order
+                        }
+                    }
+                    .navigationBarTitle("Booking Detail", displayMode: .inline)
+                    .navigationBarItems(leading: dismissButton())
+                }
+            } else {
+                contentView()
+                    .environmentObject(sheetManager)
+                    .onOpenURL { url in
+                        DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
+                            guard let dynamicLink = dynamicLink else { return }
+                            DynamicLinksService.shared.handleDynamicLink(dynamicLink: dynamicLink)
+                        }
+                    }
+            }
         }
     }
 
