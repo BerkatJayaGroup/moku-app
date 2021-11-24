@@ -27,7 +27,7 @@ struct CollectionInfoDetailBengkel: View {
             Text(titleInfo)
                 .font(.system(size: 11, weight: .regular))
                 .foregroundColor(.secondaryLabel)
-           
+            
             HStack(spacing: 0) {
                 if imageInfo.isEmpty {
                     Image(systemName: imageInfo)

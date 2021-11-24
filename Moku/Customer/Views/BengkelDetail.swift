@@ -76,7 +76,7 @@ struct BengkelDetail: View {
                             imageInfo: "",
                             mainInfo: viewModel.distance,
                             cta: .seeMap
-                        ) { 
+                        ) {
                             MapHelper.direct(bengkel: viewModel.bengkel)
                         }.style(proxy: proxy)
 
