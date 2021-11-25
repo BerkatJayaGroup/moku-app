@@ -147,11 +147,11 @@ struct BookingTabItemView: View {
             }
         }.onTapGesture {
             isDetailBookingModalPresented.toggle()
-        }.sheet(isPresented: $isDetailBookingModalPresented, onDismiss: {
+        }.sheet(isPresented: $isDetailBookingModalPresented) {
             if let id = Auth.auth().currentUser?.uid {
                 viewModel.getBengkelOrders(bengkelId: id)
             }
-        }) {
+        } content: {
             DetailBooking(order: order)
         }
     }
@@ -217,15 +217,16 @@ struct BookingTabItemView: View {
         }
         .onTapGesture {
             isDetailBookingModalPresented.toggle()
-        }.sheet(isPresented: $isDetailBookingModalPresented, onDismiss: {
+        }
+        .sheet(isPresented: $isDetailBookingModalPresented) {
             if let id = Auth.auth().currentUser?.uid {
                 viewModel.getBengkelOrders(bengkelId: id)
             }
-        }) {
+        } content: {
             DetailBooking(order: order)
         }
     }
-    
+
     @ViewBuilder private func showStatus(status: Order.Status) -> some View {
         if status == .onProgress {
             Text(status.rawValue)

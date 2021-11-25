@@ -19,7 +19,7 @@ final class NotificationService: NSObject, ObservableObject {
         case orderPlaced
         case orderCanceled(_ reason: Order.CancelingReason)
         case updateOrderStatus(_ status: Order.Status)
-        
+
         var content: Content {
             switch self {
             case .orderPlaced:

@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class Motor: Codable, Identifiable {
-    let id = UUID().uuidString
+    var id = UUID().uuidString
     let brand: Brand
     let model: String
     let cc: Int

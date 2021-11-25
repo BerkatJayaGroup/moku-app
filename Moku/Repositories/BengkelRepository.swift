@@ -64,9 +64,11 @@ final class BengkelRepository: ObservableObject {
         store.document(bengkel.id).delete()
     }
 
-    func update(bengkel: Bengkel) {
+    func update(bengkel: Bengkel, completionHandler: (() -> Void)? = nil) {
         do {
-            try store.document(bengkel.id).setData(from: bengkel, merge: true)
+            try store.document(bengkel.id).setData(from: bengkel, merge: true) { _ in
+                completionHandler?()
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }

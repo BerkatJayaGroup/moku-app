@@ -11,13 +11,6 @@ import PhotosUI
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
 
-    var config: PHPickerConfiguration {
-        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-        config.filter = .images // videos, livePhotos...
-        config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
-        return config
-    }
-
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
@@ -83,7 +76,7 @@ struct BengkelOwnerOnboardingView: View {
                     }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
-                            ImagePHPicker(configuration: self.config, pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
+                            ImagePHPicker(pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
                         } else {
                             ImagePicker(sourceType: .camera, pickerResult: $viewModel.images)
                         }

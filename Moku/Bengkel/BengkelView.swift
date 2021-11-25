@@ -53,23 +53,44 @@ struct BengkelTabItemView: View {
 }
 
 struct BengkelView: View {
+
+    @State var bengkel: Bengkel?
+
     var body: some View {
-        TabView {
-            BookingTabItemView()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Booking")
+        contentView()
+            .onAppear {
+                if case .bengkel(let bengkel) = SessionService.shared.user {
+                    self.bengkel = bengkel
                 }
-            BengkelTabItemView()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Pesanan")
+            }
+    }
+
+    @ViewBuilder
+    private func contentView() -> some View {
+        if let bengkel = bengkel {
+            TabView {
+                BookingTabItemView()
+                    .tabItem {
+                        Image(systemName: "star")
+                        Text("Booking")
+                    }
+                BengkelTabItemView()
+                    .tabItem {
+                        Image(systemName: "star")
+                        Text("Pesanan")
+                    }
+                NavigationView {
+                    NavigationLink(destination: BengkelProfileView(bengkel: bengkel)) {
+                        Text("Bengkel Profile")
+                    }
                 }
-            Text("Bengkel")
                 .tabItem {
                     Image(systemName: "star")
                     Text("Bengkel")
                 }
+            }
+        } else {
+            ProgressView().progressViewStyle(CircularProgressViewStyle())
         }
     }
 }

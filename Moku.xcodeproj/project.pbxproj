@@ -29,6 +29,7 @@
 		832AC1ED2715A42300BD92E2 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832AC1EC2715A42300BD92E2 /* Review.swift */; };
 		8330A2BB2729331500AC5447 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330A2BA2729331500AC5447 /* Day.swift */; };
 		8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */; };
+		8334805F274BF85E00A72897 /* BengkelProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8334805E274BF85E00A72897 /* BengkelProfileView.swift */; };
 		833674912716C9DD0040D669 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674902716C9DD0040D669 /* Order.swift */; };
 		833674932716CC0D0040D669 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674922716CC0D0040D669 /* Location.swift */; };
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
@@ -41,6 +42,7 @@
 		837370C927144BB1003656FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 837370C827144BB1003656FC /* FirebaseMessaging */; };
 		837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 837370CA27144BB1003656FC /* FirebaseStorage */; };
 		83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83776A6727272E70008AA404 /* GooglePlacesService.swift */; };
+		837B3EC2274F4BA700057382 /* BengkelProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B3EC1274F4BA700057382 /* BengkelProfileViewModel.swift */; };
 		837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1DB2727C2F9000E1FAA /* GoogleMapsService.swift */; };
 		837BE1DF2727C427000E1FAA /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1DE2727C427000E1FAA /* GoogleMapView.swift */; };
 		837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E12727C4F8000E1FAA /* LocationService.swift */; };
@@ -179,6 +181,7 @@
 		832AC1EC2715A42300BD92E2 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8330A2BA2729331500AC5447 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8330A2BC27295C2100AC5447 /* BengkelTabItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelTabItemModel.swift; sourceTree = "<group>"; };
+		8334805E274BF85E00A72897 /* BengkelProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelProfileView.swift; sourceTree = "<group>"; };
 		833674902716C9DD0040D669 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		833674922716CC0D0040D669 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		833674942716CD840040D669 /* Mekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mekanik.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		837370BA27144703003656FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		837370C1271449E4003656FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83776A6727272E70008AA404 /* GooglePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesService.swift; sourceTree = "<group>"; };
+		837B3EC1274F4BA700057382 /* BengkelProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelProfileViewModel.swift; sourceTree = "<group>"; };
 		837BE1DB2727C2F9000E1FAA /* GoogleMapsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsService.swift; sourceTree = "<group>"; };
 		837BE1DE2727C427000E1FAA /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		837BE1E12727C4F8000E1FAA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 		6F0E4E23272FC3BB000B6EC8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				83101601274BCEA40085ACF7 /* PengaturanHargaBengkelViewModel.swift */,
 				6F0E4E24272FC3CD000B6EC8 /* BengkelViewModel.swift */,
 				B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */,
 				8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */,
@@ -368,6 +373,15 @@
 				837BE1E72727D580000E1FAA /* Place.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8334805B274BF79900A72897 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8334805E274BF85E00A72897 /* BengkelProfileView.swift */,
+				837B3EC1274F4BA700057382 /* BengkelProfileViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		8336748F2716C7840040D669 /* Resources */ = {
@@ -489,12 +503,11 @@
 		83CBF2282722BC4200C79064 /* Bengkel */ = {
 			isa = PBXGroup;
 			children = (
+				8334805B274BF79900A72897 /* Profile */,
 				8ED7362D2742B90F0043B882 /* Components */,
 				8ED7362A2742AF4B0043B882 /* View */,
 				6F0E4E23272FC3BB000B6EC8 /* ViewModels */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
-				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkelView.swift */,
-				83101601274BCEA40085ACF7 /* PengaturanHargaBengkelViewModel.swift */,
 			);
 			path = Bengkel;
 			sourceTree = "<group>";
@@ -628,6 +641,7 @@
 		8ED7362A2742AF4B0043B882 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkelView.swift */,
 				8ED736372743992A0043B882 /* DetailBookingView.swift */,
 				B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */,
 				B83315CF2747602C0052D2DD /* BookingTabItemView.swift */,
@@ -909,6 +923,7 @@
 				83CBF2482722BC7F00C79064 /* BengkelDate.swift in Sources */,
 				6FB9BD97272A679F0041469C /* SearchBarMotor.swift in Sources */,
 				AE26C05327391483005D06E5 /* BookingsTabItem.swift in Sources */,
+				837B3EC2274F4BA700057382 /* BengkelProfileViewModel.swift in Sources */,
 				8ED7362F2742B93D0043B882 /* AssignMechanicsModal.swift in Sources */,
 				8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */,
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
@@ -917,6 +932,7 @@
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
+				8334805F274BF85E00A72897 /* BengkelProfileView.swift in Sources */,
 				8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */,
 				83101602274BCEA40085ACF7 /* PengaturanHargaBengkelViewModel.swift in Sources */,
 				B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */,
