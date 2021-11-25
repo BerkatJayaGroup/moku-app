@@ -70,30 +70,70 @@ struct DetailBooking: View {
                 }
             }
             Spacer()
-            Button{
-                print("Terima Booking")
-                viewModel.showModal = true
-            } label: {
-                Text("Terima Booking")
-                    .frame(width: 310, height: 44)
-                    .foregroundColor(.white)
-                    .background(AppColor.primaryColor)
-                    .cornerRadius(8)
-                    .frame(width: 320, height: 45, alignment: .center)
-            }.partialSheet(isPresented: $viewModel.showModal) {
-                AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
-            }.padding(.bottom, 16)
-            Button {
-                isShowRejectModal.toggle()
-            } label: {
-                Text("Tolak Booking")
-                    .frame(width: 310, height: 44)
-                    .background(Color(hex: "FFF4E9"))
-                    .cornerRadius(8)
-                    .foregroundColor(AppColor.primaryColor)
-                    .frame(width: 320, height: 45, alignment: .center)
-            }.partialSheet(isPresented: $isShowRejectModal) {
-                RejectAppointmentModal(order: viewModel.order)
+            if viewModel.order.status == .scheduled {
+                if (viewModel.order.schedule.get(.day) == Date().get(.day)){
+                    Button(action: {
+                        print("Selesaikan Booking")
+                        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                        //                    viewModel.updateStatusOrder()
+                    }, label: {
+                        Text("Pesanan Selesai")
+                            .frame(width: 310, height: 44)
+                            .foregroundColor(.white)
+                            .background(AppColor.primaryColor)
+                            .cornerRadius(8)
+                            .frame(width: 320, height: 45, alignment: .center)
+                    })
+                }
+                else{
+                    Divider()
+                        .padding(.horizontal)
+                    Text("Mekanik yang ditugaskan")
+                        .font(.system(size: 17))
+                        .fontWeight(.semibold)
+                        .frame(width: .infinity, alignment: .leading)
+                    HStack{
+                        Image(systemName: "person.crop.circle")
+                            .frame(width: 80, height: 80, alignment: .center)
+                            .imageScale(.large)
+                            .clipShape(Circle())
+                        VStack(spacing: 8){
+                            Text(viewModel.order.mechanicName ?? "N/A")
+                                .font(.system(size: 17))
+                            Text("Mekanik")
+                                .font(.system(size: 13))
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            else{
+                Button{
+                    print("Terima Booking")
+                    viewModel.showModal = true
+                } label: {
+                    Text("Terima Booking")
+                        .frame(width: 310, height: 44)
+                        .foregroundColor(.white)
+                        .background(AppColor.primaryColor)
+                        .cornerRadius(8)
+                        .frame(width: 320, height: 45, alignment: .center)
+                }.partialSheet(isPresented: $viewModel.showModal) {
+                    AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
+                }.padding(.bottom, 16)
+                Button {
+                    isShowRejectModal.toggle()
+                } label: {
+                    Text("Tolak Booking")
+                        .frame(width: 310, height: 44)
+                        .background(Color(hex: "FFF4E9"))
+                        .cornerRadius(8)
+                        .foregroundColor(AppColor.primaryColor)
+                        .frame(width: 320, height: 45, alignment: .center)
+                }.partialSheet(isPresented: $isShowRejectModal) {
+                    RejectAppointmentModal(order: viewModel.order)
+                }
             }
         }
         .padding()

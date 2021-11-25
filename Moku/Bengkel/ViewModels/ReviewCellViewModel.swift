@@ -30,7 +30,5 @@ extension ReviewCell{
                 self.customer = customer
             }
         }
-        
-        
     }
 }

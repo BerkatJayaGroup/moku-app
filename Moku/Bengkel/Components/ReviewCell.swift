@@ -36,15 +36,42 @@ struct ReviewCell: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 2.5)
-                        .background(Color(hex: "F8D8BF"))
+                        .background(getColors(status: order.status))
                         .cornerRadius(4)
-                        .foregroundColor(AppColor.primaryColor)
+                        .foregroundColor(getFontColors(status: order.status) as? Color)
                 }
             }
         }
         .padding()
         .border(Color(hex: "979797") , width: 1, cornerRadius: 6)
         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
+    }
+    
+    @ViewBuilder
+    func getColors(status: Order.Status) -> some View{
+        switch status{
+        case .scheduled:
+            return Color(hex: "F8D8BF")
+        case .rejected:
+            return Color(hex: "FFBDBD")
+        case .done:
+            return Color(hex: "DCDCDC")
+        default:
+            return Color(hex: "F8D8BF")
+        }
+    }
+    
+    func getFontColors(status: Order.Status) -> some View{
+        switch status{
+        case .scheduled:
+            return AppColor.primaryColor
+        case .rejected:
+            return Color.red
+        case .done:
+            return Color(hex: "686868")
+        default:
+            return AppColor.primaryColor
+        }
     }
 }
 

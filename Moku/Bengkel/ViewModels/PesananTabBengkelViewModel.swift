@@ -16,6 +16,7 @@ extension PesananTabBengkelView {
         
         @Published var bengkelOrders: [Order]?
         @Published var customer: Customer?
+        @Published var isHistoryShow: Bool = false
         
         init() {
             if let id = Auth.auth().currentUser?.uid {
@@ -27,15 +28,13 @@ extension PesananTabBengkelView {
             if let bengkelOrders = bengkelOrders {
                 LazyVStack {
                     ForEach(bengkelOrders, id: \.id) { order in
-                        if !(order.schedule.get(.day) == Date().get(.day)) && order.status == .onProgress {
+                        if order.status == .scheduled && !(order.schedule.get(.day) == Date().get(.day)) {
                             NavigationLink(destination: {
                                 DetailBooking(order: order)
                             }, label: {
                                 ReviewCell(order: order)
                             })
-                            
                         }
-                        
                     }
                 }
                 .padding()
