@@ -50,7 +50,8 @@ struct BookingTabItemView: View {
                             }
                             if waitingConfirmationOrder.isEmpty {
                                 VStack {
-                                    Image("pemilik-bengkel")
+                                    Image(systemName: "newspaper")
+                                        .foregroundColor(AppColor.brightOrange)
                                     Text("Belum ada bookingan masuk")
                                         .foregroundColor(AppColor.darkGray)
                                         .multilineTextAlignment(.center)
@@ -65,7 +66,8 @@ struct BookingTabItemView: View {
                                 .padding(.horizontal)
                             if onProgressOrder.isEmpty {
                                 VStack {
-                                    Image("pemilik-bengkel")
+                                    Image(systemName: "newspaper")
+                                        .foregroundColor(AppColor.brightOrange)
                                     Text("Tidak ada bookingan terjadwal pada hari ini")
                                         .foregroundColor(AppColor.darkGray)
                                         .multilineTextAlignment(.center)
@@ -106,7 +108,8 @@ struct BookingTabItemView: View {
                 }
                 if order.count > 10 {
                     VStack {
-                        Image("pemilik-bengkel")
+                        Image(systemName: "list.bullet.rectangle.portrait")
+                            .foregroundColor(AppColor.brightOrange)
                         Text("Lihat Semua Booking")
                     }.padding(10)
                         .frame(width: 300)
@@ -124,23 +127,26 @@ struct BookingTabItemView: View {
         VStack(alignment: .leading) {
             Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
             HStack {
-                Image("pemilik-bengkel")
+                Image(systemName: "wrench.and.screwdriver.fill")
                     .resizable()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(AppColor.brightOrange)
                 Text(order.typeOfService.rawValue).font(.caption)
                 Spacer()
             }
             HStack {
-                Image("pemilik-bengkel")
+                Image(systemName: "calendar.badge.clock")
                     .resizable()
+                    .foregroundColor(AppColor.brightOrange)
                     .frame(width: 20, height: 20)
                 Text(order.schedule.date()).font(.caption)
                 Spacer()
             }
             HStack {
-                Image("pemilik-bengkel")
+                Image(systemName: "clock.arrow.circlepath")
                     .resizable()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(AppColor.brightOrange)
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
                 Button("Terima") {
@@ -194,24 +200,27 @@ struct BookingTabItemView: View {
                         Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.caption)
                     }
                     HStack {
-                        Image("pemilik-bengkel")
+                        Image(systemName: "wrench.and.screwdriver.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
+                            .foregroundColor(AppColor.brightOrange)
                         Text(order.typeOfService.rawValue).font(.caption)
                     }
                 }
                 Spacer()
                 VStack(alignment: .leading) {
                     HStack {
-                        Image("pemilik-bengkel")
+                        Image(systemName: "clock.arrow.circlepath")
                             .resizable()
                             .frame(width: 20, height: 20)
+                            .foregroundColor(AppColor.brightOrange)
                         Text(order.schedule.time()).font(.caption)
                     }
                     HStack {
                         Image("MekanikIcon")
                             .resizable()
                             .frame(width: 20, height: 20)
+                            .foregroundColor(AppColor.brightOrange)
                         if let mekanik = order.mekanik {
                             Text(mekanik.name).font(.caption)
                         } else {

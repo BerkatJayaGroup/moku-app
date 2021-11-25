@@ -127,6 +127,7 @@
 		B856220D27310F2100300EB8 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220C27310F2100300EB8 /* BookingConfirmationView.swift */; };
 		B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */; };
 		B85A3236273A780A00AF4E17 /* GarasiTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A3235273A780A00AF4E17 /* GarasiTabItem.swift */; };
+		B85BDB62274F55C40029162A /* ServiceInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85BDB61274F55C40029162A /* ServiceInformationView.swift */; };
 		B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8864B3A272BCD96007C4413 /* ImagePicker.swift */; };
 		B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C742FD273BC56500E34B5C /* GarageTabViewModel.swift */; };
 		B8C74301273D194D00E34B5C /* SnapToScroll in Frameworks */ = {isa = PBXBuildFile; productRef = B8C74300273D194D00E34B5C /* SnapToScroll */; };
@@ -281,6 +282,7 @@
 		B856220C27310F2100300EB8 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
 		B856220E27311F0D00300EB8 /* OrderCustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomerViewModel.swift; sourceTree = "<group>"; };
 		B85A3235273A780A00AF4E17 /* GarasiTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarasiTabItem.swift; sourceTree = "<group>"; };
+		B85BDB61274F55C40029162A /* ServiceInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInformationView.swift; sourceTree = "<group>"; };
 		B8864B3A272BCD96007C4413 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B8A0352A27286D8200243528 /* Moku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moku.entitlements; sourceTree = "<group>"; };
 		B8C742FD273BC56500E34B5C /* GarageTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageTabViewModel.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				8ED736372743992A0043B882 /* DetailBookingView.swift */,
 				B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */,
 				B83315CF2747602C0052D2DD /* BookingTabItemView.swift */,
+				B85BDB61274F55C40029162A /* ServiceInformationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -955,7 +958,7 @@
 				83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B80B01AF272918A500050D90 /* UserData.swift in Sources */,
 				8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */,
-				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkel.swift in Sources */,
+				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				B83315D3274BC3150052D2DD /* RejectAppointmentModal.swift in Sources */,
 				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				83E13E86272AA80C008758B7 /* OnboardingStepView.swift in Sources */,
@@ -1002,6 +1005,7 @@
 				83DAE6C8272ECD72002D1D6E /* LocationSearchView.swift in Sources */,
 				8ED736382743992A0043B882 /* DetailBookingView.swift in Sources */,
 				837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */,
+				B85BDB62274F55C40029162A /* ServiceInformationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
