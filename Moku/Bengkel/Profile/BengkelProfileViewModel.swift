@@ -67,15 +67,11 @@ class BengkelProfileViewModel: ObservableObject {
     }
 
     init(bengkel: Bengkel) {
-        self.bengkel = bengkel
-        self.bengkelName = bengkel.name
-        self.bengkelPhoneNumber = bengkel.phoneNumber
-        self.bengkelAddress = bengkel.address
-
-        applySubscriptions()
+        setup()
     }
 
     private func setup() {
+        applySubscriptions()
         guard case .bengkel(let bengkel) = SessionService.shared.user else { return }
         self.bengkel = bengkel
     }
@@ -96,6 +92,13 @@ class BengkelProfileViewModel: ObservableObject {
             if case .mediaSource(source: let source) = sheet, case .library = source {
                 isPresentingLibrary = true
             }
+        }.store(in: &subscriptions)
+
+        $bengkel.sink { bengkel in
+            guard let bengkel = bengkel else { return }
+            self.bengkelName = bengkel.name
+            self.bengkelPhoneNumber = bengkel.phoneNumber
+            self.bengkelAddress = bengkel.address
         }.store(in: &subscriptions)
     }
 
