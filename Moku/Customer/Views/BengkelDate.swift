@@ -13,11 +13,13 @@ struct BengkelDate: View {
     @StateObject private var viewModel: ViewModel
     @State var selection: Int?
     @Binding var tab: Tabs
+    @Binding var isBackToRoot: Bool
 
-    init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<Tabs>) {
+    init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
         self._tab = tab
+        self._isBackToRoot = isBackToRoot
     }
 
     let columns = [
@@ -63,7 +65,7 @@ struct BengkelDate: View {
             Spacer()
 
             if let order = viewModel.order {
-                NavigationLink(destination: BookingSummary(order: order, tab: $tab), tag: 1, selection: $selection) {
+                NavigationLink(destination: BookingSummary(order: order, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
                     EmptyView()
                 }
             }

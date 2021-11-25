@@ -9,13 +9,16 @@ import SwiftUI
 import PartialSheet
 
 struct BengkelDetail: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var heartTap: [String] = ["heart", "heart.fill"]
     @State private var indexHeart = 0
     @State var service1: Bool = true
     @State var service2: Bool = false
+    @State var isShowUlasan: Bool = false
+    @State var isBackToRoot = false
 
     @StateObject private var viewModel: ViewModel
+
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     @Binding var tab: Tabs
 
@@ -27,7 +30,7 @@ struct BengkelDetail: View {
 
     var btnBack: some View {
         Button {
-            presentationMode.wrappedValue.dismiss()
+            mode.wrappedValue.dismiss()
         } label: {
             Image(systemName: "chevron.left.circle")
                 .foregroundColor(Color("PrimaryColor"))
@@ -69,8 +72,13 @@ struct BengkelDetail: View {
                             imageInfo: "star.fill",
                             mainInfo: viewModel.bengkel.averageRating,
                             cta: .seeAll
-                        ).style(proxy: proxy)
-
+                        ) {
+                            isShowUlasan.toggle()
+                        }
+                        .style(proxy: proxy)
+                        .sheet(isPresented: $isShowUlasan) {
+                            UlasanPage(bengkel: viewModel.bengkel)
+                        }
                         CollectionInfoDetailBengkel(
                             titleInfo: "Jarak dari Anda",
                             imageInfo: "",
@@ -87,7 +95,6 @@ struct BengkelDetail: View {
                             cta: .seeDetail
                         ) {
                             viewModel.isOperatinalHoursSheetShowing.toggle()
-                            print(viewModel.isOperatinalHoursSheetShowing)
                         }
                         .style(proxy: proxy)
                         .partialSheet(isPresented: $viewModel.isOperatinalHoursSheetShowing) {
@@ -111,7 +118,7 @@ struct BengkelDetail: View {
                     }
                     .frame(width: proxy.size.width, height: proxy.size.height * 0.3)
                     Spacer()
-                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab)) {
+                    NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab, isBackToRoot: $isBackToRoot)) {
                             Text("Pesan")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
@@ -128,5 +135,18 @@ struct BengkelDetail: View {
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
         .addPartialSheet()
+        .onAppear {
+            if isBackToRoot {
+                mode.wrappedValue.dismiss()
+                self.isBackToRoot = false
+            } else {
+                
+                
+            }
+        }
     }
+}
+
+class SomeData: ObservableObject {
+    @Published var isOn: Bool = false
 }

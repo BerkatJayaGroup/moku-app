@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct UlasanPage: View {
-    var review: [Review] = Bengkel.preview.reviews
+    let bengkel: Bengkel
 
     var body: some View {
         NavigationView {
-            if review.isEmpty {
+            if bengkel.reviews.isEmpty {
                 VStack(alignment: .center) {
                     Image(systemName: "person.3.fill")
                         .font(.system(size: 100))
@@ -28,7 +28,7 @@ struct UlasanPage: View {
             } else {
                 ScrollView {
                     LazyVStack {
-                        ForEach(review, id: \.user) { item in
+                        ForEach(bengkel.reviews, id: \.user) { item in
                             Ulasan(review: item)
                                 .padding(10)
                                 .background(Color.white)
@@ -45,8 +45,3 @@ struct UlasanPage: View {
     }
 }
 
-struct UlasanPage_Previews: PreviewProvider {
-    static var previews: some View {
-        UlasanPage()
-    }
-}

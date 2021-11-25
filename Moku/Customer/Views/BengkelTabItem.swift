@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import Introspect
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -58,16 +59,16 @@ struct BengkelTabItem: View {
                 .padding(.horizontal, 20)
 
                 ScrollView {
-                        VStack(alignment: .leading) {
-                            bengkelFavoriteView()
-                                .padding(.top, 10)
-                            Rectangle()
-                                .fill(Color(.systemGray6))
-                                .frame(height: 5)
-                                .edgesIgnoringSafeArea(.horizontal)
-                            ratingView()
-                            listOfNearbyBengkel()
-                        }
+                    VStack(alignment: .leading) {
+                        bengkelFavoriteView()
+                            .padding(.top, 10)
+                        Rectangle()
+                            .fill(Color(.systemGray6))
+                            .frame(height: 5)
+                            .edgesIgnoringSafeArea(.horizontal)
+                        ratingView()
+                        listOfNearbyBengkel()
+                    }
                 }
             }.padding(.top, 40)
         }
@@ -75,23 +76,23 @@ struct BengkelTabItem: View {
     @ViewBuilder
     private func ratingView() -> some View {
         if !viewModel.ordersToRate.isEmpty {
-                VStack(alignment: .leading) {
-                    Text("Kasih rating dulu yuk!")
-                        .font(.headline)
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(viewModel.ordersToRate, id: \.id) { orderRate in
-                                Rating(order: orderRate, isFrom: true)
-                                    .frame(width: 325)
-                                    .padding(10)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                                    .padding()
-                            }
+            VStack(alignment: .leading) {
+                Text("Kasih rating dulu yuk!")
+                    .font(.headline)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.ordersToRate, id: \.id) { orderRate in
+                            Rating(order: orderRate, isFrom: true)
+                                .frame(width: 325)
+                                .padding(10)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                                .padding()
                         }
                     }
-                }.padding()
+                }
+            }.padding()
         }
     }
     private func googleMap() -> some View {
@@ -102,7 +103,7 @@ struct BengkelTabItem: View {
 
     @ViewBuilder
     private func listOfNearbyBengkel() -> some View {
-        if BengkelRepository.shared.bengkel.isEmpty {
+        if viewModel.filteredNearbyBengkel.isEmpty {
             VStack {
                 Image("EmptyBengkelPlaceholder")
                     .resizable()
@@ -111,9 +112,9 @@ struct BengkelTabItem: View {
             }
         } else {
             VStack {
-                ForEach(BengkelRepository.shared.bengkel, id: \.id) { bengkel in
+                ForEach(viewModel.filteredNearbyBengkel, id: \.id) { bengkel in
                     NavigationLink(
-                        destination: BengkelDetail(bengkel: bengkel, tab: $tab) ) {
+                        destination: BengkelDetail(bengkel: bengkel, tab: $tab)) {
                             BengkelList(bengkel: bengkel)
                                 .padding(5)
                                 .background(Color.white)
@@ -183,7 +184,6 @@ struct BengkelTabItem: View {
         }
         .padding(.horizontal, 20)
     }
-
 }
 
 // struct BengkelTabItem_Previews: PreviewProvider {

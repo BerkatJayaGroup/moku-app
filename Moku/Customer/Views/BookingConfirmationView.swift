@@ -14,10 +14,15 @@ struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var bengkelName: String = ""
+    @State var tabSelection: Tabs = .tab1
 
     @State var showInfoModalView: Bool = false
+    @Binding var isBackToRoot: Bool
+    @Binding var tab: Tabs
 
-    init(orderId: DocumentReference?, bengkelName: String) {
+    init(orderId: DocumentReference?, bengkelName: String, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
+        self._tab = tab
+        self._isBackToRoot = isBackToRoot
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
@@ -44,7 +49,10 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke Halaman Booking", action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        NavigateToRootView.popToRootView()
+                        self.isBackToRoot.toggle()
+                        
+                        self.tab = .tab2
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -62,7 +70,7 @@ struct BookingConfirmationView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 5.0))
                     .padding(.horizontal)
                     .sheet(isPresented: $showInfoModalView, onDismiss: {
-                        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: false)
+                        NavigateToRootView.popToRootView()
                     }, content: {
                         CancelBookingModal(order: order, activeFrom: true)
                     })
@@ -81,7 +89,7 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pilih Bengkel Lain") {
-                        presentationMode.wrappedValue.dismiss()
+                        NavigateToRootView.popToRootView()
                     }
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -104,7 +112,9 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke halaman booking") {
-                        presentationMode.wrappedValue.dismiss()                   }
+                        NavigateToRootView.popToRootView()
+                        self.tab = .tab2
+                    }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color("PrimaryColor"))
@@ -116,6 +126,8 @@ struct BookingConfirmationView: View {
                     Text("Tidak ada booking")
                 }
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }

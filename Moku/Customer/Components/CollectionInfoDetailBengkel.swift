@@ -17,17 +17,18 @@ struct CollectionInfoDetailBengkel: View {
     var imageInfo: String
     var mainInfo: String
     var cta: CallToAction
-    
+
     var onTap: (() -> Void)?
-    
+
     @StateObject private var viewModel = CollectionInfoDetailBengkelViewModel()
-    
+
     var body: some View {
         VStack(spacing: 6) {
             Text(titleInfo)
                 .font(.system(size: 11, weight: .regular))
+                .fixedSize(horizontal: true, vertical: false)
                 .foregroundColor(.secondaryLabel)
-            
+
             HStack(spacing: 0) {
                 if imageInfo.isEmpty {
                     Image(systemName: imageInfo)
@@ -36,8 +37,9 @@ struct CollectionInfoDetailBengkel: View {
                 }
                 Text(mainInfo)
                     .font(.system(size: 17, weight: .semibold))
+                    .fixedSize(horizontal: true, vertical: false)
             }
-            
+
             Button {
                 onTap?()
             } label: {

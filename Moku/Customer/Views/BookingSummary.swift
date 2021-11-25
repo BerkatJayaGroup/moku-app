@@ -82,22 +82,17 @@ struct BookingSummary: View {
 
     @Binding var tab: Tabs
 
-    init(order: Order, tab: Binding<Tabs>) {
+    @Binding var isBackToRoot: Bool
+
+    init(order: Order, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
         self._tab = tab
+        self._isBackToRoot = isBackToRoot
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            VStack {
-                  Text(" ")
-            }.fullScreenCover(isPresented: $showSheet, onDismiss: {
-                NavigateToRootView.popToRootView()
-            }, content: {
-                BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName)
-            }).onAppear {
-                self.showSheet = true
-            }
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, tab: $tab, isBackToRoot: $isBackToRoot)
         } else {
             VStack {
                 VStack {

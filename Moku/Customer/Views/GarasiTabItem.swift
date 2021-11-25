@@ -142,12 +142,11 @@ struct GarasiTabItem: View {
     }
     private func serviceHistorySection() -> some View {
         VStack {
-            let orders = viewModel.customerOrders
-            if orders.isEmpty {
+            if viewModel.customerOrders.isEmpty {
                 Text("Belum ada riwayat servis")
             } else {
-                ForEach(0..<orders.count) { index in
-                    OrderCards(order: orders[index]).background(Color.white)
+                ForEach(viewModel.customerOrders, id: \.id) { order in
+                    OrderCards(order: order).background(Color.white)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                         .padding(.horizontal)
@@ -164,7 +163,6 @@ struct OrderCards: View {
     let dateFormatter = DateFormatter()
     init(order: Order) {
         orderDetail = order
-        viewModel.getBengkelFromOrder(bengkelId: order.bengkelId)
     }
     var body: some View {
         VStack(alignment: .leading) {
@@ -214,6 +212,8 @@ struct OrderCards: View {
             if let bengkelDetail = viewModel.bengkel {
                 OrderHistoryDetailModal(bengkel: bengkelDetail, order: orderDetail)
             }
+        }.onAppear {
+            viewModel.getBengkelFromOrder(bengkelId: orderDetail.id)
         }
     }
 }

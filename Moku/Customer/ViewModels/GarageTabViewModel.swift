@@ -20,7 +20,13 @@ class GarageTabViewModel: ObservableObject {
     static let shared = GarageTabViewModel()
 
     @Published var customerMotors = [Motor]()
-    @Published var customerOrders = [Order]()
+    @Published var customerOrders = [Order]() {
+        didSet {
+            customerOrders.forEach { order in
+                print(order.id)
+            }
+        }
+    }
     @Published var bengkel: Bengkel?
 
     private var subscriptions = Set<AnyCancellable>()
