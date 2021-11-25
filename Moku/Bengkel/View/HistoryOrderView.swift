@@ -29,5 +29,7 @@ struct HistoryOrderView: View {
                 }
             }
         }
+        .navigationBarTitle("Riwayat Pesanan")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
