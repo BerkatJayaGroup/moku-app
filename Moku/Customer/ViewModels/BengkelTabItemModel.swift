@@ -79,7 +79,7 @@ extension BengkelTabItem {
             ordersToRate = []
 
             identifiers.forEach { orderID in
-                OrderRepository.shared.fetchId(id: orderID) { [self] order in
+                OrderRepository.shared.fetch(orderID: orderID) { [self] order in
                     ordersToRate.append(order)
                 }
             }

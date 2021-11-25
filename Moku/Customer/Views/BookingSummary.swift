@@ -26,13 +26,14 @@ extension Date {
 extension BookingSummary {
     class ViewModel: ObservableObject {
 
-        @Published private var order: Order
+        @Published var order: Order
 
         @Published var bengkel: Bengkel?
 
         @Published var docRef: DocumentReference?
 
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
+
         init(order: Order) {
             self.order = order
 
@@ -140,10 +141,13 @@ struct BookingSummary: View {
                     viewModel.placeOrder { docRef in
                         viewModel.docRef = docRef
                         if let bengkelIdentifier = viewModel.bengkel?.fcmToken {
-                            NotificationService.shared.send(
-                                to: [bengkelIdentifier],
-                                notification: .orderPlaced
-                            )
+                            DynamicLinksService.shared.generateDynamicLink(orderID: docRef.documentID) { url in
+                                NotificationService.shared.send(
+                                    to: [bengkelIdentifier],
+                                    notification: .orderPlaced,
+                                    withUrl: url
+                                )
+                            }
                         }
                     }
                 } label: {

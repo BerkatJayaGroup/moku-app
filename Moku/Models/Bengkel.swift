@@ -10,7 +10,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import MapKit
 
-struct Bengkel: Codable {
+struct Bengkel: Codable, Equatable {
+    static func == (lhs: Bengkel, rhs: Bengkel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     // MARK: - Registration Related
     @DocumentID var id: String!
     var owner: Owner
@@ -35,6 +39,9 @@ struct Bengkel: Codable {
 
 extension Bengkel {
     var averageRating: String {
+        if reviews.isEmpty{
+            return "Baru"
+        }
         let totalRating = reviews.reduce(Float(0)) { partialResult, review in
             partialResult + Float(review.rating)
         }
