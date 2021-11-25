@@ -48,26 +48,42 @@ struct DetailBooking: View {
                 }
                 Image(systemName: "bicycle")
                     .frame(width: 260, height: 160, alignment: .center)
-                VStack(spacing: 16) {
-                    HStack {
-                        Text("Hari: ")
-                        Spacer()
-                        Text(viewModel.orderDate)
+                HStack{
+                    VStack(spacing: 16){
+                        HStack{
+                            Text("Hari: ")
+                            Spacer()
+                        }
+                        HStack{
+                            Text("Jam: ")
+                            Spacer()
+                        }
+                        HStack{
+                            Text("Jenis Layanan")
+                            Spacer()
+                        }
+                        HStack{
+                            Text("Catatan: ")
+                            Spacer()
+                        }
                     }
-                    HStack {
-                        Text("Jam: ")
-                        Spacer()
-                        Text(viewModel.orderHour)
-                    }
-                    HStack {
-                        Text("Jenis Layanan")
-                        Spacer()
-                        Text(viewModel.typeOfService)
-                    }
-                    HStack {
-                        Text("Catatan: ")
-                        Spacer()
-                        Text(viewModel.notes)
+                    VStack(spacing: 16){
+                        HStack{
+                            Text(viewModel.orderDate)
+                            Spacer()
+                        }
+                        HStack{
+                            Text(viewModel.orderHour)
+                            Spacer()
+                        }
+                        HStack{
+                            Text(viewModel.typeOfService)
+                            Spacer()
+                        }
+                        HStack{
+                            Text(viewModel.notes)
+                            Spacer()
+                        }
                     }
                 }
                 Spacer()
