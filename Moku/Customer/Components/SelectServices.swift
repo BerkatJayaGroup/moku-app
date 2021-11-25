@@ -21,17 +21,14 @@ struct SelectServices: View {
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
                 Image(systemName: "\(serviceIcon)")
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5, alignment: .center)
+                    .frame(width: geo.size.width * 0.7, height: geo.size.width * 0.7, alignment: .center)
                     .font(.system(size: 16, weight: .ultraLight))
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
-                    .padding()
                 Text("\(servicePrice)")
                     .font(Font.system(size: 11))
-                    .padding(.horizontal, 7)
+                    .padding(.horizontal, 16)
                     .padding(.vertical, 4)
-                    .background(self.isTap == true ? Color("PrimaryColor"): Color(hex: "E7E7E7"))
-                    .foregroundColor(self.isTap == true ? .white : .gray)
+                    .background(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
                     .cornerRadius(8)
             }
             .padding(.top, 24)
@@ -40,8 +37,14 @@ struct SelectServices: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"), lineWidth: 1)
-                    .padding(.horizontal, 5)
             )
         }
     }
 }
+
+// struct SelectServices_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape", servicePrice: "Rp 120.000", isTap: .constant(false))
+//            .previewLayout(.sizeThatFits)
+//    }
+// }

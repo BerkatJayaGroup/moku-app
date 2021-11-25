@@ -9,11 +9,10 @@ import Foundation
 
 extension BengkelDetail {
     class ViewModel: ObservableObject {
-        @Published var bengkel: Bengkel
+        let bengkel: Bengkel
         @Published var typeOfService: Order.Service = .servisRutin
 
         @Published var address: String
-        @Published var isOperatinalHoursSheetShowing = false
 
         init(bengkel: Bengkel) {
             self.bengkel = bengkel

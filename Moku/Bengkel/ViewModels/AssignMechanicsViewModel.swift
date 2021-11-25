@@ -28,7 +28,7 @@ class AssignMechanicsViewModel: ObservableObject {
         }
         return mechs
     }
-
+    
     private func isToday(incomingOrder: Date, existingOrder: Date) -> Bool {
         if Int(incomingOrder.get(.day)) == Int(existingOrder.get(.day)) &&
             Int(incomingOrder.get(.month)) == Int(existingOrder.get(.month)) &&

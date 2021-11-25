@@ -36,7 +36,9 @@ struct CancelBookingModal: View {
                 .padding()
                 .navigationBarTitle(Text("Pilih alasan membatalkan booking").font(.headline), displayMode: .inline)
                 .listStyle(.plain)
-
+                NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
+                    EmptyView()
+                }
                 Button("Selesai") {
                     if let selection = selection {
                         if activeFrom == true {
