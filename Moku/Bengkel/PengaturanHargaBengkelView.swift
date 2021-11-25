@@ -57,6 +57,9 @@ struct PengaturanHargaBengkelView: View {
                         .padding()
                     submitButton(proxy: proxy)
                 }
+                .onTapGesture {
+                    hideKeyboard()
+                }
                 .padding()
                 .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
             }

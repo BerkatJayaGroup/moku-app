@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
@@ -114,9 +115,18 @@ struct BengkelOwnerOnboardingView: View {
             .sheet(isPresented: $viewModel.isSelectingLocation) {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
             }
+            .onTapGesture {
+                hideKeyboard()
+            }
             .navigationBarTitle("Profil Bengkel", displayMode: .inline)
         }
         .padding()
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
@@ -211,5 +221,11 @@ extension BengkelOwnerOnboardingView {
         if text.wrappedValue.isEmpty, viewModel.isSubmitting {
             Text(alert).alertStyle()
         }
+    }
+}
+
+struct Test_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelOwnerOnboardingView()
     }
 }
