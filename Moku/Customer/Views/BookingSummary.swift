@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import Combine
+import SwiftUIX
 
 extension Date {
     func date() -> String {
@@ -26,13 +27,14 @@ extension Date {
 extension BookingSummary {
     class ViewModel: ObservableObject {
 
-        @Published private var order: Order
+        @Published var order: Order
 
         @Published var bengkel: Bengkel?
 
         @Published var docRef: DocumentReference?
 
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
+
         init(order: Order) {
             self.order = order
 
@@ -76,18 +78,26 @@ extension BookingSummary {
 struct BookingSummary: View {
     @StateObject private var viewModel: ViewModel
 
-    @Binding var isRootActive: Bool
-    @Binding var isHideTabBar: Bool
+    @State private var showSheet = false
 
-    init(order: Order, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+    @Binding var tab: Tabs
+
+    init(order: Order, tab: Binding<Tabs>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
+        self._tab = tab
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)
+            VStack {
+                  Text(" ")
+            }.fullScreenCover(isPresented: $showSheet, onDismiss: {
+                NavigateToRootView.popToRootView()
+            }, content: {
+                BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName)
+            }).onAppear {
+                self.showSheet = true
+            }
         } else {
             VStack {
                 VStack {
@@ -140,10 +150,13 @@ struct BookingSummary: View {
                     viewModel.placeOrder { docRef in
                         viewModel.docRef = docRef
                         if let bengkelIdentifier = viewModel.bengkel?.fcmToken {
-                            NotificationService.shared.send(
-                                to: [bengkelIdentifier],
-                                notification: .orderPlaced
-                            )
+                            DynamicLinksService.shared.generateDynamicLink(orderID: docRef.documentID) { url in
+                                NotificationService.shared.send(
+                                    to: [bengkelIdentifier],
+                                    notification: .orderPlaced,
+                                    withUrl: url
+                                )
+                            }
                         }
                     }
                 } label: {

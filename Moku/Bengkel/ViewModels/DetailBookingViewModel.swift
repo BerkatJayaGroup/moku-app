@@ -13,7 +13,6 @@ extension DetailBooking {
         @Published var customer: Customer?
         @Published var order: Order
         @Published var showModal: Bool
-      
         init(order: Order, showModal: Bool) {
             self.order = order
             self.showModal = showModal

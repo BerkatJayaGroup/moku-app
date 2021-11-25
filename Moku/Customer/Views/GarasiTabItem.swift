@@ -7,48 +7,99 @@
 
 import SwiftUI
 
+struct MotorCard: View {
+    @State var motor: Motor
+    @State var isEditingModalShown = false
+    var body: some View {
+        VStack {
+            HStack {
+                Text("\(motor.brand.rawValue) \(motor.model)")
+                    .font(.system(size: 17, weight: .semibold))
+                    .fixedSize(horizontal: true, vertical: false)
+                Spacer()
+                Button {
+                    isEditingModalShown = true
+                } label: {
+                    Text("Sunting Motor").foregroundColor(AppColor.primaryColor)
+                        .font(.system(size: 13, weight: .semibold))
+                        .fixedSize(horizontal: true, vertical: false)
+                }
+                .sheet(isPresented: $isEditingModalShown) {
+                    AddNewMotor(motor: motor, isEditing: true, motorBefore: motor)
+                }
+            }.padding(.bottom, 15)
+            Image("MotorGray")
+                .padding(.bottom, 15)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Plat Nomor")
+                        .font(.system(size: 13, weight: .regular))
+                    Text("Tahun")
+                        .font(.system(size: 13, weight: .regular))
+                    Text("Servis Selanjutnya")
+                        .font(.system(size: 13, weight: .regular))
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text(motor.licensePlate ?? "")
+                        .font(.system(size: 13, weight: .semibold))
+                    Text(motor.year ?? "")
+                        .font(.system(size: 13, weight: .semibold))
+                    Text("01-01-2022")
+                        .font(.system(size: 13, weight: .semibold))
+                }
+            }
+            .padding()
+            .background(AppColor.lightGray)
+            .cornerRadius(9)
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+    }
+}
+
 struct GarasiTabItem: View {
     @State private var index = 0
-
     @State private var isProfileModalPresented = false
     @State private var isAddMotorModalPresented = false
-
+    @State private var newMotorSheet: Bool = false
+    @State private var isSuntingModalPresented = false
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
-
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-
     var body: some View {
-        NavigationView {
-            ScrollView {
-                profileSection().padding(10)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                    .padding(.horizontal)
-                    .padding(.top, 10)
-                motorSection()
-                Text("Riwayat Servis")
-                    .fontWeight(.bold)
-                    .font(.title3)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                serviceHistorySection().padding(10)
-            }.navigationTitle("Garasi")
-                .navigationBarColor(AppColor.primaryColor)
-        }.background(Color(.systemGroupedBackground))
-
+            ZStack(alignment: .top) {
+                Rectangle()
+                    .foregroundColor(AppColor.primaryColor)
+                    .ignoresSafeArea()
+                    .frame(height: 0)
+                ScrollView {
+                    profileSection()
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                        .padding(.horizontal)
+                        .padding(.top)
+                    motorSection()
+                    Divider()
+                    Text("Riwayat Servis")
+                        .font(.system(size: 17, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                        .padding(.top)
+                    serviceHistorySection().padding(10)
+                }
+            }
     }
-
     private func profileSection() -> some View {
         HStack {
             if let customer = viewModel.customer {
                 Text(customer.name)
+                    .font(.system(size: 15, weight: .regular))
                 Spacer()
                 Text("Profil").foregroundColor(AppColor.primaryColor)
+                    .font(.system(size: 13, weight: .semibold))
                     .onTapGesture {
                         isProfileModalPresented.toggle()
                     }.sheet(isPresented: $isProfileModalPresented) {
@@ -59,64 +110,36 @@ struct GarasiTabItem: View {
             }
         }.padding(10)
     }
-
+    @ViewBuilder
     private func motorSection() -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            if let motors = viewModel.customer?.motors {
-                LazyHStack {
-                    ForEach(0..<motors.count) { index in
-                        motorCards(motor: motors[index])
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                            .frame(width: 300, height: 300)
+        VStack {
+            if !viewModel.customerMotors.isEmpty {
+                PagingView(index: $index.animation(), maxIndex: viewModel.customerMotors.count) {
+                    ForEach(viewModel.customerMotors) { motor in
+                        MotorCard(motor: motor)
+                            .padding(.horizontal)
                     }
                     VStack {
-                        Image("MotorGray")
+                        Image("MotorGray").padding()
                         Button("+ Tambah Motor Baru") {
-//                         TODO: add modal tambah motor
-                        }.padding()
-                            .frame(maxWidth: .infinity)
-                            .background(AppColor.primaryColor)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                            .padding(.horizontal)
-                    }.padding()
-                        .frame(width: 300, height: 300)
+                            newMotorSheet.toggle()
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(AppColor.primaryColor)
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                        .padding(.horizontal)
+                        .sheet(isPresented: $newMotorSheet) {
+                            AddNewMotor(isEditing: false)
+                        }
+                    }
+                    .padding(.horizontal)
                 }
-                .padding()
-            }
-
-        }
-    }
-
-    private func motorCards(motor: Motor) -> some View {
-        VStack {
-            HStack {
-                Text("\(motor.brand.rawValue) \(motor.model)").fontWeight(.bold)
-                Spacer()
-                Text("Sunting motor").foregroundColor(AppColor.primaryColor)
-            }
-            Image("MotorGray")
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Plat Nomor")
-                    Text("Tahun")
-                    Text("Servis Selanjutnya")
-                    Text("Tanggal Bayar Pajak")
-                }
-                Spacer()
-                VStack(alignment: .leading) {
-                    Text("B 1111 xxx")
-                    Text("2017")
-                    Text("01-01-2022")
-                    Text("02-02-2025")
-                }
+                .aspectRatio(3/3, contentMode: .fit)
             }
         }
     }
-
     private func serviceHistorySection() -> some View {
         VStack {
             let orders = viewModel.customerOrders
@@ -127,10 +150,9 @@ struct GarasiTabItem: View {
                     OrderCards(order: orders[index]).background(Color.white)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                        .padding()
+                        .padding(.horizontal)
                 }
             }
-
         }
     }
 }
@@ -140,27 +162,53 @@ struct OrderCards: View {
     @State private var isModalPresented = false
     var orderDetail: Order
     let dateFormatter = DateFormatter()
-
     init(order: Order) {
         orderDetail = order
         viewModel.getBengkelFromOrder(bengkelId: order.bengkelId)
     }
-
     var body: some View {
         VStack(alignment: .leading) {
             Text(viewModel.bengkel?.name ?? "Loading...")
+                .font(.system(size: 15, weight: .semibold))
+                .padding(.bottom, 5)
             HStack {
                 VStack(alignment: .leading) {
-                    Text(orderDetail.motor.brand.rawValue)
-                    Text(orderDetail.typeOfService.rawValue)
+                    HStack {
+                        Image(systemName: "bicycle")
+                            .foregroundColor(AppColor.primaryColor)
+                            .font(.system(size: 13))
+                        Text(orderDetail.motor.brand.rawValue)
+                            .font(.system(size: 13, weight: .regular))
+                    }.padding(.bottom, 5)
+                    HStack {
+                        Image(systemName: "wrench.and.screwdriver.fill")
+                            .foregroundColor(AppColor.primaryColor)
+                            .font(.system(size: 13))
+                        Text(orderDetail.typeOfService.rawValue)
+                            .font(.system(size: 13, weight: .regular))
+                    }
                 }
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text(dateFormatter.string(from: orderDetail.createdAt))
-                    Text(viewModel.bengkel?.name ?? "Loading...")
+                    HStack {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .foregroundColor(AppColor.primaryColor)
+                            .font(.system(size: 13))
+                        Text(Date.convertDateFormat(date: orderDetail.schedule, format: "dd-MM-yyyy"))
+                            .font(.system(size: 13, weight: .regular))
+                    }.padding(.bottom, 5)
+                    HStack {
+                        Image(systemName: "wrench.fill")
+                            .foregroundColor(AppColor.primaryColor)
+                            .font(.system(size: 13))
+                        Text(orderDetail.mekanik?.name ?? "Loading...")
+                            .font(.system(size: 13, weight: .regular))
+                    }
                 }
             }
-        }.onTapGesture {
+        }
+        .padding()
+        .onTapGesture {
             isModalPresented.toggle()
         }.sheet(isPresented: $isModalPresented) {
             if let bengkelDetail = viewModel.bengkel {
