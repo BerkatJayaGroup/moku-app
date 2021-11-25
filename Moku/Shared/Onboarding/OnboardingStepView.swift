@@ -14,13 +14,14 @@ struct OnboardingStepView: View {
     var body: some View {
         VStack {
             Text(data.image).font(.title)
-            Text(data.heading).font(.title3)
+            Text(data.heading).font(.title3,weight: .semibold)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color("PrimaryColor"))
                 .padding(.top, 300)
                 .padding(.bottom)
-            Text(data.text).font(.body)
+            Text(data.text).font(.system(size: 16))
                 .multilineTextAlignment(.center)
+                .foregroundColor(AppColor.darkGray)
         }.padding(.horizontal, 25)
     }
 }
