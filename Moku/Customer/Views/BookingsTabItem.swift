@@ -11,12 +11,17 @@ import SwiftUIX
 
 struct BookingsTabItem: View {
     @StateObject private var viewModel = ViewModel()
+    init() {
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    }
     var body: some View {
+        NavigationView {
             ZStack(alignment: .top) {
-                Rectangle()
-                    .foregroundColor(AppColor.primaryColor)
-                    .ignoresSafeArea()
-                    .frame(height: 0)
+                RactBg()
+                    .frame(height: 144)
+                    .foregroundColor(Color("PrimaryColor"))
+                    .edgesIgnoringSafeArea(.top)
                 VStack {
                     Picker("Bookings", selection: $viewModel.segmentType) {
                         Text("Dalam Proses").tag(0)
@@ -46,7 +51,9 @@ struct BookingsTabItem: View {
                     }
                 }
                 .padding(20)
+                .navigationTitle("Bookings")
             }
+        }
     }
 }
 

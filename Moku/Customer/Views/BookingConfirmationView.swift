@@ -12,12 +12,16 @@ import Introspect
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var bengkelName: String = ""
 
     @State var showInfoModalView: Bool = false
 
-    init(orderId: DocumentReference?, bengkelName: String) {
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
+
+    init(orderId: DocumentReference?, bengkelName: String, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
@@ -44,7 +48,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke Halaman Booking", action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     })
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -61,11 +66,9 @@ struct BookingConfirmationView: View {
                     .foregroundColor(Color("PrimaryColor"))
                     .clipShape(RoundedRectangle(cornerRadius: 5.0))
                     .padding(.horizontal)
-                    .sheet(isPresented: $showInfoModalView, onDismiss: {
-                        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: false)
-                    }, content: {
+                    .sheet(isPresented: $showInfoModalView) {
                         CancelBookingModal(order: order, activeFrom: true)
-                    })
+                    }
 
                 case .rejected:
                     Image("rejectIcon")
@@ -81,7 +84,8 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pilih Bengkel Lain") {
-                        presentationMode.wrappedValue.dismiss()
+                        self.isRootActive = false
+                        self.isHideTabBar = false
                     }
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -104,7 +108,9 @@ struct BookingConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
                     Button("Pindah ke halaman booking") {
-                        presentationMode.wrappedValue.dismiss()                   }
+                        self.isRootActive = false
+                        self.isHideTabBar = false
+                    }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color("PrimaryColor"))
@@ -117,5 +123,8 @@ struct BookingConfirmationView: View {
                 }
             }
         }.navigationBarHidden(true)
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+        }
     }
 }

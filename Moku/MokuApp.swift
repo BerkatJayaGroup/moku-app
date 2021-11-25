@@ -75,10 +75,10 @@ struct MokuApp: App {
     private func contentView() -> some View {
         if let user = session.user {
             switch user {
-            case .bengkel:
+            case .bengkel(_):
                 BengkelView()
             case let .customer(customer):
-                CustomerView()
+                CustomerView(for: customer)
             }
         } else {
             if appState.hasOnboarded {

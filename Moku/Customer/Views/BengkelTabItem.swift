@@ -18,57 +18,40 @@ struct BengkelTabItem: View {
     @State private var showingSheet = false
     @State private var showModal = false
     @State var isActive: Bool = false
-    @Binding var tab: Tabs
+    @State var isHideTabBar: Bool = false
     var lastOrder = true
 
     var body: some View {
-        ZStack(alignment: .top) {
-            ShapeBg()
-                .frame(height: 185)
-                .foregroundColor(Color("PrimaryColor"))
-                .ignoresSafeArea()
-            VStack(alignment: .leading) {
-                NavigationLink(destination: googleMap()) {
-                    Image(systemName: "mappin")
-                        .padding(.vertical, 7)
-                        .padding(.leading, 10)
-                        .font(.system(size: 25))
-                    Text(viewModel.currentLocation)
-                        .font(.headline)
-                        .padding(.vertical, 7)
-                        .padding(.trailing, 15)
-                }
-                .sheet(isPresented: $showModal) {
-                    ModalSearchLocation(showModal: $showModal)
-                }
-                .foregroundColor(Color.white)
-                .background(Color.black.opacity(0.2))
-                .cornerRadius(20)
-                .padding(.horizontal, 20)
-
-                motorSelection()
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(.systemGray3))
-                    TextField("Cari Bengkel", text: $viewModel.searchQuery)
-                }
-                .padding(8)
-                .padding(.leading, 5)
-                .background(Color.white, alignment: .center)
-                .cornerRadius(7)
-                .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
-                .padding(.horizontal, 20)
-
-                ScrollView {
-                        VStack(alignment: .leading) {
-                            bengkelFavoriteView()
-                                .padding(.top, 10)
-                            Rectangle()
-                                .fill(Color(.systemGray6))
-                                .frame(height: 5)
-                                .edgesIgnoringSafeArea(.horizontal)
-                            ratingView()
-                            listOfNearbyBengkel()
+        NavigationView {
+            ScrollView {
+                ZStack(alignment: .top) {
+                    ShapeBg()
+                        .frame(height: 140)
+                        .foregroundColor(Color("PrimaryColor"))
+                    VStack(alignment: .leading) {
+                        Spacer(minLength: 40)
+                        NavigationLink(destination: googleMap()) {
+                            Image(systemName: "mappin")
+                                .padding(.vertical, 7)
+                                .padding(.leading, 10)
+                                .font(.system(size: 25))
+                            Text(viewModel.currentLocation)
+                                .font(.headline)
+                                .padding(.vertical, 7)
+                                .padding(.trailing, 15)
+                        }
+                        .sheet(isPresented: $showModal) {
+                            ModalSearchLocation(showModal: $showModal)
+                        }
+                        .foregroundColor(Color.white)
+                        .background(Color.black.opacity(0.2))
+                        .cornerRadius(20)
+                        .padding(.horizontal, 20)
+                        motorSelection()
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color(.systemGray3))
+                            TextField("Cari Bengkel", text: $viewModel.searchQuery)
                         }
                         .padding(8)
                         .padding(.leading, 5)
@@ -91,7 +74,12 @@ struct BengkelTabItem: View {
                         listOfNearbyBengkel()
                     }
                 }
-            }.padding(.top, 40)
+            }
+            .edgesIgnoringSafeArea(.top)
+            .navigationBarHidden(true)
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = self.isHideTabBar
+            }
         }
         .onAppear{
             session.setup()
@@ -184,11 +172,13 @@ struct BengkelTabItem: View {
                 }
             }
         } else {
-            NavigationLink(destination: PickRoleView()) {
+            Button {
+
+            } label: {
                 Text("Daftar atau Masuk")
                     .foregroundColor(Color.white)
                     .padding(.leading, 20)
-                    .font(.system(size: 17), weight: .bold)
+                    .font(.system(size: 17))
             }
         }
     }
@@ -217,13 +207,14 @@ struct BengkelTabItem: View {
                 .padding(5)
             }
         }
-        .padding(.horizontal, 20)
+        .padding(10)
+        .padding(.horizontal, 10)
     }
 
 }
 
-// struct BengkelTabItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelTabItem()
-//    }
-// }
+struct BengkelTabItem_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelTabItem()
+    }
+}

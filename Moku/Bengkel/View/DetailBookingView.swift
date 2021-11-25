@@ -66,7 +66,7 @@ struct DetailBooking: View {
                     }
                 }
                 Spacer()
-                Button {
+                Button{
                     print("Terima Booking")
                     viewModel.showModal = true
                 } label: {

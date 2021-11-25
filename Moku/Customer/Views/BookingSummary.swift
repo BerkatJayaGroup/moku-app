@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseFirestore
 import Combine
-import SwiftUIX
 
 extension Date {
     func date() -> String {
@@ -78,26 +77,18 @@ extension BookingSummary {
 struct BookingSummary: View {
     @StateObject private var viewModel: ViewModel
 
-    @State private var showSheet = false
+    @Binding var isRootActive: Bool
+    @Binding var isHideTabBar: Bool
 
-    @Binding var tab: Tabs
-
-    init(order: Order, tab: Binding<Tabs>) {
+    init(order: Order, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
-        self._tab = tab
+        _isRootActive = isRootActive
+        _isHideTabBar = isHideTabBar
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            VStack {
-                  Text(" ")
-            }.fullScreenCover(isPresented: $showSheet, onDismiss: {
-                NavigateToRootView.popToRootView()
-            }, content: {
-                BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName)
-            }).onAppear {
-                self.showSheet = true
-            }
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)
         } else {
             VStack {
                 VStack {
