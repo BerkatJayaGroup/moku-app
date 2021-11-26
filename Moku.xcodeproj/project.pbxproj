@@ -84,6 +84,7 @@
 		8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */; };
 		8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2952062723228E00B87EB8 /* SearchBarLocation.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+		8E3775DA27506E86009D3FC5 /* ManageMechanicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775D927506E86009D3FC5 /* ManageMechanicsViewModel.swift */; };
 		8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */; };
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
 		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
@@ -239,6 +240,7 @@
 		8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchLocation.swift; sourceTree = "<group>"; };
 		8E2952062723228E00B87EB8 /* SearchBarLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarLocation.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
+		8E3775D927506E86009D3FC5 /* ManageMechanicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMechanicsViewModel.swift; sourceTree = "<group>"; };
 		8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanBengkel.swift; sourceTree = "<group>"; };
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
 		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */,
 				8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */,
 				8EDC3AE8274CE55C0087F806 /* SuntingMechanic.swift */,
+				8E3775D927506E86009D3FC5 /* ManageMechanicsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				8330A2BD27295C2100AC5447 /* BengkelTabItemModel.swift in Sources */,
 				8320A80A2744078A0009213C /* DynamicLinksService.swift in Sources */,
 				83DAE6C8272ECD72002D1D6E /* LocationSearchView.swift in Sources */,
+				8E3775DA27506E86009D3FC5 /* ManageMechanicsViewModel.swift in Sources */,
 				8ED736382743992A0043B882 /* DetailBookingView.swift in Sources */,
 				837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */,
 			);

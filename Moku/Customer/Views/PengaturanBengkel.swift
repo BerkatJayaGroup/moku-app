@@ -139,7 +139,7 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, alignment: .leading)
                 }
                 .sheet(isPresented: $isAddMekanik) {
-                    AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
+                    AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
                 }
                 mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 Spacer()
