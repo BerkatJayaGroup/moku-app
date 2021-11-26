@@ -23,7 +23,7 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
-
+    
     @Published var filteredOrdersStatus = [Order]()
 
     @Published var customerOrders = [Order]()
@@ -80,7 +80,6 @@ final class OrderRepository: ObservableObject {
             completionHandler?(bengkelOrders)
         }
     }
-
     func fetch(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {

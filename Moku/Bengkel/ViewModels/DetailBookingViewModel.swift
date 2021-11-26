@@ -13,7 +13,6 @@ extension DetailBooking {
         @Published var customer: Customer?
         @Published var order: Order
         @Published var showModal: Bool
-
         init(order: Order, showModal: Bool) {
             self.order = order
             self.showModal = showModal
@@ -48,6 +47,18 @@ extension DetailBooking {
 
         var notes: String {
             order.notes ?? ""
+        }
+        
+        func updateStatusOrder() {
+            self.order.status = .done
+
+            //            TODO: PushNotif
+            orderRepository.updateStatus(order: order) { _ in
+                CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
+                    guard let fcmToken = customer.fcmToken else { return }
+                    NotificationService.shared.send(to: [fcmToken], notification: .done)
+                }
+            }
         }
     }
 }

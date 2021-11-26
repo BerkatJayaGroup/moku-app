@@ -13,7 +13,7 @@ import FirebaseDynamicLinks
 @main
 struct MokuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    
     @ObservedObject var session = SessionService.shared
     @ObservedObject var dynamicLinksService = DynamicLinksService.shared
 
@@ -93,24 +93,24 @@ struct MokuApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
-
+        
         SessionService.shared.setup()
-
+        
         LocationService.shared.requestUserAuthorization()
-
+        
         GooglePlacesService.register()
         GoogleMapsService.register()
-
+        
         NotificationService.register(application: application)
 
         return true
     }
-
+    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
+        
     }
-
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
+        
     }
 }
