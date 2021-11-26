@@ -39,7 +39,8 @@ struct BookingSeeAllView: View {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
             }
-        }.navigationBarTitle("Booking Masuk", displayMode: .inline)
+        }
+        .navigationBarTitle("Booking Masuk", displayMode: .inline)
     }
 
     private func orderCards(order: Order) -> some View {
