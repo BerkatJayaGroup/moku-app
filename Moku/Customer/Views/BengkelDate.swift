@@ -83,12 +83,13 @@ struct BengkelDate: View {
                 }
             } label: {
                 Text("Lanjutkan")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.vertical, 16)
+                    .frame(width: UIScreen.main.bounds.width * 0.85)
+                    .background(Color("PrimaryColor"))
+                    .cornerRadius(8)
             }
-            .frame(width: 300, height: 50)
-            .background(Color("PrimaryColor"))
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            .padding()
         }
         .navigationTitle("Pesan")
         .navigationBarTitleDisplayMode(.inline)

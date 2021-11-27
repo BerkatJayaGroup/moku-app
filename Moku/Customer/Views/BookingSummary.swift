@@ -156,11 +156,12 @@ struct BookingSummary: View {
                     }
                 } label: {
                     Text("Konfirmasi Booking")
-                        .frame(width: 310, height: 50)
-                        .background(AppColor.primaryColor)
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding()
+                        .padding(.vertical, 16)
+                        .frame(width: UIScreen.main.bounds.width * 0.85)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
                 }
             }
         }

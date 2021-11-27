@@ -32,7 +32,7 @@ extension BengkelDetail {
         }
 
         var operationalHours: String {
-            "\(bengkel.operationalHours.open).00 - \(bengkel.operationalHours.close).00"
+            "\(bengkel.operationalHours.open).00-\(bengkel.operationalHours.close).00"
         }
     }
 }

@@ -48,27 +48,28 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke Halaman Booking", action: {
+                    Button {
                         NavigateToRootView.popToRootView()
-                        self.isBackToRoot.toggle()
-                        
-                        self.tab = .tab2
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
-                    Button("Batalkan Booking") {
-                        showInfoModalView = true
+                    } label: {
+                        Text("Pindah ke Halaman Booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("SalmonOrange"))
-                    .foregroundColor(Color("PrimaryColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    .padding(.horizontal)
+                    Button {
+                        showInfoModalView = true
+                    } label: {
+                         Text("Batalkan Booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(AppColor.primaryColor)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(AppColor.salmonOrange)
+                            .cornerRadius(8)
+                    }
                     .sheet(isPresented: $showInfoModalView, onDismiss: {
                         NavigateToRootView.popToRootView()
                     }, content: {
@@ -88,15 +89,17 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pilih Bengkel Lain") {
+                    Button {
                         NavigateToRootView.popToRootView()
+                    } label: {
+                        Text("Pilih Bengkel Lain")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
                     }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
 
                 case .onProgress:
                     Image("acceptIcon")
@@ -111,17 +114,17 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke halaman booking") {
+                    Button {
                         NavigateToRootView.popToRootView()
-                        self.tab = .tab2
+                    } label: {
+                        Text("Pindah ke halaman booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("PrimaryColor"))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    .padding(.horizontal)
-
                 default:
                     Text("Tidak ada booking")
                 }

@@ -11,7 +11,6 @@ struct UlasanPage: View {
     let bengkel: Bengkel
 
     var body: some View {
-        NavigationView {
             if bengkel.reviews.isEmpty {
                 VStack(alignment: .center) {
                     Image(systemName: "person.3.fill")
@@ -40,8 +39,5 @@ struct UlasanPage: View {
                 }
                 .navigationBarTitle("Ulasan", displayMode: .inline)
             }
-
-        }
     }
 }
-

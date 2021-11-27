@@ -16,6 +16,7 @@ struct CollectionInfoDetailBengkel: View {
     var titleInfo: String
     var imageInfo: String
     var mainInfo: String
+    var bengkel: Bengkel
     var cta: CallToAction
 
     var onTap: (() -> Void)?
@@ -39,38 +40,28 @@ struct CollectionInfoDetailBengkel: View {
                     .font(.system(size: 17, weight: .semibold))
                     .fixedSize(horizontal: true, vertical: false)
             }
-
-            Button {
-                onTap?()
-            } label: {
-                Text(cta.rawValue).foregroundColor(AppColor.primaryColor)
-                    .font(.system(size: 11, weight: .semibold))
+            if cta == .seeAll {
+                NavigationLink(destination: UlasanPage(bengkel: bengkel)) {
+                    Text(cta.rawValue).foregroundColor(AppColor.primaryColor)
+                        .font(.system(size: 11, weight: .semibold))
+                }
+            } else {
+                Button {
+                    onTap?()
+                } label: {
+                    Text(cta.rawValue).foregroundColor(AppColor.primaryColor)
+                        .font(.system(size: 11, weight: .semibold))
+                }
             }
         }
     }
 
-    func style(proxy: GeometryProxy) -> some View {
+    func style() -> some View {
         body
             .padding(.all, 2)
-            .frame(width: proxy.size.width * 0.2, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width * 0.2, alignment: .center)
             .padding(.horizontal)
             .cornerRadius(8)
-    }
-}
-
-struct CollectionInfoDetailBengkel_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            CollectionInfoDetailBengkel(
-                titleInfo: "Rating",
-                imageInfo: "star",
-                mainInfo: "5.0",
-                cta: .seeDetail
-            ).previewLayout(.sizeThatFits)
-        }
-        .addPartialSheet()
-        .navigationViewStyle(StackNavigationViewStyle())
-        .environmentObject(PartialSheetManager())
     }
 }
 

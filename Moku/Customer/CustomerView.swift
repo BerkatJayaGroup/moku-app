@@ -12,11 +12,9 @@ enum Tabs {
 }
 
 struct CustomerView: View {
-//    @State var customer: Customer
     @State var tabSelection: Tabs = .tab1
 
     init() {
-//        _customer                                       = State(wrappedValue: customer)
         let appearance                                  = UITabBarAppearance()
         UITabBar.appearance().isTranslucent             = true
         UITabBar.appearance().backgroundColor           = UIColor(AppColor.grayTab)
@@ -54,10 +52,11 @@ struct CustomerView: View {
                         Text("Garasi")
                     }
                     .tag(Tabs.tab3)
-                  .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
+                   .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
             }
             .accentColor(AppColor.primaryColor)
             .navigationBarTitle(returnNaviBarTitle(tabSelection: self.tabSelection))
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 
@@ -80,9 +79,3 @@ struct CustomerView: View {
         }
     }
 }
-
-// struct CustomerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CustomerView(for: .preview)
-//    }
-// }

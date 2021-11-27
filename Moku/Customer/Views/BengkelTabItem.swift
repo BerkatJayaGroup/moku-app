@@ -20,11 +20,11 @@ struct BengkelTabItem: View {
     @State var isActive: Bool = false
     @Binding var tab: Tabs
     var lastOrder = true
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             ShapeBg()
-                .frame(height: 170)
+                .frame(height: 180)
                 .foregroundColor(Color("PrimaryColor"))
                 .ignoresSafeArea()
             VStack(alignment: .leading) {
@@ -65,12 +65,9 @@ struct BengkelTabItem: View {
                     listOfNearbyBengkel()
                 }
             }
+            .padding(.top, 80)
         }
         .edgesIgnoringSafeArea(.top)
-        .padding(.top, 40)
-        .onAppear {
-            session.setup()
-        }
     }
 
     @ViewBuilder

@@ -14,18 +14,15 @@ struct SelectServices: View {
     var servicePrice: String
     var isTap: Bool
     var body: some View {
-        GeometryReader { geo in
             VStack(alignment: .center, spacing: 8) {
                 Text("\(serviceTitle)")
                     .fontWeight(.semibold)
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
                 Image(systemName: "\(serviceIcon)")
-                    .resizable()
+                    .font(.system(size: 70, weight: .ultraLight))
                     .scaledToFill()
-                    .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5, alignment: .center)
-                    .font(.system(size: 16, weight: .ultraLight))
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
-                    .padding()
+                    .padding(.vertical)
                 Text("\(servicePrice)")
                     .font(Font.system(size: 11))
                     .padding(.horizontal, 7)
@@ -36,12 +33,11 @@ struct SelectServices: View {
             }
             .padding(.top, 24)
             .padding(.bottom, 8)
-            .frame(width: geo.size.width, height: .infinity)
+            .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/4)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"), lineWidth: 1)
                     .padding(.horizontal, 5)
             )
-        }
     }
 }

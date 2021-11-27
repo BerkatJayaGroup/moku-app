@@ -13,17 +13,17 @@ import FirebaseDynamicLinks
 @main
 struct MokuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     @ObservedObject var session = SessionService.shared
     @ObservedObject var dynamicLinksService = DynamicLinksService.shared
-    
+
     @StateObject var appState = AppState()
-    
+
     @State var order: Order?
-    
+
     var onboardingData = OnboardingDataModel.data
     @StateObject var sheetManager = PartialSheetManager()
-    
+
     var body: some Scene {
         WindowGroup {
             if case .bookingDetail(let orderID) = dynamicLinksService.dynamicLinkTarget {
@@ -39,7 +39,6 @@ struct MokuApp: App {
             } else {
                 contentView()
                     .environmentObject(sheetManager)
-                    .environmentObject(SomeData())
                     .onOpenURL { url in
                         DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
                             guard let dynamicLink = dynamicLink else { return }
@@ -49,7 +48,7 @@ struct MokuApp: App {
             }
         }
     }
-    
+
     @ViewBuilder
     private func bookingDetail() -> some View {
         if let order = order {
@@ -62,7 +61,7 @@ struct MokuApp: App {
             }
         }
     }
-    
+
     @ViewBuilder
     private func dismissButton() -> some View {
         Button {
@@ -71,7 +70,7 @@ struct MokuApp: App {
             Image(systemName: "chevron.backward")
         }
     }
-    
+
     @ViewBuilder
     private func contentView() -> some View {
         if let user = session.user {
@@ -93,27 +92,27 @@ struct MokuApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        
+
         SessionService.shared.setup()
-        
+
         LocationService.shared.requestUserAuthorization()
-        
+
         GooglePlacesService.register()
         GoogleMapsService.register()
-        
+
         NotificationService.register(application: application)
-        
+
         return true
     }
-    
+
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        
+
     }
-    
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
+
     }
 }
