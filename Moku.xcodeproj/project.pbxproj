@@ -84,6 +84,10 @@
 		8E29520527231C7400B87EB8 /* ModalSearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */; };
 		8E2952072723228F00B87EB8 /* SearchBarLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2952062723228E00B87EB8 /* SearchBarLocation.swift */; };
 		8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3735A72718237900C22DF0 /* CustomerRepository.swift */; };
+		8E3775DC27508D6D009D3FC5 /* ProfileBengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775DB27508D6D009D3FC5 /* ProfileBengkelView.swift */; };
+		8E3775DE2750C0D3009D3FC5 /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775DD2750C0D3009D3FC5 /* DummyView.swift */; };
+		8E3775E02750CD9A009D3FC5 /* EditDataBengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775DF2750CD9A009D3FC5 /* EditDataBengkelView.swift */; };
+		8E3775E22750D901009D3FC5 /* EditDataBengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775E12750D901009D3FC5 /* EditDataBengkelViewModel.swift */; };
 		8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */; };
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
 		8E40E50F272949B6001CAEF3 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50E272949B6001CAEF3 /* MultiSelector.swift */; };
@@ -236,6 +240,10 @@
 		8E29520427231C7400B87EB8 /* ModalSearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSearchLocation.swift; sourceTree = "<group>"; };
 		8E2952062723228E00B87EB8 /* SearchBarLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarLocation.swift; sourceTree = "<group>"; };
 		8E3735A72718237900C22DF0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
+		8E3775DB27508D6D009D3FC5 /* ProfileBengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBengkelView.swift; sourceTree = "<group>"; };
+		8E3775DD2750C0D3009D3FC5 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyView.swift; sourceTree = "<group>"; };
+		8E3775DF2750CD9A009D3FC5 /* EditDataBengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataBengkelView.swift; sourceTree = "<group>"; };
+		8E3775E12750D901009D3FC5 /* EditDataBengkelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataBengkelViewModel.swift; sourceTree = "<group>"; };
 		8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanBengkel.swift; sourceTree = "<group>"; };
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
 		8E40E50E272949B6001CAEF3 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
@@ -327,6 +335,7 @@
 				B855B0A327439FC80006302E /* BookingTabItemViewModel.swift */,
 				8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */,
 				8ED736392743C05C0043B882 /* DetailBookingViewModel.swift */,
+				8E3775E12750D901009D3FC5 /* EditDataBengkelViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -638,6 +647,9 @@
 				8ED736372743992A0043B882 /* DetailBookingView.swift */,
 				B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */,
 				B83315CF2747602C0052D2DD /* BookingTabItemView.swift */,
+				8E3775DB27508D6D009D3FC5 /* ProfileBengkelView.swift */,
+				8E3775DD2750C0D3009D3FC5 /* DummyView.swift */,
+				8E3775DF2750CD9A009D3FC5 /* EditDataBengkelView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -923,6 +935,7 @@
 				833674932716CC0D0040D669 /* Location.swift in Sources */,
 				837BE1E82727D580000E1FAA /* Place.swift in Sources */,
 				83CBF2492722BC7F00C79064 /* BengkelTabItem.swift in Sources */,
+				8E3775DE2750C0D3009D3FC5 /* DummyView.swift in Sources */,
 				832AC1EB2715A2FD00BD92E2 /* Motor.swift in Sources */,
 				8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */,
 				83776A6827272E70008AA404 /* GooglePlacesService.swift in Sources */,
@@ -936,6 +949,7 @@
 				832AC1E727159AE600BD92E2 /* Customer.swift in Sources */,
 				83CA0F3A272C0C8B009DC400 /* BengkelOwnerOnboardingViewModel.swift in Sources */,
 				83CBF2402722BC7F00C79064 /* ShapeBg.swift in Sources */,
+				8E3775DC27508D6D009D3FC5 /* ProfileBengkelView.swift in Sources */,
 				837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */,
 				8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */,
 				83E13E87272AA80C008758B7 /* OnboardingDataModel.swift in Sources */,
@@ -955,7 +969,7 @@
 				83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B80B01AF272918A500050D90 /* UserData.swift in Sources */,
 				8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */,
-				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkel.swift in Sources */,
+				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				B83315D3274BC3150052D2DD /* RejectAppointmentModal.swift in Sources */,
 				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				83E13E86272AA80C008758B7 /* OnboardingStepView.swift in Sources */,
@@ -976,6 +990,7 @@
 				8E66947C272ABD2D000CCD6C /* CustomerViewModel.swift in Sources */,
 				8E3735A82718237900C22DF0 /* CustomerRepository.swift in Sources */,
 				B8864B3B272BCD96007C4413 /* ImagePicker.swift in Sources */,
+				8E3775E22750D901009D3FC5 /* EditDataBengkelViewModel.swift in Sources */,
 				6F4D388D273A7ED100BD5CF1 /* CancelBookingModal.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
@@ -983,6 +998,7 @@
 				B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */,
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
+				8E3775E02750CD9A009D3FC5 /* EditDataBengkelView.swift in Sources */,
 				833674952716CD840040D669 /* Mekanik.swift in Sources */,
 				B856220B272FC72B00300EB8 /* ImagePHPicker.swift in Sources */,
 				B855B0A427439FC80006302E /* BookingTabItemViewModel.swift in Sources */,

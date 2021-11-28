@@ -23,8 +23,7 @@ struct BengkelDetail: View {
     @StateObject private var viewModel: ViewModel
     @Binding var isRootActive: Bool
     @Binding var isHideTabBar: Bool
-    
-    
+
     init(bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -52,8 +51,7 @@ struct BengkelDetail: View {
                                 .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
                                 .scaledToFit()
                         }
-                    }
-                    else {
+                    } else {
                     Image(systemName: "number")
                             .resizable()
                             .frame(width: proxy.size.width, height: proxy.size.height * 0.33)
@@ -63,14 +61,13 @@ struct BengkelDetail: View {
                     HStack {
                         Text(viewModel.bengkel.name)
                         Spacer()
-                        if isFavorite{
+                        if isFavorite {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.red)
                                 .onTapGesture {
                                     favoriteToggle()
                                 }
-                        }
-                        else{
+                        } else {
                             Image(systemName: "heart")
                                 .foregroundColor(.red)
                                 .onTapGesture {
@@ -134,9 +131,9 @@ struct BengkelDetail: View {
                     }
                 }
             }
-            .onAppear{
+            .onAppear {
                 if case .customer(let user) = session.user {
-                    if user.favoriteBengkel.contains(where: {$0.name == viewModel.bengkel.name}){
+                    if user.favoriteBengkel.contains(where: {$0.name == viewModel.bengkel.name}) {
                         print("berubah")
                         isFavorite = true
                     }
@@ -151,8 +148,8 @@ struct BengkelDetail: View {
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
     }
-    
-    func favoriteToggle(){
+
+    func favoriteToggle() {
         if isFavorite == true {
             isFavorite = false
             if case .customer(var user) = session.user {
