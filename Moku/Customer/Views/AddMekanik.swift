@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddMekanik: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -13,11 +14,11 @@ struct AddMekanik: View {
     @Binding var mechanics: [CalonMekanik]
     @State var mechanicName: String?
     @State var image: [UIImage] = []
-
+    @State var isUpload: Bool = false
     @State var showImagePicker: Bool = false
     @State private var showActionSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -62,8 +63,7 @@ struct AddMekanik: View {
         Button("Upload photo") {
             self.showActionSheet.toggle()
         }
-        .sheet(isPresented: $showImagePicker) {
-            ImagePicker(sourceType: self.sourceType, pickerResult: $image)
+        .sheet(isPresented: $showImagePicker) {            ImagePicker(sourceType: sourceType, pickerResult: $image)
         }
         .actionSheet(isPresented: $showActionSheet) {
             ActionSheet(
@@ -86,13 +86,24 @@ struct AddMekanik: View {
 
     func tambahMekanik() {
         showSheetView = false
-        let calonMekanik: CalonMekanik
-        if image.count > 0 {
-            calonMekanik = CalonMekanik(name: mechanicName!, photo: image[0])
-        } else {
-            calonMekanik = CalonMekanik(name: mechanicName!)
+        if isUpload {
+            guard let image = image.first, let id = Auth.auth().currentUser?.uid else { return }
+            StorageService.shared.upload(image: image,
+                                         path: "\(id)/mechanics/\(UUID().uuidString)") { url, _ in
+                guard let url = url?.absoluteString else { return }
+                var newMechanic = Mekanik(name: mechanicName ?? "", photo: url)
+                BengkelRepository.shared.appendMechanic(mechanic: newMechanic, to: id)
+            }
+            presentationMode.wrappedValue.dismiss()
+        } else{
+            let calonMekanik: CalonMekanik
+            if image.count > 0 {
+                calonMekanik = CalonMekanik(name: mechanicName!, photo: image[0])
+            } else {
+                calonMekanik = CalonMekanik(name: mechanicName!)
+            }
+            mechanics.append(calonMekanik)
         }
-        mechanics.append(calonMekanik)
     }
 }
 
