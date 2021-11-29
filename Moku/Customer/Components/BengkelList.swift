@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct BengkelList: View {
-    
+
     let bengkel: Bengkel
 
     init(bengkel: Bengkel) {
@@ -27,8 +27,7 @@ struct BengkelList: View {
                         .aspectRatio(contentMode: .fill)
                         .cornerRadius(8)
                 }
-            }
-            else {
+            } else {
             Image(systemName: "number")
                 .resizable()
                 .background(Color.gray)
