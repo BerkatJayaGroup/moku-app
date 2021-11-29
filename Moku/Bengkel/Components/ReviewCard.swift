@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ReviewCard: View {
     var review: Review
-    
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {

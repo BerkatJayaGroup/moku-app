@@ -43,7 +43,7 @@ extension ProfileBengkelView {
             return round(ratingFinal)
         }
 
-        var brands: String{
+        var brands: String {
             var brand: String = ""
             if let bengkel = bengkel {
                 for motor in bengkel.brands {
@@ -52,34 +52,24 @@ extension ProfileBengkelView {
             }
             return brand
         }
-        
+
         var operationalDays: String {
-            var opDays = ""
+            var opDays = [String]()
             if let bengkel = bengkel {
-                for (index, days) in bengkel.operationalDays.enumerated() {
-                    if days == true {
-                        switch index {
-                        case 0:
-                            opDays.append("Senin, ")
-                        case 1:
-                            opDays.append("Selasa, ")
-                        case 2:
-                            opDays.append("Rabu, ")
-                        case 3:
-                            opDays.append("Kamis, ")
-                        case 4:
-                            opDays.append("Jumat, ")
-                        case 5:
-                            opDays.append("Sabtu, ")
-                        case 6:
-                            opDays.append("Minggu")
-                        default:
-                            ""
-                        }
+                for (index, daySelected) in bengkel.operationalDays.enumerated() where daySelected {
+                    switch index {
+                    case 0: opDays.append("Senin")
+                    case 1: opDays.append("Selasa")
+                    case 2: opDays.append("Rabu")
+                    case 3: opDays.append("Kamis")
+                    case 4: opDays.append("Jumat")
+                    case 5: opDays.append("Sabtu")
+                    case 6: opDays.append("Minggu")
+                    default: continue
                     }
                 }
             }
-            return opDays
+            return opDays.joined(separator: ", ")
         }
 
         init() {

@@ -35,6 +35,7 @@
 		833674932716CC0D0040D669 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674922716CC0D0040D669 /* Location.swift */; };
 		833674952716CD840040D669 /* Mekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833674942716CD840040D669 /* Mekanik.swift */; };
 		834437E8272EF37C00279392 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834437E7272EF37C00279392 /* LocationSearchViewModel.swift */; };
+		834F9CD927552CE0000AE9F3 /* PengaturanHargaBengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F9CD827552CE0000AE9F3 /* PengaturanHargaBengkelView.swift */; };
 		83529A592718241000F3C82B /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83529A582718241000F3C82B /* OrderRepository.swift */; };
 		837370B427144701003656FC /* MokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837370B327144701003656FC /* MokuApp.swift */; };
 		837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837370C1271449E4003656FC /* GoogleService-Info.plist */; };
@@ -126,7 +127,6 @@
 		AEA0E1D22750E06F00398A9D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0E1D12750E06F00398A9D /* StringExtension.swift */; };
 		AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */; };
 		AEBD8371273C360200588D1A /* ImageFullComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBD8370273C360200588D1A /* ImageFullComp.swift */; };
-		AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkelView.swift */; };
 		AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBF219274B613A002550A8 /* AddNewMotorViewModel.swift */; };
 		AEEBF21C274B6E0F002550A8 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBF21B274B6E0F002550A8 /* PagingView.swift */; };
 		AEEBF222274CEA2A002550A8 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBF221274CEA2A002550A8 /* NavigationHelper.swift */; };
@@ -202,6 +202,7 @@
 		833674922716CC0D0040D669 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		833674942716CD840040D669 /* Mekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mekanik.swift; sourceTree = "<group>"; };
 		834437E7272EF37C00279392 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
+		834F9CD827552CE0000AE9F3 /* PengaturanHargaBengkelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PengaturanHargaBengkelView.swift; sourceTree = "<group>"; };
 		83529A582718241000F3C82B /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		837370B027144701003656FC /* Moku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837370B327144701003656FC /* MokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokuApp.swift; sourceTree = "<group>"; };
@@ -294,7 +295,6 @@
 		AEA0E1D12750E06F00398A9D /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaftarCustomer.swift; sourceTree = "<group>"; };
 		AEBD8370273C360200588D1A /* ImageFullComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullComp.swift; sourceTree = "<group>"; };
-		AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanHargaBengkelView.swift; sourceTree = "<group>"; };
 		AEEBF219274B613A002550A8 /* AddNewMotorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMotorViewModel.swift; sourceTree = "<group>"; };
 		AEEBF21B274B6E0F002550A8 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		AEEBF221274CEA2A002550A8 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
@@ -536,7 +536,7 @@
 				8ED7362A2742AF4B0043B882 /* View */,
 				6F0E4E23272FC3BB000B6EC8 /* ViewModels */,
 				837BE1E52727CAD1000E1FAA /* BengkelView.swift */,
-				AEC87B8D2729422B0030F2C0 /* PengaturanHargaBengkelView.swift */,
+				834F9CD827552CE0000AE9F3 /* PengaturanHargaBengkelView.swift */,
 				83101601274BCEA40085ACF7 /* PengaturanHargaBengkelViewModel.swift */,
 			);
 			path = Bengkel;
@@ -942,6 +942,7 @@
 				8EDC3AE9274CE55C0087F806 /* EditMechanic.swift in Sources */,
 				AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */,
 				AE37C6A4273A79B700B5B320 /* BookingDetail.swift in Sources */,
+				834F9CD927552CE0000AE9F3 /* PengaturanHargaBengkelView.swift in Sources */,
 				8330A2BB2729331500AC5447 /* Day.swift in Sources */,
 				83CBF2412722BC7F00C79064 /* BengkelList.swift in Sources */,
 				AE37C6A2273A645400B5B320 /* BookingEmptyComponent.swift in Sources */,
@@ -1007,11 +1008,9 @@
 				83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B80B01AF272918A500050D90 /* UserData.swift in Sources */,
 				8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */,
-				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				AEA0E1D22750E06F00398A9D /* StringExtension.swift in Sources */,
 				AEEBF222274CEA2A002550A8 /* NavigationHelper.swift in Sources */,
 				B83315D3274BC3150052D2DD /* RejectAppointmentModal.swift in Sources */,
-				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				83E13E86272AA80C008758B7 /* OnboardingStepView.swift in Sources */,
 				6F5FDCF02729580D0000FBCB /* ModalSearchMotor.swift in Sources */,
 				830383D52717FF5100F03CE3 /* Collection.swift in Sources */,

@@ -25,13 +25,12 @@ struct AllReviewView: View {
                     }
             }
         }
-        .navigationBarItems(trailing: Button(action: {
-            Text("Test")
-        }, label: {
+        .navigationBarItems(trailing: Button {
+
+        } label: {
             Text("Urutkan")
-        }))
-        .navigationTitle("Ulasan")
-        .navigationBarTitleDisplayMode(.inline)
+        })
+        .navigationBarTitle("Ulasan", displayMode: .inline)
         .padding()
     }
 }

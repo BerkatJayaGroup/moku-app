@@ -25,7 +25,7 @@ extension EditDataBengkelView {
         }
 
         func updateBengkel() {
-            var newBengkel = Bengkel(id: bengkel.id,
+            let newBengkel = Bengkel(id: bengkel.id,
                                      owner: bengkel.owner,
                                      name: bengkel.name,
                                      phoneNumber: bengkel.phoneNumber,

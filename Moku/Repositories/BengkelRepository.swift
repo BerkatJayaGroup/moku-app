@@ -86,13 +86,15 @@ final class BengkelRepository: ObservableObject {
     }
 
     func removeMechanic(mechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil) {
-        let mechanic: [String: Any] = [
+        var mechanicDict: [String: Any] = [
             "id": mechanic.id,
-            "name": mechanic.name,
-            "photo": mechanic.photo
+            "name": mechanic.name
         ]
+        if let photo = mechanic.photo {
+            mechanicDict["photo"] = photo
+        }
         store.document(bengkelId).updateData(
-            ["mekaniks": FieldValue.arrayRemove([mechanic])]
+            ["mekaniks": FieldValue.arrayRemove([mechanicDict])]
         )
     }
 

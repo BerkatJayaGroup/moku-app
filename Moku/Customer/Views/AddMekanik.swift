@@ -91,7 +91,7 @@ struct AddMekanik: View {
             StorageService.shared.upload(image: image,
                                          path: "\(id)/mechanics/\(UUID().uuidString)") { url, _ in
                 guard let url = url?.absoluteString else { return }
-                var newMechanic = Mekanik(name: mechanicName ?? "", photo: url)
+                let newMechanic = Mekanik(name: mechanicName ?? "", photo: url)
                 BengkelRepository.shared.appendMechanic(mechanic: newMechanic, to: id)
             }
             presentationMode.wrappedValue.dismiss()

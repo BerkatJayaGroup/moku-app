@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
-    
+
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         UITableView.appearance().backgroundColor = .clear
@@ -54,7 +54,7 @@ struct ProfileBengkelView: View {
                     })
                         .frame(width: 338, height: 42)
                         .border(AppColor.primaryColor, width: 2, cornerRadius: 8)
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         HStack {
                             Text("Data Bengkel")
                                 .foregroundColor(.black)
@@ -68,7 +68,7 @@ struct ProfileBengkelView: View {
                             })
                         }
                         .padding(.bottom, 16)
-                        
+
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Brand Motor Cakupan")
                                 .foregroundColor(.gray)

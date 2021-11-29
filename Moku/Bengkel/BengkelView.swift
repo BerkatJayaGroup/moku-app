@@ -53,6 +53,8 @@ struct BengkelTabItemView: View {
 }
 
 struct BengkelView: View {
+    @State var tabSelection: Tabs = .tab1
+
     var body: some View {
         TabView {
             BookingTabItemView()
@@ -60,7 +62,7 @@ struct BengkelView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            BengkelTabItem()
+            BengkelTabItem(tab: $tabSelection)
                 .tabItem {
                     Image(systemName: "star")
                     Text("Pesanan")
