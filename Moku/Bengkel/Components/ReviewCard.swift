@@ -12,26 +12,27 @@ struct ReviewCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text(review.user)
-                    .font(.system(size: 13))
-                    .foregroundColor(Color(hex: "686868"))
-                Spacer()
+            Text(review.user)
+                .font(.subheadline)
+                .foregroundColor(.secondaryLabel)
+            if let comment = review.comment {
+                Text(comment)
+                    .padding(.bottom, 4)
+                    .multilineTextAlignment(.leading)
             }
-            Text(review.comment ?? "")
-                .padding(.bottom, 4)
             HStack {
-                Text("\(review.timestamp.get(.day))/\(review.timestamp.get(.month))/\(review.timestamp.get(.year))")
-                    .font(.system(size: 13))
-                    .foregroundColor(Color(hex: "686868"))
+                Text(Date.convertDateFormat(date: review.timestamp, format: "EEE, d MMM y"))
+                    .font(.subheadline)
+                    .foregroundColor(.secondaryLabel)
                 Spacer()
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(AppColor.primaryColor)
-                    Text(String(review.rating))
-                }
+                HStack(spacing: 4) {
+                    Image(systemName: "star.fill").foregroundColor(.yellow)
+                    Text("\(review.rating).0")
+                }.font(.subheadline.bold())
             }
         }
         .padding()
+        .background(Color.white)
+        .cornerRadius(16)
     }
 }

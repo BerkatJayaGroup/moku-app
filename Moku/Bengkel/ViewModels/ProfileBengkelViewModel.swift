@@ -31,16 +31,8 @@ extension ProfileBengkelView {
             bengkel?.mekaniks.count ?? 0
         }
 
-        var rating: Double {
-            var ratingFinal: Double = 0
-            var rating: Int = 0
-            if let review = bengkel?.reviews {
-                for ratingReview in review {
-                    rating += Int(ratingReview.rating)
-                }
-                ratingFinal = Double(rating / review.count)
-            }
-            return round(ratingFinal)
+        var rating: String {
+            bengkel?.averageRating ?? ""
         }
 
         var brands: String {

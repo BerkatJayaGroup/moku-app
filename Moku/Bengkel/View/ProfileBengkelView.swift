@@ -10,12 +10,6 @@ import SwiftUI
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
 
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        UITableView.appearance().backgroundColor = .clear
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
     var body: some View {
         NavigationView {
             ScrollView {
@@ -27,8 +21,7 @@ struct ProfileBengkelView: View {
                     NavigationLink(destination: AllReviewView(bengkel: viewModel.bengkel ?? .preview), label: {
                         HStack {
                             Image(systemName: "star")
-                            Text("\(String(format: "%.1f", viewModel.rating))")
-                                .fontWeight(.semibold)
+                            Text(viewModel.rating).fontWeight(.semibold)
                             Spacer()
                             Text("Lihat Ulasan")
                                 .fontWeight(.semibold)
