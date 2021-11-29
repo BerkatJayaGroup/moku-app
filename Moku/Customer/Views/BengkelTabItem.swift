@@ -163,19 +163,24 @@ struct BengkelTabItem: View {
 
     @ViewBuilder
     private func bengkelFavoriteView(user: Customer) -> some View {
-        if !user.favoriteBengkel.isEmpty {
-            VStack(alignment: .leading) {
-                Text("Bengkel Favorit")
-                    .font(.headline)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach(user.favoriteBengkel, id: \.name) { bengkel in
+        VStack(alignment: .leading) {
+            Text("Bengkel Favorit")
+                .font(.headline)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(user.favoriteBengkel, id: \.name) { bengkel in
+                        NavigationLink(
+                            destination: BengkelDetail(
+                                bengkel: bengkel,
+                                isRootActive: self.$isActive,
+                                isHideTabBar: self.$isHideTabBar
+                            )) {
                             FavoriteList(bengkel: bengkel)
                                 .padding(10)
                                 .background(Color.white)
                                 .cornerRadius(10)
                                 .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                        }
+                            }
                     }
                     .padding(5)
                 }

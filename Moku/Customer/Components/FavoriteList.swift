@@ -40,7 +40,7 @@ struct FavoriteList: View {
                     .offset(x: 10, y: -0.5)
                     .font(.system(size: 14))
                     .foregroundColor(Color("PrimaryColor"))
-                Text(rateBengkel(bengkel: bengkel))
+                Text(bengkel.averageRating)
                     .font(.system(size: 17))
                     .fontWeight(.heavy)
             }
@@ -68,5 +68,9 @@ struct FavoriteList: View {
     func roundToPlaces(_ value: Double, places: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> Double {
         let divisor = pow(10.0, Double(places))
         return (value * divisor).rounded(rule) / divisor
+    }
+  
+    func distanceBengkel(bengkel: Bengkel) -> String{
+        return MapHelper.stringify(distance: bengkel.distance)
     }
 }

@@ -39,6 +39,9 @@ struct Bengkel: Codable, Equatable {
 
 extension Bengkel {
     var averageRating: String {
+        if reviews.isEmpty{
+            return "Baru"
+        }
         let totalRating = reviews.reduce(Float(0)) { partialResult, review in
             partialResult + Float(review.rating)
         }
