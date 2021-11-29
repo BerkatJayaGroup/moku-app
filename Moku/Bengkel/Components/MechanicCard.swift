@@ -6,17 +6,27 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MechanicCard: View {
     var mechanic: Mekanik
     var body: some View {
         HStack {
-            Image(systemName: "person.crop.circle")
-                .resizable()
-                .frame(width: 66, height: 66, alignment: .center)
-                .clipShape(Circle())
-                .padding(.trailing, 20)
-            Text("Sudirman")
+            if let image = mechanic.photo{
+                WebImage(url: URL(string: image ))
+                    .resizable()
+                    .frame(width: 66, height: 66, alignment: .center)
+                    .clipShape(Circle())
+                    .padding(.trailing, 20)
+            }
+            else{
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .frame(width: 66, height: 66, alignment: .center)
+                    .clipShape(Circle())
+                    .padding(.trailing, 20)
+            }
+            Text(mechanic.name)
                 .font(.system(size: 15))
                 .fontWeight(.semibold)
             Spacer()

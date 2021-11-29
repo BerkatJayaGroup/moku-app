@@ -115,6 +115,7 @@ struct EditDataBengkelView: View {
                 Spacer()
                 Button {
                     presentationMode.wrappedValue.dismiss()
+                    viewModel.updateBengkel()
                 } label: {
                     HStack {
                         Spacer()

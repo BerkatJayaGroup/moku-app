@@ -25,9 +25,20 @@ extension EditDataBengkelView {
         }
         
         func updateBengkel(){
-            BengkelRepository.shared.update(bengkel: bengkel)
+            var newBengkel = Bengkel(id: bengkel.id,
+                                     owner: bengkel.owner,
+                                     name: bengkel.name,
+                                     phoneNumber: bengkel.phoneNumber,
+                                     location: bengkel.location,
+                                     operationalHours: bengkel.operationalHours,
+                                     operationalDays: daySelected,
+                                     brands: selectedBrand,
+                                     minPrice: minPrice,
+                                     maxPrice: maxPrice,
+                                     fcmToken: bengkel.fcmToken
+            )
+            BengkelRepository.shared.update(bengkel: newBengkel)
         }
-        
     }
 }
 

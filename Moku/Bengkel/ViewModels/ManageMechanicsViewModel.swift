@@ -7,11 +7,13 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 class ManageMechanicsViewModel: ObservableObject {
     @ObservedObject var bengkelRepository: BengkelRepository = .shared
     @Published var bengkel: Bengkel
     @Published var mechanics: [Mekanik]?
+    @Published var bengkelId: String?
     
     init(bengkel: Bengkel){
         self.bengkel = bengkel
@@ -19,11 +21,12 @@ class ManageMechanicsViewModel: ObservableObject {
     }
     
     func fetchMechanics(){
-        bengkelRepository.fetch(id: bengkel.id) { bengkel in
-            self.bengkel = bengkel
+        if let id = Auth.auth().currentUser?.uid {
+            bengkelRepository.fetch(id: id) { bengkel in
+                self.bengkel = bengkel
+            }
+            self.bengkelId = id
         }
         mechanics = bengkel.mekaniks
     }
-    
-    
 }

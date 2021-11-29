@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileBengkelView: View {
+    @StateObject var viewModel = ViewModel()
+    
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         UITableView.appearance().backgroundColor = .clear
@@ -20,7 +22,7 @@ struct ProfileBengkelView: View {
                 Image("MotorGray")
                     .frame(width: 100, height: 100, alignment: .center)
                     .clipShape(Circle())
-                Text("Berkat Jaya Motor")
+                Text(viewModel.bengkelName)
                 NavigationLink(destination: DummyView(), label: {
                     HStack {
                         Image(systemName: "star")
@@ -31,20 +33,22 @@ struct ProfileBengkelView: View {
                             .fontWeight(.semibold)
                             .foregroundColor(AppColor.primaryColor)
                     }
+                    .padding(.horizontal)
                     .foregroundColor(.black)
                 })
                 .frame(width: 338, height: 42)
                 .border(AppColor.primaryColor, width: 2, cornerRadius: 8)
-                NavigationLink(destination: DummyView(), label: {
+                NavigationLink(destination: ManageMechanicsView(bengkel: viewModel.bengkel ?? .preview), label: {
                     HStack {
-                        Image(systemName: "star")
-                        Text("4.5")
+                        Image(systemName: "person.fill")
+                        Text("\(viewModel.mechanicsCount) Mekanik")
                             .fontWeight(.semibold)
                         Spacer()
-                        Text("Lihat Ulasan")
+                        Text("Atur Mechanics")
                             .fontWeight(.semibold)
                             .foregroundColor(AppColor.primaryColor)
                     }
+                    .padding(.horizontal)
                     .foregroundColor(.black)
                 })
                 .frame(width: 338, height: 42)
@@ -57,7 +61,7 @@ struct ProfileBengkelView: View {
                             .fontWeight(.semibold)
                         Spacer()
 //                    TODO: PASSING BENGKEL
-                        NavigationLink(destination: EditDataBengkelView(bengkel: .preview), label: {
+                        NavigationLink(destination: EditDataBengkelView(bengkel: viewModel.bengkel ?? .preview), label: {
                             Text("Sunting")
                                 .foregroundColor(AppColor.primaryColor)
                                 .fontWeight(.semibold)
@@ -66,7 +70,7 @@ struct ProfileBengkelView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Brand Motor Cakupan")
                                 .foregroundColor(.gray)
-                            Text("Honda, Yamaha, Suzuki")
+                            Text("Honda, Yamaha")
                                 .foregroundColor(.black)
                         }
                         VStack(alignment: .leading, spacing: 6) {
@@ -84,7 +88,7 @@ struct ProfileBengkelView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Jam Operasional")
                                 .foregroundColor(.gray)
-                            Text("10:00 - 18:00")
+                            Text(viewModel.operationalHours)
                                 .foregroundColor(.black)
                         }
                     }

@@ -19,26 +19,26 @@ struct ManageMechanicsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                ForEach(mechanics, id: \.id) { mechanic in
+        ScrollView {
+            ForEach(viewModel.mechanics ?? [], id: \.id) { mechanic in
+                NavigationLink(destination: EditMechanic(mechanic: mechanic)){
                     MechanicCard(mechanic: mechanic)
                 }
             }
-            .padding()
-            .navigationTitle("Mekanik")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                self.showModal = true
-            }, label: {
-                Image(systemName: "plus")
-                
-            }).sheet(isPresented: $showModal, content: {
-                AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
-            })
-            )
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .padding()
+        .navigationTitle("Mekanik")
+        .navigationBarItems(trailing:
+                                Button(action: {
+            self.showModal = true
+        }, label: {
+            Image(systemName: "plus")
+            
+        }).sheet(isPresented: $showModal, content: {
+            AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
+        })
+        )
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewModel.fetchMechanics()
         }
