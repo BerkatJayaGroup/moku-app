@@ -69,8 +69,4 @@ struct FavoriteList: View {
         let divisor = pow(10.0, Double(places))
         return (value * divisor).rounded(rule) / divisor
     }
-  
-    func distanceBengkel(bengkel: Bengkel) -> String{
-        return MapHelper.stringify(distance: bengkel.distance)
-    }
 }

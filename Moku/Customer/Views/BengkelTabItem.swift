@@ -172,8 +172,7 @@ struct BengkelTabItem: View {
                         NavigationLink(
                             destination: BengkelDetail(
                                 bengkel: bengkel,
-                                isRootActive: self.$isActive,
-                                isHideTabBar: self.$isHideTabBar
+                                tab: $tab
                             )) {
                             FavoriteList(bengkel: bengkel)
                                 .padding(10)
