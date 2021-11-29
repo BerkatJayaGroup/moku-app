@@ -17,12 +17,14 @@ struct FavoriteList: View {
     var body: some View {
         VStack(alignment: .trailing) {
             VStack(alignment: .leading) {
-                if let photo = bengkel.photos[0] {
-                    WebImage(url: URL(string: photo))
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 175, height: 110)
-                        .aspectRatio(contentMode: .fill)
+                if !bengkel.photos.isEmpty {
+                    if let photo = bengkel.photos[0] {
+                        WebImage(url: URL(string: photo))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 175, height: 110)
+                            .aspectRatio(contentMode: .fill)
+                    }
                 } else {
                     Image(systemName: "number")
                         .resizable()

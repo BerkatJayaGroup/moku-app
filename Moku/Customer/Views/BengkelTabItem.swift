@@ -59,7 +59,9 @@ struct BengkelTabItem: View {
                 .padding(.horizontal, 20)
                 ScrollView {
                     if case .customer(let user) = session.user {
-                        bengkelFavoriteView(user: user)
+                        if !user.favoriteBengkel.isEmpty {
+                            bengkelFavoriteView(user: user)
+                        }
                     }
                     ratingView()
                     listOfNearbyBengkel()
@@ -161,34 +163,33 @@ struct BengkelTabItem: View {
         }
     }
 
-    @ViewBuilder
     private func bengkelFavoriteView(user: Customer) -> some View {
-        VStack(alignment: .leading) {
-            Text("Bengkel Favorit")
-                .font(.headline)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(user.favoriteBengkel, id: \.name) { bengkel in
-                        NavigationLink(
-                            destination: BengkelDetail(
-                                bengkel: bengkel,
-                                tab: $tab
-                            )) {
-                            FavoriteList(bengkel: bengkel)
-                                .padding(10)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                            }
+            VStack(alignment: .leading) {
+                Text("Bengkel Favorit")
+                    .font(.headline)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(user.favoriteBengkel, id: \.name) { bengkel in
+                            NavigationLink(
+                                destination: BengkelDetail(
+                                    bengkel: bengkel,
+                                    tab: $tab
+                                )) {
+                                FavoriteList(bengkel: bengkel)
+                                    .padding(10)
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                                }
+                        }
+                        .padding(5)
                     }
-                    .padding(5)
+                    Rectangle()
+                        .fill(Color(.systemGray6))
+                        .frame(height: 5)
+                        .edgesIgnoringSafeArea(.horizontal)
                 }
-                Rectangle()
-                    .fill(Color(.systemGray6))
-                    .frame(height: 5)
-                    .edgesIgnoringSafeArea(.horizontal)
-            }
-            .padding(.horizontal, 20)
+                .padding(.horizontal, 20)
         }
     }
 }
