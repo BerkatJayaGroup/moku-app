@@ -9,19 +9,17 @@ import SwiftUI
 import FirebaseAuth
 import Combine
 
-private let tggl = [true, false, true, true, false, true, false]
-
 struct BengkelDate: View {
     @StateObject private var viewModel: ViewModel
+    @State var selection: Int?
+    @Binding var tab: Tabs
+    @Binding var isBackToRoot: Bool
 
-    @Binding var isRootActive: Bool
-    @Binding var isHideTabBar: Bool
-
-    init(typeOfService: Order.Service, bengkel: Bengkel, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+    init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
+        self._tab = tab
+        self._isBackToRoot = isBackToRoot
     }
 
     let columns = [
@@ -67,7 +65,7 @@ struct BengkelDate: View {
             Spacer()
 
             if let order = viewModel.order {
-                NavigationLink(destination: BookingSummary(order: order, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar), isActive: $viewModel.isActive) {
+                NavigationLink(destination: BookingSummary(order: order, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
                     EmptyView()
                 }
             }
@@ -78,19 +76,20 @@ struct BengkelDate: View {
                     viewModel.schedule = Calendar.current.date(from: tggl) ?? Date()
                     if let selectedMotor = SessionService.shared.selectedMotor {
                         viewModel.order = Order(bengkelId: viewModel.bengkel.id, customerId: viewModel.userId, motor: selectedMotor, typeOfService: viewModel.typeOfService, notes: viewModel.text, schedule: viewModel.schedule)
+                        self.selection = 1
                     }
-                    print("apa aja dah")
                 } else {
                     print("apa aja dah else")
                 }
             } label: {
                 Text("Lanjutkan")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.vertical, 16)
+                    .frame(width: UIScreen.main.bounds.width * 0.85)
+                    .background(Color("PrimaryColor"))
+                    .cornerRadius(8)
             }
-            .frame(width: 300, height: 50)
-            .background(Color("PrimaryColor"))
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            .padding()
         }
         .navigationTitle("Pesan")
         .navigationBarTitleDisplayMode(.inline)
