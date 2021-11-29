@@ -9,25 +9,27 @@ import SwiftUI
 
 struct ReviewCard: View {
     var review: Review
+    
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Devin Winardi")
+                Text(review.user)
                     .font(.system(size: 13))
                     .foregroundColor(Color(hex: "686868"))
                 Spacer()
             }
-            Text("Servisnya memuaskan banget, motor langsung kenceng")
+            Text(review.comment ?? "")
                 .padding(.bottom, 4)
             HStack {
-                Text("07/10/21")
+                Text("\(review.timestamp.get(.day))/\(review.timestamp.get(.month))/\(review.timestamp.get(.year))")
                     .font(.system(size: 13))
                     .foregroundColor(Color(hex: "686868"))
                 Spacer()
                 HStack {
                     Image(systemName: "star.fill")
                         .foregroundColor(AppColor.primaryColor)
-                    Text("4.5")
+                    Text(String(review.rating))
                 }
             }
         }
