@@ -58,7 +58,7 @@ struct PengaturanHargaBengkelView: View {
                     submitButton(proxy: proxy)
                 }
                 .onTapGesture {
-                    hideKeyboard()
+                    dismissKeyboard()
                 }
                 .padding()
                 .navigationBarTitle("Pengaturan Harga", displayMode: .inline)
@@ -74,7 +74,7 @@ struct PengaturanHargaBengkelView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("Lanjutkan")
+                Text("Selesai").bold()
                 Spacer()
             }
             .padding()

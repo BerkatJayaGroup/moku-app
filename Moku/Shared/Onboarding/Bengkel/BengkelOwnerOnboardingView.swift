@@ -116,7 +116,7 @@ struct BengkelOwnerOnboardingView: View {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
             }
             .onTapGesture {
-                hideKeyboard()
+                dismissKeyboard()
             }
             .navigationBarTitle("Profil Bengkel", displayMode: .inline)
         }
@@ -125,7 +125,7 @@ struct BengkelOwnerOnboardingView: View {
 }
 
 extension View {
-    func hideKeyboard() {
+    func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
@@ -151,7 +151,7 @@ extension BengkelOwnerOnboardingView {
         } label: {
             HStack {
                 Spacer()
-                Text("Lanjutkan")
+                Text("Lanjutkan").bold()
                 Spacer()
             }
             .padding()

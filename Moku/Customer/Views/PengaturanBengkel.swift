@@ -146,7 +146,7 @@ struct PengaturanBengkel: View {
                 submitButton(proxy: proxy)
             }
             .onTapGesture {
-                hideKeyboard()
+                dismissKeyboard()
             }
         }
         .padding()

@@ -59,7 +59,7 @@ struct AddMekanik: View {
     }
 
     @ViewBuilder func uploadButton() -> some View {
-        Button("Upload photo") {
+        Button("Unggah foto") {
             self.showActionSheet.toggle()
         }
         .sheet(isPresented: $showImagePicker) {
