@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import Combine
+import SwiftUIX
 
 extension Date {
     func date() -> String {
@@ -77,18 +78,21 @@ extension BookingSummary {
 struct BookingSummary: View {
     @StateObject private var viewModel: ViewModel
 
-    @Binding var isRootActive: Bool
-    @Binding var isHideTabBar: Bool
+    @State private var showSheet = false
 
-    init(order: Order, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
+    @Binding var tab: Tabs
+
+    @Binding var isBackToRoot: Bool
+
+    init(order: Order, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
+        self._tab = tab
+        self._isBackToRoot = isBackToRoot
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, isRootActive: self.$isRootActive, isHideTabBar: self.$isHideTabBar)
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, tab: $tab, isBackToRoot: $isBackToRoot)
         } else {
             VStack {
                 VStack {
@@ -152,11 +156,12 @@ struct BookingSummary: View {
                     }
                 } label: {
                     Text("Konfirmasi Booking")
-                        .frame(width: 310, height: 50)
-                        .background(AppColor.primaryColor)
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding()
+                        .padding(.vertical, 16)
+                        .frame(width: UIScreen.main.bounds.width * 0.85)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
                 }
             }
         }

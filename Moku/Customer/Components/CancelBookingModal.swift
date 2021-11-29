@@ -13,6 +13,8 @@ struct CancelBookingModal: View {
 
     @State var order: Order
     @State var activeFrom: Bool
+    @State var showingAlert = false
+    @State var isCancel = false
 
     var alasans: [Order.CancelingReason] = [.bengkelTutup, .bengkelLain, .tidakJadi, .ubahOrder]
 
@@ -34,27 +36,43 @@ struct CancelBookingModal: View {
                     }
                 }
                 .padding()
-                .navigationBarTitle(Text("Pilih alasan membatalkan booking").font(.headline), displayMode: .inline)
+                .navigationBarTitle("Pilih alasan membatalkan booking", displayMode: .inline)
                 .listStyle(.plain)
-                NavigationLink(destination: BengkelTabItem(), isActive: $isActive) {
-                    EmptyView()
-                }
+
                 Button("Selesai") {
-                    if let selection = selection {
-                        if activeFrom == true {
-                            isActive = true
+
+                    let oneHourAgo = Calendar.current.date(byAdding: .hour, value: -1, to: order.schedule)
+                    let now = Calendar.current.date(byAdding: .hour, value: 0, to: Date())
+                    if oneHourAgo != now {
+                        showingAlert = true
+                        isCancel = true
+                    } else {
+                        showingAlert = true
+                        isCancel = false
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color("PrimaryColor"))
+                .foregroundColor(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                .padding(.horizontal)
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: isCancel ? Text("Booking berhasil dibatalkan"): Text("Booking gagal dibatalkan"), message: isCancel ? Text("Jika ingin menambah booking baru harap melakukan pemesanan ulang.") : Text("Booking sudah tidak dapat dibatalkan karena melewati batas waktu maksimal pembatalan. Harap coba kembali"), primaryButton: .default(Text("OK")) {
+                        if isCancel == true {
+                            if let selection = selection {
+                                if activeFrom == true {
+                                    isActive = true
+                                } else {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                                orderCustomerViewModel.cancelBooking(order: order, reason: selection)
+                            }
                         } else {
                             self.presentationMode.wrappedValue.dismiss()
                         }
-                        orderCustomerViewModel.cancelBooking(order: order, reason: selection)
-                    }
+                    }, secondaryButton: .cancel())
                 }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("PrimaryColor"))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    .padding(.horizontal)
             }
         }
     }
