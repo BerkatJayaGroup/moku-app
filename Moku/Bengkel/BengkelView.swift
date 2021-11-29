@@ -60,7 +60,7 @@ struct BengkelView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            BengkelTabItemView()
+            AllReviewView(bengkel: .preview)
                 .tabItem {
                     Image(systemName: "star")
                     Text("Pesanan")
