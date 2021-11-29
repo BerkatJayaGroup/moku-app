@@ -36,7 +36,7 @@ struct CancelBookingModal: View {
                     }
                 }
                 .padding()
-                .navigationBarTitle(Text("Pilih alasan membatalkan booking").font(.headline), displayMode: .inline)
+                .navigationBarTitle("Pilih alasan membatalkan booking", displayMode: .inline)
                 .listStyle(.plain)
 
                 Button("Selesai") {
@@ -66,7 +66,6 @@ struct CancelBookingModal: View {
                                 } else {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
-
                                 orderCustomerViewModel.cancelBooking(order: order, reason: selection)
                             }
                         } else {
