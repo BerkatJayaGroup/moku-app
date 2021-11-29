@@ -18,7 +18,7 @@ struct AddMekanik: View {
     @State var showImagePicker: Bool = false
     @State private var showActionSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -95,7 +95,7 @@ struct AddMekanik: View {
                 BengkelRepository.shared.appendMechanic(mechanic: newMechanic, to: id)
             }
             presentationMode.wrappedValue.dismiss()
-        } else{
+        } else {
             let calonMekanik: CalonMekanik
             if image.count > 0 {
                 calonMekanik = CalonMekanik(name: mechanicName!, photo: image[0])

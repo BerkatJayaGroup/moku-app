@@ -10,8 +10,8 @@ import SwiftUI
 struct ReviewCard: View {
     var review: Review
     var body: some View {
-        VStack(alignment: .leading, spacing: 16){
-            HStack{
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
                 Text("Devin Winardi")
                     .font(.system(size: 13))
                     .foregroundColor(Color(hex: "686868"))
@@ -19,12 +19,12 @@ struct ReviewCard: View {
             }
             Text("Servisnya memuaskan banget, motor langsung kenceng")
                 .padding(.bottom, 4)
-            HStack{
+            HStack {
                 Text("07/10/21")
                     .font(.system(size: 13))
                     .foregroundColor(Color(hex: "686868"))
                 Spacer()
-                HStack{
+                HStack {
                     Image(systemName: "star.fill")
                         .foregroundColor(AppColor.primaryColor)
                     Text("4.5")

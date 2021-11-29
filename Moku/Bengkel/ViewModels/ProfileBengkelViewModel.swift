@@ -9,17 +9,16 @@ import Foundation
 import FirebaseAuth
 import SwiftUI
 
-extension ProfileBengkelView{
+extension ProfileBengkelView {
     class ViewModel: ObservableObject {
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
-        
+
         @Published var bengkel: Bengkel?
-        @Published var brands: String = ""
-        
+
         var bengkelName: String {
             bengkel?.name ?? ""
         }
-        
+
         var operationalHours: String {
             var opHours = ""
             if let bengkel = bengkel {
@@ -27,30 +26,52 @@ extension ProfileBengkelView{
             }
             return opHours
         }
-        
+
         var mechanicsCount: Int {
             bengkel?.mekaniks.count ?? 0
+        }
+
+        var rating: Double {
+            var ratingFinal: Double = 0
+            var rating: Int = 0
+            if let review = bengkel?.reviews {
+                for ratingReview in review {
+                    rating += Int(ratingReview.rating)
+                }
+                ratingFinal = Double(rating / review.count)
+            }
+            return round(ratingFinal)
+        }
+
+        var brands: String{
+            var brand: String = ""
+            if let bengkel = bengkel {
+                for motor in bengkel.brands {
+                    brand.append("\(motor.rawValue), ")
+                }
+            }
+            return brand
         }
         
         var operationalDays: String {
             var opDays = ""
             if let bengkel = bengkel {
-                for (index, days) in bengkel.operationalDays.enumerated(){
-                    if days == true{
-                        switch index{
+                for (index, days) in bengkel.operationalDays.enumerated() {
+                    if days == true {
+                        switch index {
+                        case 0:
+                            opDays.append("Senin, ")
                         case 1:
-                            opDays.append("Senin")
+                            opDays.append("Selasa, ")
                         case 2:
-                            opDays.append("Selasa")
+                            opDays.append("Rabu, ")
                         case 3:
-                            opDays.append("Rabu")
+                            opDays.append("Kamis, ")
                         case 4:
-                            opDays.append("Kamis")
+                            opDays.append("Jumat, ")
                         case 5:
-                            opDays.append("Jumat")
+                            opDays.append("Sabtu, ")
                         case 6:
-                            opDays.append("Sabtu")
-                        case 7:
                             opDays.append("Minggu")
                         default:
                             ""
@@ -60,27 +81,17 @@ extension ProfileBengkelView{
             }
             return opDays
         }
-        
+
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkel(bengkelId: id)
             }
-            convertBrandsToString()
         }
-        
+
         func getBengkel(bengkelId: String) {
             bengkelRepository.fetch(id: bengkelId) { bengkel2 in
                 self.bengkel = bengkel2
             }
         }
-        
-        func convertBrandsToString() {
-            if let bengkel = bengkel {
-                for motor in bengkel.brands {
-                    self.brands.append(motor.rawValue)
-                }
-            }
-        }
-        
     }
 }

@@ -12,31 +12,29 @@ import FirebaseAuth
 struct EditMechanic: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
-    init(mechanic: Mekanik){
+    init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
-        VStack{
+        VStack {
             if viewModel.image.isEmpty {
-                if let image = viewModel.mechanic.photo{
+                if let image = viewModel.mechanic.photo {
                     WebImage(url: URL(string: image))
                         .resizable()
                         .frame(width: 100, height: 100, alignment: .center)
                         .clipShape(Circle())
                         .padding(.bottom, 10)
-                }
-                else{
+                } else {
                     Image("profile")
                         .resizable()
                         .frame(width: 100, height: 100, alignment: .center)
                         .clipShape(Circle())
                         .padding(.bottom, 10)
                 }
-            }
-            else{
-                if let image = viewModel.image.last{
+            } else {
+                if let image = viewModel.image.last {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 100, height: 100, alignment: .center)
@@ -44,9 +42,9 @@ struct EditMechanic: View {
                         .padding(.bottom, 10)
                 }
             }
-            
+
             uploadButton()
-            
+
             VStack(alignment: .leading) {
                 Text("NAMA MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
@@ -61,7 +59,7 @@ struct EditMechanic: View {
             Button(action: {
                 viewModel.updateMechanic()
                 presentationMode.wrappedValue.dismiss()
-                
+
             }, label: {
                 Text("Simpan Perubahan")
                     .frame(width: 309, height: 44, alignment: .center)
@@ -82,7 +80,7 @@ struct EditMechanic: View {
         }
         .padding()
     }
-    
+
     @ViewBuilder
     func uploadButton() -> some View {
         Button("Ubah Foto") {

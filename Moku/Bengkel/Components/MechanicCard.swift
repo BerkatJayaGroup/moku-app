@@ -12,14 +12,13 @@ struct MechanicCard: View {
     var mechanic: Mekanik
     var body: some View {
         HStack {
-            if let image = mechanic.photo{
+            if let image = mechanic.photo {
                 WebImage(url: URL(string: image ))
                     .resizable()
                     .frame(width: 66, height: 66, alignment: .center)
                     .clipShape(Circle())
                     .padding(.trailing, 20)
-            }
-            else{
+            } else {
                 Image(systemName: "person.crop.circle")
                     .resizable()
                     .frame(width: 66, height: 66, alignment: .center)
@@ -32,7 +31,7 @@ struct MechanicCard: View {
             Spacer()
         }
         .padding()
-        .border(Color(hex: "979797") , width: 1, cornerRadius: 6)
+        .border(Color(hex: "979797"), width: 1, cornerRadius: 6)
         .shadow(color: Color(hex: "979797"), radius: 1)
     }
 }

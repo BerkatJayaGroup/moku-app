@@ -60,13 +60,13 @@ struct BengkelView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            AllReviewView(bengkel: .preview)
+            BengkelTabItem()
                 .tabItem {
                     Image(systemName: "star")
                     Text("Pesanan")
                 }
             ProfileBengkelView()
-                .tabItem{
+                .tabItem {
                     Image(systemName: "wrench.and.screwdriver.fill")
                     Text("Bengkel")
                 }

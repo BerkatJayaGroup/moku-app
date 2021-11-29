@@ -84,8 +84,8 @@ final class BengkelRepository: ObservableObject {
             completion: completion
         )
     }
-    
-    func removeMechanic(mechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil){
+
+    func removeMechanic(mechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil) {
         let mechanic: [String: Any] = [
             "id": mechanic.id,
             "name": mechanic.name,
@@ -95,7 +95,7 @@ final class BengkelRepository: ObservableObject {
             ["mekaniks": FieldValue.arrayRemove([mechanic])]
         )
     }
-    
+
 //    func updateMechanic(mechanic: Mekanik, oldMechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil){
 //        guard let photoUrl = mechanic.photo else { return }
 //        let mechanic: [String: Any] = [

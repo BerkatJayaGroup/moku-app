@@ -12,16 +12,16 @@ struct ManageMechanicsView: View {
     @State var mechanics = [Mekanik]()
     @State var mechanics1 = [CalonMekanik]()
     @StateObject var viewModel: ManageMechanicsViewModel
-    
-    init(bengkel: Bengkel){
+
+    init(bengkel: Bengkel) {
         let viewModel = ManageMechanicsViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         ScrollView {
             ForEach(viewModel.mechanics ?? [], id: \.id) { mechanic in
-                NavigationLink(destination: EditMechanic(mechanic: mechanic)){
+                NavigationLink(destination: EditMechanic(mechanic: mechanic)) {
                     MechanicCard(mechanic: mechanic)
                 }
             }
@@ -33,13 +33,13 @@ struct ManageMechanicsView: View {
             self.showModal = true
         }, label: {
             Image(systemName: "plus")
-            
+
         }).sheet(isPresented: $showModal, content: {
             AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
         })
         )
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear{
+        .onAppear {
             viewModel.fetchMechanics()
         }
     }

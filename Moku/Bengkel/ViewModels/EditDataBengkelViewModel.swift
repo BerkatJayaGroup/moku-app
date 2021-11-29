@@ -15,7 +15,7 @@ extension EditDataBengkelView {
         @Published var selectedBrand = Set<Brand>()
         @Published var selectedCC = Set<Motorcc>()
         @Published var daySelected: [Bool]
-        
+
         init(bengkel: Bengkel) {
             self.bengkel = bengkel
             self.selectedBrand = bengkel.brands
@@ -23,8 +23,8 @@ extension EditDataBengkelView {
             self.minPrice = bengkel.minPrice
             self.maxPrice = bengkel.maxPrice
         }
-        
-        func updateBengkel(){
+
+        func updateBengkel() {
             var newBengkel = Bengkel(id: bengkel.id,
                                      owner: bengkel.owner,
                                      name: bengkel.name,
@@ -41,4 +41,3 @@ extension EditDataBengkelView {
         }
     }
 }
-
