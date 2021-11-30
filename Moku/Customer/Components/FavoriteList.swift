@@ -13,7 +13,7 @@ import SDWebImageSwiftUI
 
 struct FavoriteList: View {
     var bengkel: Bengkel
-    
+
     var body: some View {
         VStack(alignment: .trailing) {
             VStack(alignment: .leading) {
@@ -47,7 +47,7 @@ struct FavoriteList: View {
         }
     }
 
-    func distanceBengkel(bengkel: Bengkel) -> String{
+    func distanceBengkel(bengkel: Bengkel) -> String {
         return MapHelper.stringify(distance: bengkel.distance)
     }
 }

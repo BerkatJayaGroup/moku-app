@@ -23,7 +23,7 @@ final class OrderRepository: ObservableObject {
     // MARK: Properties
     @Published var orders = [Order]()
     @Published var filteredOrders = [Order]()
-    
+
     @Published var filteredOrdersStatus = [Order]()
 
     @Published var customerOrders = [Order]()

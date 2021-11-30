@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
-    
+
     @State private var isDetailBookingModalPresented = false
 
     init() {

@@ -10,6 +10,7 @@ import SwiftUI
 
 extension DetailBooking {
     class ViewModel: ObservableObject {
+        @ObservedObject var orderRepository: OrderRepository = .shared
         @Published var customer: Customer?
         @Published var order: Order
         @Published var showModal: Bool
@@ -48,16 +49,18 @@ extension DetailBooking {
         var notes: String {
             order.notes ?? ""
         }
-        
-        func updateStatusOrder() {
-            self.order.status = .done
 
-            //            TODO: PushNotif
+        func updateStatusOrder(status: Order.Status, reason: Order.CancelingReason? = nil) {
+            self.order.status = status
+            if let reason = reason {
+                self.order.cancelingReason = reason
+            }
             orderRepository.updateStatus(order: order) { _ in
                 CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
                     guard let fcmToken = customer.fcmToken else { return }
-                    NotificationService.shared.send(to: [fcmToken], notification: .done)
+                    NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(status))
                 }
+                self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId)
             }
         }
     }

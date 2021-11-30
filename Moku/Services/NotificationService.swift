@@ -30,7 +30,7 @@ final class NotificationService: NSObject, ObservableObject {
 
             case .updateOrderStatus(let status):
                 return Content(title: "Cek Status Pesanan", body: "Status Pesanan anda sudah di Perbarui menjadi \(status.rawValue)")
-            
+
             case .done:
                 return Content(title: "Pesanan sudah selesai", body: "Silahkan datangi bengkel untuk mengambil motor anda")
             }

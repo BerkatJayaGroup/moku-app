@@ -17,7 +17,7 @@ struct AssignMechanics: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         _isActive = isRootActive
     }
-    
+
     var body: some View {
         VStack {
             Text("Tugaskan Mekanik")

@@ -12,20 +12,21 @@ struct DetailBooking: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
     @State var isShowRejectModal = false
-    
+
+    @State var isShowFinishBookingSheet = false
+
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
-        
+
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.backgroundColor = UIColor.white
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
-    
+
     var body: some View {
         VStack {
-            ScrollView{
+            ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(viewModel.motorModel)
                         .font(.system(size: 22))
@@ -48,49 +49,51 @@ struct DetailBooking: View {
                 }
                 Image(systemName: "bicycle")
                     .frame(width: 260, height: 160, alignment: .center)
-                HStack{
-                    VStack(spacing: 16){
-                        HStack{
+                HStack {
+                    VStack(spacing: 16) {
+                        HStack {
                             Text("Hari: ")
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text("Jam: ")
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text("Jenis Layanan")
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text("Catatan: ")
                             Spacer()
                         }
                     }
-                    VStack(spacing: 16){
-                        HStack{
+                    VStack(spacing: 16) {
+                        HStack {
                             Text(viewModel.orderDate)
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text(viewModel.orderHour)
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text(viewModel.typeOfService)
                             Spacer()
                         }
-                        HStack{
+                        HStack {
                             Text(viewModel.notes)
                             Spacer()
                         }
                     }
                 }
                 Spacer()
+            }.sheet(isPresented: $isShowFinishBookingSheet) {
+                FinishBookingView(order: viewModel.order)
             }
             switch viewModel.order.status {
             case .waitingConfirmation:
-                Button{
+                Button {
                     print("Terima Booking")
                     viewModel.showModal = true
                 } label: {
@@ -116,11 +119,11 @@ struct DetailBooking: View {
                     RejectAppointmentModal(order: viewModel.order)
                 }
             case .scheduled :
-                if (viewModel.order.schedule.get(.day) == Date().get(.day)){
+                if viewModel.order.schedule.get(.day) == Date().get(.day) {
                     Button(action: {
                         print("Kerjakan Pesanan")
                         UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-                        //                    viewModel.updateStatusOrder()
+                        viewModel.updateStatusOrder(status: .onProgress)
                     }, label: {
                         Text("Kerjakan")
                             .frame(width: 310, height: 44)
@@ -129,22 +132,21 @@ struct DetailBooking: View {
                             .cornerRadius(8)
                             .frame(width: 320, height: 45, alignment: .center)
                     })
-                }
-                else{
+                } else {
                     Divider()
                         .padding(.horizontal)
-                    HStack{
+                    HStack {
                         Text("Mekanik yang ditugaskan")
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         Spacer()
                     }
-                    HStack{
+                    HStack {
                         Image(systemName: "person.crop.circle")
                             .frame(width: 80, height: 80, alignment: .center)
                             .imageScale(.large)
                             .clipShape(Circle())
-                        VStack(spacing: 8){
+                        VStack(spacing: 8) {
                             Text(viewModel.order.mechanicName ?? "N/A")
                                 .font(.system(size: 17))
                             Text("Mekanik")
@@ -157,7 +159,8 @@ struct DetailBooking: View {
             case .onProgress:
                 Button(action: {
                     print("Pesanan Selesai")
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+//                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    isShowFinishBookingSheet.toggle()
                     //                    viewModel.updateStatusOrder()
                 }, label: {
                     Text("Pesanan Selesai")

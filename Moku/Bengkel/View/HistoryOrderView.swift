@@ -9,10 +9,10 @@ import SwiftUI
 
 struct HistoryOrderView: View {
     var bengkelOrders: [Order]
-    
+
     var body: some View {
-        VStack{
-            ScrollView{
+        VStack {
+            ScrollView {
                 if let bengkelOrders = bengkelOrders {
                     LazyVStack {
                         ForEach(bengkelOrders, id: \.id) { order in

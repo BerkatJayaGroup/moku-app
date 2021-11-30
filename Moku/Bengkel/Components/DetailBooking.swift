@@ -65,7 +65,7 @@ struct DetailBooking: View {
                     }
                 }
                 Spacer()
-                if viewModel.order.status == .scheduled{
+                if viewModel.order.status == .scheduled {
                     Button(action: {
                         print("Selesaikan Booking")
                         UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
@@ -78,8 +78,7 @@ struct DetailBooking: View {
                             .cornerRadius(8)
                             .frame(width: 320, height: 45, alignment: .center)
                     })
-                }
-                else if viewModel.order.status == .waitingConfirmation {
+                } else if viewModel.order.status == .waitingConfirmation {
                     Button(action: {
                         print("Terima Booking")
                         viewModel.showModal = true
@@ -105,17 +104,16 @@ struct DetailBooking: View {
                             .foregroundColor(AppColor.primaryColor)
                             .frame(width: 320, height: 45, alignment: .center)
                     })
-                }
-                else if viewModel.order.status == .scheduled {
+                } else if viewModel.order.status == .scheduled {
                     Divider()
                         .padding(.horizontal)
                     Text("Mekanik yang ditugaskan")
                         .font(.system(17))
                         .fontWeight(.semibold)
-                    HStack{
+                    HStack {
                         Image(systemName: "profile")
                             .clipShape(Circle())
-                        VStack{
+                        VStack {
                             Text(viewModel.order.mechanicName)
                                 .font(.system(17))
                             Text("Mekanik")

@@ -61,11 +61,11 @@ struct BengkelTabItem: View {
                         .padding(.horizontal, 20)
 
                         if case .customer(let user) = session.user {
-                            if !user.favoriteBengkel.isEmpty{
+                            if !user.favoriteBengkel.isEmpty {
                                 bengkelFavoriteView(user: user)
                             }
                         }
-                      
+
                         Rectangle()
                             .fill(Color(.systemGray6))
                             .frame(height: 5)
@@ -81,7 +81,7 @@ struct BengkelTabItem: View {
                 UITabBarController.tabBar.isHidden = self.isHideTabBar
             }
         }
-        .onAppear{
+        .onAppear {
             session.setup()
         }
     }

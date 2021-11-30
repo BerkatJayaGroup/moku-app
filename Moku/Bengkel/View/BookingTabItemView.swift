@@ -12,6 +12,8 @@ struct BookingTabItemView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
 
     @State private var isDetailBookingModalPresented = false
+    @State private var isDetailBookingOnProgressPresented = false
+    @State private var selectedOrder: Order?
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -27,7 +29,7 @@ struct BookingTabItemView: View {
                         return filteredOrder.status == .waitingConfirmation
                     }
                     let onProgressOrder = orders.filter { filteredOrder in
-                        return filteredOrder.status == .onProgress && filteredOrder.schedule.date() == Date().date()
+                        return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule.date() == Date().date()
                     }
                     if !waitingConfirmationOrder.isEmpty || !onProgressOrder.isEmpty {
                         ScrollView {
@@ -151,6 +153,7 @@ struct BookingTabItemView: View {
                 Spacer()
                 Button("Terima") {
                     isDetailBookingModalPresented.toggle()
+                    self.selectedOrder = order
                 }.padding()
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
@@ -160,13 +163,16 @@ struct BookingTabItemView: View {
             }
         }.onTapGesture {
             isDetailBookingModalPresented.toggle()
+            self.selectedOrder = order
         }
         .sheet(isPresented: $isDetailBookingModalPresented) {
             if let id = Auth.auth().currentUser?.uid {
                 viewModel.getBengkelOrders(bengkelId: id)
             }
         } content: {
-            DetailBooking(order: order)
+            if let orderSelected = self.selectedOrder {
+                DetailBooking(order: orderSelected)
+            }
         }
     }
 
@@ -233,28 +239,36 @@ struct BookingTabItemView: View {
                 Spacer()
                 showStatus(status: order.status)
             }
-        }.onAppear {
-            viewModel.getCustomerFromOrders(customerId: order.customerId)
+        }.onTapGesture {
+            isDetailBookingOnProgressPresented.toggle()
+            self.selectedOrder = order
         }
-        .onTapGesture {
-            isDetailBookingModalPresented.toggle()
-        }
-        .sheet(isPresented: $isDetailBookingModalPresented) {
+        .sheet(isPresented: $isDetailBookingOnProgressPresented) {
             guard let id = Auth.auth().currentUser?.uid else { return }
             viewModel.getBengkelOrders(bengkelId: id)
         } content: {
-            DetailBooking(order: order)
+            if let orderSelected = self.selectedOrder {
+                DetailBooking(order: orderSelected)
+            }
         }
     }
 
     @ViewBuilder private func showStatus(status: Order.Status) -> some View {
-        if status == .onProgress {
+        if status == .scheduled {
             Text(status.rawValue)
                 .font(.caption)
                 .fontWeight(.bold)
                 .padding(5)
                 .background(AppColor.salmonOrange)
                 .foregroundColor(AppColor.primaryColor)
+                .cornerRadius(5)
+        } else if status == .onProgress {
+            Text("Dikerjakan")
+                .font(.caption)
+                .fontWeight(.bold)
+                .padding(5)
+                .background(Color.green)
+                .foregroundColor(Color.systemGreen)
                 .cornerRadius(5)
         } else if status == .done {
             Text(status.rawValue)
