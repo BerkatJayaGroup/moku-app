@@ -10,6 +10,7 @@ import Combine
 import SwiftUIX
 
 class FinishBookingViewModel: ObservableObject {
+    @ObservedObject var orderRepository: OrderRepository = .shared
     @Published var spareParts: [String] = []
     @Published var notes = ""
     @Published var billPhotos: [String] = []
@@ -23,6 +24,16 @@ class FinishBookingViewModel: ObservableObject {
 
     var isFormValid: Bool {
         !spareParts.isEmpty && !notes.isEmpty && !notes.isEmpty
+    }
+    
+    func updateOrder(order: Order) {
+        orderRepository.updateStatus(order: order) { _ in
+            CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
+                guard let fcmToken = customer.fcmToken else { return }
+                NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(order.status))
+            }
+            self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId)
+        }
     }
 
 }

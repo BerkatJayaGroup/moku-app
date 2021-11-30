@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SparepartsListView: View {
-    @State var chosenSpareparts: [String] = []
+    @Binding var chosenSpareparts: [String]
     @State private var searchText = ""
-    
+
     let spareparts = [
         "Oli",
         "Kampas Rem",
@@ -21,7 +21,7 @@ struct SparepartsListView: View {
         NavigationView {
             VStack {
                 SearchBarComponent(text: $searchText)
-                List(searchText.isEmpty ? spareparts : spareparts.filter({ $0.contains(searchText) }), id: \.self) { sparepart in
+                List(searchText.isEmpty ? spareparts : spareparts.filter({ $0.lowercased().contains(searchText.lowercased()) }), id: \.self) { sparepart in
                     HStack {
                         Button(sparepart) {
                             if !chosenSpareparts.contains(sparepart) {

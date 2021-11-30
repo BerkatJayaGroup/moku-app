@@ -11,7 +11,7 @@ import PhotosUI
 struct FinishBookingView: View {
 
     @StateObject var viewModel: FinishBookingViewModel
-    @State private var spareParts = ""
+    @State private var spareParts: [String] = []
     @State private var notes = ""
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
@@ -33,82 +33,141 @@ struct FinishBookingView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                textField(title: "Suku Cadang yang diganti", placeholder: "Tekan tambah suku cadang untuk menambah suku cadang yang diganti", text: $spareParts, alert: "Harus diisi", isSparePart: true)
-                textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
-                Section(header: header(title: "Foto Nota")) {
-                    if bills != [] {
-                        ScrollView(.horizontal) {
-                            HStack {
-                                VStack {
-                                    Text("+").font(.system(size: 30))
-                                        .foregroundColor(AppColor.primaryColor)
-                                    Text("Tambah Foto")
-                                        .font(.system(size: 15))
-                                        .foregroundColor(AppColor.primaryColor)
-                                        .padding(.bottom, 20)
-                                }
-                                .frame(width: 100, height: 100)
-                                .background(AppColor.lightGray)
-                                .cornerRadius(10)
-                                .onTapGesture {
-                                    self.shouldPresentActionScheet = true
-                                }
-                                ForEach(bills, id: \.self) { image in
-                                    Image.init(uiImage: image)
-                                        .resizable()
-                                        .frame(width: 100, height: 100, alignment: .center)
-                                        .aspectRatio(contentMode: .fit)
-                                }
-                            }
-                        }
-                    } else {
-                        VStack {
-                            Text("+").font(.system(size: 40))
-                                .foregroundColor(AppColor.primaryColor)
-                            Text("Tambah Foto")
-                                .foregroundColor(AppColor.primaryColor)
-                                .padding(.bottom, 20)
-                        }
-                        .frame(width: 150, height: 100)
-                        .background(AppColor.lightGray)
-                        .cornerRadius(10)
+            VStack(alignment: .leading) {
+                Section(header: header(title: "Suku cadang")) {
+                    Text("+ Tambah Suku Cadang")
+                        .fontWeight(.bold)
+                        .foregroundColor(AppColor.darkOrange)
                         .onTapGesture {
-                            self.shouldPresentActionScheet = true
+                            self.shouldPresentSparepartsSheet.toggle()
                         }
-                    }
+                    VStack {
+                        HStack {
+                            if spareParts.isEmpty {
+                                Text("Tekan tambah suku cadang untuk menambah suku cadang yang diganti")
+                            } else {
+                                Text(spareParts.joined(separator: "\n"))
+                            }
+                            Spacer()
+                        }
+                        
+                        Spacer()
+                    }.padding()
+                        .background(AppColor.lightGray)
+                        .cornerRadius(5)
+                        .frame(minWidth: 0,
+                               maxWidth: .infinity, minHeight: 200)
+                    
+                    
+                    
                 }
                 .textCase(nil)
-                .listRowInsets(EdgeInsets())
-                .sheet(isPresented: $shouldPresentImagePicker) {
-                    if !self.shouldPresentCamera {
-                        ImagePHPicker(configuration: self.config, pickerResult: $bills, isPresented: $shouldPresentImagePicker)
-                    } else {
-                        ImagePicker(sourceType: .camera, pickerResult: $bills)
+                .padding(.top)
+                .padding(.horizontal)
+                Form {
+//                    Section(header: header(title: "Suku cadang")) {
+//                        Text("+ Tambah Suku Cadang")
+//                            .fontWeight(.bold)
+//                            .foregroundColor(AppColor.darkOrange)
+//                            .onTapGesture {
+//                                self.shouldPresentSparepartsSheet.toggle()
+//                            }
+//                        VStack(alignment: .trailing) {
+//                            Text("Tekan tambah suku cadang untuk menambah suku cadang yang diganti")
+//
+//                        }.cornerRadius(5).background(AppColor.lightGray)
+//                    }
+//                    .textCase(nil)
+//                    .listRowInsets(EdgeInsets())
+//                    .padding(.top)
+                    
+                    textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
+                    Section(header: header(title: "Foto Nota")) {
+                        if bills != [] {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    VStack {
+                                        Text("+").font(.system(size: 30))
+                                            .foregroundColor(AppColor.primaryColor)
+                                        Text("Tambah Foto")
+                                            .font(.system(size: 15))
+                                            .foregroundColor(AppColor.primaryColor)
+                                            .padding(.bottom, 20)
+                                    }
+                                    .frame(width: 100, height: 100)
+                                    .background(AppColor.lightGray)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        self.shouldPresentActionScheet = true
+                                    }
+                                    ForEach(bills, id: \.self) { image in
+                                        Image.init(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 100, height: 100, alignment: .center)
+                                            .aspectRatio(contentMode: .fit)
+                                    }
+                                }
+                            }
+                        } else {
+                            VStack {
+                                Text("+").font(.system(size: 40))
+                                    .foregroundColor(AppColor.primaryColor)
+                                Text("Tambah Foto")
+                                    .foregroundColor(AppColor.primaryColor)
+                                    .padding(.bottom, 20)
+                            }
+                            .frame(width: 150, height: 100)
+                            .background(AppColor.lightGray)
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                self.shouldPresentActionScheet = true
+                            }
+                        }
                     }
-                }.actionSheet(isPresented: $shouldPresentActionScheet) {
-                    ActionSheet(
-                        title: Text("Choose mode"),
-                        message: Text("Please choose your preferred mode to set your profile image"),
-                        buttons: [
-                            .default(Text("Camera")) {
-                                self.shouldPresentImagePicker = true
-                                self.shouldPresentCamera = true
-                            },
-                            .default(Text("Photo Library")) {
-                                self.shouldPresentImagePicker = true
-                                self.shouldPresentCamera = false
-                            },
-                            .cancel()
-                        ]
-                    )
+                    .textCase(nil)
+                    .listRowInsets(EdgeInsets())
+                    .sheet(isPresented: $shouldPresentImagePicker) {
+                        if !self.shouldPresentCamera {
+                            ImagePHPicker(configuration: self.config, pickerResult: $bills, isPresented: $shouldPresentImagePicker)
+                        } else {
+                            ImagePicker(sourceType: .camera, pickerResult: $bills)
+                        }
+                    }.actionSheet(isPresented: $shouldPresentActionScheet) {
+                        ActionSheet(
+                            title: Text("Choose mode"),
+                            message: Text("Please choose your preferred mode to set your profile image"),
+                            buttons: [
+                                .default(Text("Camera")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = true
+                                },
+                                .default(Text("Photo Library")) {
+                                    self.shouldPresentImagePicker = true
+                                    self.shouldPresentCamera = false
+                                },
+                                .cancel()
+                            ]
+                        )
+                    }
+                    Button("Selesai") {
+                        var order = viewModel.order
+                        order.spareparts = spareParts
+                        order.status = .done
+                        order.serviceNotes = notes
+                        viewModel.updateOrder(order: order)
+                        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    }
                 }
+                .sheet(isPresented: $shouldPresentSparepartsSheet) {
+                   SparepartsListView(chosenSpareparts: $spareParts)
+                }
+                .navigationTitle("Pesanan Selesai")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading: Button("Kembali") {
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                })
             }
-            .sheet(isPresented: $shouldPresentSparepartsSheet) {
-               SparepartsListView()
-            }
-            .navigationTitle("Pesanan Selesai")
-            .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
 
