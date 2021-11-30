@@ -26,6 +26,13 @@ class StorageService: ObservableObject {
         }
     }
 
+    func delete(url: String, completionHandler: (() -> Void)? = nil) {
+        let mediaRef = Storage.storage().reference(forURL: url)
+        mediaRef.delete { _ in
+            completionHandler?()
+        }
+    }
+
     func upload(image: UIImage, path: String, completion: ((URL?, Error?) -> Void)? = nil) {
         // Convert the image into JPEG and compress the quality to reduce its size
         let data = image.jpegData(compressionQuality: 0.2)
