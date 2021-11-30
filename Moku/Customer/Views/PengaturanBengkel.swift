@@ -145,6 +145,9 @@ struct PengaturanBengkel: View {
                 Spacer()
                 submitButton(proxy: proxy)
             }
+            .onTapGesture {
+                dismissKeyboard()
+            }
         }
         .padding()
         .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
