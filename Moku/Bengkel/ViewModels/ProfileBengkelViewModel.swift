@@ -14,7 +14,6 @@ extension ProfileBengkelView {
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
 
         @Published var bengkel: Bengkel?
-        @Published var brands: String = ""
 
         var bengkelName: String {
             bengkel?.name ?? ""
@@ -32,40 +31,43 @@ extension ProfileBengkelView {
             bengkel?.mekaniks.count ?? 0
         }
 
-        var operationalDays: String {
-            var opDays = ""
+        var rating: String {
+            bengkel?.averageRating ?? ""
+        }
+
+        var brands: String {
+            var brand: String = ""
             if let bengkel = bengkel {
-                for (index, days) in bengkel.operationalDays.enumerated() {
-                    if days == true {
-                        switch index {
-                        case 1:
-                            opDays.append("Senin")
-                        case 2:
-                            opDays.append("Selasa")
-                        case 3:
-                            opDays.append("Rabu")
-                        case 4:
-                            opDays.append("Kamis")
-                        case 5:
-                            opDays.append("Jumat")
-                        case 6:
-                            opDays.append("Sabtu")
-                        case 7:
-                            opDays.append("Minggu")
-                        default:
-                            ""
-                        }
+                for motor in bengkel.brands {
+                    brand.append("\(motor.rawValue), ")
+                }
+            }
+            return brand
+        }
+
+        var operationalDays: String {
+            var opDays = [String]()
+            if let bengkel = bengkel {
+                for (index, daySelected) in bengkel.operationalDays.enumerated() where daySelected {
+                    switch index {
+                    case 0: opDays.append("Senin")
+                    case 1: opDays.append("Selasa")
+                    case 2: opDays.append("Rabu")
+                    case 3: opDays.append("Kamis")
+                    case 4: opDays.append("Jumat")
+                    case 5: opDays.append("Sabtu")
+                    case 6: opDays.append("Minggu")
+                    default: continue
                     }
                 }
             }
-            return opDays
+            return opDays.joined(separator: ", ")
         }
 
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkel(bengkelId: id)
             }
-            convertBrandsToString()
         }
 
         func getBengkel(bengkelId: String) {
@@ -73,14 +75,5 @@ extension ProfileBengkelView {
                 self.bengkel = bengkel2
             }
         }
-
-        func convertBrandsToString() {
-            if let bengkel = bengkel {
-                for motor in bengkel.brands {
-                    self.brands.append(motor.rawValue)
-                }
-            }
-        }
-
     }
 }

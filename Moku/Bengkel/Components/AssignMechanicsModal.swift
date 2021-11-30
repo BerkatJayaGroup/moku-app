@@ -42,7 +42,7 @@ struct AssignMechanics: View {
             Button {
                 self.isActive = false
                 viewModel.addMekanik()
-                viewModel.updateStatusOrder(status: Order.Status.onProgress)
+                viewModel.updateStatusOrder(status: Order.Status.scheduled)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             } label: {
                 Text("Selesai")
