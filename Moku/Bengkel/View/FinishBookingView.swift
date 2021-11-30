@@ -24,13 +24,6 @@ struct FinishBookingView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    var config: PHPickerConfiguration {
-        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-        config.filter = .images // videos, livePhotos...
-        config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
-        return config
-    }
-
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -110,7 +103,7 @@ struct FinishBookingView: View {
                     .listRowInsets(EdgeInsets())
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
-                            ImagePHPicker(configuration: self.config, pickerResult: $bills, isPresented: $shouldPresentImagePicker)
+                            ImagePHPicker(pickerResult: $bills, isPresented: $shouldPresentImagePicker)
                         } else {
                             ImagePicker(sourceType: .camera, pickerResult: $bills)
                         }

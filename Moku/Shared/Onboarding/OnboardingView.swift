@@ -51,7 +51,7 @@ struct OnboardingView: View {
                 .padding(.horizontal)
         } else {
             Button("Selanjutnya", action: { self.curSlideIndex += 1 })
-                .font(.system(size: 17), weight: .semibold) 
+                .font(.system(size: 17), weight: .semibold)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color("PrimaryColor"))

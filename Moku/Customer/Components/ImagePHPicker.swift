@@ -15,7 +15,7 @@ struct ImagePHPicker: UIViewControllerRepresentable {
         config.selectionLimit = 0
         return config
     }()
-    
+
     @Binding var pickerResult: [UIImage]
     @Binding var isPresented: Bool
 

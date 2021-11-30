@@ -23,7 +23,7 @@ struct DetailBooking: View {
         navBarAppearance.backgroundColor = UIColor.white
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
-    
+
     var body: some View {
         VStack {
             ScrollView {

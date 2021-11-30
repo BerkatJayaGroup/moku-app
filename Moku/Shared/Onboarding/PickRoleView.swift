@@ -52,9 +52,9 @@ struct PickRoleView: View {
                     .border(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
                     Spacer()
                     NavigationLink(destination: getDestination(), isActive: $isActive) {
-                        Button{
+                        Button {
                             checkIsActive()
-                        } label:{
+                        } label: {
                             Text("Lanjutkan").bold()
                         }
                             .padding()
@@ -68,8 +68,8 @@ struct PickRoleView: View {
             }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
         }
     }
-    
-    func checkIsActive(){
+
+    func checkIsActive() {
         isActive = bengkelSelected || motorSelected
     }
 

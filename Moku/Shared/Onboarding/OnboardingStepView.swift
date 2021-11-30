@@ -14,7 +14,7 @@ struct OnboardingStepView: View {
     var body: some View {
         VStack {
             Text(data.image).font(.title)
-            Text(data.heading).font(.title3,weight: .semibold)
+            Text(data.heading).font(.title3, weight: .semibold)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color("PrimaryColor"))
                 .padding(.top, 300)

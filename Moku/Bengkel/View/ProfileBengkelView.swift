@@ -17,7 +17,12 @@ struct ProfileBengkelView: View {
                     Image("MotorGray")
                         .frame(width: 100, height: 100, alignment: .center)
                         .clipShape(Circle())
-                    Text(viewModel.bengkelName)
+                    if let bengkel = viewModel.bengkel {
+                        NavigationLink(destination: BengkelProfileView(bengkel: bengkel)) {
+                            Text(bengkel.name)
+                        }
+                    }
+
                     NavigationLink(destination: AllReviewView(bengkel: viewModel.bengkel ?? .preview), label: {
                         HStack {
                             Image(systemName: "star")

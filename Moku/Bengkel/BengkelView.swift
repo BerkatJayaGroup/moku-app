@@ -80,15 +80,11 @@ struct BengkelView: View {
                         Image(systemName: "star")
                         Text("Pesanan")
                     }
-                NavigationView {
-                    NavigationLink(destination: BengkelProfileView(bengkel: bengkel)) {
-                        Text("Bengkel Profile")
+                ProfileBengkelView()
+                    .tabItem {
+                        Image(systemName: "wrench.and.screwdriver.fill")
+                        Text("Bengkel")
                     }
-                }
-                .tabItem {
-                    Image(systemName: "wrench.and.screwdriver.fill")
-                    Text("Bengkel")
-                }
             }
         } else {
             ProgressView().progressViewStyle(CircularProgressViewStyle())
