@@ -54,6 +54,8 @@ struct BengkelTabItemView: View {
 }
 
 struct BengkelView: View {
+    @State var tabSelection: Tabs = .tab1
+
     var body: some View {
         TabView {
             BookingTabItemView()
@@ -66,11 +68,9 @@ struct BengkelView: View {
                     Image(systemName: "newspaper.fill")
                     Text("Pesanan")
                 }
-            Button("Sign out") {
-                do { try Auth.auth().signOut() } catch { print("already logged out") }
-            }
+            ProfileBengkelView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "wrench.and.screwdriver.fill")
                     Text("Bengkel")
                 }
         }

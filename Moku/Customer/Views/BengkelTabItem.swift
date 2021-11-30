@@ -45,7 +45,9 @@ struct BengkelTabItem: View {
                 .background(Color.black.opacity(0.2))
                 .cornerRadius(20)
                 .padding(.horizontal, 20)
+
                 motorSelection()
+
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color(.systemGray3))
@@ -57,6 +59,7 @@ struct BengkelTabItem: View {
                 .cornerRadius(7)
                 .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
                 .padding(.horizontal, 20)
+
                 ScrollView {
                     if case .customer(let user) = session.user {
                         if !user.favoriteBengkel.isEmpty {
@@ -66,10 +69,8 @@ struct BengkelTabItem: View {
                     ratingView()
                     listOfNearbyBengkel()
                 }
-            }
-            .padding(.top, 80)
-        }
-        .edgesIgnoringSafeArea(.top)
+            }.padding(.top, 80)
+        }.edgesIgnoringSafeArea(.top)
     }
 
     @ViewBuilder
