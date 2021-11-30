@@ -23,7 +23,7 @@ struct DetailBooking: View {
         navBarAppearance.backgroundColor = UIColor.white
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
-
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -159,9 +159,7 @@ struct DetailBooking: View {
             case .onProgress:
                 Button(action: {
                     print("Pesanan Selesai")
-//                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                     isShowFinishBookingSheet.toggle()
-                    //                    viewModel.updateStatusOrder()
                 }, label: {
                     Text("Pesanan Selesai")
                         .frame(width: 310, height: 44)

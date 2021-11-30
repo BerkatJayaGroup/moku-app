@@ -39,7 +39,6 @@ extension PesananTabBengkelView {
                 }
                 .padding()
             }
-
         }
 
         func getBengkelOrders(bengkelId: String) {
@@ -53,6 +52,5 @@ extension PesananTabBengkelView {
                 self.customer = customer
             }
         }
-
     }
 }
