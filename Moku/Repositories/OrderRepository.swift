@@ -80,7 +80,6 @@ final class OrderRepository: ObservableObject {
             completionHandler?(bengkelOrders)
         }
     }
-
     func fetch(bengkelId: String, completionHandler: (([Order]) -> Void)? = nil) {
         store.whereField("bengkelId", isEqualTo: bengkelId).getDocuments { snapshot, error in
             if let error = error {
