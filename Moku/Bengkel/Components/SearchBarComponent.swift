@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SearchBarComponent: View {
     @Binding var text: String
- 
+
     @State private var isEditing = false
- 
+
     var body: some View {
         HStack {
             TextField("Search ...", text: $text)
@@ -23,7 +23,7 @@ struct SearchBarComponent: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
- 
+
             if isEditing {
                 Button(action: {
                     self.isEditing = false
@@ -44,7 +44,7 @@ struct SearchBarComponent: View {
                     .foregroundColor(.gray)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 15)
-         
+
                 if isEditing {
                     Button(action: {
                         self.text = ""

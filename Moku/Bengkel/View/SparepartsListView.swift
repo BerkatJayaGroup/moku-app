@@ -16,7 +16,7 @@ struct SparepartsListView: View {
         "Kampas Rem",
         "Busi"
     ]
-    
+
     var body: some View {
         NavigationView {
             VStack {

@@ -15,9 +15,9 @@ class FinishBookingViewModel: ObservableObject {
     @Published var notes = ""
     @Published var billPhotos: [String] = []
     @Published var isSubmitting = false
-    
+
     @Published var order: Order
-    
+
     init(order: Order) {
         self.order = order
     }
@@ -25,7 +25,7 @@ class FinishBookingViewModel: ObservableObject {
     var isFormValid: Bool {
         !spareParts.isEmpty && !notes.isEmpty && !notes.isEmpty
     }
-    
+
     func updateOrder(order: Order) {
         orderRepository.updateStatus(order: order) { _ in
             CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in

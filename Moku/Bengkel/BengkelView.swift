@@ -67,8 +67,7 @@ struct BengkelView: View {
                     Text("Pesanan")
                 }
             Button("Sign out") {
-                do { try Auth.auth().signOut() }
-                    catch { print("already logged out") }
+                do { try Auth.auth().signOut() } catch { print("already logged out") }
             }
                 .tabItem {
                     Image(systemName: "star")

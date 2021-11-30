@@ -50,16 +50,14 @@ struct FinishBookingView: View {
                             }
                             Spacer()
                         }
-                        
+
                         Spacer()
                     }.padding()
                         .background(AppColor.lightGray)
                         .cornerRadius(5)
                         .frame(minWidth: 0,
                                maxWidth: .infinity, minHeight: 200)
-                    
-                    
-                    
+
                 }
                 .textCase(nil)
                 .padding(.top)
@@ -80,7 +78,7 @@ struct FinishBookingView: View {
 //                    .textCase(nil)
 //                    .listRowInsets(EdgeInsets())
 //                    .padding(.top)
-                    
+
                     textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
                     Section(header: header(title: "Foto Nota")) {
                         if bills != [] {
@@ -167,7 +165,7 @@ struct FinishBookingView: View {
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 })
             }
-            
+
         }
     }
 
