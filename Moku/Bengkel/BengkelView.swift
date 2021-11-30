@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 import Combine
 import SDWebImageSwiftUI
+import FirebaseAuth
 
 class BengkelTabItemViewModel: ObservableObject {
     @ObservedObject private var session = SessionService.shared
@@ -62,9 +63,9 @@ struct BengkelView: View {
                     Image(systemName: "star")
                     Text("Booking")
                 }
-            BengkelTabItem(tab: $tabSelection)
+            PesananTabBengkelView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "newspaper.fill")
                     Text("Pesanan")
                 }
             ProfileBengkelView()
