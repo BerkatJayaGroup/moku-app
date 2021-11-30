@@ -16,6 +16,7 @@ struct Customer: Codable {
     var fcmToken: String?
 //    TODO: Nunggu Bengkel Side ngetrigger Order
 //    OrdersToRate bakal keisi kalo di triger bengkel
+    var favoriteBengkel = [Bengkel]()
     var ordersToRate: [String]?
 }
 

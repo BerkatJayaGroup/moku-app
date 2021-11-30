@@ -12,16 +12,17 @@ import Introspect
 
 struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var bengkelName: String = ""
+    @State var tabSelection: Tabs = .tab1
 
     @State var showInfoModalView: Bool = false
+    @Binding var isBackToRoot: Bool
+    @Binding var tab: Tabs
 
-    @Binding var isRootActive: Bool
-    @Binding var isHideTabBar: Bool
-
-    init(orderId: DocumentReference?, bengkelName: String, isRootActive: Binding<Bool>, isHideTabBar: Binding<Bool>) {
-        _isRootActive = isRootActive
-        _isHideTabBar = isHideTabBar
+    init(orderId: DocumentReference?, bengkelName: String, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
+        self._tab = tab
+        self._isBackToRoot = isBackToRoot
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }
@@ -47,28 +48,33 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke Halaman Booking", action: {
-                        self.isRootActive = false
-                        self.isHideTabBar = false
-                    })
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
-                    Button("Batalkan Booking") {
+                    Button {
+                        NavigateToRootView.popToRootView()
+                    } label: {
+                        Text("Pindah ke Halaman Booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
+                    }
+                    Button {
                         showInfoModalView = true
+                    } label: {
+                         Text("Batalkan Booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(AppColor.primaryColor)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(AppColor.salmonOrange)
+                            .cornerRadius(8)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("SalmonOrange"))
-                    .foregroundColor(Color("PrimaryColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    .padding(.horizontal)
-                    .sheet(isPresented: $showInfoModalView) {
+                    .sheet(isPresented: $showInfoModalView, onDismiss: {
+                        NavigateToRootView.popToRootView()
+                    }, content: {
                         CancelBookingModal(order: order, activeFrom: true)
-                    }
+                    })
 
                 case .rejected:
                     Image("rejectIcon")
@@ -83,16 +89,17 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pilih Bengkel Lain") {
-                        self.isRootActive = false
-                        self.isHideTabBar = false
+                    Button {
+                        NavigateToRootView.popToRootView()
+                    } label: {
+                        Text("Pilih Bengkel Lain")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
                     }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("PrimaryColor"))
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
 
                 case .onProgress:
                     Image("acceptIcon")
@@ -107,24 +114,23 @@ struct BookingConfirmationView: View {
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 80)
-                    Button("Pindah ke halaman booking") {
-                        self.isRootActive = false
-                        self.isHideTabBar = false
+                    Button {
+                        NavigateToRootView.popToRootView()
+                    } label: {
+                        Text("Pindah ke halaman booking")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width * 0.85)
+                            .background(Color("PrimaryColor"))
+                            .cornerRadius(8)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("PrimaryColor"))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    .padding(.horizontal)
-
                 default:
                     Text("Tidak ada booking")
                 }
             }
-        }.navigationBarHidden(true)
-        .introspectTabBarController { (UITabBarController) in
-            UITabBarController.tabBar.isHidden = true
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }

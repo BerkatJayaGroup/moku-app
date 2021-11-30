@@ -75,10 +75,10 @@ struct MokuApp: App {
     private func contentView() -> some View {
         if let user = session.user {
             switch user {
-            case .bengkel(_):
+            case .bengkel:
                 BengkelView()
-            case let .customer(customer):
-                CustomerView(for: customer)
+            case .customer:
+                CustomerView()
             }
         } else {
             if appState.hasOnboarded {
@@ -91,6 +91,8 @@ struct MokuApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    var window: UIWindow?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
 

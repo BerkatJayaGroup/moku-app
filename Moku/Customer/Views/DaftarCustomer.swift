@@ -145,6 +145,7 @@ struct DaftarCustomer: View {
                 if viewModel.isFormInvalid {
                     viewModel.nameCheck = false
                     viewModel.nomorCheck = false
+                    viewModel.motorCheck = false
                     viewModel.isEmailValid = false
                 } else {
                     NotificationService.shared.getToken { token in

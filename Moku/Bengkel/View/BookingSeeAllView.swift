@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
+
+    @State private var isDetailBookingModalPresented = false
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -24,8 +27,8 @@ struct BookingSeeAllView: View {
                     let newOrder = order.filter { order in
                         return order.status == .waitingConfirmation
                     }
-                    ForEach(0..<newOrder.count) { index in
-                        orderCards(order: newOrder[index]).padding(10)
+                    ForEach(newOrder, id: \.id) { order in
+                        orderCards(order: order).padding(10)
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
@@ -64,7 +67,7 @@ struct BookingSeeAllView: View {
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
                 Button("Terima") {
-
+                    isDetailBookingModalPresented.toggle()
                 }.padding()
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
@@ -72,6 +75,14 @@ struct BookingSeeAllView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 5.0))
                     .font(.caption)
             }
+        }.onTapGesture {
+            isDetailBookingModalPresented.toggle()
+        }
+        .sheet(isPresented: $isDetailBookingModalPresented) {
+            guard let id = Auth.auth().currentUser?.uid else { return }
+            viewModel.getBengkelOrders(bengkelId: id)
+        } content: {
+            DetailBooking(order: order)
         }
     }
 }

@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ReviewCell: View {
     @StateObject var viewModel: ViewModel
-    
-    init(order: Order){
+
+    init(order: Order) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            if let order = viewModel.order{
+            if let order = viewModel.order {
                 if let customer = viewModel.customer {
                     Text(customer.name)
                         .font(.system(size: 15))
@@ -43,13 +43,13 @@ struct ReviewCell: View {
             }
         }
         .padding()
-        .border(Color(hex: "979797") , width: 1, cornerRadius: 6)
+        .border(Color(hex: "979797"), width: 1, cornerRadius: 6)
         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
     }
-    
+
     @ViewBuilder
-    func getColors(status: Order.Status) -> some View{
-        switch status{
+    func getColors(status: Order.Status) -> some View {
+        switch status {
         case .scheduled:
             return Color(hex: "F8D8BF")
         case .rejected:
@@ -60,9 +60,9 @@ struct ReviewCell: View {
             return Color(hex: "F8D8BF")
         }
     }
-    
-    func getFontColors(status: Order.Status) -> some View{
-        switch status{
+
+    func getFontColors(status: Order.Status) -> some View {
+        switch status {
         case .scheduled:
             return AppColor.primaryColor
         case .rejected:

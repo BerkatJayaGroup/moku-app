@@ -13,11 +13,11 @@ extension PesananTabBengkelView {
     class ViewModel: ObservableObject {
         @ObservedObject var orderRepository: OrderRepository = .shared
         @ObservedObject var customerRepository: CustomerRepository = .shared
-        
+
         @Published var bengkelOrders: [Order]?
         @Published var customer: Customer?
         @Published var isHistoryShow: Bool = false
-        
+
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkelOrders(bengkelId: id)
@@ -39,7 +39,6 @@ extension PesananTabBengkelView {
                 }
                 .padding()
             }
-            
         }
 
         func getBengkelOrders(bengkelId: String) {
@@ -47,12 +46,11 @@ extension PesananTabBengkelView {
                 self.bengkelOrders = order
             }
         }
-        
+
         func getCustomerFromOrders(customerId: String) {
             customerRepository.fetch(id: customerId) { customer in
                 self.customer = customer
             }
         }
-        
     }
 }
