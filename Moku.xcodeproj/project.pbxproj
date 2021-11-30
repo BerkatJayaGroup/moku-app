@@ -382,8 +382,6 @@
 				8E3775D927506E86009D3FC5 /* ManageMechanicsViewModel.swift */,
 				8EB5BF75275382B400138B3F /* ProfileBengkelViewModel.swift */,
 				8E27EE0B27548BE7001F184F /* EditMechanicViewModel.swift */,
-				8E7A493C274BFBA700A008F3 /* PesananTabBengkelViewModel.swift */,
-				8E06F90D274CBB2700CFA204 /* ReviewCellViewModel.swift */,
 				B85BDB632750DA680029162A /* FinishBookingViewModel.swift */,
 			);
 			path = ViewModels;
@@ -698,9 +696,6 @@
 				8ED736372743992A0043B882 /* DetailBookingView.swift */,
 				B83315CE2747602C0052D2DD /* BookingSeeAllView.swift */,
 				B83315CF2747602C0052D2DD /* BookingTabItemView.swift */,
-				8E7A493A274BC92400A008F3 /* PesananTabBengkelView.swift */,
-				8E4029A0274F412F00BE501A /* HistoryOrderView.swift */,
-				8E8F2E4F2754BDF40014B8D4 /* AllReviewView.swift */,
 				8E3775DB27508D6D009D3FC5 /* ProfileBengkelView.swift */,
 				8E3775DD2750C0D3009D3FC5 /* DummyView.swift */,
 				8EDC3AE8274CE55C0087F806 /* EditMechanic.swift */,
@@ -710,6 +705,7 @@
 				8E7A493A274BC92400A008F3 /* PesananTabBengkelView.swift */,
 				8E4029A0274F412F00BE501A /* HistoryOrderView.swift */,
 				B80D0C5827552F6000D855D0 /* SparepartsListView.swift */,
+				8E8F2E4F2754BDF40014B8D4 /* AllReviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
