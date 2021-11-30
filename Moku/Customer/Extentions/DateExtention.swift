@@ -74,7 +74,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
         guard let date = dateFormatter.date(from: dateString) else { return ""}
-        dateFormatter.dateFormat = "dd/MM/yyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         return  dateFormatter.string(from: date)
     }
 

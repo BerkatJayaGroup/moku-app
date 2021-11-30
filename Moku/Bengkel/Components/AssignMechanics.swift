@@ -10,11 +10,10 @@ import SDWebImageSwiftUI
 import PartialSheet
 
 struct AssignMechanics: View {
-    @StateObject private var viewModel: AssignMechanicsViewModel
+    @StateObject private var viewModel: ViewModel
     @Binding var isActive: Bool
-
     init(order: Order, isRootActive: Binding<Bool>) {
-        let viewModel = AssignMechanicsViewModel(order: order)
+        let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
         _isActive = isRootActive
     }
@@ -39,18 +38,17 @@ struct AssignMechanics: View {
                 .padding(.horizontal, 8)
             }
             Spacer()
-            Button {
+            Button(action: {
                 self.isActive = false
                 viewModel.addMekanik()
-                viewModel.updateStatusOrder(status: Order.Status.scheduled)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-            } label: {
+                viewModel.updateStatusOrder()
+            }, label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)
                     .background(AppColor.primaryColor)
                     .cornerRadius(8)
                     .foregroundColor(.white)
-            }
+            })
         }
         .padding()
         .frame(height: 240)

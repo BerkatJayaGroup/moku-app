@@ -20,6 +20,8 @@ struct Order: Codable {
     var mekanik: Mekanik?
     var nota: String?
     var mechanicName: String?
+    var spareparts: [String]?
+    var serviceNotes: String?
     let schedule: Date
     var createdAt = Date()
     var cancelingReason: CancelingReason?
@@ -42,7 +44,9 @@ extension Order {
 
     enum Status: String, Codable {
         case waitingConfirmation = "Menunggu konfirmasi"
+//        TODO: waitingSchedule hapus
         case waitingSchedule = "Menunggu penjadwalan"
+        case scheduled = "Terjadwal"
         case onProgress = "Dalam progres"
         case rejected = "Ditolak"
         case done = "Selesai"
