@@ -63,22 +63,6 @@ struct FinishBookingView: View {
                 .padding(.top)
                 .padding(.horizontal)
                 Form {
-//                    Section(header: header(title: "Suku cadang")) {
-//                        Text("+ Tambah Suku Cadang")
-//                            .fontWeight(.bold)
-//                            .foregroundColor(AppColor.darkOrange)
-//                            .onTapGesture {
-//                                self.shouldPresentSparepartsSheet.toggle()
-//                            }
-//                        VStack(alignment: .trailing) {
-//                            Text("Tekan tambah suku cadang untuk menambah suku cadang yang diganti")
-//
-//                        }.cornerRadius(5).background(AppColor.lightGray)
-//                    }
-//                    .textCase(nil)
-//                    .listRowInsets(EdgeInsets())
-//                    .padding(.top)
-
                     textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
                     Section(header: header(title: "Foto Nota")) {
                         if bills != [] {
