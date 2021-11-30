@@ -66,7 +66,7 @@ struct BengkelView: View {
                     Text("Pesanan")
                 }
             ProfileBengkelView()
-                .tabItem{
+                .tabItem {
                     Image(systemName: "wrench.and.screwdriver.fill")
                     Text("Bengkel")
                 }

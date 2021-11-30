@@ -9,17 +9,17 @@ import Foundation
 import FirebaseAuth
 import SwiftUI
 
-extension ProfileBengkelView{
+extension ProfileBengkelView {
     class ViewModel: ObservableObject {
         @ObservedObject var bengkelRepository: BengkelRepository = .shared
-        
+
         @Published var bengkel: Bengkel?
         @Published var brands: String = ""
-        
+
         var bengkelName: String {
             bengkel?.name ?? ""
         }
-        
+
         var operationalHours: String {
             var opHours = ""
             if let bengkel = bengkel {
@@ -27,17 +27,17 @@ extension ProfileBengkelView{
             }
             return opHours
         }
-        
+
         var mechanicsCount: Int {
             bengkel?.mekaniks.count ?? 0
         }
-        
+
         var operationalDays: String {
             var opDays = ""
             if let bengkel = bengkel {
-                for (index, days) in bengkel.operationalDays.enumerated(){
-                    if days == true{
-                        switch index{
+                for (index, days) in bengkel.operationalDays.enumerated() {
+                    if days == true {
+                        switch index {
                         case 1:
                             opDays.append("Senin")
                         case 2:
@@ -60,20 +60,20 @@ extension ProfileBengkelView{
             }
             return opDays
         }
-        
+
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkel(bengkelId: id)
             }
             convertBrandsToString()
         }
-        
+
         func getBengkel(bengkelId: String) {
             bengkelRepository.fetch(id: bengkelId) { bengkel2 in
                 self.bengkel = bengkel2
             }
         }
-        
+
         func convertBrandsToString() {
             if let bengkel = bengkel {
                 for motor in bengkel.brands {
@@ -81,6 +81,6 @@ extension ProfileBengkelView{
                 }
             }
         }
-        
+
     }
 }

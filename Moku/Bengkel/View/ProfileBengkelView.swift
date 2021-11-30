@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
-    
+
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         UITableView.appearance().backgroundColor = .clear

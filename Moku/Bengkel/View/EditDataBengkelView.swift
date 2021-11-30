@@ -14,16 +14,15 @@ struct EditDataBengkelView: View {
     @State var closeTime = Date()
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @StateObject var viewModel: ViewModel
-    
-    
+
     init(bengkel: Bengkel) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
         GeometryReader { proxy in
-            VStack{
-                ScrollView() {
+            VStack {
+                ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("BRAND MOTOR YANG BISA DIPERBAIKI")
                             .font(Font.system(size: 11, weight: .regular))

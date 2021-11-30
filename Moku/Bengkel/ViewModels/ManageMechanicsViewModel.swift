@@ -14,13 +14,13 @@ class ManageMechanicsViewModel: ObservableObject {
     @Published var bengkel: Bengkel
     @Published var mechanics: [Mekanik]?
     @Published var bengkelId: String?
-    
-    init(bengkel: Bengkel){
+
+    init(bengkel: Bengkel) {
         self.bengkel = bengkel
         fetchMechanics()
     }
-    
-    func fetchMechanics(){
+
+    func fetchMechanics() {
         if let id = Auth.auth().currentUser?.uid {
             bengkelRepository.fetch(id: id) { bengkel in
                 self.bengkel = bengkel
