@@ -139,11 +139,14 @@ struct PengaturanBengkel: View {
                         .frame(width: proxy.size.width, alignment: .leading)
                 }
                 .sheet(isPresented: $isAddMekanik) {
-                    AddMekanik(showSheetView: self.$isAddMekanik, mechanics: $mechanics)
+                    AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
                 }
                 mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 Spacer()
                 submitButton(proxy: proxy)
+            }
+            .onTapGesture {
+                dismissKeyboard()
             }
         }
         .padding()
@@ -158,7 +161,10 @@ struct PengaturanBengkel: View {
 
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
-        NavigationLink(destination: PengaturanHargaBengkelView(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self), isActive: $canSubmit) {EmptyView()}
+        NavigationLink(
+            destination: PengaturanHargaBengkelView(bengkelOwnerFormViewModel: bengkelOwnerForm.viewModel, pengaturanBengkelForm: self),
+            isActive: $canSubmit
+        ) { EmptyView() }
 
         Button {
             validateForm()

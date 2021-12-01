@@ -64,9 +64,11 @@ final class BengkelRepository: ObservableObject {
         store.document(bengkel.id).delete()
     }
 
-    func update(bengkel: Bengkel) {
+    func update(bengkel: Bengkel, completionHandler: (() -> Void)? = nil) {
         do {
-            try store.document(bengkel.id).setData(from: bengkel, merge: true)
+            try store.document(bengkel.id).setData(from: bengkel, merge: true) { _ in
+                completionHandler?()
+            }
         } catch {
             RepositoryHelper.handleParsingError(error)
         }
@@ -82,6 +84,19 @@ final class BengkelRepository: ObservableObject {
         store.document(bengkelId).updateData(
             ["mekaniks": FieldValue.arrayUnion([mechanic])],
             completion: completion
+        )
+    }
+
+    func removeMechanic(mechanic: Mekanik, to bengkelId: String, completion: ((Error?) -> Void)? = nil) {
+        var mechanicDict: [String: Any] = [
+            "id": mechanic.id,
+            "name": mechanic.name
+        ]
+        if let photo = mechanic.photo {
+            mechanicDict["photo"] = photo
+        }
+        store.document(bengkelId).updateData(
+            ["mekaniks": FieldValue.arrayRemove([mechanicDict])]
         )
     }
 

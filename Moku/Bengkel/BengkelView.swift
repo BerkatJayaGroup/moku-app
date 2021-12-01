@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 import Combine
 import SDWebImageSwiftUI
+import FirebaseAuth
 
 class BengkelTabItemViewModel: ObservableObject {
     @ObservedObject private var session = SessionService.shared
@@ -53,23 +54,40 @@ struct BengkelTabItemView: View {
 }
 
 struct BengkelView: View {
+
+    @State var bengkel: Bengkel?
+
     var body: some View {
-        TabView {
-            BookingTabItemView()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Booking")
+        contentView()
+            .onAppear {
+                if case .bengkel(let bengkel) = SessionService.shared.user {
+                    self.bengkel = bengkel
                 }
-            BengkelTabItemView()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Pesanan")
-                }
-            Text("Bengkel")
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Bengkel")
-                }
+            }
+    }
+
+    @ViewBuilder
+    private func contentView() -> some View {
+        if let bengkel = bengkel {
+            TabView {
+                BookingTabItemView()
+                    .tabItem {
+                        Image(systemName: "star")
+                        Text("Booking")
+                    }
+                PesananTabBengkelView()
+                    .tabItem {
+                        Image(systemName: "star")
+                        Text("Pesanan")
+                    }
+                ProfileBengkelView()
+                    .tabItem {
+                        Image(systemName: "wrench.and.screwdriver.fill")
+                        Text("Bengkel")
+                    }
+            }
+        } else {
+            ProgressView().progressViewStyle(CircularProgressViewStyle())
         }
     }
 }

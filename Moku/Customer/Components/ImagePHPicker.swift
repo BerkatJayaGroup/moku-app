@@ -9,9 +9,16 @@ import SwiftUI
 import PhotosUI
 
 struct ImagePHPicker: UIViewControllerRepresentable {
-    let configuration: PHPickerConfiguration
+    let configuration: PHPickerConfiguration = {
+        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        config.filter = .images
+        config.selectionLimit = 0
+        return config
+    }()
+
     @Binding var pickerResult: [UIImage]
     @Binding var isPresented: Bool
+
     func makeUIViewController(context: Context) -> PHPickerViewController {
         let controller = PHPickerViewController(configuration: configuration)
         controller.delegate = context.coordinator
@@ -35,7 +42,9 @@ struct ImagePHPicker: UIViewControllerRepresentable {
                             print(error.localizedDescription)
                         } else {
                             if let newImage = newImage as? UIImage {
-                                self.parent.pickerResult.append(newImage)
+                                DispatchQueue.main.async {
+                                    self.parent.pickerResult.append(newImage)
+                                }
                             }
                         }
                     }

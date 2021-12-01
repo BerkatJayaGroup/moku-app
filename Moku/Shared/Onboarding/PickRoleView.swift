@@ -12,6 +12,7 @@ struct PickRoleView: View {
     //    @State var isNavigateToBengkelOnboarding = false
     @State var motorSelected: Bool = false
     @State var bengkelSelected: Bool = false
+    @State var isActive: Bool = false
 
     var body: some View {
         NavigationView {
@@ -50,11 +51,15 @@ struct PickRoleView: View {
                     .padding(50)
                     .border(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
                     Spacer()
-                    NavigationLink(destination: getDestination()) {
-                        Text("Lanjutkan")
+                    NavigationLink(destination: getDestination(), isActive: $isActive) {
+                        Button {
+                            checkIsActive()
+                        } label: {
+                            Text("Lanjutkan").bold()
+                        }
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background((bengkelSelected || motorSelected) ? AppColor.primaryColor : AppColor.darkGray)
+                            .background(AppColor.primaryColor)
                             .foregroundColor(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 5.0))
                             .padding(.horizontal)
@@ -62,6 +67,10 @@ struct PickRoleView: View {
                 }
             }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
         }
+    }
+
+    func checkIsActive() {
+        isActive = bengkelSelected || motorSelected
     }
 
     @ViewBuilder

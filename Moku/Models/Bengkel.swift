@@ -84,6 +84,12 @@ extension Bengkel {
             longitude: 106.65203368260228, latitude: -6.305695785964465),
         operationalHours: Bengkel.OperationalHours(open: 7, close: 14),
         operationalDays: [false, true, true, true, false, false, false],
+        photos: [
+            "https://firebasestorage.googleapis.com:443/v0/b/moku-9c45f.appspot.com/o/images%2FpbTlMRVXTBYoRe3DaolDP0cfYQh2%2Fphotos%2FB0BF9A8D-B5F7-49D5-B46A-D2AFB9BCC761.jpg?alt=media&token=919c9b4b-aa46-4f07-80b0-3ab01c8efa16",
+            "https://firebasestorage.googleapis.com:443/v0/b/moku-9c45f.appspot.com/o/images%2FpbTlMRVXTBYoRe3DaolDP0cfYQh2%2Fphotos%2F3162626A-CF7F-4676-B51E-FDCC73897B03.jpg?alt=media&token=8173ca44-3e12-4990-aef4-e3f5bf204e2e",
+            "https://firebasestorage.googleapis.com:443/v0/b/moku-9c45f.appspot.com/o/images%2Ful69NWc2qyTuutFHIwGOex37rir2%2Fphotos%2F4D13E6DE-E1FD-43E7-9CAA-967438201C5F.jpg?alt=media&token=3a8db4b7-ef74-4114-a425-9bfd87adc4ca",
+            "https://firebasestorage.googleapis.com:443/v0/b/moku-9c45f.appspot.com/o/images%2Ful69NWc2qyTuutFHIwGOex37rir2%2Fmechanics%2F34AA3F56-BCFE-4878-B0D3-D02F7117D47C.jpg?alt=media&token=41098f7a-63b5-4316-a3a1-615714a3c718"
+        ],
         brands: [.honda, .yamaha, .kawasaki],
         minPrice: "20000",
         maxPrice: "100000",

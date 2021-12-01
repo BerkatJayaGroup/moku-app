@@ -7,16 +7,10 @@
 
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct BengkelOwnerOnboardingView: View {
     @StateObject var viewModel = ViewModel()
-
-    var config: PHPickerConfiguration {
-        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-        config.filter = .images // videos, livePhotos...
-        config.selectionLimit = 0 // 0 => any, set 1-2-3 for har limit
-        return config
-    }
 
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
@@ -83,7 +77,7 @@ struct BengkelOwnerOnboardingView: View {
                     }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
-                            ImagePHPicker(configuration: self.config, pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
+                            ImagePHPicker(pickerResult: $viewModel.images, isPresented: $shouldPresentImagePicker)
                         } else {
                             ImagePicker(sourceType: .camera, pickerResult: $viewModel.images)
                         }
@@ -114,9 +108,18 @@ struct BengkelOwnerOnboardingView: View {
             .sheet(isPresented: $viewModel.isSelectingLocation) {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
             }
+            .onTapGesture {
+                dismissKeyboard()
+            }
             .navigationBarTitle("Profil Bengkel", displayMode: .inline)
         }
         .padding()
+    }
+}
+
+extension View {
+    func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
@@ -141,7 +144,7 @@ extension BengkelOwnerOnboardingView {
         } label: {
             HStack {
                 Spacer()
-                Text("Lanjutkan")
+                Text("Lanjutkan").bold()
                 Spacer()
             }
             .padding()
@@ -211,5 +214,11 @@ extension BengkelOwnerOnboardingView {
         if text.wrappedValue.isEmpty, viewModel.isSubmitting {
             Text(alert).alertStyle()
         }
+    }
+}
+
+struct Test_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelOwnerOnboardingView()
     }
 }
