@@ -974,7 +974,6 @@
 				6F0E4E27272FDD2F000B6EC8 /* StorageService.swift in Sources */,
 				8E4029A1274F412F00BE501A /* HistoryOrderView.swift in Sources */,
 				8EDC3AE9274CE55C0087F806 /* EditMechanic.swift in Sources */,
-				8E4029A1274F412F00BE501A /* HistoryOrderView.swift in Sources */,
 				B85BDB642750DA680029162A /* FinishBookingViewModel.swift in Sources */,
 				AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */,
 				AE37C6A4273A79B700B5B320 /* BookingDetail.swift in Sources */,
