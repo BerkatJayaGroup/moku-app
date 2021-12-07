@@ -13,6 +13,7 @@ class GarageTabViewModel: ObservableObject {
     @ObservedObject var sessionService = SessionService.shared
     @Published var currentLocation = "Loading..."
     @Published var isCustomer = false
+    @Published var isServiceHistoryEmpty = true
     @ObservedObject private var orderRepository: OrderRepository = .shared
     @ObservedObject private var bengkelRepository: BengkelRepository = .shared
     @ObservedObject private var customerRepository: CustomerRepository = .shared
@@ -37,6 +38,7 @@ class GarageTabViewModel: ObservableObject {
                 self.customerMotors = customer.motors ?? []
             }
         }.store(in: &subscriptions)
+        checkStatusOrderHistory()
     }
 
     func removeMotor(motorID: String) {
@@ -80,6 +82,17 @@ class GarageTabViewModel: ObservableObject {
             customer.motors?[index] = updatedMotor
             customerRepository.update(customer: customer) { customer in
                 self.customer = customer
+            }
+        }
+    }
+    
+    func checkStatusOrderHistory(){
+        for order in customerOrders {
+            if order.status == .done {
+                isServiceHistoryEmpty = false
+            }
+            else {
+                isServiceHistoryEmpty = true
             }
         }
     }

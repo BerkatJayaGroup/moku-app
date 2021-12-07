@@ -146,10 +146,15 @@ struct GarasiTabItem: View {
                 Text("Belum ada riwayat servis")
             } else {
                 ForEach(viewModel.customerOrders, id: \.id) { order in
-                    OrderCards(order: order).background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                        .padding(.horizontal)
+                    if order.status == .done {
+                        OrderCards(order: order).background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                            .padding(.horizontal)
+                    }
+                }
+                if viewModel.isServiceHistoryEmpty {
+                    Text("Belum ada riwayat servis")
                 }
             }
         }
