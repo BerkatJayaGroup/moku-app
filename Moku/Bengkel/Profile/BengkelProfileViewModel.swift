@@ -31,7 +31,7 @@ class BengkelProfileViewModel: ObservableObject {
             switch self {
             case .bengkelLocation:
                 return "bengkelLocation"
-            case .mediaSource(_):
+            case .mediaSource:
                 return "mediaSource"
             }
         }

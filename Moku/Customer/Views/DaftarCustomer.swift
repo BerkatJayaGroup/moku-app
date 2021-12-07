@@ -8,14 +8,10 @@
 import SwiftUI
 import FirebaseAuth
 
-let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
-                         Motor(brand: .kawasaki, model: "Z250", cc: 250),
-                         Motor(brand: .kawasaki, model: "W175", cc: 175)
-]
-
 struct DaftarCustomer: View {
     @StateObject private var viewModel = ViewModel()
     @State var isInputActive: Bool = false
+    @ObservedObject var data = JsonHelper()
     var body: some View {
         VStack(alignment: .center) {
             ScrollView {
@@ -104,7 +100,7 @@ struct DaftarCustomer: View {
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
                 .sheet(isPresented: $viewModel.showModal) {
-                    MotorModal(availableMotors: allMotor,
+                    MotorModal(availableMotors: data.motors,
                                selectedMotor: $viewModel.motor,
                                showingSheet: $viewModel.showModal)
                 }

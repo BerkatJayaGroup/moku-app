@@ -106,7 +106,6 @@
 		8E8F2E502754BDF40014B8D4 /* AllReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8F2E4F2754BDF40014B8D4 /* AllReviewView.swift */; };
 		8E8F2E522754BED30014B8D4 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8F2E512754BED30014B8D4 /* ReviewCard.swift */; };
 		8E8F2E542754C2480014B8D4 /* AllReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8F2E532754C2480014B8D4 /* AllReviewViewModel.swift */; };
-		8E96E1402716E1C000887C4E /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E96E13F2716E1C000887C4E /* data_motor.json */; };
 		8EB5BF76275382B500138B3F /* ProfileBengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5BF75275382B400138B3F /* ProfileBengkelViewModel.swift */; };
 		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		8ED7362F2742B93D0043B882 /* AssignMechanicsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362E2742B93D0043B882 /* AssignMechanicsModal.swift */; };
@@ -131,6 +130,8 @@
 		AE9E6E9D2726A412000E2012 /* Ulasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6E9C2726A412000E2012 /* Ulasan.swift */; };
 		AEA0E1D22750E06F00398A9D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0E1D12750E06F00398A9D /* StringExtension.swift */; };
 		AEAA3A362727FECC00988F22 /* DaftarCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */; };
+		AEB5C440275F7BF5007FA143 /* data_motor.json in Resources */ = {isa = PBXBuildFile; fileRef = AEB5C43F275F7BF5007FA143 /* data_motor.json */; };
+		AEB5C442275F7C76007FA143 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5C441275F7C76007FA143 /* JsonHelper.swift */; };
 		AEBD8371273C360200588D1A /* ImageFullComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBD8370273C360200588D1A /* ImageFullComp.swift */; };
 		AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBF219274B613A002550A8 /* AddNewMotorViewModel.swift */; };
 		AEEBF21C274B6E0F002550A8 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBF21B274B6E0F002550A8 /* PagingView.swift */; };
@@ -283,7 +284,6 @@
 		8E8F2E4F2754BDF40014B8D4 /* AllReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewView.swift; sourceTree = "<group>"; };
 		8E8F2E512754BED30014B8D4 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		8E8F2E532754C2480014B8D4 /* AllReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewViewModel.swift; sourceTree = "<group>"; };
-		8E96E13F2716E1C000887C4E /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
 		8EB5BF75275382B400138B3F /* ProfileBengkelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBengkelViewModel.swift; sourceTree = "<group>"; };
 		8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDateViewModel.swift; sourceTree = "<group>"; };
 		8ED7362E2742B93D0043B882 /* AssignMechanicsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanicsModal.swift; sourceTree = "<group>"; };
@@ -310,6 +310,8 @@
 		AE9E6E9C2726A412000E2012 /* Ulasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ulasan.swift; sourceTree = "<group>"; };
 		AEA0E1D12750E06F00398A9D /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AEAA3A352727FECC00988F22 /* DaftarCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaftarCustomer.swift; sourceTree = "<group>"; };
+		AEB5C43F275F7BF5007FA143 /* data_motor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_motor.json; sourceTree = "<group>"; };
+		AEB5C441275F7C76007FA143 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		AEBD8370273C360200588D1A /* ImageFullComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullComp.swift; sourceTree = "<group>"; };
 		AEEBF219274B613A002550A8 /* AddNewMotorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMotorViewModel.swift; sourceTree = "<group>"; };
 		AEEBF21B274B6E0F002550A8 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
@@ -449,7 +451,7 @@
 		8336748F2716C7840040D669 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8E96E13F2716E1C000887C4E /* data_motor.json */,
+				AEB5C43F275F7BF5007FA143 /* data_motor.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -460,6 +462,7 @@
 				830383D9271804D700F03CE3 /* RepositoryHelper.swift */,
 				83AC9FD12726AD5F003039D8 /* MapHelper.swift */,
 				AEEBF221274CEA2A002550A8 /* NavigationHelper.swift */,
+				AEB5C441275F7C76007FA143 /* JsonHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -879,8 +882,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */,
-				8E96E1402716E1C000887C4E /* data_motor.json in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
+				AEB5C440275F7BF5007FA143 /* data_motor.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1107,7 @@
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
 				B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */,
+				AEB5C442275F7C76007FA143 /* JsonHelper.swift in Sources */,
 				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,
 				AE26C057273932ED005D06E5 /* BookingsTabItemViewModel.swift in Sources */,
 				AEBD8371273C360200588D1A /* ImageFullComp.swift in Sources */,
