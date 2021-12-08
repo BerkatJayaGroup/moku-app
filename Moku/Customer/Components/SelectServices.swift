@@ -27,11 +27,12 @@ struct SelectServices: View {
                     .font(Font.system(size: 11))
                     .padding(.horizontal, 7)
                     .padding(.vertical, 4)
+                    .frame(width: 150, height: 22, alignment: .center)
                     .background(self.isTap == true ? Color("PrimaryColor"): Color(hex: "E7E7E7"))
                     .foregroundColor(self.isTap == true ? .white : .gray)
                     .cornerRadius(8)
             }
-            .padding(.top, 24)
+            .padding(.top, 16)
             .padding(.bottom, 8)
             .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/4)
             .overlay(
