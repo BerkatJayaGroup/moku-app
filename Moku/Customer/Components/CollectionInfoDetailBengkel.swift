@@ -15,6 +15,7 @@ class CollectionInfoDetailBengkelViewModel: ObservableObject {
 struct CollectionInfoDetailBengkel: View {
     var titleInfo: String
     var imageInfo: String
+    var isRatingEmpty: Bool = true
     var mainInfo: String
     var bengkel: Bengkel
     var cta: CallToAction
@@ -31,8 +32,8 @@ struct CollectionInfoDetailBengkel: View {
                 .foregroundColor(.secondaryLabel)
 
             HStack(spacing: 0) {
-                if imageInfo.isEmpty {
-                    Image(systemName: imageInfo)
+                if !imageInfo.isEmpty && mainInfo == "Baru" {
+                    Image(systemName: "\(imageInfo)")
                         .foregroundColor(AppColor.primaryColor)
                         .font(.system(size: 17, weight: .semibold))
                 }

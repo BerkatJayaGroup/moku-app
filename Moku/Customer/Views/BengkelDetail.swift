@@ -25,13 +25,13 @@ struct BengkelDetail: View {
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var tab: Tabs
-    
+
     init(bengkel: Bengkel, tab: Binding<Tabs>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
         self._tab = tab
     }
-    
+
     var btnBack: some View {
         Button {
             mode.wrappedValue.dismiss()
@@ -40,7 +40,7 @@ struct BengkelDetail: View {
                 .foregroundColor(Color("PrimaryColor"))
         }
     }
-    
+
     var body: some View {
         //        ScrollView(showsIndicators: false) {
         VStack(alignment: .center, spacing: 8) {
@@ -57,7 +57,7 @@ struct BengkelDetail: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
                     .scaledToFill()
             }
-            
+
             HStack {
                 Text(viewModel.bengkel.name)
                     .font(.system(size: 32))
@@ -108,7 +108,7 @@ struct BengkelDetail: View {
                 ) {
                     MapHelper.direct(bengkel: viewModel.bengkel)
                 }.style()
-                
+
                 CollectionInfoDetailBengkel(
                     titleInfo: "Jam Buka",
                     imageInfo: "",
@@ -131,11 +131,11 @@ struct BengkelDetail: View {
             HStack {
                 let minPrice = "\(viewModel.bengkel.minPrice)".toCurrencyFormat()
                 let maxPrice = "\(viewModel.bengkel.maxPrice)".toCurrencyFormat()
-                SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape.2", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
+                SelectServices(serviceTitle: "Service Rutin", serviceIcon: "SelectService-Perbaikan", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
                     .onTapGesture {
                         viewModel.typeOfService = .servisRutin
                     }
-                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "wrench.and.screwdriver", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
+                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "SelectService-Perbaikan", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
                     .onTapGesture {
                         viewModel.typeOfService = .perbaikan
                     }
@@ -168,7 +168,7 @@ struct BengkelDetail: View {
             }
         }
     }
-    
+
     func favoriteToggle() {
         if isFavorite == true {
             isFavorite = false

@@ -18,7 +18,7 @@ struct SelectServices: View {
                 Text("\(serviceTitle)")
                     .fontWeight(.semibold)
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
-                Image(systemName: "\(serviceIcon)")
+                Image(serviceIcon)
                     .font(.system(size: 70, weight: .ultraLight))
                     .scaledToFill()
                     .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
@@ -34,7 +34,7 @@ struct SelectServices: View {
             }
             .padding(.top, 16)
             .padding(.bottom, 8)
-            .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/4)
+            .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/3.5)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"), lineWidth: 1)
