@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
@@ -14,7 +15,11 @@ struct ProfileBengkelView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 8) {
-                    Image("MotorGray")
+                    WebImage(url: URL(string: viewModel.bengkel?.photos.first ?? ""))
+                        .resizable()
+                        .placeholder(Image("MotorGrey"))
+                        .indicator(.activity)
+                        .scaledToFill()
                         .frame(width: 100, height: 100, alignment: .center)
                         .clipShape(Circle())
                     if let bengkel = viewModel.bengkel {
