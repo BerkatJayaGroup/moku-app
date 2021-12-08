@@ -22,6 +22,7 @@ struct BengkelDetail: View {
     @State var isBackToRoot = false
     @State var isFavorite: Bool = false
     @State var selection: Int?
+    var workshop: Bengkel
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Binding var tab: Tabs
@@ -30,6 +31,7 @@ struct BengkelDetail: View {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
         self._tab = tab
+        self.workshop = bengkel
     }
 
     var btnBack: some View {
@@ -161,7 +163,7 @@ struct BengkelDetail: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             if case .customer(let user) = session.user {
-                if user.favoriteBengkel.contains(where: {$0.name == viewModel.bengkel.name}) {
+                if user.favoriteBengkel.contains(where: {$0.name == workshop.name}) {
                     isFavorite = true
                 }
             }
@@ -182,5 +184,6 @@ struct BengkelDetail: View {
                 customerRepo.update(customer: user)
             }
         }
+        session.setup()
     }
 }
