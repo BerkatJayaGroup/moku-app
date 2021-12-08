@@ -91,6 +91,10 @@ struct BengkelDate: View {
                     .cornerRadius(8)
             }
         }
+        .onTapGesture {
+            self.endTextEditing()
+        }
+        .padding(.top)
         .navigationTitle("Pesan")
         .navigationBarTitleDisplayMode(.inline)
     }
