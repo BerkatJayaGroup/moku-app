@@ -5,6 +5,7 @@ import SwiftUI
 struct MultiSelector<Selectable: Identifiable & Hashable>: View {
     let options: [Selectable]
     let optionToString: (Selectable) -> String
+    let barTitle: String
 
     var selected: Binding<Set<Selectable>>
 
@@ -26,11 +27,12 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
             }
             .padding()
         }
+        .background(Color(hex: "F3F3F3"))
         .sheet(isPresented: $isOpenSelector) {
             MultiSelectionView(showSheetView: $isOpenSelector,
                                options: options,
                                optionToString: optionToString,
-                               selected: selected)
+                               barTitle: barTitle, selected: selected)
         }
     }
 }
