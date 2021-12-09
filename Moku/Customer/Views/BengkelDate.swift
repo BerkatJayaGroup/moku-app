@@ -106,12 +106,14 @@ struct BengkelDate: View {
                 let dates = Date.getWeek(day: count)
                 let filtered = dates.filter {arr.contains($0.day)}
                 HStack {
-                    ForEach(filtered, id: \.dayNumber) { date in
-                        DateStack(date: date, isSelected: viewModel.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
-                            viewModel.selectedDate = selectedDate
-                            viewModel.selectedHourndex = -1
-                            viewModel.hour = 0
-                        })
+                    ForEach(Array(filtered.enumerated()), id: \.offset) { index, date in
+                        if index < 7 {
+                            DateStack(date: date, isSelected: viewModel.selectedDate.dayNumber == date.dayNumber, onSelect: { selectedDate in
+                                viewModel.selectedDate = selectedDate
+                                viewModel.selectedHourndex = -1
+                                viewModel.hour = 0
+                            })
+                        }
                     }
                 }.padding(.horizontal)
             }

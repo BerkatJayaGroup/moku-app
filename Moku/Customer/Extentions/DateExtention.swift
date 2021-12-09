@@ -18,6 +18,27 @@ extension Date {
         return calendar.component(component, from: self)
     }
 
+    static func getWeek(for month: Int = 1, day: Int) -> [BookDate] {
+        let day = day
+        let bookingRange = 7
+        var dates = [BookDate]()
+        if day < bookingRange {
+            let lastIndex = 7 * ((7 / day) + 1)
+            for day in 1...lastIndex {
+                if let bookDate = Date.getBookDate(for: day) {
+                    dates.append(bookDate)
+                }
+            }
+        } else {
+            for day in 1...bookingRange {
+                if let bookDate = Date.getBookDate(for: day) {
+                    dates.append(bookDate)
+                }
+            }
+        }
+        return dates
+    }
+    
     static var thisYear: Int {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
@@ -46,27 +67,6 @@ extension Date {
             month: getComponent(date: date, format: "MM"),
             year: getComponent(date: date, format: "yyyy")
         )
-    }
-
-    static func getWeek(for month: Int = 1, day: Int) -> [BookDate] {
-        var dates = [BookDate]()
-        let bookingRange = 7
-
-        if day < bookingRange {
-            let lastIndex = bookingRange + (bookingRange - day)
-            for day in 0...lastIndex {
-                if let bookDate = getBookDate(for: day) {
-                    dates.append(bookDate)
-                }
-            }
-        } else {
-            for day in 0...bookingRange {
-                if let bookDate = getBookDate(for: day) {
-                    dates.append(bookDate)
-                }
-            }
-        }
-        return dates
     }
 
     static func convertDateFormater(date: Date) -> String {
