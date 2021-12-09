@@ -165,33 +165,34 @@ struct BengkelTabItem: View {
     }
 
     private func bengkelFavoriteView(user: Customer) -> some View {
-            VStack(alignment: .leading) {
-                Text("Bengkel Favorit")
-                    .font(.headline)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach(user.favoriteBengkel, id: \.name) { bengkel in
-                            NavigationLink(
-                                destination: BengkelDetail(
-                                    bengkel: bengkel,
-                                    tab: $tab
-                                )) {
+        VStack(alignment: .leading) {
+            Text("Bengkel Favorit")
+                .font(.headline)
+                .padding(.horizontal, 20)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(user.favoriteBengkel, id: \.name) { bengkel in
+                        NavigationLink(
+                            destination: BengkelDetail(
+                                bengkel: bengkel,
+                                tab: $tab
+                            )) {
                                 FavoriteList(bengkel: bengkel)
                                     .padding(10)
+                                    .foregroundColor(Color.black)
                                     .background(Color.white)
                                     .cornerRadius(10)
                                     .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                                }
-                        }
-                        .padding(5)
+                            }
                     }
-                    Rectangle()
-                        .fill(Color(.systemGray6))
-                        .frame(height: 5)
-                        .edgesIgnoringSafeArea(.horizontal)
+                    .padding(5)
                 }
-                .padding(.horizontal, 20)
-        }
+            }.padding(.horizontal, 20)
+            Rectangle()
+                .fill(Color(.systemGray6))
+                .frame(height: 5)
+                .edgesIgnoringSafeArea(.horizontal)
+        }.padding(.vertical, 20)
     }
 }
 

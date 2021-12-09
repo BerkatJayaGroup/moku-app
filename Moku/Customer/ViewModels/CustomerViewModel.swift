@@ -75,7 +75,7 @@ extension DaftarCustomer {
                 nomorCheck = true
             }
         }
-        
+
         func isMotorEmpty() {
             if motor == nil {
                 motorCheck = false
@@ -83,11 +83,11 @@ extension DaftarCustomer {
                 motorCheck = true
             }
         }
-        
+
         func isEmailEmpty() {
             if email.isEmpty {
                 emailCheck = false
-            }else {
+            } else {
                 emailCheck = true
             }
         }

@@ -39,7 +39,7 @@ struct DaftarCustomer: View {
                                 .font(.caption2)
                                 .foregroundColor(Color.red)
                         }
-                        
+
                         Text("NOMOR TELEPON")
                             .font(.caption2)
                         TextField("08xx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: { isChanged in
@@ -130,7 +130,7 @@ struct DaftarCustomer: View {
                 Image("MotorGray")
                     .opacity(0.3)
                     .padding(15)
-                
+
                 VStack(alignment: .leading) {
                     Text("PLAT MOTOR")
                         .font(.caption2)
@@ -142,7 +142,7 @@ struct DaftarCustomer: View {
                         .autocapitalization(.none)
                         .autocapitalization(.none)
                         .padding(.bottom)
-                    
+
                     Text("Tahun Beli")
                         .font(.caption2)
                     TextField("Tahun beli", text: $viewModel.year)
@@ -155,10 +155,10 @@ struct DaftarCustomer: View {
                         .autocapitalization(.none)
                         .padding(.bottom)
                 }.padding()
-                
+
             }
             Spacer()
-            
+
             Button {
                 if viewModel.isFormInvalid {
                     viewModel.validateEmptyName()
