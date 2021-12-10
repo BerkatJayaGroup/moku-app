@@ -131,11 +131,11 @@ struct BengkelDetail: View {
             HStack {
                 let minPrice = "\(viewModel.bengkel.minPrice)".toCurrencyFormat()
                 let maxPrice = "\(viewModel.bengkel.maxPrice)".toCurrencyFormat()
-                SelectServices(serviceTitle: "Service Rutin", serviceIcon: "SelectService-ServiceRutin", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
+                SelectServices(serviceTitle: "Service Rutin", serviceIcon: "ServiceRutinIllustration", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
                     .onTapGesture {
                         viewModel.typeOfService = .servisRutin
                     }
-                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "SelectService-Perbaikan", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
+                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "PerbaikanIllustration", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
                     .onTapGesture {
                         viewModel.typeOfService = .perbaikan
                     }
