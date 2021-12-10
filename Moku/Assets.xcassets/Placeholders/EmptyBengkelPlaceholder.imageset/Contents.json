@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Tidak ada Bengkel - Colors.png",
+      "filename" : "EmptyBengkelPlaceholder.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Tidak ada Bengkel - Colors@2x.png",
+      "filename" : "EmptyBengkelPlaceholder@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Tidak ada Bengkel - Colors@3x.png",
+      "filename" : "EmptyBengkelPlaceholder@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
