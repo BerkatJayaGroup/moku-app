@@ -79,7 +79,7 @@ struct BengkelDetail: View {
             .frame(width: UIScreen.main.bounds.width * 0.9)
             .font(.system(size: 20, weight: .semibold))
             .padding(.bottom, 5)
-            Text(viewModel.address)
+            Text(viewModel.address ?? "Location not found")
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(minWidth: UIScreen.main.bounds.width * 0.9, idealWidth: UIScreen.main.bounds.width * 0.9, maxWidth: UIScreen.main.bounds.width * 0.9, minHeight: 18, idealHeight: 18, maxHeight: 36, alignment: .leading)
                 .font(.system(size: 13, weight: .regular))
