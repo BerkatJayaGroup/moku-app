@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
@@ -93,6 +94,9 @@ struct ProfileBengkelView: View {
                                 .foregroundColor(.gray)
                             Text(viewModel.operationalHours)
                                 .foregroundColor(.black)
+                        }
+                        Button("Sign out") {
+                            try? Auth.auth().signOut()
                         }
                     }
                     .padding(.horizontal, 30)
