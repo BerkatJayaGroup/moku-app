@@ -32,7 +32,23 @@ extension BengkelDetail {
         }
 
         var operationalHours: String {
-            "\(bengkel.operationalHours.open).00-\(bengkel.operationalHours.close).00"
+            var opHours: String
+            var opHourOpen: String
+            var opHourClose: String
+            let open = bengkel.operationalHours.open
+            let close = bengkel.operationalHours.close
+            if open == 1 || open == 2 || open == 3 || open == 4 || open == 5 || open == 6 || open == 7 || open ==  8 || open == 9 {
+                opHourOpen = "0\(open).00"
+            } else {
+                opHourOpen = "\(open).00"
+            }
+            if close == 1 || close == 2 || close == 3 || close == 4 || close == 5 || close == 6 || close == 7 || close == 8 || close == 9 {
+                opHourClose = "0\(close).00"
+            } else {
+                opHourClose = "\(close).00"
+            }
+            opHours = "\(opHourOpen)-\(opHourClose)"
+            return opHours
         }
     }
 }
