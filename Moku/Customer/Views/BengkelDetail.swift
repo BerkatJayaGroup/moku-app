@@ -24,9 +24,9 @@ struct BengkelDetail: View {
     @State var selection: Int?
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @Binding var tab: Tabs
+    @Binding var tab: CustomerView.Tab
 
-    init(bengkel: Bengkel, tab: Binding<Tabs>) {
+    init(bengkel: Bengkel, tab: Binding<CustomerView.Tab>) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
         self._tab = tab
@@ -78,7 +78,7 @@ struct BengkelDetail: View {
                 .font(.system(size: 22, weight: .semibold))
                 .padding(.horizontal)
                 .padding(.bottom, 5)
-                Text(viewModel.address)
+                Text(viewModel.address ?? "Location not found")
                     .font(.system(size: 13, weight: .regular))
                     .foregroundColor(AppColor.darkGray)
                     .padding(.bottom, 10)
@@ -150,14 +150,10 @@ struct BengkelDetail: View {
                         .background(Color("PrimaryColor"))
                         .cornerRadius(8)
                 }
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: btnBack)
-            .padding(.horizontal, 16)
-            .addPartialSheet()
+            }.padding([.horizontal, .bottom])
         }
+        .addPartialSheet()
+        .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             if case .customer(let user) = session.user {

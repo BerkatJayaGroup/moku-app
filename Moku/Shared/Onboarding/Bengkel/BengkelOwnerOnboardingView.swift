@@ -17,9 +17,9 @@ struct BengkelOwnerOnboardingView: View {
     @State private var shouldPresentCamera = false
 
     init() {
-        UITableView.appearance().backgroundColor = .clear
-        UITableView.appearance().separatorColor = .clear
-        UITableView.appearance().sectionFooterHeight = 0
+//        UITableView.appearance().backgroundColor = .clear
+//        UITableView.appearance().separatorColor = .clear
+//        UITableView.appearance().sectionFooterHeight = 0
     }
 
     var body: some View {

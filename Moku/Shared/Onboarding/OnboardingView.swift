@@ -27,7 +27,7 @@ struct OnboardingView: View {
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .never)).foregroundColor(Color.primary)
         .onAppear {
-            setupAppearance()
+//            setupAppearance()
         }
         if curSlideIndex == data.count - 1 {
             SignInWithAppleToFirebase({ response in

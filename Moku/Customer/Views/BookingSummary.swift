@@ -80,11 +80,11 @@ struct BookingSummary: View {
 
     @State private var showSheet = false
 
-    @Binding var tab: Tabs
+    @Binding var tab: CustomerView.Tab
 
     @Binding var isBackToRoot: Bool
 
-    init(order: Order, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
+    init(order: Order, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
         self._tab = tab
         self._isBackToRoot = isBackToRoot

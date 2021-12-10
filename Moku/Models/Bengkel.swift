@@ -76,6 +76,7 @@ extension Bengkel {
 
 extension Bengkel {
     static let preview = Bengkel(
+        id: UUID().uuidString,
         owner: Bengkel.Owner(name: "John Doe", phoneNumber: "082280698758", email: "johndoe@example.com"),
         name: "Berkat Jaya Motor",
         phoneNumber: "082280698758",

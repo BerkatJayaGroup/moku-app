@@ -15,60 +15,53 @@ struct FavoriteList: View {
     var bengkel: Bengkel
 
     var body: some View {
-        VStack(alignment: .trailing) {
-            VStack(alignment: .leading) {
-                if !bengkel.photos.isEmpty {
-                    if let photo = bengkel.photos[0] {
-                        WebImage(url: URL(string: photo))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 175, height: 110)
-                            .aspectRatio(contentMode: .fill)
-                    }
-                } else {
-                    Image(systemName: "number")
+        VStack(alignment: .leading) {
+            if !bengkel.photos.isEmpty {
+                if let photo = bengkel.photos[0] {
+                    WebImage(url: URL(string: photo))
                         .resizable()
-                        .frame(width: 175, height: 110)
-                        .aspectRatio(contentMode: .fill)
+                        .scaledToFill()
+                        .frame(width: 180, height: 140)
+                        .cornerRadius(8)
+                        .padding(.small)
                 }
+            } else {
+                Image(systemName: "number")
+                    .resizable()
+                    .scaledToFit()
+                    .height(120)
+                    .padding(.small)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
                 Text(bengkel.name)
-                    .font(.headline)
-                Text(distanceBengkel(bengkel: bengkel))
+                    .font(.subheadline)
+                    .semibold()
+                Text(MapHelper.stringify(distance: bengkel.distance))
                     .font(.caption)
-                    .foregroundColor(Color.gray)
-            }
-            HStack(alignment: .center) {
+                    .foregroundColor(.secondaryLabel)
+            }.padding(.horizontal)
+
+            HStack(spacing: 2) {
+                Spacer()
                 Image(systemName: "star.fill")
-                    .offset(x: 10, y: -0.5)
-                    .font(.system(size: 14))
-                    .foregroundColor(Color("PrimaryColor"))
+                    .font(.subheadline)
+                    .foregroundColor(.yellow)
                 Text(bengkel.averageRating)
-                    .font(.system(size: 17))
-                    .fontWeight(.heavy)
-            }
+                    .font(.subheadline)
+                    .semibold()
+            }.padding([.trailing, .bottom], .small)
         }
+        .foregroundColor(.primary)
+        .background(AppColor.primaryBackground)
+        .cornerRadius(10)
+        .applyShadow()
+        .padding(.small)
     }
+}
 
-    func rateBengkel(bengkel: Bengkel) -> String {
-        if !bengkel.reviews.isEmpty {
-            var rating: Double = 0.0
-            for review in bengkel.reviews {
-                rating += Double(review.rating)
-            }
-            rating /= Double((bengkel.reviews.count))
-            rating = roundToPlaces(rating, places: 1)
-            return "\(rating)"
-        } else {
-            return "Baru"
-        }
-    }
-
-    func distanceBengkel(bengkel: Bengkel) -> String {
-        return MapHelper.stringify(distance: bengkel.distance)
-    }
-
-    func roundToPlaces(_ value: Double, places: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (value * divisor).rounded(rule) / divisor
+struct FavoriteList_Previews: PreviewProvider {
+    static var previews: some View {
+        FavoriteList(bengkel: .preview).previewLayout(.sizeThatFits)
     }
 }

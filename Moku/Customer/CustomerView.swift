@@ -7,75 +7,44 @@
 
 import SwiftUI
 
-enum Tabs {
-    case tab1, tab2, tab3
+extension CustomerView {
+    enum Tab {
+        case bengkel, booking, garasi
+    }
 }
 
 struct CustomerView: View {
-    @State var tabSelection: Tabs = .tab1
-
-    init() {
-        let appearance                                  = UITabBarAppearance()
-        UITabBar.appearance().isTranslucent             = true
-        UITabBar.appearance().backgroundColor           = UIColor(AppColor.grayTab)
-        appearance.shadowColor                          = UIColor.gray
-
-        let coloredAppearance                           = UINavigationBarAppearance()
-        coloredAppearance.backgroundColor               = UIColor(AppColor.primaryColor)
-        coloredAppearance.titleTextAttributes           = [.foregroundColor: UIColor.black]
-        coloredAppearance.largeTitleTextAttributes      = [.foregroundColor: UIColor.white]
-
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().tintColor          = UIColor(AppColor.primaryColor)
-    }
+    @State private var tabSelection: Tab = .bengkel
 
     var body: some View {
-        NavigationView {
-            TabView(selection: $tabSelection) {
-                BengkelTabItem(tab: $tabSelection)
-                    .tabItem {
-                        Image(systemName: "wrench.and.screwdriver.fill")
-                        Text("Bengkel")
-                    }
-                    .tag(Tabs.tab1)
-                    .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
-                BookingsTabItem()
-                    .tabItem {
-                        Image(systemName: "calendar")
-                        Text("Booking")
-                    }
-                    .tag(Tabs.tab2)
-                    .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
-                GarasiTabItem()
-                    .tabItem {
-                        Image(systemName: "bicycle")
-                        Text("Garasi")
-                    }
-                    .tag(Tabs.tab3)
-                   .navigationBarHidden(returnNavbarHide(tabSelection: self.tabSelection))
-            }
-            .accentColor(AppColor.primaryColor)
-            .navigationBarTitle(returnNaviBarTitle(tabSelection: self.tabSelection))
-            .navigationViewStyle(StackNavigationViewStyle())
+        TabView(selection: $tabSelection) {
+            BengkelTabItem()
+                .tabItem {
+                    Image(systemName: "wrench.and.screwdriver.fill")
+                    Text("Bengkel")
+                }.tag(Tab.bengkel)
+            BookingsTabItem()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("Booking")
+                }.tag(Tab.booking)
+            GarasiTabItem()
+                .tabItem {
+                    Image(systemName: "bicycle")
+                    Text("Garasi")
+                }.tag(Tab.garasi)
         }
     }
 
-    func returnNaviBarTitle(tabSelection: Tabs) -> String {
+    private var navigationBarTitle: String {
         switch tabSelection {
-        case .tab1: return ""
-        case .tab2: return "Bookings"
-        case .tab3: return "Garasi"
+        case .bengkel: return ""
+        case .booking: return "Bookings"
+        case .garasi: return "Garasi"
         }
     }
 
-    func returnNavbarHide(tabSelection: Tabs) -> Bool {
-        switch tabSelection {
-        case .tab1:
-            return true
-        case .tab2:
-            return false
-        case .tab3:
-            return false
-        }
+    private var navigationBarIsHidden: Bool {
+        tabSelection == .bengkel
     }
 }

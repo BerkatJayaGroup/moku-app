@@ -12,7 +12,7 @@ extension BengkelDetail {
         @Published var bengkel: Bengkel
         @Published var typeOfService: Order.Service = .servisRutin
 
-        @Published var address: String
+        @Published var address: String?
         @Published var isOperatinalHoursSheetShowing = false
 
         init(bengkel: Bengkel) {

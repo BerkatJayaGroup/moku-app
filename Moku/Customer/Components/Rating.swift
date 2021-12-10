@@ -26,8 +26,8 @@ struct Rating: View {
             }
         }
     }
-    @ViewBuilder
 
+    @ViewBuilder
     var content: some View {
         if let bengkel = bengkel {
             VStack(alignment: .trailing) {

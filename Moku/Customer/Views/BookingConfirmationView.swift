@@ -14,13 +14,13 @@ struct BookingConfirmationView: View {
     @ObservedObject var orderCustomerViewModel: OrderCustomerViewModel = .shared
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var bengkelName: String = ""
-    @State var tabSelection: Tabs = .tab1
+    @State var tabSelection: CustomerView.Tab = .bengkel
 
     @State var showInfoModalView: Bool = false
     @Binding var isBackToRoot: Bool
-    @Binding var tab: Tabs
+    @Binding var tab: CustomerView.Tab
 
-    init(orderId: DocumentReference?, bengkelName: String, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
+    init(orderId: DocumentReference?, bengkelName: String, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
         self._tab = tab
         self._isBackToRoot = isBackToRoot
         if let id = orderId {

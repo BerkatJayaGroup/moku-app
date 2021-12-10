@@ -11,6 +11,8 @@ identifier_name:
     - g
     - b
     - a
-
+nesting:
+  - type_level: 2
 disabled_rules:
   - line_length
+  - type_name

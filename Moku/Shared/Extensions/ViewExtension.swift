@@ -65,4 +65,17 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                         to: nil, from: nil, for: nil)
     }
+
+    func applyShadow() -> some View {
+        shadow(color: .black.opacity(0.1), radius: 2, x: 3, y: 3)
+    }
+
+    @ViewBuilder func unredacted(when condition: Bool) -> some View {
+            if condition {
+                unredacted()
+            } else {
+                // Use default .placeholder or implement your custom effect
+                redacted(reason: .placeholder)
+            }
+        }
 }

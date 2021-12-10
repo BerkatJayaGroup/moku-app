@@ -35,7 +35,7 @@ struct MapHelper {
         }
     }
 
-    static func geocodeCity(coordinate: CLLocationCoordinate2D, completionHandler: @escaping (String) -> Void) {
+    static func geocodeCity(coordinate: CLLocationCoordinate2D, completionHandler: @escaping (String?) -> Void) {
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         clGeocoder.reverseGeocodeLocation(location) { placemarks, _ in
             if let placemark = placemarks?.first,
@@ -43,7 +43,7 @@ struct MapHelper {
                let state = placemark.administrativeArea {
                 completionHandler("\(city), \(state)")
             } else {
-                completionHandler("Location not found")
+                completionHandler(nil)
             }
         }
     }

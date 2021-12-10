@@ -12,10 +12,10 @@ import Combine
 struct BengkelDate: View {
     @StateObject private var viewModel: ViewModel
     @State var selection: Int?
-    @Binding var tab: Tabs
+    @Binding var tab: CustomerView.Tab
     @Binding var isBackToRoot: Bool
 
-    init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
+    init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
         self._tab = tab
