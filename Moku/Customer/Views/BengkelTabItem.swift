@@ -28,7 +28,9 @@ struct BengkelTabItem: View {
                 .foregroundColor(Color("PrimaryColor"))
                 .ignoresSafeArea()
             VStack(alignment: .leading) {
-                NavigationLink(destination: googleMap()) {
+                Button {
+                    showModal.toggle()
+                } label: {
                     Image(systemName: "mappin")
                         .padding(.vertical, 7)
                         .padding(.leading, 10)
@@ -39,7 +41,7 @@ struct BengkelTabItem: View {
                         .padding(.trailing, 15)
                 }
                 .sheet(isPresented: $showModal) {
-                    ModalSearchLocation(showModal: $showModal)
+                    LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
                 }
                 .foregroundColor(Color.white)
                 .background(Color.black.opacity(0.2))
@@ -94,11 +96,6 @@ struct BengkelTabItem: View {
                 }
             }.padding()
         }
-    }
-    private func googleMap() -> some View {
-        GoogleMapView(coordinate: $locationService.userCoordinate) { _ in } onAnimationEnded: { coordinate in
-            locationService.userCoordinate = coordinate
-        }.ignoresSafeArea(edges: [.top, .horizontal])
     }
 
     @ViewBuilder

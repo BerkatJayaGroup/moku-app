@@ -64,7 +64,8 @@ struct LocationSelectionView: View {
                     // Location Detail
                     HStack(spacing: 16) {
                         Image(systemName: "mappin.and.ellipse")
-                            .font(.largeTitle).foregroundColor(AppColor.primaryColor)
+                            .font(.largeTitle)
+                            .foregroundColor(AppColor.primaryColor)
 
                         VStack(alignment: .leading, spacing: 4) {
                             // Business Name
@@ -93,6 +94,7 @@ struct LocationSelectionView: View {
                     .disabled(!viewModel.isLocationValid)
                 }
                 .padding()
+                .foregroundColor(.black)
                 .background(
                     Color.white
                         .cornerRadius([.topLeft, .topRight], 16)

@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import CoreLocation
 
 extension BengkelTabItem {
     class ViewModel: ObservableObject {
@@ -83,6 +84,11 @@ extension BengkelTabItem {
                     ordersToRate.append(order)
                 }
             }
+        }
+
+        func updateLocation(_ location: Location) {
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            LocationService.shared.userCoordinate = coordinate
         }
 
         private func getMotors() {
