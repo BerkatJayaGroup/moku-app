@@ -23,8 +23,8 @@ struct EditProfileModal: View {
 
     init(customer: Customer) {
         self.customer = customer
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 
     var body: some View {

@@ -18,7 +18,7 @@ struct CustomerView: View {
 
     var body: some View {
         TabView(selection: $tabSelection) {
-            BengkelTabItem()
+            BengkelTabItem(tabSelection: $tabSelection)
                 .tabItem {
                     Image(systemName: "wrench.and.screwdriver.fill")
                     Text("Bengkel")

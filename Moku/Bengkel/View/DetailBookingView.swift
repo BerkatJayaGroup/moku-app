@@ -19,9 +19,9 @@ struct DetailBooking: View {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
 
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = UIColor.white
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.backgroundColor = UIColor.white
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 
     var body: some View {

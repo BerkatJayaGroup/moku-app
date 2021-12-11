@@ -20,11 +20,11 @@ extension ProfileBengkelView {
         }
 
         var operationalHours: String {
-            var opHours = ""
-            if let bengkel = bengkel {
-                opHours = "\(bengkel.operationalHours.open):00 - \(bengkel.operationalHours.close):00"
+            guard let bengkel = bengkel else {
+                return ""
             }
-            return opHours
+
+            return StringHelper.stringifyOperationalHours(bengkel.operationalHours)
         }
 
         var mechanicsCount: Int {

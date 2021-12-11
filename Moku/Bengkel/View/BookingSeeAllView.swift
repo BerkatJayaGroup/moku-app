@@ -14,10 +14,10 @@ struct BookingSeeAllView: View {
     @State private var isDetailBookingModalPresented = false
 
     init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = .white
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.backgroundColor = .white
+//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
 
     var body: some View {

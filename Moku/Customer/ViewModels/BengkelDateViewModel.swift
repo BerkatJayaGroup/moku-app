@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 import FirebaseAuth
 
-extension BengkelDate {
+extension BengkelDateView {
     class ViewModel: ObservableObject {
         @Published var isActive = false
         @Published var bengkel: Bengkel

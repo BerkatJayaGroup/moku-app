@@ -83,7 +83,10 @@ struct MapHelper {
 
     static func stringify(distance: Double? = nil) -> String {
         if let distance = distance {
-            return String(format: "%.1f KM", distance / 1000)
+            if distance < 1000 {
+                return "\(Int(distance))m"
+            }
+            return String(format: "%.1fkm", distance / 1000)
         }
 
         return "N/A"

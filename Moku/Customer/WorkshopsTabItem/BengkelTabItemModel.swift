@@ -113,7 +113,6 @@ extension BengkelTabItem {
         }
 
         private func mapOrdersToRateIfNeeded(orderIDs: [String]?) {
-            ordersToRate = []
             orderIDs?.forEach { orderID in
                 OrderRepository.shared.fetch(orderID: orderID) { order in
                     self.ordersToRate.append(order)

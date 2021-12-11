@@ -17,12 +17,8 @@ struct BookingConfirmationView: View {
     @State var tabSelection: CustomerView.Tab = .bengkel
 
     @State var showInfoModalView: Bool = false
-    @Binding var isBackToRoot: Bool
-    @Binding var tab: CustomerView.Tab
 
-    init(orderId: DocumentReference?, bengkelName: String, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
-        self._tab = tab
-        self._isBackToRoot = isBackToRoot
+    init(orderId: DocumentReference?, bengkelName: String) {
         if let id = orderId {
             orderCustomerViewModel.getCustomerOrder(docRef: id)
         }

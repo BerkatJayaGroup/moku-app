@@ -22,9 +22,9 @@ struct CustomTextField: View {
             TextEditor(text: $text)
                 .padding(internalPadding)
         }.onAppear {
-            UITextView.appearance().backgroundColor = .clear
+//            UITextView.appearance().backgroundColor = .clear
         }.onDisappear {
-            UITextView.appearance().backgroundColor = nil
+//            UITextView.appearance().backgroundColor = nil
         }
     }
 }

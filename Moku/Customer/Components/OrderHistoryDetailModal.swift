@@ -16,8 +16,8 @@ struct OrderHistoryDetailModal: View {
     init(bengkel: Bengkel, order: Order) {
         bengkelDetail = bengkel
         orderDetail = order
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 
     var body: some View {

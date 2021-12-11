@@ -81,18 +81,17 @@ struct BookingSummary: View {
     @State private var showSheet = false
 
     @Binding var tab: CustomerView.Tab
-
     @Binding var isBackToRoot: Bool
 
     init(order: Order, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
-        self._tab = tab
-        self._isBackToRoot = isBackToRoot
+        _tab = tab
+        _isBackToRoot = isBackToRoot
     }
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, tab: $tab, isBackToRoot: $isBackToRoot)
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName)
         } else {
             VStack {
                 VStack {

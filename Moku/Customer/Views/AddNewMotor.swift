@@ -12,10 +12,10 @@ struct AddNewMotor: View {
     @StateObject private var viewModel: AddNewMotorViewModel
     init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil) {
         _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor))
-        UITableView.appearance().backgroundColor = .none
-        UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        UITableView.appearance().backgroundColor = .none
+//        UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     var body: some View {
 

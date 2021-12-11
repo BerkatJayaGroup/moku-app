@@ -14,8 +14,8 @@ class CollectionInfoDetailBengkelViewModel: ObservableObject {
 
 struct CollectionInfoDetailBengkel: View {
     var titleInfo: String
-    var imageInfo: String
-    var isRatingEmpty: Bool = true
+    var imageInfo = ""
+    var isRatingEmpty = true
     var mainInfo: String
     var bengkel: Bengkel
     var cta: CallToAction
@@ -27,42 +27,32 @@ struct CollectionInfoDetailBengkel: View {
     var body: some View {
         VStack(spacing: 6) {
             Text(titleInfo)
-                .font(.system(size: 11, weight: .regular))
-                .fixedSize(horizontal: true, vertical: false)
+                .font(.caption2)
                 .foregroundColor(.secondaryLabel)
 
-            HStack(spacing: 0) {
-                if !imageInfo.isEmpty && mainInfo == "Baru" {
-                    Image(systemName: "\(imageInfo)")
-                        .foregroundColor(AppColor.primaryColor)
-                        .font(.system(size: 17, weight: .semibold))
+            HStack(spacing: 2) {
+                if !imageInfo.isEmpty {
+                    Image(systemName: imageInfo).foregroundColor(.yellow)
                 }
                 Text(mainInfo)
-                    .font(.system(size: 17, weight: .semibold))
-                    .fixedSize(horizontal: true, vertical: false)
-            }
+            }.font(.headline)
+
             if cta == .seeAll {
                 NavigationLink(destination: UlasanPage(bengkel: bengkel)) {
-                    Text(cta.rawValue).foregroundColor(AppColor.primaryColor)
-                        .font(.system(size: 11, weight: .semibold))
+                    Text(cta.rawValue)
+                        .font(.caption2)
+                        .semibold()
                 }
             } else {
                 Button {
                     onTap?()
                 } label: {
-                    Text(cta.rawValue).foregroundColor(AppColor.primaryColor)
-                        .font(.system(size: 11, weight: .semibold))
+                    Text(cta.rawValue)
+                        .font(.caption2)
+                        .semibold()
                 }
             }
         }
-    }
-
-    func style() -> some View {
-        body
-            .padding(.all, 2)
-            .frame(width: UIScreen.main.bounds.width * 0.2, alignment: .center)
-            .padding(.horizontal)
-            .cornerRadius(8)
     }
 }
 

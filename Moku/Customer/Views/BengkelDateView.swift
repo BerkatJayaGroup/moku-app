@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import Combine
 
-struct BengkelDate: View {
+struct BengkelDateView: View {
     @StateObject private var viewModel: ViewModel
     @State var selection: Int?
     @Binding var tab: CustomerView.Tab
@@ -18,11 +18,11 @@ struct BengkelDate: View {
     init(typeOfService: Order.Service, bengkel: Bengkel, tab: Binding<CustomerView.Tab>, isBackToRoot: Binding<Bool>) {
         let viewModel = ViewModel(bengkel: bengkel, typeOfService: typeOfService)
         _viewModel = StateObject(wrappedValue: viewModel)
-        self._tab = tab
-        self._isBackToRoot = isBackToRoot
+        _tab = tab
+        _isBackToRoot = isBackToRoot
     }
 
-    let columns = [
+    private let columnConfiguration = [
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),
         GridItem(.fixed(60), spacing: 10),
@@ -121,7 +121,7 @@ struct BengkelDate: View {
     }
     fileprivate func createTimeView() -> some View {
         VStack(alignment: .leading) {
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columnConfiguration, spacing: 10) {
                 ForEach(viewModel.bengkel.operationalHours.open..<viewModel.bengkel.operationalHours.close, id: \.self) { item in
                     TimeStack(index: item, isSelected: viewModel.selectedHourndex == item && viewModel.checkAvailability(index: item) == false, isDisabled: viewModel.checkAvailability(index: item), onSelect: { selectedIndex in
                         viewModel.selectedHourndex = selectedIndex

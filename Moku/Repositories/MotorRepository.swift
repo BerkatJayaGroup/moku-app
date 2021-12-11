@@ -17,7 +17,7 @@ final class MotorRepository: ObservableObject {
     @Published var motors = [Motor]()
 
     private init() {
-        fetch()
+//        fetch()
     }
 
     func fetch() {

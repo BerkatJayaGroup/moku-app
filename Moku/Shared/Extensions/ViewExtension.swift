@@ -40,6 +40,50 @@ struct AlertText: ViewModifier {
     }
 }
 
+struct WillDisappearHandler: UIViewControllerRepresentable {
+    func makeCoordinator() -> WillDisappearHandler.Coordinator {
+        Coordinator(onWillDisappear: onWillDisappear)
+    }
+
+    let onWillDisappear: () -> Void
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<WillDisappearHandler>) -> UIViewController {
+        context.coordinator
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<WillDisappearHandler>) {
+    }
+
+    typealias UIViewControllerType = UIViewController
+
+    class Coordinator: UIViewController {
+        let onWillDisappear: () -> Void
+
+        init(onWillDisappear: @escaping () -> Void) {
+            self.onWillDisappear = onWillDisappear
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            onWillDisappear()
+        }
+    }
+}
+
+struct WillDisappearModifier: ViewModifier {
+    let callback: () -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .background(WillDisappearHandler(onWillDisappear: callback))
+    }
+}
+
 extension Text {
     func headerStyle() -> some View {
         modifier(HeaderText())
@@ -71,11 +115,15 @@ extension View {
     }
 
     @ViewBuilder func unredacted(when condition: Bool) -> some View {
-            if condition {
-                unredacted()
-            } else {
-                // Use default .placeholder or implement your custom effect
-                redacted(reason: .placeholder)
-            }
+        if condition {
+            unredacted()
+        } else {
+            // Use default .placeholder or implement your custom effect
+            redacted(reason: .placeholder)
         }
+    }
+
+    func onWillDisappear(_ perform: @escaping () -> Void) -> some View {
+        self.modifier(WillDisappearModifier(callback: perform))
+    }
 }

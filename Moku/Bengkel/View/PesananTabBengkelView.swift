@@ -11,9 +11,9 @@ struct PesananTabBengkelView: View {
     @StateObject private var viewModel = ViewModel()
 
     init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
 
     var body: some View {
@@ -29,7 +29,7 @@ struct PesananTabBengkelView: View {
             .navigationTitle("Pesanan")
             .navigationBarColor(AppColor.primaryColor)
             .onDisappear(perform: {
-                UINavigationBar.appearance().backgroundColor = nil
+//                UINavigationBar.appearance().backgroundColor = nil
             })
             .navigationBarItems(trailing: Button(action: {
                 viewModel.isHistoryShow = true

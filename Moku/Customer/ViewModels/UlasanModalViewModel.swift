@@ -18,7 +18,7 @@ extension UlasanModal {
         @Published var order: Order
         var bengkelRepository: BengkelRepository = .shared
         var customerRepository: CustomerRepository = .shared
-        @ObservedObject var bengkelViewModel = BengkelTabItem.ViewModel.shared
+//        @ObservedObject var bengkelViewModel = BengkelTabItem.ViewModel.shared
 
         init(bengkel: Bengkel, selected: Int, order: Order) {
             self.bengkel = bengkel
@@ -45,8 +45,8 @@ extension UlasanModal {
                     customer.ordersToRate?.remove(at: index)
                 }
 
-                self.customerRepository.update(customer: customer) { newCustomer in
-                    self.bengkelViewModel.getOrdersToRate(from: newCustomer.ordersToRate)
+                self.customerRepository.update(customer: customer) { _ in
+//                    self.bengkelViewModel.getOrdersToRate(from: newCustomer.ordersToRate)
                 }
             }
         }

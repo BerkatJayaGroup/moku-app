@@ -91,10 +91,8 @@ final class OrderRepository: ObservableObject {
                 try? document.data(as: Order.self)
             } ?? []
 
-            DispatchQueue.global(qos: .background).async {
-                self.filteredOrders = order
-                completionHandler?(order)
-            }
+            self.filteredOrders = order
+            completionHandler?(order)
         }
     }
 

@@ -11,6 +11,11 @@ import SDWebImageSwiftUI
 // MARK: - View
 struct BengkelTabItem: View {
     @StateObject var viewModel = ViewModel()
+    @Binding var tabSelection: CustomerView.Tab
+
+    init(tabSelection: Binding<CustomerView.Tab>) {
+        _tabSelection = tabSelection
+    }
 
     var body: some View {
         NavigationView {
@@ -57,7 +62,7 @@ struct BengkelTabItem: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack {
                                 ForEach(viewModel.favouriteWorkshops, id: \.id) { bengkel in
-                                    NavigationLink(destination: BengkelDetail(bengkel: bengkel, tab: .constant(.bengkel))) {
+                                    NavigationLink(destination: BengkelDetailView(bengkel: bengkel, tab: $tabSelection)) {
                                         FavoriteList(bengkel: bengkel)
                                     }.padding(.horizontal, .small)
                                 }
@@ -120,7 +125,7 @@ struct BengkelTabItem: View {
         } else {
             LazyVStack {
                 ForEach(viewModel.nearbyWorkshops, id: \.id) { bengkel in
-                    NavigationLink(destination: BengkelDetail(bengkel: bengkel, tab: .constant(.bengkel))) {
+                    NavigationLink(destination: BengkelDetailView(bengkel: bengkel, tab: $tabSelection)) {
                         BengkelList(bengkel: bengkel)
                             .padding(.small)
                             .background(AppColor.primaryBackground)
@@ -144,7 +149,7 @@ struct BengkelTabItem: View {
 // MARK: - Preview
 struct BengkelTabItem_Previews: PreviewProvider {
     static var previews: some View {
-        BengkelTabItem()
+        BengkelTabItem(tabSelection: .constant(.bengkel))
             .environment(\.locale, .init(identifier: "id"))
     }
 }
