@@ -13,11 +13,11 @@ extension ReviewCell {
         @Published var customer: Customer?
 
         var schedule: String {
-            var scheduleTime: String
+            var scheduleTime = ""
             if let schedule = order?.schedule {
                 scheduleTime = Date.convertDateFormat(date: schedule, format: "EEEE, MMM d, yyyy")
             }
-            return schedule
+            return scheduleTime
         }
 
         init(order: Order) {

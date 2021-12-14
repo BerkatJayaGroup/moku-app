@@ -90,7 +90,7 @@ struct BookingTabItemView: View {
                 }
             }.navigationTitle("Booking")
                 .navigationBarColor(AppColor.primaryColor)
-        }.background(Color(.systemGroupedBackground))
+        }.background(AppColor.primaryBackground)
             .onAppear {
                 if let id = Auth.auth().currentUser?.uid {
                     viewModel.getBengkelOrders(bengkelId: id)
@@ -104,7 +104,7 @@ struct BookingTabItemView: View {
                     bookingCards(order: order)
                         .padding(10)
                         .frame(width: 300)
-                        .background(Color.white)
+                        .background(AppColor.primaryBackground)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                 }
