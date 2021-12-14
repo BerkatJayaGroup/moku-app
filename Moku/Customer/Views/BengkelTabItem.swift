@@ -24,7 +24,7 @@ struct BengkelTabItem: View {
     var body: some View {
         ZStack(alignment: .top) {
             ShapeBg()
-                .frame(height: 180)
+                .frame(height: 211)
                 .foregroundColor(Color("PrimaryColor"))
                 .ignoresSafeArea()
             VStack(alignment: .leading) {
@@ -71,7 +71,7 @@ struct BengkelTabItem: View {
                     ratingView()
                     listOfNearbyBengkel()
                 }
-            }.padding(.top, 80)
+            }.padding(.top, 111)
         }.edgesIgnoringSafeArea(.top)
     }
 

@@ -44,122 +44,123 @@ struct BengkelDetail: View {
     }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .center, spacing: 8) {
-                if viewModel.bengkel.photos.count > 0 {
-                    if let photo = viewModel.bengkel.photos[0] {
-                        WebImage(url: URL(string: photo))
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
-                            .scaledToFill()
-                    }
-                } else {
-                    Image(systemName: "number")
+        //        ScrollView(showsIndicators: false) {
+        VStack(alignment: .center, spacing: 8) {
+            if viewModel.bengkel.photos.count > 0 {
+                if let photo = viewModel.bengkel.photos[0] {
+                    WebImage(url: URL(string: photo))
                         .resizable()
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
                         .scaledToFill()
                 }
+            } else {
+                Image(systemName: "number")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
+                    .scaledToFill()
+            }
 
-                HStack {
-                    Text(viewModel.bengkel.name)
-                    Spacer()
-                    if isFavorite {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.red)
-                            .onTapGesture {
-                                favoriteToggle()
-                            }
-                    } else {
-                        Image(systemName: "heart")
-                            .foregroundColor(.red)
-                            .onTapGesture {
-                                favoriteToggle()
-                            }
-                    }
-                }
-                .font(.system(size: 22, weight: .semibold))
-                .padding(.horizontal)
-                .padding(.bottom, 5)
-                Text(viewModel.address)
-                    .font(.system(size: 13, weight: .regular))
-                    .foregroundColor(AppColor.darkGray)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal)
-                HStack {
-                    CollectionInfoDetailBengkel(
-                        titleInfo: "Rating",
-                        imageInfo: "star.fill",
-                        mainInfo: viewModel.bengkel.averageRating,
-                        bengkel: viewModel.bengkel,
-                        cta: .seeAll
-                    ) {
-                        isShowUlasan.toggle()
-                    }
-                    .style()
-                    .sheet(isPresented: $isShowUlasan) {
-                        UlasanPage(bengkel: viewModel.bengkel)
-                    }
-                    CollectionInfoDetailBengkel(
-                        titleInfo: "Jarak dari Anda",
-                        imageInfo: "",
-                        mainInfo: viewModel.distance,
-                        bengkel: viewModel.bengkel,
-                        cta: .seeMap
-                    ) {
-                        MapHelper.direct(bengkel: viewModel.bengkel)
-                    }.style()
-
-                    CollectionInfoDetailBengkel(
-                        titleInfo: "Jam Buka",
-                        imageInfo: "",
-                        mainInfo: viewModel.operationalHours,
-                        bengkel: viewModel.bengkel,
-                        cta: .seeDetail
-                    ) {
-                        viewModel.isOperatinalHoursSheetShowing.toggle()
-                    }
-                    .style()
-                    .partialSheet(isPresented: $viewModel.isOperatinalHoursSheetShowing) {
-                        SheetView(mainInfo: viewModel.operationalHours)
-                    }
-                }
-                .frame(width: UIScreen.main.bounds.width)
-                Text("Pilih Jasa")
-                    .fontWeight(.semibold)
-                    .padding(.top)
-                    .frame(width: UIScreen.main.bounds.width, alignment: .leading)
-                    .padding(.leading)
-                HStack {
-                    let minPrice = "\(viewModel.bengkel.minPrice)".toCurrencyFormat()
-                    let maxPrice = "\(viewModel.bengkel.maxPrice)".toCurrencyFormat()
-                    SelectServices(serviceTitle: "Service Rutin", serviceIcon: "gearshape.2", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
-                        .onTapGesture {
-                            viewModel.typeOfService = .servisRutin
-                        }
-                    SelectServices(serviceTitle: "Perbaikan", serviceIcon: "wrench.and.screwdriver", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
-                        .onTapGesture {
-                            viewModel.typeOfService = .perbaikan
-                        }
-                }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)
+            HStack {
+                Text(viewModel.bengkel.name)
+                    .font(.system(size: 32))
                 Spacer()
-                NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
-                    Text("Pesan")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.vertical, 16)
-                        .frame(width: UIScreen.main.bounds.width * 0.85)
-                        .background(Color("PrimaryColor"))
-                        .cornerRadius(8)
+                if isFavorite {
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            favoriteToggle()
+                        }
+                } else {
+                    Image(systemName: "heart")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            favoriteToggle()
+                        }
                 }
             }
-            .padding(.horizontal)
-            .padding(.bottom)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: btnBack)
-            .padding(.horizontal, 16)
-            .addPartialSheet()
+            .frame(width: UIScreen.main.bounds.width * 0.9)
+            .font(.system(size: 20, weight: .semibold))
+            .padding(.bottom, 5)
+            Text(viewModel.address)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(minWidth: UIScreen.main.bounds.width * 0.9, idealWidth: UIScreen.main.bounds.width * 0.9, maxWidth: UIScreen.main.bounds.width * 0.9, minHeight: 18, idealHeight: 18, maxHeight: 36, alignment: .leading)
+                .font(.system(size: 13, weight: .regular))
+                .foregroundColor(Color(hex: "686868"))
+                .padding(.bottom, 20)
+            HStack {
+                CollectionInfoDetailBengkel(
+                    titleInfo: "Rating",
+                    imageInfo: "star.fill",
+                    mainInfo: viewModel.bengkel.averageRating,
+                    bengkel: viewModel.bengkel,
+                    cta: .seeAll
+                ) {
+                    isShowUlasan.toggle()
+                }
+                .style()
+                .sheet(isPresented: $isShowUlasan) {
+                    UlasanPage(bengkel: viewModel.bengkel)
+                }
+                CollectionInfoDetailBengkel(
+                    titleInfo: "Jarak dari Anda",
+                    imageInfo: "",
+                    mainInfo: viewModel.distance,
+                    bengkel: viewModel.bengkel,
+                    cta: .seeMap
+                ) {
+                    MapHelper.direct(bengkel: viewModel.bengkel)
+                }.style()
+
+                CollectionInfoDetailBengkel(
+                    titleInfo: "Jam Buka",
+                    imageInfo: "",
+                    mainInfo: viewModel.operationalHours,
+                    bengkel: viewModel.bengkel,
+                    cta: .seeDetail
+                ) {
+                    viewModel.isOperatinalHoursSheetShowing.toggle()
+                }
+                .style()
+                .partialSheet(isPresented: $viewModel.isOperatinalHoursSheetShowing) {
+                    SheetView(mainInfo: viewModel.operationalHours)
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width)
+            Text("Pilih Jasa")
+                .fontWeight(.semibold)
+                .padding(.top)
+                .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
+            HStack {
+                let minPrice = "\(viewModel.bengkel.minPrice)".toCurrencyFormat()
+                let maxPrice = "\(viewModel.bengkel.maxPrice)".toCurrencyFormat()
+                SelectServices(serviceTitle: "Service Rutin", serviceIcon: "SelectService-ServiceRutin", servicePrice: "\(minPrice)-\(maxPrice)", isTap: viewModel.typeOfService == .servisRutin)
+                    .onTapGesture {
+                        viewModel.typeOfService = .servisRutin
+                    }
+                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "SelectService-Perbaikan", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
+                    .onTapGesture {
+                        viewModel.typeOfService = .perbaikan
+                    }
+            }
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)
+            Spacer()
+            NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
+                Text("Pesan")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.vertical, 16)
+                    .frame(width: UIScreen.main.bounds.width * 0.85)
+                    .background(Color("PrimaryColor"))
+                    .cornerRadius(8)
+            }
         }
+        .padding(.horizontal)
+        .padding(.bottom)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
+        .padding(.horizontal, 16)
+        .addPartialSheet()
+        //        }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             if case .customer(let user) = session.user {

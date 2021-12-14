@@ -13,7 +13,7 @@ struct UlasanPage: View {
     var body: some View {
             if bengkel.reviews.isEmpty {
                 VStack(alignment: .center) {
-                    Image(systemName: "person.3.fill")
+                    Image("UlasanPageEmpty")
                         .font(.system(size: 100))
                         .padding()
                     Text("Bengkel ini belum pernah menerima ulasan dari pelanggan")
