@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewMotor: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: AddNewMotorViewModel
+    @ObservedObject var data = JsonHelper()
     init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil) {
         _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor))
         UITableView.appearance().backgroundColor = .none
@@ -50,7 +51,7 @@ struct AddNewMotor: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(AppColor.lightGray))
                     .sheet(isPresented: $viewModel.show) {
-                        MotorModal(availableMotors: allMotor,
+                        MotorModal(availableMotors: data.motors,
                                    selectedMotor: $viewModel.motor,
                                    showingSheet: $viewModel.show)
                     }.padding(.horizontal)

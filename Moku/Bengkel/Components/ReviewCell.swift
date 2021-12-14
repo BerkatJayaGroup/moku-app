@@ -47,17 +47,12 @@ struct ReviewCell: View {
         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
     }
 
-    @ViewBuilder
     func getColors(status: Order.Status) -> some View {
         switch status {
-        case .scheduled:
-            return Color(hex: "F8D8BF")
-        case .rejected:
-            return Color(hex: "FFBDBD")
-        case .done:
-            return Color(hex: "DCDCDC")
-        default:
-            return Color(hex: "F8D8BF")
+        case .scheduled: return Color(hex: "F8D8BF")
+        case .rejected: return Color(hex: "FFBDBD")
+        case .done: return Color(hex: "DCDCDC")
+        default: return Color(hex: "F8D8BF")
         }
     }
 
@@ -77,7 +72,7 @@ struct ReviewCell: View {
 
 struct UlasanCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCell(order: Order(bengkelId: "1234", customerId: "12345", motor: Motor(brand: .honda, model: "Beat", cc: 110), typeOfService: .servisRutin, schedule: Date()))
+        ReviewCell(order: Order(bengkelId: "1234", customerId: "12345", motor: Motor(brand: .honda, model: "Beat", cc: "110"), typeOfService: .servisRutin, schedule: Date()))
             .previewLayout(.sizeThatFits)
     }
 }

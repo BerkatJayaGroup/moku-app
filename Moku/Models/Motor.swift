@@ -13,23 +13,29 @@ class Motor: Codable, Identifiable {
     var id = UUID().uuidString
     let brand: Brand
     let model: String
-    let cc: Int
+    let cc: String
     var licensePlate: String?
     var year: String?
 
-    init(brand: Brand, model: String, cc: Int, licensePlate: String? = "", year: String? = "") {
+    init(brand: Brand, model: String, cc: String, licensePlate: String? = "", year: String? = "") {
         self.brand  = brand
         self.model  = model
         self.cc     = cc
         self.licensePlate = licensePlate
         self.year = year
     }
+
+    private enum CodingKeys: String, CodingKey {
+        case brand
+        case cc
+        case model
+    }
 }
 
 enum Brand: String, Codable, CaseIterable, Identifiable {
     var id: RawValue { rawValue }
-    case honda = "Honda"
-    case yamaha = "Yamaha"
-    case suzuki = "Suzuki"
-    case kawasaki = "Kawasaki"
+    case honda = "HONDA"
+    case yamaha = "YAMAHA"
+    case suzuki = "SUZUKI"
+    case kawasaki = "KAWASAKI"
 }

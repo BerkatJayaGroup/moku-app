@@ -8,7 +8,7 @@
 import Foundation
 
 struct Review: Codable, Identifiable {
-    let id = UUID().uuidString
+    var id = UUID().uuidString
     let user: String
     let rating: Int
     let comment: String?

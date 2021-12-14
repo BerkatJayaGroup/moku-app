@@ -68,7 +68,7 @@ struct BengkelView: View {
 
     @ViewBuilder
     private func contentView() -> some View {
-        if let bengkel = bengkel {
+        if bengkel != nil {
             TabView {
                 BookingTabItemView()
                     .tabItem {

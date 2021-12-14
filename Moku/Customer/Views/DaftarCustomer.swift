@@ -8,14 +8,10 @@
 import SwiftUI
 import FirebaseAuth
 
-let allMotor: [Motor] = [Motor(brand: .honda, model: "Beat", cc: 110),
-                         Motor(brand: .kawasaki, model: "Z250", cc: 250),
-                         Motor(brand: .kawasaki, model: "W175", cc: 175)
-]
-
 struct DaftarCustomer: View {
     @StateObject private var viewModel = ViewModel()
     @State var isInputActive: Bool = false
+    @ObservedObject var data = JsonHelper()
     var body: some View {
         VStack(alignment: .center) {
             ScrollView {
@@ -154,9 +150,70 @@ struct DaftarCustomer: View {
                         .autocapitalization(.none)
                         .autocapitalization(.none)
                         .padding(.bottom)
-                }.padding()
+                    if !viewModel.isEmailValid {
+                        Text("Format email tidak valid, gunakan example@domain.com")
+                            .offset(y: -10)
+                            .font(.caption2)
+                            .foregroundColor(Color.red)
+                    }
+                }
+                Text("MODEL MOTOR")
+                    .font(.caption2)
+                Button {
+                    viewModel.showModal.toggle()
+                } label: {
+                    HStack {
+                        if let motor = viewModel.motor {
+                            Text(motor.model)
+                                .foregroundColor(.black)
+                        } else {
+                            Image(systemName: "magnifyingglass")
+                            Text("Cari Model Motormu")
+                        }
+                    }
+                    .foregroundColor(.tertiaryLabel)
+                    .font(.subheadline)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .multilineTextAlignment(.leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
+                .sheet(isPresented: $viewModel.showModal) {
+                    MotorModal(availableMotors: data.motors,
+                               selectedMotor: $viewModel.motor,
+                               showingSheet: $viewModel.showModal)
+                }
+            }.padding(20)
+            Image("MotorGray")
+                .opacity(0.3)
+                .padding(15)
 
-            }
+            VStack(alignment: .leading) {
+                Text("PLAT MOTOR")
+                    .font(.caption2)
+                TextField("Plat Motor", text: $viewModel.licensePlate)
+                    .font(.subheadline)
+                    .padding(15)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .autocapitalization(.none)
+                    .autocapitalization(.none)
+                    .padding(.bottom)
+
+                Text("Tahun Beli")
+                    .font(.caption2)
+                TextField("Tahun beli", text: $viewModel.year)
+                    .keyboardType(.numberPad)
+                    .font(.subheadline)
+                    .padding(15)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .autocapitalization(.none)
+                    .autocapitalization(.none)
+                    .padding(.bottom)
+            }.padding()
             Spacer()
 
             Button {
