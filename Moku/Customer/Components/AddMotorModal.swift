@@ -14,6 +14,7 @@ struct AddMotorModal: View {
     @State private var isActive = false
 
     @State var userId = Auth.auth().currentUser?.uid
+    @ObservedObject var data = JsonHelper()
 
     var motor: Motor
     var body: some View {
@@ -42,7 +43,7 @@ struct AddMotorModal: View {
             .padding()
             .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
             .sheet(isPresented: $viewModel.showModal) {
-                MotorModal(availableMotors: allMotor,
+                MotorModal(availableMotors: data.motors,
                            selectedMotor: $viewModel.motor,
                            showingSheet: $viewModel.showModal)
             }

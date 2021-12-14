@@ -64,7 +64,7 @@ extension Order {
         id: "NqrRsFb6xJbM7LOO6vVW",
         bengkelId: "Br5I1rVwV2C9icKQiBh6",
         customerId: "4zhS88bLKogOksVZg43BCgQNanE2",
-        motor: Motor(brand: .yamaha, model: "NMAX", cc: 155, licensePlate: "BG 999 UI", year: "2017"),
+        motor: Motor(brand: .yamaha, model: "NMAX", cc: "155", licensePlate: "BG 999 UI", year: "2017"),
         typeOfService: .servisRutin,
         notes: "Lorem Ipsum.",
         schedule: Date()

@@ -14,6 +14,7 @@ struct SuntingMotorModal: View {
     @State private var plat: String = ""
     @State private var masaBerlaku: String = ""
     @State private var tahunBeli: String = ""
+    @ObservedObject var data = JsonHelper()
     var body: some View {
         VStack {
             Text("MODEL MOTOR")
@@ -40,7 +41,7 @@ struct SuntingMotorModal: View {
             .padding()
             .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
             .sheet(isPresented: $show) {
-                MotorModal(availableMotors: allMotor,
+                MotorModal(availableMotors: data.motors,
                            selectedMotor: $motor,
                            showingSheet: $show)
             }
