@@ -25,9 +25,9 @@ struct BengkelOwnerOnboardingView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 24) {
-                VStack(alignment: .leading, spacing: 8) {
-                    textField(title: "NAMA PEMILIK", placeholder: "Tulis namamu disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
-                    textField(title: "NAMA BENGKEL", placeholder: "Tulis nama bengkelmu disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
+                VStack(alignment: .leading, spacing: 10) {
+                    textField(title: "NAMA PEMILIK", placeholder: "Tulis Namamu Disini", text: $viewModel.ownerName, alert: "Nama Wajib Diisi")
+                    textField(title: "NAMA BENGKEL", placeholder: "Tulis Nama Bengkelmu Disini", text: $viewModel.bengkelName, alert: "Nama Bengkel Wajib Diisi")
 
                     locationField()
 
@@ -83,18 +83,18 @@ struct BengkelOwnerOnboardingView: View {
                         }
                     }.actionSheet(isPresented: $shouldPresentActionScheet) {
                         ActionSheet(
-                            title: Text("Choose mode"),
-                            message: Text("Please choose your preferred mode to set your profile image"),
+                            title: Text("Pilih Metode"),
+                            message: Text("Mohon pilih metode pengambilan gambar untuk foto profil"),
                             buttons: [
-                                .default(Text("Camera")) {
+                                .default(Text("Kamera")) {
                                     self.shouldPresentImagePicker = true
                                     self.shouldPresentCamera = true
                                 },
-                                .default(Text("Photo Library")) {
+                                .default(Text("Ambil dari galeri")) {
                                     self.shouldPresentImagePicker = true
                                     self.shouldPresentCamera = false
                                 },
-                                .cancel()
+                                .cancel(Text("Batal"))
                             ]
                         )
                     }
@@ -163,11 +163,14 @@ extension BengkelOwnerOnboardingView {
                         viewModel.selectLocation()
                     } label: {
                         if let address = viewModel.address {
-                            Text(address).foregroundColor(.primary).lineLimit(1)
+                            Text(address)
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
+                                .font(.subheadline)
                         } else {
                             HStack {
                                 Image(systemName: "mappin.circle")
-                                Text("Cari alamat bengkelmu disini")
+                                Text("Cari Alamat Bengkelmu Disini")
                             }.foregroundColor(.tertiaryLabel)
                         }
                     }
@@ -176,6 +179,7 @@ extension BengkelOwnerOnboardingView {
                 .padding(10)
                 .background(AppColor.lightGray)
                 .cornerRadius(8)
+                .padding(.bottom)
                 // Alert
                 locationAlert()
             }
@@ -197,6 +201,8 @@ extension BengkelOwnerOnboardingView {
                     .padding(10)
                     .background(AppColor.lightGray)
                     .cornerRadius(8)
+                    .padding(.bottom)
+                    .disableAutocorrection(true)
                 emptyAlert(for: text, alert: alert)
             }
         }

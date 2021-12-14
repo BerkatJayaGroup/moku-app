@@ -28,7 +28,7 @@ struct EditDataBengkelView: View {
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
                         MultiSelector(options: allBrands,
-                                      optionToString: { $0.rawValue },
+                                      optionToString: { $0.rawValue }, barTitle: "Brand",
                                       selected: $viewModel.selectedBrand
                         )
                         .frame(width: proxy.size.width, height: 40)
@@ -42,7 +42,7 @@ struct EditDataBengkelView: View {
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
                         MultiSelector(options: allCC,
-                                      optionToString: { $0.ccMotor },
+                                      optionToString: { $0.ccMotor }, barTitle: "Volume Langkah",
                                       selected: $viewModel.selectedCC
                         )
                             .frame(width: proxy.size.width, height: 40)
