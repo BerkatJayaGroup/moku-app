@@ -56,7 +56,7 @@ struct AddNewMotor: View {
                                    showingSheet: $viewModel.show)
                     }.padding(.horizontal)
                 }
-                Image("MotorGray")
+                Image("MotorIllustration")
                     .opacity(0.3)
                     .padding(15)
                 Form {
@@ -68,8 +68,8 @@ struct AddNewMotor: View {
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
                     }
-                    Section(header: Text("TAHUN BELI").font(.caption2).foregroundColor(AppColor.darkGray)) {
-                        TextField("Plat Nomor", text: $viewModel.tahunBeli)
+                    Section(header: Text("TAHUN KENDARAAN").font(.caption2).foregroundColor(AppColor.darkGray)) {
+                        TextField("Tahun Kendaraan", text: $viewModel.tahunBeli)
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
                     }
