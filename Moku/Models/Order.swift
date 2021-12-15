@@ -49,6 +49,7 @@ extension Order {
         case scheduled = "Terjadwal"
         case onProgress = "Dalam progres"
         case rejected = "Ditolak"
+    
         case done = "Selesai"
         case canceled = "Canceled"
     }
