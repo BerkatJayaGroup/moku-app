@@ -28,7 +28,7 @@ struct MotorCard: View {
                     AddNewMotor(motor: motor, isEditing: true, motorBefore: motor)
                 }
             }.padding(.bottom, 15)
-            Image("MotorGray")
+            Image("MotorIllustration")
                 .padding(.bottom, 15)
             HStack {
                 VStack(alignment: .leading) {
@@ -120,7 +120,7 @@ struct GarasiTabItem: View {
                             .padding(.horizontal)
                     }
                     VStack {
-                        Image("MotorGray").padding()
+                        Image("MotorIllustration").padding()
                         Button("+ Tambah Motor Baru") {
                             newMotorSheet.toggle()
                         }
@@ -129,7 +129,7 @@ struct GarasiTabItem: View {
                         .background(AppColor.primaryColor)
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal)
+                        .padding(.horizontal, .large)
                         .sheet(isPresented: $newMotorSheet) {
                             AddNewMotor(isEditing: false)
                         }

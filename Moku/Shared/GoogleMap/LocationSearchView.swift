@@ -17,7 +17,7 @@ struct LocationSearchView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("Pilih Lokasimu").font(.headline)
+                Text("Pilih Lokasimu").font(.headline).foregroundColor(.primary)
                 Spacer()
                 Button {
                     viewModel.isMapOpen.toggle()

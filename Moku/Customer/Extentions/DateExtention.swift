@@ -38,7 +38,7 @@ extension Date {
         }
         return dates
     }
-
+  
     static var thisYear: Int {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"

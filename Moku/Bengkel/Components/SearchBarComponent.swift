@@ -25,12 +25,12 @@ struct SearchBarComponent: View {
                 }
 
             if isEditing {
-                Button(action: {
+                Button {
                     self.isEditing = false
                     self.text = ""
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
-                }) {
+                } label: {
                     Text("Cancel")
                 }
                 .padding(.trailing, 10)
@@ -46,9 +46,9 @@ struct SearchBarComponent: View {
                     .padding(.leading, 15)
 
                 if isEditing {
-                    Button(action: {
+                    Button {
                         self.text = ""
-                    }) {
+                    } label: {
                         Image(systemName: "multiply.circle.fill")
                             .foregroundColor(.gray)
                             .padding(.trailing, 80)

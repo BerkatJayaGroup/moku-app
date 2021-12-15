@@ -25,7 +25,7 @@ struct SelectedBrand {
 }
 
 let allBrands: [Brand] = [Brand.honda, Brand.yamaha, Brand.kawasaki, Brand.suzuki]
-let allCC: [Motorcc] = [Motorcc(ccMotor: "110"), Motorcc(ccMotor: "125")]
+let allCC: [Motorcc] = [Motorcc(ccMotor: "100"), Motorcc(ccMotor: "110"), Motorcc(ccMotor: "150"), Motorcc(ccMotor: "155"), Motorcc(ccMotor: "175"), Motorcc(ccMotor: "200"), Motorcc(ccMotor: "250"), Motorcc(ccMotor: "500"), Motorcc(ccMotor: "600"), Motorcc(ccMotor: "750"), Motorcc(ccMotor: "1000")]
 
 struct PengaturanBengkel: View {
     var bengkelOwnerForm: BengkelOwnerOnboardingView
@@ -56,11 +56,10 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allBrands,
-                                  optionToString: { $0.rawValue },
+                                  optionToString: { $0.rawValue }, barTitle: "Volume Langkah",
                                   selected: $selectedBrand
                     )
                     .frame(width: proxy.size.width, height: 40)
-                    .background(Color(hex: "F3F3F3"))
                     .cornerRadius(8)
                     brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                 }
@@ -69,11 +68,10 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allCC,
-                                  optionToString: { $0.ccMotor },
+                                  optionToString: { $0.ccMotor }, barTitle: "Brand",
                                   selected: $selectedCC
                     )
                         .frame(width: proxy.size.width, height: 40)
-                        .background(Color(hex: "F3F3F3"))
                         .cornerRadius(8)
                     ccEmptyAlert(for: $selectedCC, alert: "CC motor harus diisi")
                 }
@@ -215,5 +213,11 @@ struct PengaturanBengkel: View {
         if isFormValid {
             canSubmit = true
         }
+    }
+}
+
+struct PengaturanBengkel_Previews: PreviewProvider {
+    static var previews: some View {
+        PengaturanBengkel(bengkelOwnerForm: BengkelOwnerOnboardingView())
     }
 }

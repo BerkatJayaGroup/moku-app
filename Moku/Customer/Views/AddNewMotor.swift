@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewMotor: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: AddNewMotorViewModel
+    @ObservedObject var data = JsonHelper()
     init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil) {
         _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor))
         UITableView.appearance().backgroundColor = .none
@@ -50,12 +51,12 @@ struct AddNewMotor: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(AppColor.lightGray))
                     .sheet(isPresented: $viewModel.show) {
-                        MotorModal(availableMotors: allMotor,
+                        MotorModal(availableMotors: data.motors,
                                    selectedMotor: $viewModel.motor,
                                    showingSheet: $viewModel.show)
                     }.padding(.horizontal)
                 }
-                Image("MotorGray")
+                Image("MotorIllustration")
                     .opacity(0.3)
                     .padding(15)
                 Form {
@@ -67,8 +68,8 @@ struct AddNewMotor: View {
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
                     }
-                    Section(header: Text("TAHUN BELI").font(.caption2).foregroundColor(AppColor.darkGray)) {
-                        TextField("Plat Nomor", text: $viewModel.tahunBeli)
+                    Section(header: Text("TAHUN KENDARAAN").font(.caption2).foregroundColor(AppColor.darkGray)) {
+                        TextField("Tahun Kendaraan", text: $viewModel.tahunBeli)
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
                     }

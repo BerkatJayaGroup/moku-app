@@ -6,35 +6,52 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     @Binding var showSheetView: Bool
     let options: [Selectable]
     let optionToString: (Selectable) -> String
-
+    let barTitle: String
     @Binding var selected: Set<Selectable>
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(options) { selectable in
-                    Button {
-                        toggleSelection(selectable: selectable)
-                    } label: {
-                        HStack {
-                            Text(optionToString(selectable)).foregroundColor(.black)
-                            Spacer()
-                            if selected.contains { $0.id == selectable.id } {
-                                Image(systemName: "checkmark").foregroundColor(.accentColor)
-                            }
-                        }
-                        .frame(height: 30)
-                        Divider().background(AppColor.lightGray)
-                    }.tag(selectable.id)
+            VStack(alignment: .trailing) {
+                Button {
+                    selectAll(option: options)
+                }label: {
+                    Text("Pilih Semua")
                 }
+                .padding(.trailing)
+                .padding(.top)
+                List {
+                    ForEach(options) { selectable in
+                        Button {
+                            toggleSelection(selectable: selectable)
+                        } label: {
+                            HStack {
+                                Text(optionToString(selectable)).foregroundColor(.black)
+                                Spacer()
+                                if selected.contains { $0.id == selectable.id } {
+                                    Image(systemName: "checkmark").foregroundColor(.accentColor)
+                                }
+                            }
+                            .frame(height: 30)
+                            Divider().background(AppColor.lightGray)
+                        }.tag(selectable.id)
+                    }
+                }
+                .navigationBarItems(leading: Button {
+                    self.showSheetView = false
+                } label: {
+                    Image(systemName: "chevron.left")
+                    Text("Kembali")
+                })
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle(barTitle, displayMode: .inline)
+                .navigationBarItems(trailing: Button {
+                    presentationMode.wrappedValue.dismiss()
+                }label: {
+                    Text("Simpan")
+                })
+            }.onAppear {
+                UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: Double.leastNonzeroMagnitude))
             }
-            .navigationBarItems(leading: Button {
-                self.showSheetView = false
-            } label: {
-                Image(systemName: "chevron.left")
-                Text("Kembali")
-            })
-            .listStyle(GroupedListStyle())
         }
     }
 
@@ -44,6 +61,10 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
         } else {
             selected.insert(selectable)
         }
+    }
+
+    private func selectAll(option: [Selectable]) {
+        selected = Set(options)
     }
 }
 
@@ -61,7 +82,7 @@ struct MultiSelectionView_Previews: PreviewProvider {
                 showSheetView: .constant(true),
                 options: ["A", "B", "C", "D"].map { IdentifiableString(string: $0) },
                 optionToString: { $0.string },
-                selected: $selected
+                barTitle: "Brand", selected: $selected
             )
         }
     }

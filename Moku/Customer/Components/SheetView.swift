@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SheetView: View {
-
     var dayInAWeek: [String] = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]
     var dayInAWeek2: [String] = ["Sabtu", "Minggu"]
     var isToday: Bool = false
@@ -39,7 +38,7 @@ struct SheetView: View {
             }
         }
         .padding()
-        .frame(height: 320)
+        .frame(height: 330)
     }
 }
 

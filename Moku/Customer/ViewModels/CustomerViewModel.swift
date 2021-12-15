@@ -21,6 +21,7 @@ extension DaftarCustomer {
         @Published var year         = ""
 
         @Published var isEmailValid         = true
+        @Published var emailCheck           = true
         @Published var nameCheck            = true
         @Published var nomorCheck           = true
         @Published var motorCheck           = true
@@ -72,6 +73,22 @@ extension DaftarCustomer {
                 nomorCheck = false
             } else {
                 nomorCheck = true
+            }
+        }
+
+        func isMotorEmpty() {
+            if motor == nil {
+                motorCheck = false
+            } else {
+                motorCheck = true
+            }
+        }
+
+        func isEmailEmpty() {
+            if email.isEmpty {
+                emailCheck = false
+            } else {
+                emailCheck = true
             }
         }
     }
