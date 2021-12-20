@@ -111,7 +111,7 @@ struct DaftarCustomer: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
                     .sheet(isPresented: $viewModel.showModal) {
-                        MotorModal(availableMotors: allMotor,
+                        MotorModal(availableMotors: data.motors,
                                    selectedMotor: $viewModel.motor,
                                    showingSheet: $viewModel.showModal)
                     }
@@ -157,63 +157,8 @@ struct DaftarCustomer: View {
                             .foregroundColor(Color.red)
                     }
                 }
-                Text("MODEL MOTOR")
-                    .font(.caption2)
-                Button {
-                    viewModel.showModal.toggle()
-                } label: {
-                    HStack {
-                        if let motor = viewModel.motor {
-                            Text(motor.model)
-                                .foregroundColor(.black)
-                        } else {
-                            Image(systemName: "magnifyingglass")
-                            Text("Cari Model Motormu")
-                        }
-                    }
-                    .foregroundColor(.tertiaryLabel)
-                    .font(.subheadline)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .multilineTextAlignment(.leading)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
-                .sheet(isPresented: $viewModel.showModal) {
-                    MotorModal(availableMotors: data.motors,
-                               selectedMotor: $viewModel.motor,
-                               showingSheet: $viewModel.showModal)
-                }
             }.padding(20)
-            Image("MotorGray")
-                .opacity(0.3)
-                .padding(15)
-
-            VStack(alignment: .leading) {
-                Text("PLAT MOTOR")
-                    .font(.caption2)
-                TextField("Plat Motor", text: $viewModel.licensePlate)
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .autocapitalization(.none)
-                    .autocapitalization(.none)
-                    .padding(.bottom)
-
-                Text("Tahun Beli")
-                    .font(.caption2)
-                TextField("Tahun beli", text: $viewModel.year)
-                    .keyboardType(.numberPad)
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .autocapitalization(.none)
-                    .autocapitalization(.none)
-                    .padding(.bottom)
-            }.padding()
+            
             Spacer()
 
             Button {

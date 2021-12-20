@@ -1050,7 +1050,6 @@
 				83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */,
 				B80B01AF272918A500050D90 /* UserData.swift in Sources */,
 				8EE4F506273E3C66001D6C5A /* UlasanAftarSend.swift in Sources */,
-				AEC87B8E2729422B0030F2C0 /* PengaturanHargaBengkelView.swift in Sources */,
 				AEA0E1D22750E06F00398A9D /* StringExtension.swift in Sources */,
 				AEEBF222274CEA2A002550A8 /* NavigationHelper.swift in Sources */,
 				B83315D3274BC3150052D2DD /* RejectAppointmentModal.swift in Sources */,
@@ -1259,7 +1258,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
 				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
@@ -1299,7 +1298,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
 				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
