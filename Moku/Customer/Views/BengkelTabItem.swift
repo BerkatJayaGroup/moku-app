@@ -72,7 +72,11 @@ struct BengkelTabItem: View {
                     listOfNearbyBengkel()
                 }
             }.padding(.top, 111)
-        }.edgesIgnoringSafeArea(.top)
+        }
+        .onTapGesture {
+            endTextEditing()
+        }
+        .edgesIgnoringSafeArea(.top)
     }
 
     @ViewBuilder

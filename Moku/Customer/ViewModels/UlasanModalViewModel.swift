@@ -32,8 +32,7 @@ extension UlasanModal {
                 bengkelRepository.addRating(bengkelId: bengkel.id,
                                             review: Review(user: customer.name,
                                                            rating: selected,
-                                                           comment: text,
-                                                           timestamp: Date()))
+                                                           comment: text))
                removeFromToRate(order: order, customer: customer)
             default: return
             }
