@@ -119,7 +119,6 @@ struct BookingSummary: View {
                         .font(.caption)
                         .foregroundColor(AppColor.darkGray)
                         .multilineTextAlignment(.center)
-                   
                     VStack(alignment: .leading) {
                         Divider()
                             .padding(.vertical)
