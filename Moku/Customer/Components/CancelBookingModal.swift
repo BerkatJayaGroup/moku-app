@@ -39,7 +39,7 @@ struct CancelBookingModal: View {
                 .navigationBarTitle("Pilih alasan membatalkan booking", displayMode: .inline)
                 .listStyle(.plain)
 
-                Button("Selesai") {
+                Button {
 
                     let oneHourAgo = Calendar.current.date(byAdding: .hour, value: -1, to: order.schedule)
                     let now = Calendar.current.date(byAdding: .hour, value: 0, to: Date())
@@ -50,13 +50,15 @@ struct CancelBookingModal: View {
                         showingAlert = true
                         isCancel = false
                     }
+                }label: {
+                    Text("Selesai")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 16)
+                        .frame(width: UIScreen.main.bounds.width * 0.85)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color("PrimaryColor"))
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                .padding(.horizontal)
                 .alert(isPresented: $showingAlert) {
                     Alert(title: isCancel ? Text("Booking berhasil dibatalkan"): Text("Booking gagal dibatalkan"), message: isCancel ? Text("Jika ingin menambah booking baru harap melakukan pemesanan ulang.") : Text("Booking sudah tidak dapat dibatalkan karena melewati batas waktu maksimal pembatalan. Harap coba kembali"), primaryButton: .default(Text("OK")) {
                         if isCancel == true {
