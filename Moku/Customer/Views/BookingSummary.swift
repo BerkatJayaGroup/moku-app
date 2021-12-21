@@ -84,6 +84,22 @@ struct BookingSummary: View {
 
     @Binding var isBackToRoot: Bool
 
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var backButton : some View {
+        Button {
+           self.presentationMode.wrappedValue.dismiss()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.left")
+                   .aspectRatio(contentMode: .fit)
+                   .foregroundColor(AppColor.primaryColor)
+                   .font(.system(size: 17, weight: .medium))
+                   Text("Kembali")
+               }
+           }
+       }
+
     init(order: Order, tab: Binding<Tabs>, isBackToRoot: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ViewModel(order: order))
         self._tab = tab
@@ -102,12 +118,14 @@ struct BookingSummary: View {
                     Text(viewModel.address)
                         .font(.caption)
                         .foregroundColor(AppColor.darkGray)
-                    Divider()
-                        .padding(.vertical)
+                        .multilineTextAlignment(.center)
+                   
                     VStack(alignment: .leading) {
+                        Divider()
+                            .padding(.vertical)
                         Text("Keterangan Booking")
                             .font(.system(size: 17, weight: .semibold))
-                        HStack {
+                        HStack(spacing: 40) {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text("Motor")
                                     .font(.system(size: 13, weight: .regular))
@@ -122,7 +140,6 @@ struct BookingSummary: View {
                                     .font(.system(size: 13, weight: .regular))
                                     .foregroundColor(AppColor.darkGray)
                             }.padding(.vertical)
-                            Spacer(minLength: 1)
                             VStack(alignment: .leading, spacing: 20) {
                                 Text(viewModel.motor)
                                     .font(.system(size: 13, weight: .semibold))
@@ -139,6 +156,8 @@ struct BookingSummary: View {
                 }
                 .padding(30)
                 .navigationTitle("Booking Detail")
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: backButton)
                 .navigationBarTitleDisplayMode(.inline)
 
                 Button {
@@ -166,4 +185,10 @@ struct BookingSummary: View {
             }
         }
     }
+}
+
+struct BookingSummary_Previews: PreviewProvider {
+   static var previews: some View {
+       BookingSummary(order: Order.preview, tab: .constant(.tab1), isBackToRoot: .constant(true))
+   }
 }
