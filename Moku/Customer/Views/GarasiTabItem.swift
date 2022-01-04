@@ -82,12 +82,14 @@ struct GarasiTabItem: View {
                         .padding(.horizontal)
                         .padding(.top)
                     motorSection()
+                        .padding(.bottom, -20)
                     Divider()
+                        .padding(.horizontal)
                     Text("Riwayat Servis")
                         .font(.system(size: 17, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
-                        .padding(.top)
+                        
                     serviceHistorySection().padding(10)
                 }
             }
@@ -98,13 +100,11 @@ struct GarasiTabItem: View {
                 Text(customer.name)
                     .font(.system(size: 15, weight: .regular))
                 Spacer()
-                Text("Profil").foregroundColor(AppColor.primaryColor)
-                    .font(.system(size: 13, weight: .semibold))
-                    .onTapGesture {
-                        isProfileModalPresented.toggle()
-                    }.sheet(isPresented: $isProfileModalPresented) {
-                        EditProfileModal(customer: customer)
-                    }
+                NavigationLink(destination: EditProfileModal(customer: customer)){
+                    Text("Profil")
+                        .foregroundColor(AppColor.primaryColor)
+                        .font(.system(size: 13, weight: .semibold))
+                }
             } else {
                 Text("Loading...")
             }
@@ -121,8 +121,13 @@ struct GarasiTabItem: View {
                     }
                     VStack {
                         Image("MotorIllustration").padding()
-                        Button("+ Tambah Motor Baru") {
+                        Button {
                             newMotorSheet.toggle()
+                        } label: {
+                            HStack{
+                                Image(systemName: "plus")
+                                Text ("Tambah Motor Baru")
+                            }
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -132,6 +137,7 @@ struct GarasiTabItem: View {
                         .padding(.horizontal, .large)
                         .sheet(isPresented: $newMotorSheet) {
                             AddNewMotor(isEditing: false)
+                                .navigationTitle("Sunting Motor")
                         }
                     }
                     .padding(.horizontal)
@@ -213,7 +219,7 @@ struct OrderCards: View {
                 OrderHistoryDetailModal(bengkel: bengkelDetail, order: orderDetail)
             }
         }.onAppear {
-            viewModel.getBengkelFromOrder(bengkelId: orderDetail.id)
+            viewModel.getBengkelFromOrder(bengkelId: orderDetail.bengkelId)
         }
     }
 }

@@ -34,12 +34,16 @@ struct EditProfileModal: View {
                     textField(title: "NAMA", placeholder: customer.name, text: $name)
                     textField(title: "NOMOR TELEPON", placeholder: customer.phoneNumber, text: $phoneNumber, keyboardType: .numberPad)
                 }.padding()
-            }.navigationBarTitle("Detail Servis", displayMode: .inline).navigationBarItems(leading: Button("Tutup") {
-                presentationMode.wrappedValue.dismiss()
-            }, trailing: !name.isEmpty || !phoneNumber.isEmpty ? AnyView(Button("Simpan") {
-                let updatedCustomer = Customer(id: customer.id, name: !name.isEmpty ? self.name : customer.name, phoneNumber: !phoneNumber.isEmpty ? self.phoneNumber : customer.phoneNumber)
-                garageTabViewModel.update(updatedCustomer)
-                presentationMode.wrappedValue.dismiss()
+            }
+            .navigationBarTitle("Detail Servis", displayMode: .inline)
+            .navigationBarItems(
+                leading: Button("Tutup") {
+                    presentationMode.wrappedValue.dismiss()
+            },
+                trailing: !name.isEmpty || !phoneNumber.isEmpty ? AnyView(Button("Simpan") {
+                    let updatedCustomer = Customer(id: customer.id, name: !name.isEmpty ? self.name : customer.name, phoneNumber: !phoneNumber.isEmpty ? self.phoneNumber : customer.phoneNumber)
+                    garageTabViewModel.update(updatedCustomer)
+                    presentationMode.wrappedValue.dismiss()
             }) : AnyView(EmptyView()) )
         }
     }

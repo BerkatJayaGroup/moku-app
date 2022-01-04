@@ -29,6 +29,8 @@ class Motor: Codable, Identifiable {
         case brand
         case cc
         case model
+        case licensePlate
+        case year
     }
 }
 

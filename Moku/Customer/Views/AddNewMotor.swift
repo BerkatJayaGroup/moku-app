@@ -84,10 +84,12 @@ struct AddNewMotor: View {
                                 .font(.system(size: 17, weight: .semibold))
                             Text("Hapus Motor")
                                 .font(.system(size: 17, weight: .semibold))
-                        }.padding(.horizontal)
+                        }
+                        .foregroundColor(Color.red)
+                        .padding(.horizontal)
                     }
-                    .padding()
-                    .background(.red)
+                    .frame(width: 312, height: 44)
+                    .background(Color(hex: "EFBFBF"))
                     .cornerRadius(9)
                 }
             }
@@ -95,8 +97,13 @@ struct AddNewMotor: View {
             .navigationTitle("Tambah Motor Baru")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-                leading: Button("Kembali") {
+                leading: Button {
                     presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Kembali")
+                    }
                 },
                 trailing: Button(viewModel.isEditing ? "Simpan" : "Tambah") {
                     if viewModel.isEditing {
