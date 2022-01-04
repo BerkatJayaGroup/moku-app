@@ -72,17 +72,17 @@ struct BengkelView: View {
             TabView {
                 BookingTabItemView()
                     .tabItem {
-                        Image(systemName: "star")
+                        Image(systemName: "wrench.and.screwdriver.fill")
                         Text("Booking")
                     }
                 PesananTabBengkelView()
                     .tabItem {
-                        Image(systemName: "star")
+                        Image(systemName: "calendar")
                         Text("Pesanan")
                     }
                 ProfileBengkelView()
                     .tabItem {
-                        Image(systemName: "wrench.and.screwdriver.fill")
+                        Image(systemName: "GarasiTabItemIcon")
                         Text("Bengkel")
                     }
             }

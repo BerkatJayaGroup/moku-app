@@ -18,28 +18,33 @@ struct PesananTabBengkelView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    viewModel.showUlasan()
+            ZStack(alignment: .top) {
+                RactBg()
+                    .frame(height: 50)
+                    .foregroundColor(Color("PrimaryColor"))
+                VStack {
+                    ScrollView {
+                        viewModel.showUlasan()
+                    }
                 }
-            }
-            .background(NavigationLink(destination: HistoryOrderView(bengkelOrders: viewModel.bengkelOrders ?? []), isActive: $viewModel.isHistoryShow) {
-                EmptyView()
-            })
-            .navigationTitle("Pesanan")
-            .navigationBarColor(AppColor.primaryColor)
-            .onDisappear(perform: {
-                UINavigationBar.appearance().backgroundColor = nil
-            })
-            .navigationBarItems(trailing: Button(action: {
-                viewModel.isHistoryShow = true
-            }, label: {
-                Image(systemName: "clock.arrow.circlepath")
-                    .imageScale(.large)
-                    .foregroundColor(.white)
-                    .font(.system(size: 20))
-            })
-            )
+                .background(NavigationLink(destination: HistoryOrderView(bengkelOrders: viewModel.bengkelOrders ?? []), isActive: $viewModel.isHistoryShow) {
+                    EmptyView()
+                })
+                .navigationTitle("Pesanan")
+                .navigationBarColor(AppColor.primaryColor)
+                .onDisappear(perform: {
+                    UINavigationBar.appearance().backgroundColor = nil
+                })
+                .navigationBarItems(trailing: Button(action: {
+                    viewModel.isHistoryShow = true
+                }, label: {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .imageScale(.large)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                })
+                )
+            }.edgesIgnoringSafeArea(.vertical)
         }
     }
 }
