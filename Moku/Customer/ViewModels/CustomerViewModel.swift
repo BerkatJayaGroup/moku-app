@@ -15,13 +15,10 @@ extension DaftarCustomer {
         @Published var motor: Motor?
         @Published var name         = ""
         @Published var nomorTelepon = ""
-        @Published var email        = ""
         @Published var query        = ""
         @Published var licensePlate = ""
         @Published var year         = ""
 
-        @Published var isEmailValid         = true
-        @Published var emailCheck           = true
         @Published var nameCheck            = true
         @Published var nomorCheck           = true
         @Published var motorCheck           = true
@@ -48,16 +45,7 @@ extension DaftarCustomer {
             }
         }
         var isFormInvalid: Bool {
-            motor == nil || name.isEmpty || nomorTelepon.isEmpty || email.isEmpty
-        }
-
-        func textFieldValidatorEmail() -> Bool {
-            if email.count > 100 {
-                return false
-            }
-            let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-            return emailPredicate.evaluate(with: email)
+            motor == nil || name.isEmpty || nomorTelepon.isEmpty
         }
 
         func validateEmptyName () {
@@ -81,14 +69,6 @@ extension DaftarCustomer {
                 motorCheck = false
             } else {
                 motorCheck = true
-            }
-        }
-
-        func isEmailEmpty() {
-            if email.isEmpty {
-                emailCheck = false
-            } else {
-                emailCheck = true
             }
         }
     }
