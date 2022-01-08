@@ -17,4 +17,5 @@ struct AppColor {
     static let darkGray = Color("DarkGray")
     static let primaryBackground = Color("PrimaryBackgroundColor")
     static let grayTab = Color("GrayTabBar")
+    static let navBarDefaultColor = Color("NavBarColor")
 }

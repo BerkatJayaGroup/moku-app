@@ -120,6 +120,14 @@ struct GarasiTabItem: View {
                             .padding(.horizontal)
                     }
                     VStack {
+                        HStack{
+                            Text("                                           ")
+                                .font(.system(size: 17, weight: .semibold))
+                                .backgroundColor(AppColor.lightGray)
+                                .cornerRadius(10)
+                                .foregroundColor(.clear)
+                            Spacer()
+                        }
                         Image("MotorIllustration").padding()
                         Button {
                             newMotorSheet.toggle()
@@ -140,6 +148,11 @@ struct GarasiTabItem: View {
                                 .navigationTitle("Sunting Motor")
                         }
                     }
+                    .frame(height: 280)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                     .padding(.horizontal)
                 }
                 .aspectRatio(3/3, contentMode: .fit)
