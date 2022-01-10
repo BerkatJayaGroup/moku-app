@@ -45,7 +45,7 @@ struct PengaturanBengkel: View {
     @State var canSubmit = false
 
     var isFormValid: Bool {
-        !selectedBrand.isEmpty && !selectedCC.isEmpty && !mechanics.isEmpty
+        !selectedBrand.isEmpty && !selectedCC.isEmpty && !mechanics.isEmpty && !daySelected.allSatisfy({$0 == false})
     }
 
     var body: some View {
@@ -75,7 +75,7 @@ struct PengaturanBengkel: View {
                         .cornerRadius(8)
                     ccEmptyAlert(for: $selectedCC, alert: "CC motor harus diisi")
                 }
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("HARI OPERASIONAL")
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
@@ -95,9 +95,10 @@ struct PengaturanBengkel: View {
                                 }
                         }
                     }
+                   dayEmptyAlert(for: $daySelected, alert: "Hari harus dipilih")
                 }
                 .frame(width: proxy.size.width)
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("JAM OPERASIONAL")
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
@@ -111,35 +112,36 @@ struct PengaturanBengkel: View {
                         selection: $closeTime,
                         displayedComponents: .hourAndMinute
                     )
-                }
-                Text("MEKANIK")
-                    .font(Font.system(size: 11, weight: .regular))
-                    .frame(width: proxy.size.width, alignment: .leading)
-
-                if !mechanics.isEmpty {
-                    VStack(alignment: .leading) {
-                        ForEach(mechanics, id: \.self) { (mech) in
-                            Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
-                            Divider()
-                                .background(Color("DarkGray"))
-                        }.onDelete(perform: self.deleteItem)
-                    }
-                    Divider()
-                }
-
-                Button {
-                    self.isAddMekanik.toggle()
-                    print($mechanics.count)
-                } label: {
-                    Text("+Tambah Mekanik")
-                        .font(Font.system(size: 13, weight: .regular))
-                        .foregroundColor(Color("PrimaryColor"))
+                    Text("MEKANIK")
+                        .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
+                        .padding(.top, 5)
+
+                    if !mechanics.isEmpty {
+                        VStack(alignment: .leading) {
+                            ForEach(mechanics, id: \.self) { (mech) in
+                                Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
+                                Divider()
+                                    .background(Color("DarkGray"))
+                            }.onDelete(perform: self.deleteItem)
+                        }
+                        Divider()
+                    }
+
+                    Button {
+                        self.isAddMekanik.toggle()
+                        print($mechanics.count)
+                    } label: {
+                        Text("+Tambah Mekanik")
+                            .font(Font.system(size: 13, weight: .regular))
+                            .foregroundColor(Color("PrimaryColor"))
+                            .frame(width: proxy.size.width, alignment: .leading)
+                    }
+                    .sheet(isPresented: $isAddMekanik) {
+                        AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
+                    }
+                    mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 }
-                .sheet(isPresented: $isAddMekanik) {
-                    AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
-                }
-                mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
                 Spacer()
                 submitButton(proxy: proxy)
             }
@@ -190,6 +192,13 @@ struct PengaturanBengkel: View {
     @ViewBuilder
     private func mekanikEmptyAlert(for text: Binding<[CalonMekanik]>, alert: String) -> some View {
         if text.isEmpty, isSubmitting {
+            Text(alert).alertStyle()
+        }
+    }
+
+    @ViewBuilder
+    private func dayEmptyAlert(for text: Binding<[Bool]>, alert: String) -> some View {
+        if daySelected.allSatisfy({ $0 == false }) {
             Text(alert).alertStyle()
         }
     }

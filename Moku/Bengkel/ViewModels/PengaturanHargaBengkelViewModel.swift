@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 class PengaturanHargaBengkelViewModel: ObservableObject {
     @Published var minPrice = ""
@@ -13,9 +14,17 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
 
     @Published var isSubmitting = false
     @Published var isLoading = false
+    @State var canSubmit = false
 
     var isFormValid: Bool {
         !minPrice.isEmpty && !maxPrice.isEmpty
+    }
+
+    func validateForm() {
+        isSubmitting = true
+        if isFormValid {
+            canSubmit = true
+        }
     }
 
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
