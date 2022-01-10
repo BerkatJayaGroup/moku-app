@@ -56,11 +56,9 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allBrands,
-                                  optionToString: { $0.rawValue }, barTitle: "Volume Langkah",
+                                  optionToString: { $0.rawValue }, barTitle: "Brand", proxy: proxy,
                                   selected: $selectedBrand
                     )
-                    .frame(width: proxy.size.width, height: 40)
-                    .cornerRadius(8)
                     brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                 }
                 VStack(alignment: .leading, spacing: 8) {
@@ -68,11 +66,9 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     MultiSelector(options: allCC,
-                                  optionToString: { $0.ccMotor }, barTitle: "Brand",
+                                  optionToString: { $0.ccMotor }, barTitle: "Volume Langkah", proxy: proxy,
                                   selected: $selectedCC
                     )
-                        .frame(width: proxy.size.width, height: 40)
-                        .cornerRadius(8)
                     ccEmptyAlert(for: $selectedCC, alert: "CC motor harus diisi")
                 }
                 VStack(alignment: .leading, spacing: 8) {
@@ -103,12 +99,12 @@ struct PengaturanBengkel: View {
                         .font(Font.system(size: 11, weight: .regular))
                         .frame(width: proxy.size.width, alignment: .leading)
                     DatePicker(
-                        "Start Day",
+                        "Jam Buka",
                         selection: $openTime,
                         displayedComponents: .hourAndMinute
                     )
                     DatePicker(
-                        "End Day",
+                        "Jam Tutup",
                         selection: $closeTime,
                         displayedComponents: .hourAndMinute
                     )

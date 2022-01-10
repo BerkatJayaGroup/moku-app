@@ -6,6 +6,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
     let options: [Selectable]
     let optionToString: (Selectable) -> String
     let barTitle: String
+    let proxy: GeometryProxy
 
     var selected: Binding<Set<Selectable>>
 
@@ -22,12 +23,15 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
             HStack {
                 Text(formattedSelectedListString)
                     .foregroundColor(.black)
-                    .multilineTextAlignment(.trailing)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.leading)
+                    .padding(.vertical, 10)
+                    .frame(width: proxy.size.width)
+                    .background(Color(hex: "F3F3F3"))
+                    .cornerRadius(8)
                 Spacer()
             }
-            .padding()
         }
-        .background(Color(hex: "F3F3F3"))
         .sheet(isPresented: $isOpenSelector) {
             MultiSelectionView(showSheetView: $isOpenSelector,
                                options: options,

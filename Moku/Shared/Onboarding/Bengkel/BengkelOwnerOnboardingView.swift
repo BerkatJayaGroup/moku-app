@@ -172,6 +172,7 @@ extension BengkelOwnerOnboardingView {
                             HStack {
                                 Image(systemName: "mappin.circle")
                                 Text("Cari Alamat Bengkelmu Disini")
+                                    .font(.system(size: 15))
                             }.foregroundColor(.tertiaryLabel)
                         }
                     }

@@ -67,18 +67,18 @@ struct AddMekanik: View {
         }
         .actionSheet(isPresented: $showActionSheet) {
             ActionSheet(
-                title: Text("Choose mode"),
-                message: Text("Please choose your preferred mode to set your profile image"),
+                title: Text("Pilih Metode"),
+                message: Text("Mohon pilih metode pengambilan gambar untuk foto profil mekanik"),
                 buttons: [
-                    .default(Text("Camera")) {
+                    .default(Text("Kamera")) {
                         self.showImagePicker.toggle()
                         self.sourceType = .camera
                     },
-                    .default(Text("Photo Library")) {
+                    .default(Text("Ambil dari galeri")) {
                         self.showImagePicker.toggle()
                         self.sourceType = .photoLibrary
                     },
-                    .cancel()
+                    .cancel(Text("Batal"))
                 ]
             )
         }
