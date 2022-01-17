@@ -15,7 +15,7 @@ struct ReviewCell: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 5) {
             if let order = viewModel.order {
                 if let customer = viewModel.customer {
                     Text(customer.name)
@@ -42,9 +42,7 @@ struct ReviewCell: View {
                 }
             }
         }
-        .padding()
-        .border(Color(hex: "979797"), width: 1, cornerRadius: 6)
-        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
+        .foregroundColor(.black)
     }
 
     func getColors(status: Order.Status) -> some View {
