@@ -76,6 +76,6 @@ struct OnboardingView: View {
 
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(data: OnboardingDataModel.data   )
+        OnboardingView(data: OnboardingDataModel.data)
     }
 }

@@ -18,7 +18,7 @@ struct MokuApp: App {
     @ObservedObject var dynamicLinksService = DynamicLinksService.shared
 
     @StateObject var appState = AppState()
-
+    @State var tabSelection: Tabs = .tab1
     @State var order: Order?
 
     var onboardingData = OnboardingDataModel.data
@@ -82,7 +82,11 @@ struct MokuApp: App {
             }
         } else {
             if appState.hasOnboarded {
-                PickRoleView()
+                if Auth.auth().currentUser == nil {
+                    CustomerView()
+                } else {
+                    PickRoleView()
+                }
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }

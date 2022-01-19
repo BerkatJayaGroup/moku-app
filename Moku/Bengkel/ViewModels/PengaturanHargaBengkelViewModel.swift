@@ -32,8 +32,8 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
 
         isLoading = true
         let calendar = Calendar.current
-        let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
-        let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
+        let openTime = pengaturanBengkelForm.openTime
+        let closeTime = pengaturanBengkelForm.closeTime
 
         NotificationService.shared.getToken { token in
             var bengkelBaru = Bengkel(

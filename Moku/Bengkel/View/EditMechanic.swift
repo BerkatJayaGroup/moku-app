@@ -12,6 +12,7 @@ import FirebaseAuth
 struct EditMechanic: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
+    @State private var showingAlert = false
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -43,12 +44,11 @@ struct EditMechanic: View {
                 }
             }
 
-            uploadButton()
-
             VStack(alignment: .leading) {
                 Text("NAMA MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                 TextField("Tulis Nama Mekanik", text: $viewModel.mechanicName)
+                    .disabled(true)
                     .font(.subheadline)
                     .padding(15)
                     .background(Color(.systemGray6))
@@ -57,28 +57,28 @@ struct EditMechanic: View {
             }
             Spacer()
             Button(action: {
-                viewModel.updateMechanic()
-                presentationMode.wrappedValue.dismiss()
-
-            }, label: {
-                Text("Simpan Perubahan")
-                    .frame(width: 309, height: 44, alignment: .center)
-                    .foregroundColor(.white)
-                    .background(AppColor.primaryColor)
-                    .cornerRadius(8)
-            })
-            Button(action: {
-                viewModel.removeMechanic()
-                presentationMode.wrappedValue.dismiss()
+                showingAlert = true
             }, label: {
                 Text("Hapus Mekanik")
                     .frame(width: 309, height: 44, alignment: .center)
+                    .font(.system(size: 17), weight: .bold)
                     .foregroundColor(AppColor.primaryColor)
                     .background(Color(hex: "F8D8BF"))
                     .cornerRadius(8)
             })
         }
         .padding()
+        .alert(isPresented: $showingAlert) {
+                    Alert(
+                        title: Text("Apa kamu yakin ingin menghapus mekanik ini?"),
+                        message: Text("Setelah kamu menekan tombol hapus, mekanik akan terhapus secara permanen"),
+                        primaryButton: .destructive(Text("Hapus")) {
+                            viewModel.removeMechanic()
+                            presentationMode.wrappedValue.dismiss()
+                        },
+                        secondaryButton: .cancel(Text("Batal"))
+                    )
+                }
     }
 
     @ViewBuilder
@@ -106,5 +106,11 @@ struct EditMechanic: View {
                 ]
             )
         }
+    }
+}
+
+struct EditMechanic_Previews: PreviewProvider {
+    static var previews: some View {
+        EditMechanic(mechanic: Mekanik.init(id: "1", name: "Albert"))
     }
 }
