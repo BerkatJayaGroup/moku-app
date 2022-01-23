@@ -8,7 +8,8 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-
+    static let shared = AppState()
     @AppStorage(UserDefaults.hasOnboarded) var hasOnboarded = false
+    @Published var viewID = UUID()
 
 }

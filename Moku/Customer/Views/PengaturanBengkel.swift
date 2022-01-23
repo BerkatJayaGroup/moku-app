@@ -64,6 +64,7 @@ struct PengaturanBengkel: View {
                         )
                         brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                     }
+                    .padding(.top, 50)
                     VStack(alignment: .leading, spacing: 8) {
                         Text("HARI OPERASIONAL")
                             .font(Font.system(size: 11, weight: .regular))
@@ -205,10 +206,11 @@ struct PengaturanBengkel: View {
                                 self.showSheetOpen = false
                             }label: {
                                 Text("Done").fontWeight(Font.Weight.bold)
+                                    .padding(.vertical)
+                                    .frame(maxWidth: proxy.size.width  - 90)
+                                    .background(RoundedRectangle(cornerRadius: 10)
+                                                    .foregroundColor(Color.white).shadow(radius: 1))
                             }.padding()
-                                .frame(maxWidth: proxy.size.width  - 90)
-                                .background(RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color.white).shadow(radius: 1))
                         }
                     }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
                 }
@@ -236,10 +238,11 @@ struct PengaturanBengkel: View {
                                 self.showSheetClose = false
                             }label: {
                                 Text("Done").fontWeight(Font.Weight.bold)
+                                    .padding(.vertical)
+                                    .frame(maxWidth: proxy.size.width  - 90)
+                                    .background(RoundedRectangle(cornerRadius: 10)
+                                                    .foregroundColor(Color.white).shadow(radius: 1))
                             }.padding()
-                                .frame(maxWidth: proxy.size.width  - 90)
-                                .background(RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color.white).shadow(radius: 1))
                         }
                     }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
                 }

@@ -19,6 +19,7 @@ struct BengkelTabItem: View {
     @State private var showModal = false
     @State var isActive: Bool = false
     @State var selection: Int?
+    @State var showLoginView = false
     @Binding var tab: Tabs
     var onboardingData = OnboardingDataModel.data
     var lastOrder = true
@@ -158,22 +159,15 @@ struct BengkelTabItem: View {
                 }
             }
         } else {
-            NavigationLink(destination: PickRoleView(), tag: 1, selection: $selection) {
-//                Text("Daftar atau Masuk")
-//                    .foregroundColor(Color.white)
-//                    .padding(.leading, 20)
-//                    .font(.system(size: 17), weight: .bold)
-                SignInWithAppleToFirebase({ response in
-                    if response == .success {
-                        self.selection = 1
-                       print("logged into Firebase through Apple!")
-                    } else if response == .error {
-                       print("error. Maybe the user cancelled or there's no internet")
-                    }
-                })
-                    .frame(width: 50, height: 20, alignment: .center)
-                    .padding(.leading, 60)
-                    .padding(.vertical, 10)
+            Button {
+                self.showLoginView = true
+            }label: {
+                Text("Daftar atau Masuk")
+                    .foregroundColor(Color.white)
+                    .padding(.leading, 20)
+                    .font(.system(size: 17), weight: .bold)
+            }.sheet(isPresented: $showLoginView) {
+                LoginView()
             }
         }
     }

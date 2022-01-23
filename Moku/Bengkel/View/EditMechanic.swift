@@ -13,6 +13,7 @@ struct EditMechanic: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
     @State private var showingAlert = false
+    @State var isEditing = false
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -43,12 +44,14 @@ struct EditMechanic: View {
                         .padding(.bottom, 10)
                 }
             }
-
+            if isEditing {
+                uploadButton()
+            }
             VStack(alignment: .leading) {
                 Text("NAMA MEKANIK")
                     .font(Font.system(size: 11, weight: .regular))
                 TextField("Tulis Nama Mekanik", text: $viewModel.mechanicName)
-                    .disabled(true)
+                    .disabled(!isEditing)
                     .font(.subheadline)
                     .padding(15)
                     .background(Color(.systemGray6))
@@ -56,6 +59,18 @@ struct EditMechanic: View {
                     .padding(.bottom)
             }
             Spacer()
+            if isEditing {
+                Button {
+                    viewModel.updateMechanic()
+                }label: {
+                    Text("Simpan Perubahan")
+                        .frame(width: 309, height: 44, alignment: .center)
+                        .font(.system(size: 17), weight: .bold)
+                        .foregroundColor(.white)
+                        .background(AppColor.primaryColor)
+                        .cornerRadius(8)
+                }
+            }
             Button(action: {
                 showingAlert = true
             }, label: {
@@ -66,6 +81,14 @@ struct EditMechanic: View {
                     .background(Color(hex: "F8D8BF"))
                     .cornerRadius(8)
             })
+        }
+        .toolbar {
+            Button {
+                self.isEditing.toggle()
+            }label: {
+                Text(isEditing ? "Done" : "Edit")
+                    .foregroundColor(.white)
+            }
         }
         .padding()
         .alert(isPresented: $showingAlert) {

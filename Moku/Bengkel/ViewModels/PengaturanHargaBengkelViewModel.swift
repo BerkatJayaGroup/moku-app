@@ -28,6 +28,7 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
     }
 
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
+
         guard let location = bengkelOwnerFormViewModel.location else { return }
 
         isLoading = true

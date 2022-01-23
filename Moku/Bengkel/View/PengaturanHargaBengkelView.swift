@@ -74,7 +74,7 @@ struct PengaturanHargaBengkelView: View {
     private func submitButton(proxy: GeometryProxy) -> some View {
         Button {
             viewModel.validateForm()
-            if viewModel.canSubmit {
+            if viewModel.isFormValid {
                 viewModel.createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, pengaturanBengkelForm: pengaturanBengkelForm)
             }
         } label: {
