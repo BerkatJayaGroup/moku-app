@@ -76,7 +76,7 @@ struct MokuApp: App {
         if let user = session.user {
             switch user {
             case .bengkel:
-                BengkelView()
+                CustomerView()
             case .customer:
                 CustomerView()
             }

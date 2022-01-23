@@ -22,7 +22,7 @@ struct CustomerView: View {
 
         let coloredAppearance                           = UINavigationBarAppearance()
         coloredAppearance.backgroundColor               = UIColor(AppColor.primaryColor)
-        coloredAppearance.titleTextAttributes           = [.foregroundColor: UIColor.black]
+        coloredAppearance.titleTextAttributes           = [.foregroundColor: UIColor.white]
         coloredAppearance.largeTitleTextAttributes      = [.foregroundColor: UIColor.white]
 
         UINavigationBar.appearance().standardAppearance = coloredAppearance
