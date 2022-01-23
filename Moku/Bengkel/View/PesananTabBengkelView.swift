@@ -9,13 +9,13 @@ import SwiftUI
 
 struct PesananTabBengkelView: View {
     @StateObject private var viewModel = ViewModel()
-    
+
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -40,7 +40,7 @@ struct PesananTabBengkelView: View {
                     .font(.system(size: 20))
             })
             )
-            
+
         }
     }
 }

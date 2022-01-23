@@ -22,35 +22,38 @@ struct BookingSeeAllView: View {
     }
 
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                if let order = viewModel.bengkelOrders {
-                    let newOrder = order.filter { order in
-                        return order.status == .waitingConfirmation
+        NavigationView {
+            ScrollView {
+                LazyVStack {
+                    if let order = viewModel.bengkelOrders {
+                        let newOrder = order.filter { order in
+                            return order.status == .waitingConfirmation
+                        }
+                        ForEach(newOrder, id: \.id) { order in
+                            orderCards(order: order).padding(10)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                                .padding(.top)
+                                .padding(.horizontal)
+                        }
+                    } else {
+                        ProgressView().progressViewStyle(CircularProgressViewStyle())
                     }
-                    ForEach(newOrder, id: \.id) { order in
-                        orderCards(order: order).padding(10)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                            .padding(.top)
-                            .padding(.horizontal)
-                    }
-                } else {
-                    ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
             }
+            .navigationBarTitle("Booking Masuk", displayMode: .inline)
+            .navigationBarItems(leading: Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                HStack(spacing: 3) {
+                    Image(systemName: "chevron.backward")
+                    Text("Kembali")
+                }
+                .foregroundColor(.white)
+            })
         }
-        .navigationBarTitle("Booking Masuk", displayMode: .inline)
-        .navigationBarItems(leading: Button {
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            HStack(spacing: 3) {
-                Image(systemName: "chevron.backward")
-                Text("Kembali")
-            }
-            .foregroundColor(.white)
-        })
+        .navigationBarHidden(true)
     }
 
     private func orderCards(order: Order) -> some View {

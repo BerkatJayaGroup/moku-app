@@ -82,7 +82,7 @@ struct BengkelView: View {
                     }
                 ProfileBengkelView()
                     .tabItem {
-                        if let uiImage = uiImage{
+                        if let uiImage = uiImage {
                             Image(uiImage: uiImage)
                         }
                         Text("Bengkel")

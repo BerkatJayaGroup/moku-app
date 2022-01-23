@@ -19,13 +19,14 @@ struct DetailBooking: View {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
 
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = UIColor.white
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.backgroundColor = .white
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor(AppColor.primaryColor)]
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
     }
 
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -179,7 +180,15 @@ struct DetailBooking: View {
             .navigationTitle("Detail Booking Masuk")
             .navigationBarColor(Color(hex: "F9F9F9"))
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("Kembali"){ presentationMode.wrappedValue.dismiss() })
+            .navigationBarItems(leading: Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                HStack(spacing: 3) {
+                    Image(systemName: "chevron.backward")
+                    Text("Kembali")
+                }
+                .foregroundColor(AppColor.primaryColor)
+            })
         }.navigationBarHidden(true)
     }
 }
