@@ -68,31 +68,40 @@ struct GarasiTabItem: View {
     @State private var isSuntingModalPresented = false
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
     var body: some View {
-            ZStack(alignment: .top) {
-                Rectangle()
-                    .foregroundColor(AppColor.primaryColor)
-                    .ignoresSafeArea()
-                    .frame(height: 0)
-                ScrollView {
-                    profileSection()
-                        .padding(10)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                        .padding(.horizontal)
-                        .padding(.top)
-                    motorSection()
-                        .padding(.bottom, -20)
-                    Divider()
-                        .padding(.horizontal)
+        ZStack(alignment: .top) {
+            Rectangle()
+                .foregroundColor(AppColor.primaryColor)
+                .ignoresSafeArea()
+                .frame(height: 0)
+            ScrollView {
+                profileSection()
+                    .padding(10)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                    .padding(.horizontal)
+                    .padding(.top)
+                motorSection()
+                    .padding(.bottom, -20)
+                Divider()
+                    .padding(.horizontal)
+                HStack{
                     Text("Riwayat Servis")
                         .font(.system(size: 17, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
-                        
-                    serviceHistorySection().padding(10)
+                    
+                    NavigationLink(destination: ServiceHistoryView(customerOrders: viewModel.customerOrders)){
+                        Text("Lihat Semua")
+                            .foregroundColor(AppColor.primaryColor)
+                            .font(.system(size: 13, weight: .semibold))
+                    }
                 }
+                .padding(.trailing)
+                
+                serviceHistorySection().padding(10)
             }
+        }
     }
     private func profileSection() -> some View {
         HStack {
@@ -165,6 +174,7 @@ struct GarasiTabItem: View {
                 Text("Belum ada riwayat servis")
             } else {
                 ForEach(viewModel.customerOrders, id: \.id) { order in
+                    
                     OrderCards(order: order).background(Color.white)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
@@ -175,53 +185,27 @@ struct GarasiTabItem: View {
     }
 }
 
-struct OrderCards: View {
+
+struct OrderCards: View{
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
     @State private var isModalPresented = false
     var orderDetail: Order
     let dateFormatter = DateFormatter()
-    init(order: Order) {
+    init(order: Order){
         orderDetail = order
     }
+    
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading){
             Text(viewModel.bengkel?.name ?? "Loading...")
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: 15))
                 .padding(.bottom, 5)
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "bicycle")
-                            .foregroundColor(AppColor.primaryColor)
-                            .font(.system(size: 13))
-                        Text(orderDetail.motor.brand.rawValue)
-                            .font(.system(size: 13, weight: .regular))
-                    }.padding(.bottom, 5)
-                    HStack {
-                        Image(systemName: "wrench.and.screwdriver.fill")
-                            .foregroundColor(AppColor.primaryColor)
-                            .font(.system(size: 13))
-                        Text(orderDetail.typeOfService.rawValue)
-                            .font(.system(size: 13, weight: .regular))
-                    }
-                }
+            HStack{
+                Text(Date.convertDateFormat(date: orderDetail.schedule, format: "dd-MM-yyyy"))
+                    .font(.system(size: 13, weight: .light))
                 Spacer()
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .foregroundColor(AppColor.primaryColor)
-                            .font(.system(size: 13))
-                        Text(Date.convertDateFormat(date: orderDetail.schedule, format: "dd-MM-yyyy"))
-                            .font(.system(size: 13, weight: .regular))
-                    }.padding(.bottom, 5)
-                    HStack {
-                        Image(systemName: "wrench.fill")
-                            .foregroundColor(AppColor.primaryColor)
-                            .font(.system(size: 13))
-                        Text(orderDetail.mekanik?.name ?? "Loading...")
-                            .font(.system(size: 13, weight: .regular))
-                    }
-                }
+                Text(orderDetail.typeOfService.rawValue)
+                    .font(.system(size: 13, weight: .light))
             }
         }
         .padding()
@@ -235,6 +219,7 @@ struct OrderCards: View {
             viewModel.getBengkelFromOrder(bengkelId: orderDetail.bengkelId)
         }
     }
+        
 }
 
 struct GarasiTabItem_Previews: PreviewProvider {
