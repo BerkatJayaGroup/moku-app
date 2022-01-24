@@ -27,17 +27,22 @@ extension PesananTabBengkelView {
         @ViewBuilder func showUlasan() -> some View {
             if let bengkelOrders = bengkelOrders {
                 LazyVStack {
-                    ForEach(bengkelOrders, id: \.id) { order in
+                    ForEach(bengkelOrders.sorted(by: { $0.schedule.date() > $1.schedule.date() }), id: \.id) { order in
                         if order.status == .scheduled && !(order.schedule.get(.day) == Date().get(.day)) {
                             NavigationLink(destination: {
                                 DetailBooking(order: order)
                             }, label: {
                                 ReviewCell(order: order)
                             })
+                                .padding(10)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.25)
+                                .background(AppColor.primaryBackground)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                         }
                     }
                 }
-                .padding()
+                .padding(.vertical, 15)
             }
         }
 

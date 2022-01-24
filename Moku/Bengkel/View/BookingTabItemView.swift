@@ -16,11 +16,14 @@ struct BookingTabItemView: View {
     @State private var selectedOrder: Order?
 
     init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.backgroundColor = UIColor(AppColor.primaryColor)
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
     }
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -36,6 +39,7 @@ struct BookingTabItemView: View {
                             HStack {
                                 Text("Booking masuk")
                                     .font(.title2)
+                                    .fontWeight(.semibold)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.top)
                                     .padding(.horizontal)
@@ -63,14 +67,18 @@ struct BookingTabItemView: View {
                             }
                             Text("Pekerjaan Hari Ini")
                                 .font(.title2)
+                                .fontWeight(.semibold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top)
                                 .padding(.horizontal)
                             if onProgressOrder.isEmpty {
                                 VStack {
                                     Image(systemName: "newspaper")
-                                        .foregroundColor(AppColor.brightOrange)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .foregroundColor(AppColor.darkGray)
                                     Text("Tidak ada bookingan terjadwal pada hari ini")
+                                        .font(.system(size: 15))
                                         .foregroundColor(AppColor.darkGray)
                                         .multilineTextAlignment(.center)
                                 }.padding(70)
@@ -81,6 +89,7 @@ struct BookingTabItemView: View {
                     } else {
                         Image("EmptyStateBengkel")
                         Text("Tidak ada bookingan masuk ataupun terjadwal pada hari ini")
+                            .multilineTextAlignment(.center)
                             .font(.subheadline)
                             .foregroundColor(.systemGray)
                             .padding()
@@ -88,14 +97,19 @@ struct BookingTabItemView: View {
                 } else {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
-            }.navigationTitle("Booking")
-                .navigationBarColor(AppColor.primaryColor)
-        }.background(AppColor.primaryBackground)
+            }
+            .navigationTitle("Booking")
+            .navigationBarColor(AppColor.primaryColor)
+            .background(NavigationConfigurator { nc in
+                nc.navigationBar.barTintColor = .blue
+                nc.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+            })
             .onAppear {
                 if let id = Auth.auth().currentUser?.uid {
                     viewModel.getBengkelOrders(bengkelId: id)
                 }
             }
+        }
     }
     private func newBookingSection(order: [Order]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -131,23 +145,25 @@ struct BookingTabItemView: View {
             HStack {
                 Image(systemName: "wrench.and.screwdriver.fill")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                     .foregroundColor(AppColor.brightOrange)
                 Text(order.typeOfService.rawValue).font(.caption)
                 Spacer()
             }
+            .padding(.bottom, 8)
             HStack {
                 Image(systemName: "calendar.badge.clock")
                     .resizable()
                     .foregroundColor(AppColor.brightOrange)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                 Text(order.schedule.date()).font(.caption)
                 Spacer()
             }
+            .padding(.bottom, 5)
             HStack {
                 Image(systemName: "clock.arrow.circlepath")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                     .foregroundColor(AppColor.brightOrange)
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
@@ -158,7 +174,7 @@ struct BookingTabItemView: View {
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
                     .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .font(.caption)
             }
         }.onTapGesture {
