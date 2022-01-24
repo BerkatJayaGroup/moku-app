@@ -23,7 +23,7 @@ struct BookingTabItemView: View {
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -253,7 +253,14 @@ struct BookingTabItemView: View {
             }
             HStack {
                 Spacer()
-                showStatus(status: order.status)
+                Text(order.status.rawValue)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .padding(5)
+                    .background(ColorButton.getColors(status: order.status))
+                    .cornerRadius(5)
+                    .foregroundColor(ColorButton.getFontColors(status: order.status) as? Color)
+//                showStatus(status: order.status)
             }
         }.onTapGesture {
             isDetailBookingOnProgressPresented.toggle()
@@ -269,33 +276,34 @@ struct BookingTabItemView: View {
         }
     }
 
-    @ViewBuilder private func showStatus(status: Order.Status) -> some View {
-        if status == .scheduled {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(AppColor.salmonOrange)
-                .foregroundColor(AppColor.primaryColor)
-                .cornerRadius(5)
-        } else if status == .onProgress {
-            Text("Dikerjakan")
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.green)
-                .foregroundColor(Color.systemGreen)
-                .cornerRadius(5)
-        } else if status == .done {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.systemBlue)
-                .foregroundColor(Color.blue)
-                .cornerRadius(5)
-        }
-    }
+//    @ViewBuilder private func showStatus(status: Order.Status) -> some View {
+//        if status == .scheduled {
+//            Text(status.rawValue)
+//                .font(.caption)
+//                .fontWeight(.bold)
+//                .padding(5)
+//                .background(AppColor.salmonOrange)
+//                .foregroundColor(AppColor.primaryColor)
+//                .cornerRadius(5)
+//            
+//        } else if status == .onProgress {
+//            Text("Dikerjakan")
+//                .font(.caption)
+//                .fontWeight(.bold)
+//                .padding(5)
+//                .background(Color.green)
+//                .foregroundColor(Color.systemGreen)
+//                .cornerRadius(5)
+//        } else if status == .done {
+//            Text(status.rawValue)
+//                .font(.caption)
+//                .fontWeight(.bold)
+//                .padding(5)
+//                .background(Color.systemBlue)
+//                .foregroundColor(Color.blue)
+//                .cornerRadius(5)
+//        }
+//    }
 }
 
 struct BookingTabItemView_Previews: PreviewProvider {
