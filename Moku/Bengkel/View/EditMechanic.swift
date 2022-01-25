@@ -14,6 +14,7 @@ struct EditMechanic: View {
     @StateObject var viewModel: ViewModel
     @State private var showingAlert = false
     @State var isEditing = false
+    @State var saveAlert = false
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -61,7 +62,7 @@ struct EditMechanic: View {
             Spacer()
             if isEditing {
                 Button {
-                    viewModel.updateMechanic()
+                    saveAlert = true
                 }label: {
                     Text("Simpan Perubahan")
                         .frame(width: 309, height: 44, alignment: .center)
@@ -86,15 +87,15 @@ struct EditMechanic: View {
             Button {
                 self.isEditing.toggle()
             }label: {
-                Text(isEditing ? "Done" : "Edit")
+                Text(isEditing ? "Batal" : "Ubah")
                     .foregroundColor(.white)
             }
         }
         .padding()
         .alert(isPresented: $showingAlert) {
                     Alert(
-                        title: Text("Apa kamu yakin ingin menghapus mekanik ini?"),
-                        message: Text("Setelah kamu menekan tombol hapus, mekanik akan terhapus secara permanen"),
+                        title: Text("Hapus Mekanik?"),
+                        message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
                         primaryButton: .destructive(Text("Hapus")) {
                             viewModel.removeMechanic()
                             presentationMode.wrappedValue.dismiss()
@@ -102,6 +103,18 @@ struct EditMechanic: View {
                         secondaryButton: .cancel(Text("Batal"))
                     )
                 }
+        .alert(isPresented: $saveAlert) {
+            Alert(
+                title: Text("Simpan Perubahan?"),
+                message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
+                primaryButton: .destructive(Text("Simpan")) {
+                    viewModel.updateMechanic()
+                    self.isEditing.toggle()
+                    presentationMode.wrappedValue.dismiss()
+                },
+                secondaryButton: .cancel(Text("Batal"))
+            )
+        }
     }
 
     @ViewBuilder
@@ -114,14 +127,14 @@ struct EditMechanic: View {
         }
         .actionSheet(isPresented: $viewModel.showActionSheet) {
             ActionSheet(
-                title: Text("Choose mode"),
-                message: Text("Please choose your preferred mode to set your profile image"),
+                title: Text("Pilih Mode"),
+                message: Text("Mohon pilih metode pengambilan gambar untuk foto profil mekanik"),
                 buttons: [
-                    .default(Text("Camera")) {
+                    .default(Text("Kamera")) {
                         viewModel.showImagePicker.toggle()
                         viewModel.sourceType = .camera
                     },
-                    .default(Text("Photo Library")) {
+                    .default(Text("Ambil dari galeri")) {
                         viewModel.showImagePicker.toggle()
                         viewModel.sourceType = .photoLibrary
                     },

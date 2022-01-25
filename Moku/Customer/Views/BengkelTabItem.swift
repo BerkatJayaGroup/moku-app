@@ -166,7 +166,7 @@ struct BengkelTabItem: View {
                     .foregroundColor(Color.white)
                     .padding(.leading, 20)
                     .font(.system(size: 17), weight: .bold)
-            }.sheet(isPresented: $showLoginView) {
+            }.fullScreenCover(isPresented: $showLoginView) {
                 LoginView()
             }
         }
