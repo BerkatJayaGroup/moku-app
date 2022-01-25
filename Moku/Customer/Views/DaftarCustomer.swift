@@ -136,12 +136,6 @@ struct DaftarCustomer: View {
                         .autocapitalization(.none)
                         .autocapitalization(.none)
                         .padding(.bottom)
-                    if !viewModel.isEmailValid {
-                        Text("Format email tidak valid, gunakan example@domain.com")
-                            .offset(y: -10)
-                            .font(.caption2)
-                            .foregroundColor(Color.red)
-                    }
                 }
             }.padding(20)
             .padding(.horizontal, 20)
