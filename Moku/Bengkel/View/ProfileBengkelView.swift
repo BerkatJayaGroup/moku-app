@@ -76,13 +76,6 @@ struct ProfileBengkelView: View {
                         }
                         Divider()
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("CC Motor Cakupan")
-                                .foregroundColor(.gray)
-                            Text("110cc, 125cc, 150cc, 250cc, 500cc")
-                                .foregroundColor(.black)
-                        }
-                        Divider()
-                        VStack(alignment: .leading, spacing: 6) {
                             Text("Hari Operasional")
                                 .foregroundColor(.gray)
                             Text(viewModel.operationalDays)
