@@ -98,6 +98,11 @@ struct ProfileBengkelView: View {
             }
             .navigationTitle("Bengkel")
             .navigationBarColor(AppColor.primaryColor)
+            .onAppear {
+                if let id = Auth.auth().currentUser?.uid {
+                    viewModel.getBengkel(bengkelId: id)
+                }
+            }
         }
     }
 }
