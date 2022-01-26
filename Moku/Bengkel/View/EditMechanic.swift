@@ -12,87 +12,95 @@ import FirebaseAuth
 struct EditMechanic: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: ViewModel
-    @State private var showingAlert = false
     @State var isEditing = false
     @State var saveAlert = false
+    @State var isRemove = false
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
-        VStack {
-            if viewModel.image.isEmpty {
-                if let image = viewModel.mechanic.photo {
-                    WebImage(url: URL(string: image))
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .clipShape(Circle())
-                        .padding(.bottom, 10)
+        if viewModel.isLoading {
+            ProgressView()
+                .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
+                            if shouldDismiss {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+        } else {
+            VStack {
+                if viewModel.image.isEmpty {
+                    if let image = viewModel.mechanic.photo {
+                        WebImage(url: URL(string: image))
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(.bottom, 10)
+                    } else {
+                        Image("profile")
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(.bottom, 10)
+                    }
                 } else {
-                    Image("profile")
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .clipShape(Circle())
-                        .padding(.bottom, 10)
+                    if let image = viewModel.image.last {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(.bottom, 10)
+                    }
                 }
-            } else {
-                if let image = viewModel.image.last {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .clipShape(Circle())
-                        .padding(.bottom, 10)
+                if isEditing {
+                    uploadButton()
                 }
-            }
-            if isEditing {
-                uploadButton()
-            }
-            VStack(alignment: .leading) {
-                Text("NAMA MEKANIK")
-                    .font(Font.system(size: 11, weight: .regular))
-                TextField("Tulis Nama Mekanik", text: $viewModel.mechanicName)
-                    .disabled(!isEditing)
-                    .font(.subheadline)
-                    .padding(15)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.bottom)
-            }
-            Spacer()
-            if isEditing {
+                VStack(alignment: .leading) {
+                    Text("NAMA MEKANIK")
+                        .font(Font.system(size: 11, weight: .regular))
+                    TextField("Tulis Nama Mekanik", text: $viewModel.mechanicName)
+                        .disabled(!isEditing)
+                        .font(.subheadline)
+                        .padding(15)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.bottom)
+                }
+                Spacer()
+                if isEditing {
+                    Button {
+                        saveAlert = true
+                    }label: {
+                        Text("Simpan Perubahan")
+                            .frame(width: 309, height: 44, alignment: .center)
+                            .font(.system(size: 17), weight: .bold)
+                            .foregroundColor(.white)
+                            .background(AppColor.primaryColor)
+                            .cornerRadius(8)
+                    }.alert(isPresented: $saveAlert) {
+                        Alert(
+                            title: Text("Simpan Perubahan?"),
+                            message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
+                            primaryButton: .destructive(Text("Simpan")) {
+                                viewModel.isLoading = true
+                                viewModel.updateMechanic()
+                                self.isEditing.toggle()
+                            },
+                            secondaryButton: .cancel(Text("Batal"))
+                        )
+                    }
+                }
                 Button {
-                    saveAlert = true
-                }label: {
-                    Text("Simpan Perubahan")
+                    self.isRemove.toggle()
+                } label: {
+                    Text("Hapus Mekanik")
                         .frame(width: 309, height: 44, alignment: .center)
                         .font(.system(size: 17), weight: .bold)
-                        .foregroundColor(.white)
-                        .background(AppColor.primaryColor)
+                        .foregroundColor(AppColor.primaryColor)
+                        .background(Color(hex: "F8D8BF"))
                         .cornerRadius(8)
-                }
-            }
-            Button(action: {
-                showingAlert = true
-            }, label: {
-                Text("Hapus Mekanik")
-                    .frame(width: 309, height: 44, alignment: .center)
-                    .font(.system(size: 17), weight: .bold)
-                    .foregroundColor(AppColor.primaryColor)
-                    .background(Color(hex: "F8D8BF"))
-                    .cornerRadius(8)
-            })
-        }
-        .toolbar {
-            Button {
-                self.isEditing.toggle()
-            }label: {
-                Text(isEditing ? "Batal" : "Ubah")
-                    .foregroundColor(.white)
-            }
-        }
-        .padding()
-        .alert(isPresented: $showingAlert) {
+                }.alert(isPresented: $isRemove) {
                     Alert(
                         title: Text("Hapus Mekanik?"),
                         message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
@@ -103,17 +111,25 @@ struct EditMechanic: View {
                         secondaryButton: .cancel(Text("Batal"))
                     )
                 }
-        .alert(isPresented: $saveAlert) {
-            Alert(
-                title: Text("Simpan Perubahan?"),
-                message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
-                primaryButton: .destructive(Text("Simpan")) {
-                    viewModel.updateMechanic()
+            }
+            .toolbar {
+                Button {
                     self.isEditing.toggle()
-                    presentationMode.wrappedValue.dismiss()
-                },
-                secondaryButton: .cancel(Text("Batal"))
-            )
+                    if isEditing == false {
+                        viewModel.mechanicName = viewModel.nameFirst
+                    }
+                }label: {
+                    Text(isEditing ? "Batal" : "Ubah")
+                        .foregroundColor(.white)
+                }
+            }
+            .padding()
+            .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
+                        if shouldDismiss {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+
         }
     }
 

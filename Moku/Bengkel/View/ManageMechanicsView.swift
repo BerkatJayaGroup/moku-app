@@ -19,27 +19,36 @@ struct ManageMechanicsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.mechanics ?? [], id: \.id) { mechanic in
-                NavigationLink(destination: EditMechanic(mechanic: mechanic)) {
-                    MechanicCard(mechanic: mechanic)
+        VStack {
+            if viewModel.isLoading == true {
+                ProgressView()
+            } else {
+                ScrollView {
+                    if let mechanicsList = viewModel.mechanics {
+                        ForEach(mechanicsList, id: \.id) { mechanic in
+                            NavigationLink(destination: EditMechanic(mechanic: mechanic)) {
+                                MechanicCard(mechanic: mechanic)
+                            }
+                        }
+                    }
                 }
+                .padding()
+                .navigationTitle("Mekanik")
+                .navigationBarItems(trailing: Button(action: {
+                    self.showModal = true
+                }, label: {
+                    Image(systemName: "plus")
+                }).sheet(isPresented: $showModal, onDismiss: {
+                    viewModel.isLoading = true
+                    viewModel.fetchMechanics()
+                }, content: {
+                    AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
+                })
+                )
+                .navigationBarTitleDisplayMode(.inline)
             }
-        }
-        .padding()
-        .navigationTitle("Mekanik")
-        .navigationBarItems(trailing:
-                                Button(action: {
-            self.showModal = true
-        }, label: {
-            Image(systemName: "plus")
-
-        }).sheet(isPresented: $showModal, content: {
-            AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
-        })
-        )
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
+        }.onAppear {
+            viewModel.isLoading = true
             viewModel.fetchMechanics()
         }
     }
