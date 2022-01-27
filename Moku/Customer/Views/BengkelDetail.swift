@@ -45,7 +45,6 @@ struct BengkelDetail: View {
     }
 
     var body: some View {
-        //        ScrollView(showsIndicators: false) {
         VStack(alignment: .center, spacing: 8) {
             if viewModel.bengkel.photos.count > 0 {
                 if let photo = viewModel.bengkel.photos[0] {
@@ -158,6 +157,7 @@ struct BengkelDetail: View {
             } else {
                 Button {
                     isShowLogin = true
+                    isBackToRoot = true
                 }label: {
                     Text("Pesan")
                         .fontWeight(.semibold)
@@ -203,4 +203,10 @@ struct BengkelDetail: View {
         }
         session.setup()
     }
+}
+
+struct BengkelDetail_Previews: PreviewProvider {
+   static var previews: some View {
+       BengkelDetail(bengkel: Bengkel.preview, tab: .constant(.tab1))
+   }
 }
