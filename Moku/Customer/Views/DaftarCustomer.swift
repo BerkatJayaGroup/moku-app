@@ -136,8 +136,9 @@ struct DaftarCustomer: View {
                         .autocapitalization(.none)
                         .autocapitalization(.none)
                         .padding(.bottom)
-                }.padding(20)
-            }.padding(.horizontal, 20)
+                }
+            }.padding(20)
+            .padding(.horizontal, 20)
 
             Spacer()
 

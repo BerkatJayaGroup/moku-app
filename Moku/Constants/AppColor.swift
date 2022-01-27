@@ -20,4 +20,5 @@ struct AppColor {
     static let textField = Color("TextfieldColor")
     static let grayText = Color("DarkGrayText")
     static let orangeButton = Color("OrangeButton")
+    static let navBarDefaultColor = Color("NavBarColor")
 }

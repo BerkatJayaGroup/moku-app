@@ -54,7 +54,7 @@ struct BengkelTabItemView: View {
 }
 
 struct BengkelView: View {
-
+    let uiImage = UIImage(named: "GarasiTabItemIcon")
     @State var bengkel: Bengkel?
 
     var body: some View {
@@ -72,17 +72,19 @@ struct BengkelView: View {
             TabView {
                 BookingTabItemView()
                     .tabItem {
-                        Image(systemName: "star")
+                        Image(systemName: "wrench.and.screwdriver.fill")
                         Text("Booking")
                     }
                 PesananTabBengkelView()
                     .tabItem {
-                        Image(systemName: "star")
+                        Image(systemName: "calendar")
                         Text("Pesanan")
                     }
                 ProfileBengkelView()
                     .tabItem {
-                        Image(systemName: "wrench.and.screwdriver.fill")
+                        if let uiImage = uiImage {
+                            Image(uiImage: uiImage)
+                        }
                         Text("Bengkel")
                     }
             }
