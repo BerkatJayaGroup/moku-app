@@ -9,9 +9,26 @@ import SwiftUI
 import FirebaseAuth
 
 struct DaftarCustomer: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel = ViewModel()
     @State var isInputActive: Bool = false
     @ObservedObject var data = JsonHelper()
+
+    var btnBack : some View {
+
+        Button {
+            self.presentationMode.wrappedValue.dismiss()
+        }label: {
+                HStack {
+                Image("chevron.backward")
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(AppColor.primaryColor)
+                    Text("Kembali")
+                        .foregroundColor(AppColor.primaryColor)
+                }
+            }
+        }
+
     var body: some View {
         VStack(alignment: .center) {
             ScrollView {
@@ -26,7 +43,7 @@ struct DaftarCustomer: View {
                         })
                             .font(.subheadline)
                             .padding(15)
-                            .background(Color(.systemGray6))
+                            .background(AppColor.textField)
                             .cornerRadius(8)
                             .padding(.bottom)
                         if !viewModel.nameCheck {
@@ -45,43 +62,12 @@ struct DaftarCustomer: View {
                         })
                             .font(.subheadline)
                             .padding(15)
-                            .background(Color(.systemGray6))
+                            .background(AppColor.textField)
                             .cornerRadius(8)
                             .keyboardType(.numberPad)
                             .padding(.bottom)
                         if !viewModel.nomorCheck {
                             Text("Nomor telepon wajib diisi")
-                                .offset(y: -10)
-                                .font(.caption2)
-                                .foregroundColor(Color.red)
-                        }
-                        Text("EMAIL")
-                            .font(.caption2)
-                        TextField("Alamat email", text: $viewModel.email, onEditingChanged: { isChanged in
-                            if !isChanged {
-                                if viewModel.textFieldValidatorEmail() {
-                                    viewModel.isEmailValid = true
-                                } else {
-                                    viewModel.isEmailValid = false
-                                    viewModel.email = ""
-                                }
-                            }
-                        })
-                            .font(.subheadline)
-                            .padding(15)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                            .autocapitalization(.none)
-                            .autocapitalization(.none)
-                            .padding(.bottom)
-                        if !viewModel.isEmailValid {
-                            Text("Format email tidak valid, gunakan example@domain.com")
-                                .offset(y: -10)
-                                .font(.caption2)
-                                .foregroundColor(Color.red)
-                        }
-                        if !viewModel.emailCheck {
-                            Text("Email wajib diisi")
                                 .offset(y: -10)
                                 .font(.caption2)
                                 .foregroundColor(Color.red)
@@ -101,15 +87,15 @@ struct DaftarCustomer: View {
                                 Text("Cari Model Motormu")
                             }
                         }
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 8).fill(AppColor.textField))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.tertiaryLabel)
                         .font(.subheadline)
-                        .background(Color(.systemGray6))
+                        .background(AppColor.textField)
                         .cornerRadius(8)
                         .multilineTextAlignment(.leading)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemGray6)))
                     .sheet(isPresented: $viewModel.showModal) {
                         MotorModal(availableMotors: data.motors,
                                    selectedMotor: $viewModel.motor,
@@ -133,7 +119,7 @@ struct DaftarCustomer: View {
                     TextField("Plat Motor", text: $viewModel.licensePlate)
                         .font(.subheadline)
                         .padding(15)
-                        .background(Color(.systemGray6))
+                        .background(AppColor.textField)
                         .cornerRadius(8)
                         .autocapitalization(.none)
                         .autocapitalization(.none)
@@ -145,19 +131,14 @@ struct DaftarCustomer: View {
                         .keyboardType(.numberPad)
                         .font(.subheadline)
                         .padding(15)
-                        .background(Color(.systemGray6))
+                        .background(AppColor.textField)
                         .cornerRadius(8)
                         .autocapitalization(.none)
                         .autocapitalization(.none)
                         .padding(.bottom)
-                    if !viewModel.isEmailValid {
-                        Text("Format email tidak valid, gunakan example@domain.com")
-                            .offset(y: -10)
-                            .font(.caption2)
-                            .foregroundColor(Color.red)
-                    }
                 }
             }.padding(20)
+            .padding(.horizontal, 20)
 
             Spacer()
 
@@ -166,7 +147,6 @@ struct DaftarCustomer: View {
                     viewModel.validateEmptyName()
                     viewModel.isPhoneNumberEmpty()
                     viewModel.isMotorEmpty()
-                    viewModel.isEmailEmpty()
                 } else {
                     NotificationService.shared.getToken { token in
                         viewModel.motor?.licensePlate = viewModel.licensePlate
@@ -186,8 +166,8 @@ struct DaftarCustomer: View {
                     .fontWeight(.semibold)
                     .padding(.vertical, 16)
                     .frame(width: UIScreen.main.bounds.width * 0.85)
-                    .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                    .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty || viewModel.email.isEmpty ? .gray : .white)
+                    .background(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
+                    .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty ? .gray : .white)
                     .cornerRadius(8)
                     .padding()
             }
@@ -196,6 +176,8 @@ struct DaftarCustomer: View {
             dismissKeyboard()
         }
         .navigationBarTitle("Profil Diri", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

@@ -12,27 +12,32 @@ struct MotorModal: View {
 
     @Binding var selectedMotor: Motor?
     @Binding var showingSheet: Bool
+    @State private var searchText = ""
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(availableMotors) { motor in
-                    Button {
-                        selectedMotor = motor
-                        showingSheet.toggle()
-                    } label: {
-                        HStack {
-                            Text(motor.model)
-                            Spacer()
-                            if selectedMotor?.model == motor.model {
-                                Image(systemName: "checkmark")
+            VStack {
+                SearchBarMotor(text: $searchText)
+                    .padding()
+                List {
+                    ForEach(availableMotors.filter({searchText.isEmpty ? true : $0.model.contains(searchText)})) { motor in
+                        Button {
+                            selectedMotor = motor
+                            showingSheet.toggle()
+                        } label: {
+                            HStack {
+                                Text("\(motor.brand.rawValue) \(motor.model)")
+                                Spacer()
+                                if selectedMotor?.model == motor.model {
+                                    Image(systemName: "checkmark")
+                                }
                             }
                         }
+                        .foregroundColor(.black)
                     }
-                    .foregroundColor(.black)
                 }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
             .navigationBarTitle("Daftar Motor", displayMode: .inline)
             .navigationBarItems(
                 leading:

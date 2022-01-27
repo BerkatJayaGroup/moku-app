@@ -14,16 +14,23 @@ struct BookingTabItemView: View {
     @State private var isDetailBookingModalPresented = false
     @State private var isDetailBookingOnProgressPresented = false
     @State private var selectedOrder: Order?
+    
+    let coloredAppearance = UINavigationBarAppearance()
 
     init() {
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.backgroundColor = UIColor(AppColor.primaryColor)
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-    }
+//        let appearance                                      = UITabBarAppearance()
+//        UITabBar.appearance().isTranslucent                 = true
+//        UITabBar.appearance().backgroundColor               = UIColor(AppColor.grayTab)
+//        appearance.shadowColor                              = UIColor.gray
 
+        coloredAppearance.backgroundColor                   = UIColor(AppColor.primaryColor)
+        coloredAppearance.largeTitleTextAttributes          = [.foregroundColor: UIColor.white]
+        coloredAppearance.titleTextAttributes               = [.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().standardAppearance     = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance   = coloredAppearance
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
