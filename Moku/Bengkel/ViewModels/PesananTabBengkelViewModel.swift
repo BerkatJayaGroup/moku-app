@@ -28,7 +28,7 @@ extension PesananTabBengkelView {
             if let bengkelOrders = bengkelOrders {
                 let orderSorted = bengkelOrders.sorted(by: { $0.schedule < $1.schedule })
                 LazyVStack {
-                    ForEach(orderSorted, id: \.id) { order in
+                    ForEach(bengkelOrders.sorted(by: { $0.schedule.date() > $1.schedule.date() }), id: \.id) { order in
                         if order.status == .scheduled && !(order.schedule.get(.day) == Date().get(.day)) {
                             NavigationLink(destination: {
                                 DetailBooking(order: order)
