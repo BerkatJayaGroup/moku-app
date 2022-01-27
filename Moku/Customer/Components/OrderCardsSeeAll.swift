@@ -49,9 +49,9 @@ struct OrderCardsSeeAll: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 2.5)
-                        .background(getColors(status: orderDetail.status))
+                        .background(ColorButton.getColors(status: orderDetail.status))
                         .cornerRadius(4)
-                        .foregroundColor(getFontColors(status: orderDetail.status) as? Color)
+                        .foregroundColor(ColorButton.getFontColors(status: orderDetail.status) as? Color)
                 }
                 
             }
@@ -65,28 +65,6 @@ struct OrderCardsSeeAll: View {
             }
         }.onAppear {
             viewModel.getBengkelFromOrder(bengkelId: orderDetail.bengkelId)
-        }
-    }
-    
-    func getColors(status: Order.Status) -> some View {
-        switch status {
-        case .scheduled: return Color(hex: "F8D8BF")
-        case .rejected: return Color(hex: "FFBDBD")
-        case .done: return Color(hex: "DCDCDC")
-        default: return Color(hex: "F8D8BF")
-        }
-    }
-    
-    func getFontColors(status: Order.Status) -> some View {
-        switch status {
-        case .scheduled:
-            return AppColor.primaryColor
-        case .rejected:
-            return Color.red
-        case .done:
-            return Color(hex: "686868")
-        default:
-            return AppColor.primaryColor
         }
     }
 }

@@ -12,12 +12,18 @@ struct ColorButton {
 
     static func getColors(status: Order.Status) -> some View {
         switch status {
-        case .waitingConfirmation: return Color(hex: "BFE0F4")
-        case .scheduled: return Color(hex: "F8D8BF")
-        case .rejected: return Color(hex: "FFBDBD")
-        case .done: return Color(hex: "DCDCDC")
-        case .onProgress: return Color(hex: "BFF8D8")
-        default: return Color(hex: "F8D8BF")
+        case .waitingConfirmation:
+            return Color(hex: "BFE0F4")
+        case .scheduled:
+            return Color(hex: "F8D8BF")
+        case .rejected:
+            return Color(hex: "FFBDBD")
+        case .done:
+            return Color(hex: "DCDCDC")
+        case .onProgress:
+            return Color(hex: "BFF8D8")
+        default:
+            return Color(hex: "F8D8BF")
         }
     }
 
