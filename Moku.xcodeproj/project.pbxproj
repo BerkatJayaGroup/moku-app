@@ -112,6 +112,7 @@
 		8EBC7757279D91F800A67642 /* ServiceHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC7756279D91F800A67642 /* ServiceHistoryView.swift */; };
 		8EBC7759279DAC5B00A67642 /* OrderCardsSeeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC7758279DAC5B00A67642 /* OrderCardsSeeAll.swift */; };
 		8EBC775B279E421500A67642 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC775A279E421500A67642 /* ColorExtension.swift */; };
+		8EBC775B279E421500A67642 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC775A279E421500A67642 /* ColorButton.swift */; };
 		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		8ED7362F2742B93D0043B882 /* AssignMechanicsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362E2742B93D0043B882 /* AssignMechanicsModal.swift */; };
 		8ED7363627436AE50043B882 /* AssignMechanicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */; };
@@ -295,6 +296,7 @@
 		8EBC7756279D91F800A67642 /* ServiceHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryView.swift; sourceTree = "<group>"; };
 		8EBC7758279DAC5B00A67642 /* OrderCardsSeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardsSeeAll.swift; sourceTree = "<group>"; };
 		8EBC775A279E421500A67642 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		8EBC775A279E421500A67642 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelDateViewModel.swift; sourceTree = "<group>"; };
 		8ED7362E2742B93D0043B882 /* AssignMechanicsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanicsModal.swift; sourceTree = "<group>"; };
 		8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignMechanicsViewModel.swift; sourceTree = "<group>"; };
@@ -573,7 +575,7 @@
 				83CA0F33272BEA11009DC400 /* ViewExtension.swift */,
 				AEA0E1D12750E06F00398A9D /* StringExtension.swift */,
 				8EA4A348279556D7004A97CE /* NavigationBarExtension.swift */,
-				8EBC775A279E421500A67642 /* ColorExtension.swift */,
+				8EBC775A279E421500A67642 /* ColorButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
