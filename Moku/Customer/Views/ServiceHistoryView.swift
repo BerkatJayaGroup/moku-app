@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ServiceHistoryView: View {
     var customerOrders: [Order]
-    
+
     var body: some View {
-        ScrollView{
+        ScrollView {
             if customerOrders.isEmpty {
                 Text("Belum ada riwayat servis")
             } else {
