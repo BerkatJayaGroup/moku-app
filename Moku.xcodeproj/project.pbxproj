@@ -110,10 +110,8 @@
 		8E8F2E542754C2480014B8D4 /* AllReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8F2E532754C2480014B8D4 /* AllReviewViewModel.swift */; };
 		8EA4A349279556D7004A97CE /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA4A348279556D7004A97CE /* NavigationBarExtension.swift */; };
 		8EB5BF76275382B500138B3F /* ProfileBengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5BF75275382B400138B3F /* ProfileBengkelViewModel.swift */; };
-		8EBC775B279E421500A67642 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC775A279E421500A67642 /* ColorExtension.swift */; };
 		8EBC7757279D91F800A67642 /* ServiceHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC7756279D91F800A67642 /* ServiceHistoryView.swift */; };
 		8EBC7759279DAC5B00A67642 /* OrderCardsSeeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC7758279DAC5B00A67642 /* OrderCardsSeeAll.swift */; };
-		8EBC775B279E421500A67642 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC775A279E421500A67642 /* ColorButton.swift */; };
 		8EC04F95273902CF005F3EAC /* BengkelDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC04F94273902CF005F3EAC /* BengkelDateViewModel.swift */; };
 		8ED7362F2742B93D0043B882 /* AssignMechanicsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7362E2742B93D0043B882 /* AssignMechanicsModal.swift */; };
 		8ED7363627436AE50043B882 /* AssignMechanicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7363527436AE50043B882 /* AssignMechanicsViewModel.swift */; };
@@ -294,7 +292,6 @@
 		8E8F2E532754C2480014B8D4 /* AllReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewViewModel.swift; sourceTree = "<group>"; };
 		8EA4A348279556D7004A97CE /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
 		8EB5BF75275382B400138B3F /* ProfileBengkelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBengkelViewModel.swift; sourceTree = "<group>"; };
-		8EBC775A279E421500A67642 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8EBC7756279D91F800A67642 /* ServiceHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryView.swift; sourceTree = "<group>"; };
 		8EBC7758279DAC5B00A67642 /* OrderCardsSeeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardsSeeAll.swift; sourceTree = "<group>"; };
 		8EBC775A279E421500A67642 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
@@ -487,6 +484,7 @@
 				837370B127144701003656FC /* Products */,
 				830383D62718035A00F03CE3 /* Frameworks */,
 				F5E8098DE71C292574E0645A /* Pods */,
+				8E26623F27A6955800DE6598 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -719,6 +717,14 @@
 				83E13E8F272AA97F008758B7 /* PickRoleView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8E26623F27A6955800DE6598 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8EBC775A279E421500A67642 /* ColorButton.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		8ED7362A2742AF4B0043B882 /* View */ = {
@@ -1099,7 +1105,6 @@
 				8EB5BF76275382B500138B3F /* ProfileBengkelViewModel.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
-				8EBC775B279E421500A67642 /* ColorExtension.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */,
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
