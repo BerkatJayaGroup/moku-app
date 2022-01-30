@@ -82,6 +82,7 @@
 		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
 		8E04357C2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */; };
 		8E06F90E274CBB2700CFA204 /* ReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F90D274CBB2700CFA204 /* ReviewCellViewModel.swift */; };
+		8E1458E727A6875000463DC1 /* ButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1458E627A6875000463DC1 /* ButtonStatus.swift */; };
 		8E14612D273C306F0057C469 /* UlasanModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14612C273C306F0057C469 /* UlasanModal.swift */; };
 		8E2354672731237000C0381E /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2354662731237000C0381E /* SheetView.swift */; };
 		8E27EE0C27548BE7001F184F /* EditMechanicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E27EE0B27548BE7001F184F /* EditMechanicViewModel.swift */; };
@@ -266,6 +267,7 @@
 		8E0435792726B1790079DB29 /* SelectServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServices.swift; sourceTree = "<group>"; };
 		8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInfoDetailBengkel.swift; sourceTree = "<group>"; };
 		8E06F90D274CBB2700CFA204 /* ReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCellViewModel.swift; sourceTree = "<group>"; };
+		8E1458E627A6875000463DC1 /* ButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStatus.swift; sourceTree = "<group>"; };
 		8E14612C273C306F0057C469 /* UlasanModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlasanModal.swift; sourceTree = "<group>"; };
 		8E2354662731237000C0381E /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		8E27EE0B27548BE7001F184F /* EditMechanicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMechanicViewModel.swift; sourceTree = "<group>"; };
@@ -573,7 +575,7 @@
 				83CA0F33272BEA11009DC400 /* ViewExtension.swift */,
 				AEA0E1D12750E06F00398A9D /* StringExtension.swift */,
 				8EA4A348279556D7004A97CE /* NavigationBarExtension.swift */,
-				8EBC775A279E421500A67642 /* ColorButton.swift */,
+				8E1458E627A6875000463DC1 /* ButtonStatus.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1037,6 +1039,7 @@
 				8334805F274BF85E00A72897 /* BengkelProfileView.swift in Sources */,
 				8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */,
 				8EDC3AE3274CD3D30087F806 /* ManageMechanicsView.swift in Sources */,
+				8E1458E727A6875000463DC1 /* ButtonStatus.swift in Sources */,
 				B856220F27311F0D00300EB8 /* OrderCustomerViewModel.swift in Sources */,
 				837370B427144701003656FC /* MokuApp.swift in Sources */,
 				8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */,

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewCell: View {
     @StateObject var viewModel: ViewModel
-
+    
     init(order: Order) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -36,9 +36,9 @@ struct ReviewCell: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 2.5)
-                        .background(ColorButton.getColors(status: order.status))
+                        .background(ButtonStatus.getColors(status: order.status))
                         .cornerRadius(4)
-                        .foregroundColor(ColorButton.getFontColors(status: order.status) as? Color)
+                        .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
                 }
             }
         }
