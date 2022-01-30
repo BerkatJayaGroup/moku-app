@@ -14,14 +14,14 @@ struct BengkelProfileView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-
+    
     @StateObject private var viewModel: BengkelProfileViewModel
-
+    
     init(bengkel: Bengkel) {
         let viewModel = BengkelProfileViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         if viewModel.isLoading {
             ProgressView().progressViewStyle(CircularProgressViewStyle())
@@ -30,7 +30,7 @@ struct BengkelProfileView: View {
                 Image(uiImage: selectedPhoto)
                     .resizable()
                     .scaledToFit()
-
+                
                 VStack {
                     HStack {
                         Spacer()
@@ -47,12 +47,12 @@ struct BengkelProfileView: View {
                 }
             }.background(Color.black.ignoresSafeArea())
         } else if let selectedPhotoUrl = viewModel.selectedPhotoUrl,
-           let url = URL(string: selectedPhotoUrl) {
+                  let url = URL(string: selectedPhotoUrl) {
             ZStack {
                 WebImage(url: url)
                     .resizable()
                     .scaledToFit()
-
+                
                 VStack {
                     HStack {
                         Spacer()
@@ -78,7 +78,7 @@ struct BengkelProfileView: View {
                 }
         }
     }
-
+    
     private var contentView: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
@@ -198,7 +198,7 @@ extension BengkelProfileView {
             }
         }
     }
-
+    
     private func saveButton() -> some View {
         Button {
             viewModel.activeAlert = .save
@@ -212,7 +212,7 @@ extension BengkelProfileView {
                 .cornerRadius(8)
         }
     }
-
+    
     private func bengkelPhotos() -> some View {
         VStack(alignment: .leading) {
             Text("Foto Bengkel").font(.headline)
@@ -241,7 +241,7 @@ extension BengkelProfileView {
                                 .onTapGesture {
                                     viewModel.selectedPhotoUrl = photoUrl
                                 }
-
+                            
                             if viewModel.isEditing {
                                 VStack {
                                     HStack {
@@ -277,7 +277,7 @@ extension BengkelProfileView {
                             .onTapGesture {
                                 viewModel.selectedPhoto = uiImage
                             }
-
+                        
                         if viewModel.isEditing {
                             VStack {
                                 HStack {
@@ -304,7 +304,7 @@ extension BengkelProfileView {
             }
         }
     }
-
+    
     @ViewBuilder
     private func textField(title: String, text: Binding<String>) -> some View {
         if viewModel.isEditing {
@@ -328,7 +328,7 @@ extension BengkelProfileView {
             }
         }
     }
-
+    
     private func toolbar() -> some View {
         Button(!viewModel.isEditing ? "Sunting" : "Batal") {
             viewModel.toggleEditing()
