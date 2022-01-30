@@ -24,15 +24,14 @@ struct OrderCardsSeeAll: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(8)
-            }
-            else{
+            } else {
                 Image("bengkel1")
                     .resizable()
                     .frame(width: 100, height: 100, alignment: .center)
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(8)
             }
-            VStack(alignment: .leading, spacing: 8){
+            VStack(alignment: .leading, spacing: 8) {
                 Text(viewModel.bengkel?.name ?? "Loading...")
                     .font(.system(size: 15, weight: .semibold))
                     .padding(.bottom, 5)
@@ -42,7 +41,7 @@ struct OrderCardsSeeAll: View {
                     .font(.system(size: 13, weight: .light))
                 Text(orderDetail.typeOfService.rawValue)
                     .font(.system(size: 13, weight: .light))
-                HStack{
+                HStack {
                     Spacer()
                     Text(orderDetail.status.rawValue)
                         .font(.system(size: 11))
@@ -53,7 +52,7 @@ struct OrderCardsSeeAll: View {
                         .cornerRadius(4)
                         .foregroundColor(getFontColors(status: orderDetail.status) as? Color)
                 }
-                
+
             }
         }
         .padding()
@@ -67,7 +66,7 @@ struct OrderCardsSeeAll: View {
             viewModel.getBengkelFromOrder(bengkelId: orderDetail.bengkelId)
         }
     }
-    
+
     func getColors(status: Order.Status) -> some View {
         switch status {
         case .scheduled: return Color(hex: "F8D8BF")
@@ -76,7 +75,7 @@ struct OrderCardsSeeAll: View {
         default: return Color(hex: "F8D8BF")
         }
     }
-    
+
     func getFontColors(status: Order.Status) -> some View {
         switch status {
         case .scheduled:
@@ -90,4 +89,3 @@ struct OrderCardsSeeAll: View {
         }
     }
 }
-

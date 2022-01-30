@@ -13,21 +13,21 @@ struct EditProfileModal: View {
     @State private var name = ""
     @State private var phoneNumber = ""
     @State private var email = ""
-    
+
     @ObservedObject var garageTabViewModel: GarageTabViewModel = .shared
-    
+
     var customer: Customer
-    
+
     func header(title: String) -> some View {
         Text(title).headerStyle()
     }
-    
+
     init(customer: Customer) {
         self.customer = customer
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
-    
+
     var btnBack: some View {
         Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
             HStack {
@@ -37,7 +37,7 @@ struct EditProfileModal: View {
             }
         }
     }
-    
+
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -68,9 +68,9 @@ struct EditProfileModal: View {
                 garageTabViewModel.update(updatedCustomer)
                 presentationMode.wrappedValue.dismiss()
             }) : AnyView(EmptyView()) )
-        
+
     }
-    
+
     private func textField(
         title: String,
         placeholder: String,

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewCell: View {
     @StateObject var viewModel: ViewModel
-
+    
     init(order: Order) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -36,35 +36,13 @@ struct ReviewCell: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 2.5)
-                        .background(getColors(status: order.status))
+                        .background(ButtonStatus.getColors(status: order.status))
                         .cornerRadius(4)
-                        .foregroundColor(getFontColors(status: order.status) as? Color)
+                        .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
                 }
             }
         }
         .foregroundColor(.black)
-    }
-
-    func getColors(status: Order.Status) -> some View {
-        switch status {
-        case .scheduled: return Color(hex: "F8D8BF")
-        case .rejected: return Color(hex: "FFBDBD")
-        case .done: return Color(hex: "DCDCDC")
-        default: return Color(hex: "F8D8BF")
-        }
-    }
-
-    func getFontColors(status: Order.Status) -> some View {
-        switch status {
-        case .scheduled:
-            return AppColor.primaryColor
-        case .rejected:
-            return Color.red
-        case .done:
-            return Color(hex: "686868")
-        default:
-            return AppColor.primaryColor
-        }
     }
 }
 

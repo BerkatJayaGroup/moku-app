@@ -16,7 +16,7 @@ struct AddNewMotor: View {
         UITableView.appearance().backgroundColor = .none
         UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 //        navBarAppearance.backgroundColor = UIColor(AppColor.navBarDefaultColor)
     }
     var body: some View {
@@ -118,7 +118,7 @@ struct AddNewMotor: View {
                     }
                 }
             )
-            .onTapGesture{
+            .onTapGesture {
                 endTextEditing()
             }
         }

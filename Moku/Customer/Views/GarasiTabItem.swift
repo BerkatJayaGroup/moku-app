@@ -85,20 +85,20 @@ struct GarasiTabItem: View {
                     .padding(.bottom, -20)
                 Divider()
                     .padding(.horizontal)
-                HStack{
+                HStack {
                     Text("Riwayat Servis")
                         .font(.system(size: 17, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
-                    
-                    NavigationLink(destination: ServiceHistoryView(customerOrders: viewModel.customerOrders)){
+
+                    NavigationLink(destination: ServiceHistoryView(customerOrders: viewModel.customerOrders)) {
                         Text("Lihat Semua")
                             .foregroundColor(AppColor.primaryColor)
                             .font(.system(size: 13, weight: .semibold))
                     }
                 }
                 .padding(.trailing)
-                
+
                 serviceHistorySection().padding(10)
             }
         }
@@ -109,7 +109,7 @@ struct GarasiTabItem: View {
                 Text(customer.name)
                     .font(.system(size: 15, weight: .regular))
                 Spacer()
-                NavigationLink(destination: EditProfileModal(customer: customer)){
+                NavigationLink(destination: EditProfileModal(customer: customer)) {
                     Text("Profil")
                         .foregroundColor(AppColor.primaryColor)
                         .font(.system(size: 13, weight: .semibold))
@@ -129,7 +129,7 @@ struct GarasiTabItem: View {
                             .padding(.horizontal)
                     }
                     VStack {
-                        HStack{
+                        HStack {
                             Text("                                           ")
                                 .font(.system(size: 17, weight: .semibold))
                                 .backgroundColor(AppColor.lightGray)
@@ -141,9 +141,9 @@ struct GarasiTabItem: View {
                         Button {
                             newMotorSheet.toggle()
                         } label: {
-                            HStack{
+                            HStack {
                                 Image(systemName: "plus")
-                                Text ("Tambah Motor Baru")
+                                Text("Tambah Motor Baru")
                             }
                         }
                         .padding()
@@ -174,7 +174,7 @@ struct GarasiTabItem: View {
                 Text("Belum ada riwayat servis")
             } else {
                 ForEach(viewModel.customerOrders, id: \.id) { order in
-                    
+
                     OrderCards(order: order).background(Color.white)
                         .cornerRadius(10)
                         .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
@@ -185,22 +185,21 @@ struct GarasiTabItem: View {
     }
 }
 
-
-struct OrderCards: View{
+struct OrderCards: View {
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
     @State private var isModalPresented = false
     var orderDetail: Order
     let dateFormatter = DateFormatter()
-    init(order: Order){
+    init(order: Order) {
         orderDetail = order
     }
-    
+
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text(viewModel.bengkel?.name ?? "Loading...")
                 .font(.system(size: 15))
                 .padding(.bottom, 5)
-            HStack{
+            HStack {
                 Text(Date.convertDateFormat(date: orderDetail.schedule, format: "dd-MM-yyyy"))
                     .font(.system(size: 13, weight: .light))
                 Spacer()
@@ -219,7 +218,7 @@ struct OrderCards: View{
             viewModel.getBengkelFromOrder(bengkelId: orderDetail.bengkelId)
         }
     }
-        
+
 }
 
 struct GarasiTabItem_Previews: PreviewProvider {

@@ -10,16 +10,12 @@ import FirebaseAuth
 
 struct BookingTabItemView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
-
+    
     @State private var isDetailBookingModalPresented = false
     @State private var isDetailBookingOnProgressPresented = false
     @State private var selectedOrder: Order?
-
+    
     init() {
-        let appearance                                      = UITabBarAppearance()
-        UITabBar.appearance().isTranslucent                 = true
-        UITabBar.appearance().backgroundColor               = UIColor(AppColor.grayTab)
-        appearance.shadowColor                              = UIColor.gray
         
         let coloredAppearance                               = UINavigationBarAppearance()
         coloredAppearance.backgroundColor                   = UIColor(AppColor.primaryColor)
@@ -144,7 +140,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-
+    
     private func bookingCards(order: Order) -> some View {
         VStack(alignment: .leading) {
             Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
@@ -197,7 +193,7 @@ struct BookingTabItemView: View {
             }
         }
     }
-
+    
     private func currentBookingSection(order: [Order]) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
@@ -213,7 +209,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-
+    
     private func currentBookingCard(order: Order) -> some View {
         VStack {
             if let customer = viewModel.customer {
@@ -259,7 +255,13 @@ struct BookingTabItemView: View {
             }
             HStack {
                 Spacer()
-                showStatus(status: order.status)
+                Text(order.status.rawValue)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .padding(5)
+                    .background(ButtonStatus.getColors(status: order.status))
+                    .cornerRadius(5)
+                    .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
             }
         }.onTapGesture {
             isDetailBookingOnProgressPresented.toggle()
@@ -272,34 +274,6 @@ struct BookingTabItemView: View {
             if let orderSelected = self.selectedOrder {
                 DetailBooking(order: orderSelected)
             }
-        }
-    }
-
-    @ViewBuilder private func showStatus(status: Order.Status) -> some View {
-        if status == .scheduled {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(AppColor.salmonOrange)
-                .foregroundColor(AppColor.primaryColor)
-                .cornerRadius(5)
-        } else if status == .onProgress {
-            Text("Dikerjakan")
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.green)
-                .foregroundColor(Color.systemGreen)
-                .cornerRadius(5)
-        } else if status == .done {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.systemBlue)
-                .foregroundColor(Color.blue)
-                .cornerRadius(5)
         }
     }
 }
