@@ -18,11 +18,6 @@ struct DetailBooking: View {
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.backgroundColor = .white
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor(AppColor.primaryColor)]
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
     }
 
     var body: some View {
@@ -187,7 +182,7 @@ struct DetailBooking: View {
                     Image(systemName: "chevron.backward")
                     Text("Kembali")
                 }
-                .foregroundColor(AppColor.primaryColor)
+                .foregroundColor(.white)
             })
         }.navigationBarHidden(true)
     }

@@ -71,14 +71,14 @@ struct BengkelProfileView: View {
         } else {
             contentView
                 .padding()
-                .toolbar { toolbar() }
+                .toolbar { toolbar() }.foregroundColor(.white)
                 .navigationBarTitle("Profile", displayMode: .inline)
                 .onAppear {
                     viewModel.fetch()
                 }
         }
     }
-
+    @ViewBuilder
     private var contentView: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
@@ -199,6 +199,7 @@ extension BengkelProfileView {
         }
     }
 
+    @ViewBuilder
     private func saveButton() -> some View {
         Button {
             viewModel.activeAlert = .save
@@ -213,6 +214,7 @@ extension BengkelProfileView {
         }
     }
 
+    @ViewBuilder
     private func bengkelPhotos() -> some View {
         VStack(alignment: .leading) {
             Text("Foto Bengkel").font(.headline)
@@ -230,76 +232,86 @@ extension BengkelProfileView {
                         .cornerRadius(8)
                     }
                 }
-                ForEach(viewModel.bengkelPhotos, id: \.self) { photoUrl in
-                    if let url = URL(string: photoUrl) {
-                        ZStack {
-                            WebImage(url: url)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 150, height: 120, alignment: .center)
-                                .cornerRadius(8)
-                                .onTapGesture {
-                                    viewModel.selectedPhotoUrl = photoUrl
-                                }
-
-                            if viewModel.isEditing {
-                                VStack {
-                                    HStack {
-                                        Spacer()
-                                        Button {
-                                            viewModel.photoToRemove = photoUrl
-                                            viewModel.activeAlert = .delete
-                                        } label: {
-                                            Image(systemName: "xmark")
-                                                .font(.caption.bold())
-                                                .padding(.small)
-                                                .foregroundColor(AppColor.primaryColor)
-                                                .background(Color.white)
-                                                .clipShape(Circle())
-                                                .shadow(color: .black.opacity(0.3), radius: 4, x: -2, y: 2)
-                                        }
-                                    }
-                                    Spacer()
-                                }
-                                .padding(.small)
-                                .padding(.trailing, 2)
-                            }
+                bengkelPhoto()
+                
+                photoToUpload()
+            }
+        }
+    }
+    @ViewBuilder
+    private func bengkelPhoto() -> some View {
+        ForEach(viewModel.bengkelPhotos, id: \.self) { photoUrl in
+            if let url = URL(string: photoUrl) {
+                ZStack {
+                    WebImage(url: url)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 120, alignment: .center)
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            viewModel.selectedPhotoUrl = photoUrl
                         }
+
+                    if viewModel.isEditing {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    viewModel.photoToRemove = photoUrl
+                                    viewModel.activeAlert = .delete
+                                } label: {
+                                    Image(systemName: "xmark")
+                                        .font(.caption.bold())
+                                        .padding(.small)
+                                        .foregroundColor(AppColor.primaryColor)
+                                        .background(Color.white)
+                                        .clipShape(Circle())
+                                        .shadow(color: .black.opacity(0.3), radius: 4, x: -2, y: 2)
+                                }
+                            }
+                            Spacer()
+                        }
+                        .padding(.small)
+                        .padding(.trailing, 2)
                     }
                 }
-                ForEach(viewModel.photosToUpload, id: \.self) { uiImage in
-                    ZStack {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 150, height: 120, alignment: .center)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                viewModel.selectedPhoto = uiImage
-                            }
-
-                        if viewModel.isEditing {
-                            VStack {
-                                HStack {
-                                    Spacer()
-                                    Button {
-                                        viewModel.activeAlert = .delete
-                                    } label: {
-                                        Image(systemName: "xmark")
-                                            .font(.caption.bold())
-                                            .padding(.small)
-                                            .foregroundColor(AppColor.primaryColor)
-                                            .background(Color.white)
-                                            .clipShape(Circle())
-                                            .shadow(color: .black.opacity(0.3), radius: 4, x: -2, y: 2)
-                                    }
-                                }
-                                Spacer()
-                            }
-                            .padding(.small)
-                            .padding(.trailing, 2)
-                        }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func photoToUpload() -> some View {
+        ForEach(viewModel.photosToUpload, id: \.self) { uiImage in
+            ZStack {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 120, alignment: .center)
+                    .cornerRadius(8)
+                    .onTapGesture {
+                        viewModel.selectedPhoto = uiImage
                     }
+
+                if viewModel.isEditing {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button {
+                                viewModel.activeAlert = .delete
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.caption.bold())
+                                    .padding(.small)
+                                    .foregroundColor(AppColor.primaryColor)
+                                    .background(Color.white)
+                                    .clipShape(Circle())
+                                    .shadow(color: .black.opacity(0.3), radius: 4, x: -2, y: 2)
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding(.small)
+                    .padding(.trailing, 2)
                 }
             }
         }

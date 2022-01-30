@@ -22,8 +22,10 @@ struct BookingTabItemView: View {
         coloredAppearance.largeTitleTextAttributes          = [.foregroundColor: UIColor.white]
         coloredAppearance.titleTextAttributes               = [.foregroundColor: UIColor.white]
         
+        
         UINavigationBar.appearance().standardAppearance     = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance   = coloredAppearance
+        UINavigationBar.appearance().barTintColor           = UIColor(AppColor.primaryColor)
     }
     
     var body: some View {

@@ -24,7 +24,8 @@ extension PesananTabBengkelView {
             }
         }
 
-        @ViewBuilder func showUlasan() -> some View {
+        @ViewBuilder
+        func showUlasan() -> some View {
             if let bengkelOrders = bengkelOrders {
                 let orderSorted = bengkelOrders.sorted(by: { $0.schedule < $1.schedule })
                 LazyVStack {

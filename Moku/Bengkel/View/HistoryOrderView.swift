@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HistoryOrderView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var bengkelOrders: [Order]
 
     var body: some View {
@@ -22,6 +24,11 @@ struct HistoryOrderView: View {
                                 }, label: {
                                     ReviewCell(order: order)
                                 })
+                                    .padding(10)
+                                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.25)
+                                    .background(AppColor.primaryBackground)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                             }
                         }
                     }
@@ -29,6 +36,15 @@ struct HistoryOrderView: View {
                 }
             }
         }
+        .navigationBarItems(leading: Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            HStack(spacing: 3) {
+                Image(systemName: "chevron.backward")
+                Text("Kembali")
+            }
+            .foregroundColor(.white)
+        })
         .navigationBarTitle("Riwayat Pesanan")
         .navigationBarTitleDisplayMode(.inline)
     }
