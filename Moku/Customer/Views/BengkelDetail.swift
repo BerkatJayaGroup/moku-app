@@ -131,6 +131,7 @@ struct BengkelDetail: View {
             Text("Pilih Jasa")
                 .fontWeight(.semibold)
                 .padding(.top)
+                .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
             HStack {
                 let minPrice = "\(viewModel.bengkel.minPrice)".toCurrencyFormat()
                 let maxPrice = "\(viewModel.bengkel.maxPrice)".toCurrencyFormat()

@@ -41,14 +41,14 @@ struct CancelBookingModal: View {
                     }
                 }
             }.padding()
-            CustomTextField.init(placeholder: "Deskripsikan alasanmu membatalkan booking disini", text: $otherReason)
+            CustomTextField.init(placeholder: "Deskripsikan alasanmu membatalkan booking disini", text: $otherReason, isEnabled: selection == .alasanLainnya)
                 .font(.body)
                 .background(AppColor.lightGray)
                 .accentColor(.green)
                 .frame(height: 200)
                 .cornerRadius(8)
                 .padding(.horizontal)
-            Button("Selesai") {
+            Button {
                 let oneHourAgo = Calendar.current.date(byAdding: .hour, value: -1, to: order.schedule)
                 let now = Calendar.current.date(byAdding: .hour, value: 0, to: Date())
                 if oneHourAgo != now {
@@ -57,6 +57,12 @@ struct CancelBookingModal: View {
                 } else {
                     showingAlert = true
                     isCancel = false
+                }
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Selesai")
+                    Spacer()
                 }
             }
             .padding()
@@ -73,6 +79,7 @@ struct CancelBookingModal: View {
                                 isActive = true
                             } else {
                                 self.presentationMode.wrappedValue.dismiss()
+                                NavigateToRootView.popToRootView()
                             }
                             if selection == .alasanLainnya {
                                 orderCustomerViewModel.cancelBooking(order: order, reason: otherReason)
@@ -82,7 +89,10 @@ struct CancelBookingModal: View {
                         }
                     } else {
                         self.presentationMode.wrappedValue.dismiss()
+                        NavigateToRootView.popToRootView()
                     }
+                    self.presentationMode.wrappedValue.dismiss()
+                    NavigateToRootView.popToRootView()
                 }, secondaryButton: .cancel())
             }
         }

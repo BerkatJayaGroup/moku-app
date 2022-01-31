@@ -54,7 +54,7 @@ struct BengkelDate: View {
                 Text("Tambah keterangan kondisi motor")
                     .font(.headline)
                     .padding(.horizontal)
-                CustomTextField.init(placeholder: "Deskripsikan keluhan motormu atau tulis permintaan ke pihak bengkel", text: $viewModel.text)
+                CustomTextField.init(placeholder: "Deskripsikan keluhan motormu atau tulis permintaan ke pihak bengkel", text: $viewModel.text, isEnabled: true)
                     .font(.body)
                     .background(AppColor.lightGray)
                     .accentColor(.green)
