@@ -17,19 +17,18 @@ struct HistoryOrderView: View {
                     LazyVStack {
                         ForEach(bengkelOrders, id: \.id) { order in
                             if order.status == .done || order.status == .rejected {
-                                NavigationLink(destination: {
+                                NavigationLink {
                                     DetailBooking(order: order)
-                                }, label: {
+                                } label: {
                                     ReviewCell(order: order)
-                                })
+                                }
+                            } else {
+                                EmptyView()
                             }
                         }
-                    }
-                    .padding()
+                    }.padding()
                 }
             }
-        }
-        .navigationBarTitle("Riwayat Pesanan")
-        .navigationBarTitleDisplayMode(.inline)
+        }.navigationBarTitle("Riwayat Pesanan", displayMode: .inline)
     }
 }

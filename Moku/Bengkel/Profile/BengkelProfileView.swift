@@ -265,6 +265,8 @@ extension BengkelProfileView {
                                 .padding(.trailing, 2)
                             }
                         }
+                    } else {
+                        EmptyView()
                     }
                 }
                 ForEach(viewModel.photosToUpload, id: \.self) { uiImage in
