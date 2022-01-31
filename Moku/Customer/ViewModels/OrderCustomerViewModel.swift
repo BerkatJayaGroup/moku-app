@@ -31,11 +31,11 @@ class OrderCustomerViewModel: ObservableObject {
         }
     }
 
-    func cancelBooking(order: Order, reason: Order.CancelingReason) {
+    func cancelBooking(order: Order, reason: String) {
 
         DispatchQueue.main.async {[order] in
             var order = order
-            order.cancelingReason = reason
+            order.cancelingReason = .alasanLainnya
             order.status = .canceled
 
             self.repository.updateStatus(order: order) { _ in
