@@ -23,10 +23,9 @@ struct DateStack: View {
                 .font(.system(size: 20))
                 .bold()
                 .foregroundColor(isSelected ? .white : .black)
-                .padding(.top, 10)
 
-        }.padding()
-            .frame(width: 60, height: 75)
+        }
+            .frame(width: 45, height: 60)
             .background( isSelected ? AppColor.primaryColor : Color.white)
             .cornerRadius(10)
             .onTapGesture {

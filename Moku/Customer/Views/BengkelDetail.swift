@@ -62,7 +62,8 @@ struct BengkelDetail: View {
 
             HStack {
                 Text(viewModel.bengkel.name)
-                    .font(.system(size: 32))
+                    .font(.system(size: 20))
+                    .fontWeight(.semibold)
                 Spacer()
                 if isFavorite {
                     Image(systemName: "heart.fill")
@@ -81,7 +82,7 @@ struct BengkelDetail: View {
             .frame(width: UIScreen.main.bounds.width * 0.9)
             .font(.system(size: 20, weight: .semibold))
             .padding(.bottom, 5)
-            Text(viewModel.address)
+            Text(viewModel.bengkel.address)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(minWidth: UIScreen.main.bounds.width * 0.9, idealWidth: UIScreen.main.bounds.width * 0.9, maxWidth: UIScreen.main.bounds.width * 0.9, minHeight: 18, idealHeight: 18, maxHeight: 36, alignment: .leading)
                 .font(.system(size: 13, weight: .regular))
@@ -126,6 +127,7 @@ struct BengkelDetail: View {
                 }
             }
             .frame(width: UIScreen.main.bounds.width)
+            Divider()
             Text("Pilih Jasa")
                 .fontWeight(.semibold)
                 .padding(.top)
@@ -137,7 +139,7 @@ struct BengkelDetail: View {
                     .onTapGesture {
                         viewModel.typeOfService = .servisRutin
                     }
-                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "SelectService-Perbaikan", servicePrice: "Tanya bengkel", isTap: viewModel.typeOfService == .perbaikan)
+                SelectServices(serviceTitle: "Perbaikan", serviceIcon: "SelectService-Perbaikan", servicePrice: "Disesuaikan di Bengkel", isTap: viewModel.typeOfService == .perbaikan)
                     .onTapGesture {
                         viewModel.typeOfService = .perbaikan
                     }

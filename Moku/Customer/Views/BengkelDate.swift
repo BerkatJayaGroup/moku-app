@@ -54,9 +54,9 @@ struct BengkelDate: View {
                 Text("Tambah keterangan kondisi motor")
                     .font(.headline)
                     .padding(.horizontal)
-                CustomTextField.init(placeholder: "Deskripsikan keluhan yang kamu rasakan di motormu disini ya", text: $viewModel.text)
+                CustomTextField.init(placeholder: "Deskripsikan keluhan motormu atau tulis permintaan ke pihak bengkel", text: $viewModel.text, isEnabled: true)
                     .font(.body)
-                    .background(Color(UIColor.systemGray6))
+                    .background(AppColor.lightGray)
                     .accentColor(.green)
                     .frame(height: 200)
                     .cornerRadius(8)
@@ -82,7 +82,7 @@ struct BengkelDate: View {
                     print("apa aja dah else")
                 }
             } label: {
-                Text("Lanjutkan")
+                Text("Selanjutnya")
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .padding(.vertical, 16)

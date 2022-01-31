@@ -40,23 +40,40 @@ struct BengkelList: View {
                 Text(bengkel.name)
                     .font(.system(size: 15))
                     .fontWeight(.semibold)
-                    .padding(.bottom, 0.5)
 
                 Text("Senin - Jumat, \(operationalHours)")
                     .font(.system(size: 11))
                     .foregroundColor(Color.gray)
-                    .padding(.bottom, 0.5)
 
                 Text(distance)
                     .font(.system(size: 11))
                     .foregroundColor(Color.gray)
-                    .padding(.bottom, 0.5)
+                    .padding(.bottom, 0.05)
 
                 HStack {
-                    Text("$$$")
-                        .font(.system(size: 11))
-                        .foregroundColor(Color("PrimaryColor"))
-
+                    if Int(bengkel.minPrice) ?? 0 < 50000 {
+                        HStack(spacing: 0) {
+                            Text("$")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColor.primaryColor)
+                            Text("$$")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColor.darkGray)
+                        }
+                    } else if Int(bengkel.minPrice) ?? 0 < 100000 && Int(bengkel.minPrice) ?? 0 >= 50000 {
+                        HStack(spacing: 0) {
+                            Text("$$")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColor.primaryColor)
+                            Text("$")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColor.lightGray)
+                        }
+                    } else {
+                        Text("$$$")
+                            .font(.system(size: 11))
+                            .foregroundColor(Color("PrimaryColor"))
+                    }
                     Spacer()
 
                     HStack(alignment: .center) {
@@ -67,6 +84,7 @@ struct BengkelList: View {
                         Text(bengkel.averageRating)
                             .font(.system(size: 15))
                             .fontWeight(.heavy)
+                            .padding(.leading, 4)
                     }
                 }
             }

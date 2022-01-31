@@ -92,7 +92,7 @@ struct BookingSummary: View {
 
     var body: some View {
         if let docRef = viewModel.docRef {
-            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, tab: $tab, isBackToRoot: $isBackToRoot)
+            BookingConfirmationView(orderId: docRef, bengkelName: viewModel.bengkelName, bengkelAddress: viewModel.address, tab: $tab, isBackToRoot: $isBackToRoot)
         } else {
             VStack {
                 VStack {

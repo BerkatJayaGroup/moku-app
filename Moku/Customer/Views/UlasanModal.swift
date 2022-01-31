@@ -52,7 +52,7 @@ struct UlasanModal: View {
                     Spacer()
                 }
                 .padding(.horizontal, 30)
-                CustomTextField(placeholder: "Berikan komentar anda terhadap kinerja Mekanik", text: $viewModel.text)
+                CustomTextField(placeholder: "Berikan komentar anda terhadap kinerja Mekanik", text: $viewModel.text, isEnabled: true)
                     .frame(width: 325, height: 75)
                     .font(.body)
                     .background(Color(UIColor.systemGray6))

@@ -11,6 +11,7 @@ struct CustomTextField: View {
     let placeholder: String
     @Binding var text: String
     let internalPadding: CGFloat = 5
+    let isEnabled: Bool
     var body: some View {
         ZStack(alignment: .topLeading) {
             if text.isEmpty {
@@ -21,6 +22,7 @@ struct CustomTextField: View {
             }
             TextEditor(text: $text)
                 .padding(internalPadding)
+                .disabled(!isEnabled)
         }.onAppear {
             UITextView.appearance().backgroundColor = .clear
         }.onDisappear {
@@ -31,6 +33,6 @@ struct CustomTextField: View {
 
 struct CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(placeholder: "Tulis disini", text: .constant("Halo"))
+        CustomTextField(placeholder: "Tulis disini", text: .constant("Halo"), isEnabled: true)
     }
 }
