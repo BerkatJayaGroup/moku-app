@@ -16,10 +16,10 @@ struct AddNewMotor: View {
         UITableView.appearance().backgroundColor = .none
         UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        navBarAppearance.backgroundColor = UIColor(AppColor.navBarDefaultColor)
     }
     var body: some View {
-
         NavigationView {
             VStack {
                 VStack(alignment: .leading) {
@@ -67,11 +67,13 @@ struct AddNewMotor: View {
                         TextField("Masa Berlaku", text: $viewModel.masaBerlaku)
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
+                            .keyboardType(.numberPad)
                     }
                     Section(header: Text("TAHUN KENDARAAN").font(.caption2).foregroundColor(AppColor.darkGray)) {
                         TextField("Tahun Kendaraan", text: $viewModel.tahunBeli)
                             .listRowBackground(AppColor.lightGray)
                             .font(.system(size: 15, weight: .regular))
+                            .keyboardType(.numberPad)
                     }
                 }
                 if viewModel.isEditing {
@@ -84,19 +86,26 @@ struct AddNewMotor: View {
                                 .font(.system(size: 17, weight: .semibold))
                             Text("Hapus Motor")
                                 .font(.system(size: 17, weight: .semibold))
-                        }.padding(.horizontal)
+                        }
+                        .foregroundColor(Color.red)
+                        .padding(.horizontal)
                     }
-                    .padding()
-                    .background(.red)
+                    .frame(width: 312, height: 44)
+                    .background(Color(hex: "EFBFBF"))
                     .cornerRadius(9)
                 }
             }
             .padding()
-            .navigationTitle("Tambah Motor Baru")
+            .navigationTitle(Text("Tambah Motor Baru"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-                leading: Button("Kembali") {
+                leading: Button {
                     presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Kembali")
+                    }
                 },
                 trailing: Button(viewModel.isEditing ? "Simpan" : "Tambah") {
                     if viewModel.isEditing {
@@ -109,6 +118,9 @@ struct AddNewMotor: View {
                     }
                 }
             )
+            .onTapGesture {
+                endTextEditing()
+            }
         }
     }
 }

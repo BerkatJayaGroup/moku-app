@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct ProfileBengkelView: View {
     @StateObject var viewModel = ViewModel()
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -23,7 +23,7 @@ struct ProfileBengkelView: View {
                             Text(bengkel.name)
                         }
                     }
-
+                    
                     NavigationLink(destination: AllReviewView(bengkel: viewModel.bengkel ?? .preview), label: {
                         HStack {
                             Image(systemName: "star")
@@ -67,18 +67,11 @@ struct ProfileBengkelView: View {
                             })
                         }
                         .padding(.bottom, 16)
-
+                        
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Brand Motor Cakupan")
                                 .foregroundColor(.gray)
                             Text(viewModel.brands)
-                                .foregroundColor(.black)
-                        }
-                        Divider()
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("CC Motor Cakupan")
-                                .foregroundColor(.gray)
-                            Text("110cc, 125cc, 150cc, 250cc, 500cc")
                                 .foregroundColor(.black)
                         }
                         Divider()
@@ -105,6 +98,11 @@ struct ProfileBengkelView: View {
             }
             .navigationTitle("Bengkel")
             .navigationBarColor(AppColor.primaryColor)
+            .onAppear {
+                if let id = Auth.auth().currentUser?.uid {
+                    viewModel.getBengkel(bengkelId: id)
+                }
+            }
         }
     }
 }

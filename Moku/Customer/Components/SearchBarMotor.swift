@@ -16,7 +16,7 @@ struct SearchBarMotor: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(Color(.systemGray3))
-                TextField("Search ...", text: $text)
+                TextField("Cari...", text: $text)
                     .onTapGesture {
                         self.isEditing = true
                     }

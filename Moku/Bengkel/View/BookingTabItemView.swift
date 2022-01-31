@@ -10,17 +10,22 @@ import FirebaseAuth
 
 struct BookingTabItemView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
-
+    
     @State private var isDetailBookingModalPresented = false
     @State private var isDetailBookingOnProgressPresented = false
     @State private var selectedOrder: Order?
-
+    
     init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        let coloredAppearance                               = UINavigationBarAppearance()
+        coloredAppearance.backgroundColor                   = UIColor(AppColor.primaryColor)
+        coloredAppearance.largeTitleTextAttributes          = [.foregroundColor: UIColor.white]
+        coloredAppearance.titleTextAttributes               = [.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().standardAppearance     = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance   = coloredAppearance
     }
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -36,6 +41,7 @@ struct BookingTabItemView: View {
                             HStack {
                                 Text("Booking masuk")
                                     .font(.title2)
+                                    .fontWeight(.semibold)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.top)
                                     .padding(.horizontal)
@@ -63,14 +69,18 @@ struct BookingTabItemView: View {
                             }
                             Text("Pekerjaan Hari Ini")
                                 .font(.title2)
+                                .fontWeight(.semibold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top)
                                 .padding(.horizontal)
                             if onProgressOrder.isEmpty {
                                 VStack {
                                     Image(systemName: "newspaper")
-                                        .foregroundColor(AppColor.brightOrange)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .foregroundColor(AppColor.darkGray)
                                     Text("Tidak ada bookingan terjadwal pada hari ini")
+                                        .font(.system(size: 15))
                                         .foregroundColor(AppColor.darkGray)
                                         .multilineTextAlignment(.center)
                                 }.padding(70)
@@ -81,6 +91,7 @@ struct BookingTabItemView: View {
                     } else {
                         Image("EmptyStateBengkel")
                         Text("Tidak ada bookingan masuk ataupun terjadwal pada hari ini")
+                            .multilineTextAlignment(.center)
                             .font(.subheadline)
                             .foregroundColor(.systemGray)
                             .padding()
@@ -88,14 +99,19 @@ struct BookingTabItemView: View {
                 } else {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }
-            }.navigationTitle("Booking")
-                .navigationBarColor(AppColor.primaryColor)
-        }.background(AppColor.primaryBackground)
+            }
+            .navigationTitle("Booking")
+            .navigationBarColor(AppColor.primaryColor)
+            .background(NavigationConfigurator { nc in
+                nc.navigationBar.barTintColor = .blue
+                nc.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+            })
             .onAppear {
                 if let id = Auth.auth().currentUser?.uid {
                     viewModel.getBengkelOrders(bengkelId: id)
                 }
             }
+        }
     }
     private func newBookingSection(order: [Order]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -124,30 +140,32 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-
+    
     private func bookingCards(order: Order) -> some View {
         VStack(alignment: .leading) {
             Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
             HStack {
                 Image(systemName: "wrench.and.screwdriver.fill")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                     .foregroundColor(AppColor.brightOrange)
                 Text(order.typeOfService.rawValue).font(.caption)
                 Spacer()
             }
+            .padding(.bottom, 8)
             HStack {
                 Image(systemName: "calendar.badge.clock")
                     .resizable()
                     .foregroundColor(AppColor.brightOrange)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                 Text(order.schedule.date()).font(.caption)
                 Spacer()
             }
+            .padding(.bottom, 5)
             HStack {
                 Image(systemName: "clock.arrow.circlepath")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22.5, height: 20)
                     .foregroundColor(AppColor.brightOrange)
                 Text(order.schedule.time()).font(.caption)
                 Spacer()
@@ -158,7 +176,7 @@ struct BookingTabItemView: View {
                     .frame(width: 100, height: 30)
                     .background(AppColor.primaryColor)
                     .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .font(.caption)
             }
         }.onTapGesture {
@@ -175,7 +193,7 @@ struct BookingTabItemView: View {
             }
         }
     }
-
+    
     private func currentBookingSection(order: [Order]) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
@@ -191,7 +209,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-
+    
     private func currentBookingCard(order: Order) -> some View {
         VStack {
             if let customer = viewModel.customer {
@@ -237,7 +255,13 @@ struct BookingTabItemView: View {
             }
             HStack {
                 Spacer()
-                showStatus(status: order.status)
+                Text(order.status.rawValue)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .padding(5)
+                    .background(ButtonStatus.getColors(status: order.status))
+                    .cornerRadius(5)
+                    .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
             }
         }.onTapGesture {
             isDetailBookingOnProgressPresented.toggle()
@@ -250,34 +274,6 @@ struct BookingTabItemView: View {
             if let orderSelected = self.selectedOrder {
                 DetailBooking(order: orderSelected)
             }
-        }
-    }
-
-    @ViewBuilder private func showStatus(status: Order.Status) -> some View {
-        if status == .scheduled {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(AppColor.salmonOrange)
-                .foregroundColor(AppColor.primaryColor)
-                .cornerRadius(5)
-        } else if status == .onProgress {
-            Text("Dikerjakan")
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.green)
-                .foregroundColor(Color.systemGreen)
-                .cornerRadius(5)
-        } else if status == .done {
-            Text(status.rawValue)
-                .font(.caption)
-                .fontWeight(.bold)
-                .padding(5)
-                .background(Color.systemBlue)
-                .foregroundColor(Color.blue)
-                .cornerRadius(5)
         }
     }
 }
