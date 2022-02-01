@@ -142,11 +142,17 @@ final class OrderRepository: ObservableObject {
         }
     }
 
-    func addMekanik(orderId: String, mechanicsName: String) {
+    func addMekanik(orderId: String, mechanic: Mekanik, completion: ((Error?) -> Void)? = nil) {
+        let mechanic: [String: Any] = [
+            "id": mechanic.id,
+            "name": mechanic.name,
+            "photo": mechanic.photo
+        ]
         store
             .document(orderId)
             .updateData(
-                ["mechanicName": mechanicsName]
+                ["mekanik": mechanic],
+                completion: completion
             )
     }
 }

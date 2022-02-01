@@ -55,7 +55,7 @@ class AssignMechanicsViewModel: ObservableObject {
 
     func addMekanik() {
         if let bengkel = bengkel {
-            OrderRepository.shared.addMekanik(orderId: self.order.id, mechanicsName: bengkel.mekaniks[selectedMechanics].name)
+            OrderRepository.shared.addMekanik(orderId: self.order.id, mechanic: bengkel.mekaniks[selectedMechanics])
         }
     }
 

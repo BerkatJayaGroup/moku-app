@@ -21,6 +21,7 @@ struct ProfileBengkelView: View {
                     if let bengkel = viewModel.bengkel {
                         NavigationLink(destination: BengkelProfileView(bengkel: bengkel)) {
                             Text(bengkel.name)
+                                .foregroundColor(AppColor.primaryColor)
                         }
                     }
                     
@@ -103,7 +104,7 @@ struct ProfileBengkelView: View {
                     viewModel.getBengkel(bengkelId: id)
                 }
             }
-        }
+        }.accentColor(.white)
     }
 }
 

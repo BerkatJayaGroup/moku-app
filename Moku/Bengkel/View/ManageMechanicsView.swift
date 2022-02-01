@@ -23,6 +23,7 @@ struct ManageMechanicsView: View {
             ForEach(viewModel.mechanics ?? [], id: \.id) { mechanic in
                 NavigationLink(destination: EditMechanic(mechanic: mechanic)) {
                     MechanicCard(mechanic: mechanic)
+                        .foregroundColor(AppColor.primaryColor)
                 }
             }
         }
@@ -35,7 +36,7 @@ struct ManageMechanicsView: View {
             Image(systemName: "plus")
 
         }).sheet(isPresented: $showModal, content: {
-            AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
+            AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true, isManageMechanic: true)
         })
         )
         .navigationBarTitleDisplayMode(.inline)
