@@ -73,6 +73,7 @@ struct BengkelTabItem: View {
                     }
                     ratingView()
                     listOfNearbyBengkel()
+                        .padding(.top, 10)
                 }
             }.padding(.top, 111)
         }
