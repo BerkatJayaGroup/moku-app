@@ -85,6 +85,7 @@ extension LocationSearchView {
                 } label: {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(place.name)
+                            .foregroundColor(.black)
                         if let address = place.address {
                             Text(address).font(.subheadline).foregroundColor(.secondaryLabel)
                         }
