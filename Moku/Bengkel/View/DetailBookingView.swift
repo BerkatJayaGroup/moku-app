@@ -8,6 +8,7 @@
 import SwiftUI
 import PartialSheet
 import SDWebImageSwiftUI
+import Introspect
 
 struct DetailBooking: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -16,6 +17,7 @@ struct DetailBooking: View {
 
     @State var isShowFinishBookingSheet = false
 
+    @State var uiTabarController: UITabBarController?
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -194,7 +196,13 @@ struct DetailBooking: View {
                 }
                 .foregroundColor(.white)
             })
-        }
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = true
+                self.uiTabarController = UITabBarController
+            }.onDisappear{
+                self.uiTabarController?.tabBar.isHidden = false
+            }
+        }.navigationBarHidden(true)
         
     }
 }
