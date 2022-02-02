@@ -24,6 +24,7 @@ struct UlasanPage: View {
                 .padding()
                 .foregroundColor(Color.gray)
                 .navigationBarTitle("Ulasan", displayMode: .inline)
+                .navigationBarHidden(true)
             } else {
                 ScrollView {
                     LazyVStack {

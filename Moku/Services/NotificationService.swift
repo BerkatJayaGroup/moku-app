@@ -17,7 +17,7 @@ final class NotificationService: NSObject, ObservableObject {
 
     enum Notification {
         case orderPlaced
-        case orderCanceled(_ reason: Order.CancelingReason)
+        case orderCanceled(_ reason: String)
         case updateOrderStatus(_ status: Order.Status)
         case done
 
@@ -26,7 +26,7 @@ final class NotificationService: NSObject, ObservableObject {
             case .orderPlaced:
                 return Content(title: "Yay, ada pesanan yang masuk!", body: "Silahkan cek pesanan yang masuk.")
             case .orderCanceled(let reason):
-                return Content(title: "Yah, pesanan dibatalkan!", body: reason.rawValue)
+                return Content(title: "Yah, pesanan dibatalkan!", body: reason)
 
             case .updateOrderStatus(let status):
                 return Content(title: "Cek Status Pesanan", body: "Status Pesanan anda sudah di Perbarui menjadi \(status.rawValue)")

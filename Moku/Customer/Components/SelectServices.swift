@@ -14,29 +14,20 @@ struct SelectServices: View {
     var servicePrice: String
     var isTap: Bool
     var body: some View {
-            VStack(alignment: .center, spacing: 8) {
+            VStack(alignment: .center) {
                 Text("\(serviceTitle)")
                     .fontWeight(.semibold)
-                    .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
                 Image(serviceIcon)
                     .font(.system(size: 70, weight: .ultraLight))
                     .scaledToFill()
-                    .foregroundColor(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"))
-                    .padding(.vertical)
                 Text("\(servicePrice)")
                     .font(Font.system(size: 11))
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 4)
-                    .frame(width: 150, height: 22, alignment: .center)
-                    .background(self.isTap == true ? Color("PrimaryColor"): Color(hex: "E7E7E7"))
-                    .foregroundColor(self.isTap == true ? .white : .gray)
-                    .cornerRadius(8)
+                    .foregroundColor(.black)
+                    .fontWeight(.semibold)
             }
-            .padding(.top, 16)
-            .padding(.bottom, 8)
-            .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/3.5)
+            .frame(width: UIScreen.main.bounds.width/2.2, height: UIScreen.main.bounds.height/4.4)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 20)
                     .stroke(self.isTap == true ? Color("PrimaryColor"): Color(hex: "999999"), lineWidth: 1)
                     .padding(.horizontal, 5)
             )
