@@ -23,33 +23,35 @@ struct PickRoleView: View {
                         bengkelSelected = false
                     } label: {
                         HStack {
-                            Image(systemName: "person")
-                                .foregroundColor(motorSelected ? AppColor.primaryColor : AppColor.darkGray)
-                                .font(.system(size: proxy.size.width * 0.19), weight: .ultraLight)
+                            Image("iconMotor")
+                                .resizable()
+                                .frame(width: proxy.size.width * 0.25, height: proxy.size.width * 0.25)
+                            Spacer()
                             Text("Pemilik Motor")
-                                .font(.title3, weight: .semibold)
-                                .foregroundColor(motorSelected ? AppColor.primaryColor : AppColor.darkGray)
+                                .font(.subheadline, weight: .semibold)
+                                .foregroundColor(Color.black)
                         }
                     }
                     .frame(width: proxy.size.width * 0.6, height: proxy.size.height * 0.05)
                     .padding(50)
-                    .border(motorSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
+                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(motorSelected ? AppColor.primaryColor : AppColor.darkGray, lineWidth: 1))
                     Button {
                         motorSelected = false
                         bengkelSelected = true
                     } label: {
                         HStack {
-                            Image(systemName: "wrench.and.screwdriver")
-                                .foregroundColor(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray)
-                                .font(.system(size: proxy.size.width * 0.15), weight: .ultraLight)
+                            Image("iconBengkel")
+                                .resizable()
+                                .frame(width: proxy.size.width * 0.25, height: proxy.size.width * 0.25)
+                            Spacer()
                             Text("Pemilik Bengkel")
-                                .font(.title3, weight: .semibold)
-                                .foregroundColor(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray)
+                                .font(.subheadline, weight: .semibold)
+                                .foregroundColor(Color.black)
                         }
                     }
                     .frame(width: proxy.size.width * 0.6, height: proxy.size.height * 0.05)
                     .padding(50)
-                    .border(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray, width: 1)
+                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(bengkelSelected ? AppColor.primaryColor : AppColor.darkGray, lineWidth: 1))
                     Spacer()
                     NavigationLink(destination: getDestination(), isActive: $isActive) {
                         Button {

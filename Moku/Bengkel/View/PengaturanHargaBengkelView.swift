@@ -33,22 +33,26 @@ struct PengaturanHargaBengkelView: View {
                         .foregroundColor(.gray)
                         .padding(.horizontal)
                     HStack {
-                        TextField("Rp minimum", text: $viewModel.minPrice)
-                            .font(.system(size: 15))
-                            .padding(10)
-                            .background(Color(.systemGray5))
-                            .cornerRadius(9)
-                            .keyboardType(.numberPad)
+                        VStack {
+                            TextField("Rp minimum", text: $viewModel.minPrice)
+                                .font(.system(size: 15))
+                                .padding(10)
+                                .background(Color(.systemGray5))
+                                .cornerRadius(9)
+                                .keyboardType(.numberPad)
+                            emptyAlert(for: $viewModel.minPrice, alert: "Harga minimal harus diisi")
+                        }
                         Text("-")
-                        TextField("Rp maksimum", text: $viewModel.maxPrice)
-                            .font(.system(size: 15))
-                            .padding(10)
-                            .background(Color(.systemGray5))
-                            .cornerRadius(9)
-                            .keyboardType(.numberPad)
+                        VStack {
+                            TextField("Rp maksimum", text: $viewModel.maxPrice)
+                                .font(.system(size: 15))
+                                .padding(10)
+                                .background(Color(.systemGray5))
+                                .cornerRadius(9)
+                                .keyboardType(.numberPad)
+                            emptyAlert(for: $viewModel.maxPrice, alert: "Harga maksimal harus diisi")
+                        }
                     }.padding()
-                    emptyAlert(for: $viewModel.minPrice, alert: "Harga minimal harus diisi")
-                    emptyAlert(for: $viewModel.maxPrice, alert: "Harga maksimal harus diisi")
                     Spacer()
                     Text("Harga yang Anda masukkan dapat diubah sesuai dengan kerusakan komponen dan kesepakatan dengan pelanggan")
                         .font(.system(size: 13))
@@ -69,8 +73,10 @@ struct PengaturanHargaBengkelView: View {
     @ViewBuilder
     private func submitButton(proxy: GeometryProxy) -> some View {
         Button {
-            viewModel.isSubmitting = true
-            viewModel.createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, pengaturanBengkelForm: pengaturanBengkelForm)
+            viewModel.validateForm()
+            if viewModel.isFormValid {
+                viewModel.createBengkel(bengkelOwnerFormViewModel: bengkelOwnerFormViewModel, pengaturanBengkelForm: pengaturanBengkelForm)
+            }
         } label: {
             HStack {
                 Spacer()

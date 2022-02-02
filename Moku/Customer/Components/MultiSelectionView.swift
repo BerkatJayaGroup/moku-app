@@ -7,18 +7,35 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     let options: [Selectable]
     let optionToString: (Selectable) -> String
     let barTitle: String
+    var isSelected: Bool {
+        if !selected.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
     @Binding var selected: Set<Selectable>
 
     var body: some View {
         NavigationView {
             VStack(alignment: .trailing) {
-                Button {
-                    selectAll(option: options)
-                }label: {
-                    Text("Pilih Semua")
+                if isSelected {
+                    Button {
+                        removeAll()
+                    }label: {
+                        Text("Jangan Pilih Semua")
+                    }
+                    .padding(.trailing)
+                    .padding(.top)
+                } else {
+                    Button {
+                        selectAll(option: options)
+                    }label: {
+                        Text("Pilih Semua")
+                    }
+                    .padding(.trailing)
+                    .padding(.top)
                 }
-                .padding(.trailing)
-                .padding(.top)
                 List {
                     ForEach(options) { selectable in
                         Button {
@@ -66,6 +83,11 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
     private func selectAll(option: [Selectable]) {
         selected = Set(options)
     }
+
+    private func removeAll() {
+        selected = []
+    }
+
 }
 
 struct MultiSelectionView_Previews: PreviewProvider {

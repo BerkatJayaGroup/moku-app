@@ -28,12 +28,9 @@ struct EditDataBengkelView: View {
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
                         MultiSelector(options: allBrands,
-                                      optionToString: { $0.rawValue }, barTitle: "Brand",
+                                      optionToString: { $0.rawValue }, barTitle: "Brand", proxy: proxy,
                                       selected: $viewModel.selectedBrand
                         )
-                        .frame(width: proxy.size.width, height: 40)
-                        .background(Color(hex: "F3F3F3"))
-                        .cornerRadius(8)
                         brandEmptyAlert(for: $viewModel.selectedBrand, alert: "Brand motor harus diisi")
                     }
                     .padding(.bottom, 24)
@@ -42,12 +39,9 @@ struct EditDataBengkelView: View {
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
                         MultiSelector(options: allCC,
-                                      optionToString: { $0.ccMotor }, barTitle: "Volume Langkah",
+                                      optionToString: { $0.ccMotor }, barTitle: "Volume Langkah", proxy: proxy,
                                       selected: $viewModel.selectedCC
                         )
-                            .frame(width: proxy.size.width, height: 40)
-                            .background(Color(hex: "F3F3F3"))
-                            .cornerRadius(8)
                         ccEmptyAlert(for: $viewModel.selectedCC, alert: "CC motor harus diisi")
                     }
                     .padding(.bottom, 24)

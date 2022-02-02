@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 class PengaturanHargaBengkelViewModel: ObservableObject {
     @Published var minPrice = ""
@@ -13,18 +14,27 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
 
     @Published var isSubmitting = false
     @Published var isLoading = false
+    @State var canSubmit = false
 
     var isFormValid: Bool {
         !minPrice.isEmpty && !maxPrice.isEmpty
     }
 
+    func validateForm() {
+        isSubmitting = true
+        if isFormValid {
+            canSubmit = true
+        }
+    }
+
     func createBengkel(bengkelOwnerFormViewModel: BengkelOwnerOnboardingView.ViewModel, pengaturanBengkelForm: PengaturanBengkel) {
+
         guard let location = bengkelOwnerFormViewModel.location else { return }
 
         isLoading = true
         let calendar = Calendar.current
-        let openTime = calendar.component(.hour, from: pengaturanBengkelForm.openTime)
-        let closeTime = calendar.component(.hour, from: pengaturanBengkelForm.closeTime)
+        let openTime = pengaturanBengkelForm.openTime
+        let closeTime = pengaturanBengkelForm.closeTime
 
         NotificationService.shared.getToken { token in
             var bengkelBaru = Bengkel(

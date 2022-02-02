@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import Combine
 import SwiftUIX
 
@@ -29,8 +30,10 @@ let allCC: [Motorcc] = [Motorcc(ccMotor: "100"), Motorcc(ccMotor: "110"), Motorc
 
 struct PengaturanBengkel: View {
     var bengkelOwnerForm: BengkelOwnerOnboardingView
-    @State var openTime = Date()
-    @State var closeTime = Date()
+    @State var showSheetOpen = false
+    @State var showSheetClose = false
+    @State var openTime: Int = 0
+    @State var closeTime: Int = 0
     @State var brandMotor: String = ""
     @State var ccMotor: String = ""
     @State var isBrandSelected: Bool = false
@@ -40,115 +43,212 @@ struct PengaturanBengkel: View {
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @State var daySelected: [Bool] = [true, true, true, true, true, true, true]
     @State var selectedBrand = Set<Brand>()
-    @State var selectedCC = Set<Motorcc>()
     @State var mechanics = [CalonMekanik]()
     @State var canSubmit = false
 
     var isFormValid: Bool {
-        !selectedBrand.isEmpty && !selectedCC.isEmpty && !mechanics.isEmpty
+        !selectedBrand.isEmpty  && !mechanics.isEmpty && !daySelected.allSatisfy({$0 == false})
     }
 
     var body: some View {
-        GeometryReader { proxy in
-            VStack(spacing: 24) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("BRAND MOTOR YANG BISA DIPERBAIKI")
-                        .font(Font.system(size: 11, weight: .regular))
-                        .frame(width: proxy.size.width, alignment: .leading)
-                    MultiSelector(options: allBrands,
-                                  optionToString: { $0.rawValue }, barTitle: "Volume Langkah",
-                                  selected: $selectedBrand
-                    )
-                    .frame(width: proxy.size.width, height: 40)
-                    .cornerRadius(8)
-                    brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
+        ZStack {
+            GeometryReader { proxy in
+                VStack(spacing: 24) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("BRAND MOTOR YANG BISA DIPERBAIKI")
+                            .font(Font.system(size: 11, weight: .regular))
+                            .frame(width: proxy.size.width, alignment: .leading)
+                        MultiSelector(options: allBrands,
+                                      optionToString: { $0.rawValue }, barTitle: "Brand", proxy: proxy,
+                                      selected: $selectedBrand
+                        )
+                        brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
+                    }
+                    .padding(.top, 50)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("HARI OPERASIONAL")
+                            .font(Font.system(size: 11, weight: .regular))
+                            .frame(width: proxy.size.width, alignment: .leading)
+                        HStack {
+                            ForEach(0..<dayInAWeek.count) { indexDay in
+                                Text("\(dayInAWeek[indexDay])")
+                                    .padding(.all, 7)
+                                    .background(self.daySelected[indexDay] == true ? Color(hex: "EB6424") : Color(hex: "D2CFCF"))
+                                    .cornerRadius(8)
+                                    .foregroundColor(self.daySelected[indexDay] == true ? Color.white : Color.gray)
+                                    .onTapGesture {
+                                        if self.daySelected[indexDay] == true {
+                                            daySelected[indexDay] = false
+                                        } else {
+                                            daySelected[indexDay] = true
+                                        }
+                                    }
+                            }
+                        }
+                        dayEmptyAlert(for: $daySelected, alert: "Hari harus dipilih")
+                    }
+                    .frame(width: proxy.size.width)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("JAM OPERASIONAL")
+                            .font(Font.system(size: 11, weight: .regular))
+                            .frame(width: proxy.size.width, alignment: .leading)
+                        HStack {
+                            Text("Jam Buka")
+                            Spacer()
+                            Button {
+                                self.showSheetOpen = true
+                            }label: {
+                                if self.openTime < 10 {
+                                    Text("0\(self.openTime):00")
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.black)
+                                        .padding(8)
+                                        .background(AppColor.textField)
+                                        .cornerRadius(8)
+                                } else {
+                                    Text("\(self.openTime):00")
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.black)
+                                        .padding(8)
+                                        .background(AppColor.textField)
+                                        .cornerRadius(8)
+                                }
+                            }
+                        }
+                        HStack {
+                            Text("Jam Tutup")
+                            Spacer()
+                            Button {
+                                self.showSheetClose = true
+                            }label: {
+                                if self.closeTime < 10 {
+                                    Text("0\(self.closeTime):00")
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.black)
+                                        .padding(8)
+                                        .background(AppColor.textField)
+                                        .cornerRadius(8)
+                                } else {
+                                    Text("\(self.closeTime):00")
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.black)
+                                        .padding(8)
+                                        .background(AppColor.textField)
+                                        .cornerRadius(8)
+                                }
+                            }
+                        }
+                        Text("MEKANIK")
+                            .font(Font.system(size: 11, weight: .regular))
+                            .frame(width: proxy.size.width, alignment: .leading)
+                            .padding(.top, 5)
+
+                        if !mechanics.isEmpty {
+                            VStack(alignment: .leading) {
+                                ForEach(mechanics, id: \.self) { (mech) in
+                                    Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
+                                    Divider()
+                                        .background(Color("DarkGray"))
+                                }.onDelete(perform: self.deleteItem)
+                            }
+                            Divider()
+                        }
+
+                        Button {
+                            self.isAddMekanik.toggle()
+                            print($mechanics.count)
+                        } label: {
+                            Text("+Tambah Mekanik")
+                                .font(Font.system(size: 13, weight: .regular))
+                                .foregroundColor(Color("PrimaryColor"))
+                                .frame(width: proxy.size.width, alignment: .leading)
+                        }
+                        .sheet(isPresented: $isAddMekanik) {
+                            AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
+                        }
+                        mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
+                    }
+                    Spacer()
+                    submitButton(proxy: proxy)
                 }
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("CC MOTOR YANG BISA DIPERBAIKI")
-                        .font(Font.system(size: 11, weight: .regular))
-                        .frame(width: proxy.size.width, alignment: .leading)
-                    MultiSelector(options: allCC,
-                                  optionToString: { $0.ccMotor }, barTitle: "Brand",
-                                  selected: $selectedCC
-                    )
-                        .frame(width: proxy.size.width, height: 40)
-                        .cornerRadius(8)
-                    ccEmptyAlert(for: $selectedCC, alert: "CC motor harus diisi")
+                .onTapGesture {
+                    dismissKeyboard()
                 }
-                VStack(spacing: 8) {
-                    Text("HARI OPERASIONAL")
-                        .font(Font.system(size: 11, weight: .regular))
-                        .frame(width: proxy.size.width, alignment: .leading)
-                    HStack {
-                        ForEach(0..<dayInAWeek.count) { indexDay in
-                            Text("\(dayInAWeek[indexDay])")
-                                .padding(.all, 7)
-                                .background(self.daySelected[indexDay] == true ? Color(hex: "EB6424") : Color(hex: "D2CFCF"))
-                                .cornerRadius(8)
-                                .foregroundColor(self.daySelected[indexDay] == true ? Color.white : Color.gray)
-                                .onTapGesture {
-                                    if self.daySelected[indexDay] == true {
-                                        daySelected[indexDay] = false
+            }
+            .padding()
+            .padding(.vertical, 50)
+            .blur(radius: $showSheetOpen.wrappedValue || $showSheetClose.wrappedValue ? 1 : 0 )
+            .overlay(
+                $showSheetOpen.wrappedValue || $showSheetClose.wrappedValue ? Color.black.opacity(0.6) : nil
+                )
+
+                .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
+
+            if self.showSheetOpen == true {
+                GeometryReader { proxy in
+                    VStack {
+                            Picker("", selection: $openTime) {
+                                ForEach(0..<24) { i in
+                                    if i < 10 {
+                                        Text("0\(i):00")
                                     } else {
-                                        daySelected[indexDay] = true
+                                        Text("\(i):00")
                                     }
                                 }
+                            }.labelsHidden()
+                            .frame(maxWidth: proxy.size.width  - 90)
+                            .pickerStyle(WheelPickerStyle())
+                            .background(RoundedRectangle(cornerRadius: 10)
+                                            .foregroundColor(Color.white).shadow(radius: 1))
+
+                        VStack {
+                            Button {
+                                self.showSheetOpen = false
+                            }label: {
+                                Text("Done").fontWeight(Font.Weight.bold)
+                                    .padding(.vertical)
+                                    .frame(maxWidth: proxy.size.width  - 90)
+                                    .background(RoundedRectangle(cornerRadius: 10)
+                                                    .foregroundColor(Color.white).shadow(radius: 1))
+                            }.padding()
                         }
-                    }
+                    }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
                 }
-                .frame(width: proxy.size.width)
-                VStack(spacing: 8) {
-                    Text("JAM OPERASIONAL")
-                        .font(Font.system(size: 11, weight: .regular))
-                        .frame(width: proxy.size.width, alignment: .leading)
-                    DatePicker(
-                        "Start Day",
-                        selection: $openTime,
-                        displayedComponents: .hourAndMinute
-                    )
-                    DatePicker(
-                        "End Day",
-                        selection: $closeTime,
-                        displayedComponents: .hourAndMinute
-                    )
-                }
-                Text("MEKANIK")
-                    .font(Font.system(size: 11, weight: .regular))
-                    .frame(width: proxy.size.width, alignment: .leading)
-
-                if !mechanics.isEmpty {
-                    VStack(alignment: .leading) {
-                        ForEach(mechanics, id: \.self) { (mech) in
-                            Text(mech.name).frame(width: proxy.size.width, alignment: .leading)
-                            Divider()
-                                .background(Color("DarkGray"))
-                        }.onDelete(perform: self.deleteItem)
-                    }
-                    Divider()
-                }
-
-                Button {
-                    self.isAddMekanik.toggle()
-                    print($mechanics.count)
-                } label: {
-                    Text("+Tambah Mekanik")
-                        .font(Font.system(size: 13, weight: .regular))
-                        .foregroundColor(Color("PrimaryColor"))
-                        .frame(width: proxy.size.width, alignment: .leading)
-                }
-                .sheet(isPresented: $isAddMekanik) {
-                    AddMekanik(showSheetView: $isAddMekanik, mechanics: $mechanics)
-                }
-                mekanikEmptyAlert(for: $mechanics, alert: "Mekanik harus diisi")
-                Spacer()
-                submitButton(proxy: proxy)
             }
-            .onTapGesture {
-                dismissKeyboard()
+
+            if self.showSheetClose == true {
+                GeometryReader { proxy in
+                    VStack {
+                            Picker("", selection: $closeTime) {
+                                ForEach(0..<24) { i in
+                                    if i < 10 {
+                                        Text("0\(i):00")
+                                    } else {
+                                        Text("\(i):00")
+                                    }
+                                }
+                            }.labelsHidden()
+                            .frame(maxWidth: proxy.size.width  - 90)
+                            .pickerStyle(WheelPickerStyle())
+                            .background(RoundedRectangle(cornerRadius: 10)
+                                            .foregroundColor(Color.white).shadow(radius: 1))
+
+                        VStack {
+                            Button {
+                                self.showSheetClose = false
+                            }label: {
+                                Text("Done").fontWeight(Font.Weight.bold)
+                                    .padding(.vertical)
+                                    .frame(maxWidth: proxy.size.width  - 90)
+                                    .background(RoundedRectangle(cornerRadius: 10)
+                                                    .foregroundColor(Color.white).shadow(radius: 1))
+                            }.padding()
+                        }
+                    }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
+                }
             }
         }
-        .padding()
-        .navigationBarTitle("Pengaturan Bengkel", displayMode: .inline)
+        .edgesIgnoringSafeArea(.all)
     }
 
     private func deleteItem(_ indexSet: IndexSet) {
@@ -195,14 +295,14 @@ struct PengaturanBengkel: View {
     }
 
     @ViewBuilder
-    private func brandEmptyAlert(for text: Binding<Set<Brand>>, alert: String) -> some View {
-        if text.wrappedValue.isEmpty, isSubmitting {
+    private func dayEmptyAlert(for text: Binding<[Bool]>, alert: String) -> some View {
+        if daySelected.allSatisfy({ $0 == false }) {
             Text(alert).alertStyle()
         }
     }
 
     @ViewBuilder
-    private func ccEmptyAlert(for text: Binding<Set<Motorcc>>, alert: String) -> some View {
+    private func brandEmptyAlert(for text: Binding<Set<Brand>>, alert: String) -> some View {
         if text.wrappedValue.isEmpty, isSubmitting {
             Text(alert).alertStyle()
         }

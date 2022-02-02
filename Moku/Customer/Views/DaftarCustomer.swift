@@ -149,16 +149,22 @@ struct DaftarCustomer: View {
                     viewModel.isMotorEmpty()
                 } else {
                     NotificationService.shared.getToken { token in
-                        viewModel.motor?.licensePlate = viewModel.licensePlate
-                        viewModel.motor?.year = viewModel.year
-                        let customer = Customer(
-                            name: viewModel.name,
-                            phoneNumber: viewModel.nomorTelepon,
-                            motors: [viewModel.motor!],
-                            fcmToken: token
-                        )
+                        if let motor = viewModel.motor {
+                            let motorNew = Motor(
+                                brand: motor.brand,
+                                model: motor.model,
+                                cc: motor.cc,
+                                licensePlate: viewModel.licensePlate,
+                                year: viewModel.year)
 
-                        viewModel.create(customer)
+                            let customer = Customer(
+                                name: viewModel.name,
+                                phoneNumber: viewModel.nomorTelepon,
+                                motors: [motorNew],
+                                fcmToken: token
+                            )
+                            viewModel.create(customer)
+                        }
                     }
                 }
             } label: {

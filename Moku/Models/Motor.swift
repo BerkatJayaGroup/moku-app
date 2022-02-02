@@ -17,7 +17,7 @@ class Motor: Codable, Identifiable {
     var licensePlate: String?
     var year: String?
 
-    init(brand: Brand, model: String, cc: String, licensePlate: String? = "", year: String? = "") {
+    init(brand: Brand, model: String, cc: String, licensePlate: String?, year: String?) {
         self.brand  = brand
         self.model  = model
         self.cc     = cc

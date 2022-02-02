@@ -56,6 +56,7 @@ struct BengkelOwnerOnboardingView: View {
                                             .resizable()
                                             .frame(width: 100, height: 100, alignment: .center)
                                             .aspectRatio(contentMode: .fit)
+                                            .cornerRadius(8)
                                     }
                                 }
                             }
@@ -108,12 +109,12 @@ struct BengkelOwnerOnboardingView: View {
             .sheet(isPresented: $viewModel.isSelectingLocation) {
                 LocationSearchView(onSelect: viewModel.updateLocation).sheetStyle()
             }
-            .onTapGesture {
-                dismissKeyboard()
-            }
             .navigationBarTitle("Profil Bengkel", displayMode: .inline)
         }
         .padding()
+        .onTapGesture {
+            dismissKeyboard()
+        }
     }
 }
 
@@ -171,6 +172,7 @@ extension BengkelOwnerOnboardingView {
                             HStack {
                                 Image(systemName: "mappin.circle")
                                 Text("Cari Alamat Bengkelmu Disini")
+                                    .font(.system(size: 15))
                             }.foregroundColor(.tertiaryLabel)
                         }
                     }

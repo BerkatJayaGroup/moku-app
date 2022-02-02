@@ -22,6 +22,7 @@ struct BengkelDetail: View {
     @State var isBackToRoot = false
     @State var isFavorite: Bool = false
     @State var selection: Int?
+    @State var isShowLogin: Bool = false
     var workshop: Bengkel
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -44,7 +45,6 @@ struct BengkelDetail: View {
     }
 
     var body: some View {
-        //        ScrollView(showsIndicators: false) {
         VStack(alignment: .center, spacing: 8) {
             if viewModel.bengkel.photos.count > 0 {
                 if let photo = viewModel.bengkel.photos[0] {
@@ -146,14 +146,31 @@ struct BengkelDetail: View {
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)
             Spacer()
-            NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
-                Text("Pesan")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding(.vertical, 16)
-                    .frame(width: UIScreen.main.bounds.width * 0.85)
-                    .background(Color("PrimaryColor"))
-                    .cornerRadius(8)
+            if viewModel.isLogin {
+                NavigationLink(destination: BengkelDate(typeOfService: viewModel.typeOfService, bengkel: viewModel.bengkel, tab: $tab, isBackToRoot: $isBackToRoot), tag: 1, selection: $selection) {
+                    Text("Pesan")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 16)
+                        .frame(width: UIScreen.main.bounds.width * 0.85)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
+                }
+            } else {
+                Button {
+                    isShowLogin = true
+                    isBackToRoot = true
+                }label: {
+                    Text("Pesan")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 16)
+                        .frame(width: UIScreen.main.bounds.width * 0.85)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
+                }.fullScreenCover(isPresented: $isShowLogin) {
+                    LoginView()
+                }
             }
         }
         .padding(.horizontal)
@@ -162,7 +179,6 @@ struct BengkelDetail: View {
         .navigationBarItems(leading: btnBack)
         .padding(.horizontal, 16)
         .addPartialSheet()
-        //        }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             if case .customer(let user) = session.user {
@@ -189,4 +205,10 @@ struct BengkelDetail: View {
         }
         session.setup()
     }
+}
+
+struct BengkelDetail_Previews: PreviewProvider {
+   static var previews: some View {
+       BengkelDetail(bengkel: Bengkel.preview, tab: .constant(.tab1))
+   }
 }

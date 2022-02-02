@@ -18,11 +18,13 @@ struct MokuApp: App {
     @ObservedObject var dynamicLinksService = DynamicLinksService.shared
 
     @StateObject var appState = AppState()
-
+    @State var tabSelection: Tabs = .tab1
     @State var order: Order?
 
     var onboardingData = OnboardingDataModel.data
     @StateObject var sheetManager = PartialSheetManager()
+
+    @StateObject var appStateShare = AppState.shared
 
     var body: some Scene {
         WindowGroup {
@@ -37,7 +39,7 @@ struct MokuApp: App {
                     .navigationBarItems(leading: dismissButton())
                 }
             } else {
-                contentView()
+                contentView().id(appStateShare.viewID)
                     .environmentObject(sheetManager)
                     .onOpenURL { url in
                         DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
@@ -82,7 +84,11 @@ struct MokuApp: App {
             }
         } else {
             if appState.hasOnboarded {
-                PickRoleView()
+                if Auth.auth().currentUser == nil {
+                    CustomerView()
+                } else {
+                    PickRoleView()
+                }
             } else {
                 OnboardingView(data: onboardingData).environmentObject(appState)
             }

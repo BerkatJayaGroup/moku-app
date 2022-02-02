@@ -18,7 +18,10 @@ struct BengkelTabItem: View {
     @State private var showingSheet = false
     @State private var showModal = false
     @State var isActive: Bool = false
+    @State var selection: Int?
+    @State var showLoginView = false
     @Binding var tab: Tabs
+    var onboardingData = OnboardingDataModel.data
     var lastOrder = true
 
     var body: some View {
@@ -113,7 +116,9 @@ struct BengkelTabItem: View {
             }
         } else {
             VStack {
-                ForEach(viewModel.filteredNearbyBengkel, id: \.id) { bengkel in
+                ForEach(viewModel.filteredNearbyBengkel.filter({
+                    viewModel.searchQuery.isEmpty ? true : $0.name.contains(viewModel.searchQuery)
+                }), id: \.id) { bengkel in
                     NavigationLink(
                         destination: BengkelDetail(bengkel: bengkel, tab: $tab)) {
                             BengkelList(bengkel: bengkel)
@@ -156,11 +161,15 @@ struct BengkelTabItem: View {
                 }
             }
         } else {
-            NavigationLink(destination: PickRoleView()) {
+            Button {
+                self.showLoginView = true
+            }label: {
                 Text("Daftar atau Masuk")
                     .foregroundColor(Color.white)
                     .padding(.leading, 20)
                     .font(.system(size: 17), weight: .bold)
+            }.fullScreenCover(isPresented: $showLoginView) {
+                LoginView()
             }
         }
     }
@@ -197,8 +206,8 @@ struct BengkelTabItem: View {
     }
 }
 
-// struct BengkelTabItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BengkelTabItem()
-//    }
-// }
+ struct BengkelTabItem_Previews: PreviewProvider {
+    static var previews: some View {
+        BengkelTabItem(tab: .constant(.tab1))
+    }
+ }

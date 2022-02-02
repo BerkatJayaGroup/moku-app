@@ -47,7 +47,7 @@ struct BengkelProfileView: View {
                 }
             }.background(Color.black.ignoresSafeArea())
         } else if let selectedPhotoUrl = viewModel.selectedPhotoUrl,
-           let url = URL(string: selectedPhotoUrl) {
+                  let url = URL(string: selectedPhotoUrl) {
             ZStack {
                 WebImage(url: url)
                     .resizable()

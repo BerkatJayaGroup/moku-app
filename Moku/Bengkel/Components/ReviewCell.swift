@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewCell: View {
     @StateObject var viewModel: ViewModel
-    
+
     init(order: Order) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -48,7 +48,7 @@ struct ReviewCell: View {
 
 struct UlasanCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCell(order: Order(bengkelId: "1234", customerId: "12345", motor: Motor(brand: .honda, model: "Beat", cc: "110"), typeOfService: .servisRutin, schedule: Date()))
+        ReviewCell(order: Order(bengkelId: "1234", customerId: "12345", motor: Motor(brand: .honda, model: "Beat", cc: "110", licensePlate: "BG 1872 TA", year: "2020"), typeOfService: .servisRutin, schedule: Date()))
             .previewLayout(.sizeThatFits)
     }
 }

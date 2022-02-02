@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 extension BengkelDetail {
     class ViewModel: ObservableObject {
@@ -29,6 +30,14 @@ extension BengkelDetail {
 
         var distance: String {
             MapHelper.stringify(distance: bengkel.distance)
+        }
+
+        var isLogin: Bool {
+            if Auth.auth().currentUser == nil {
+                return false
+            } else {
+                return true
+            }
         }
 
         var operationalHours: String {

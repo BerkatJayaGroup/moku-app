@@ -22,7 +22,7 @@ struct CancelBookingModal: View {
     @State var selection: Order.CancelingReason?
     @State var otherReason: String = ""
     @State var isActive: Bool = false
-    
+
     var body: some View {
         VStack {
             Text("Pilih alasan membatalkan booking")
