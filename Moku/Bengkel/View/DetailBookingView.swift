@@ -141,15 +141,14 @@ struct DetailBooking: View {
                                 .fontWeight(.semibold)
                             Spacer()
                         }
-                        HStack(spacing: 25){
+                        HStack(spacing: 25) {
                             if let mechanicPhoto = viewModel.order.mekanik?.photo {
                                 WebImage(url: URL(string: mechanicPhoto))
                                     .resizable()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .imageScale(.large)
                                     .clipShape(Circle())
-                            }
-                            else {
+                            } else {
                                 Image(systemName: "person.crop.circle")
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .imageScale(.large)
@@ -199,11 +198,11 @@ struct DetailBooking: View {
             .introspectTabBarController { (UITabBarController) in
                 UITabBarController.tabBar.isHidden = true
                 self.uiTabarController = UITabBarController
-            }.onDisappear{
+            }.onDisappear {
                 self.uiTabarController?.tabBar.isHidden = false
             }
         }.navigationBarHidden(true)
-        
+
     }
 }
 
