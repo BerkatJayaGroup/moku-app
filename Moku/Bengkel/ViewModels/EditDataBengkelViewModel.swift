@@ -15,6 +15,9 @@ extension EditDataBengkelView {
         @Published var selectedBrand = Set<Brand>()
         @Published var selectedCC = Set<Motorcc>()
         @Published var daySelected: [Bool]
+        @Published var showSheetClose = false
+        @Published var openHours: Int = 0
+        @Published var closeHours: Int = 0
 
         init(bengkel: Bengkel) {
             self.bengkel = bengkel
@@ -22,6 +25,8 @@ extension EditDataBengkelView {
             self.daySelected = bengkel.operationalDays
             self.minPrice = bengkel.minPrice
             self.maxPrice = bengkel.maxPrice
+            self.openHours = bengkel.operationalHours.open
+            self.closeHours = bengkel.operationalHours.close
         }
 
         func updateBengkel() {
@@ -30,9 +35,11 @@ extension EditDataBengkelView {
                                      name: bengkel.name,
                                      phoneNumber: bengkel.phoneNumber,
                                      location: bengkel.location,
-                                     operationalHours: bengkel.operationalHours,
+                                     operationalHours: Bengkel.OperationalHours(open: openHours, close: closeHours),
                                      operationalDays: daySelected,
+                                     photos: bengkel.photos,
                                      brands: selectedBrand,
+                                     mekaniks: bengkel.mekaniks,
                                      minPrice: minPrice,
                                      maxPrice: maxPrice,
                                      fcmToken: bengkel.fcmToken

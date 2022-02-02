@@ -55,6 +55,7 @@ struct EditMechanic: View {
                 }
                 if isEditing {
                     uploadButton()
+                        .foregroundColor(AppColor.primaryColor)
                 }
                 VStack(alignment: .leading) {
                     Text("NAMA MEKANIK")

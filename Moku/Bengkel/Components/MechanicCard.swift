@@ -36,11 +36,9 @@ struct MechanicCard: View {
             Text(mechanic.name)
                 .font(.system(size: 15))
                 .fontWeight(.semibold)
+                .foregroundColor(.black)
             Spacer()
         }
-        .padding()
-        .border(Color(hex: "979797"), width: 1, cornerRadius: 6)
-        .shadow(color: Color(hex: "979797"), radius: 1)
     }
 }
 

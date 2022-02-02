@@ -26,13 +26,20 @@ struct ManageMechanicsView: View {
                 ScrollView {
                     if let mechanicsList = viewModel.mechanics {
                         ForEach(mechanicsList, id: \.id) { mechanic in
-                            NavigationLink(destination: EditMechanic(mechanic: mechanic)) {
+                            NavigationLink{
+                                EditMechanic(mechanic: mechanic)
+                            } label: {
                                 MechanicCard(mechanic: mechanic)
+                                    .padding(10)
+                                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.25)
+                                    .background(AppColor.primaryBackground)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                             }
                         }
                     }
                 }
-                .padding()
+                .padding(.vertical, 15)
                 .navigationTitle("Mekanik")
                 .navigationBarItems(trailing: Button(action: {
                     self.showModal = true
@@ -42,7 +49,7 @@ struct ManageMechanicsView: View {
                     viewModel.isLoading = true
                     viewModel.fetchMechanics()
                 }, content: {
-                    AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true)
+                    AddMekanik(showSheetView: $showModal, mechanics: $mechanics1, isUpload: true, isManageMechanic: true)
                 })
                 )
                 .navigationBarTitleDisplayMode(.inline)

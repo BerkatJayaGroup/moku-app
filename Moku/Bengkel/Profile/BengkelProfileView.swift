@@ -225,6 +225,7 @@ extension BengkelProfileView {
                             Image(systemName: "plus").font(.title2)
                             Text("Tambah Foto").font(.subheadline)
                         }
+                        .foregroundColor(AppColor.primaryColor)
                         .frame(width: 150, height: 120, alignment: .center)
                         .background(AppColor.lightGray)
                         .cornerRadius(8)
