@@ -220,7 +220,7 @@ struct PengaturanBengkel: View {
                 GeometryReader { proxy in
                     VStack {
                             Picker("", selection: $closeTime) {
-                                ForEach(1..<25) { i in
+                                ForEach(0..<24) { i in
                                     if i < 10 {
                                         Text("0\(i):00")
                                     } else {
