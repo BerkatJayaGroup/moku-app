@@ -31,10 +31,11 @@ struct BookingTabItemView: View {
             VStack {
                 if let orders = viewModel.bengkelOrders {
                     let waitingConfirmationOrder = orders.filter { filteredOrder in
-                        return filteredOrder.status == .waitingConfirmation
+//                        TODO: LOGIC TANGGALAN GIMANA SI
+                        return (filteredOrder.status == .waitingConfirmation) && (filteredOrder.schedule >= Date())
                     }
                     let onProgressOrder = orders.filter { filteredOrder in
-                        return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule.date() == Date().date()
+                        return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule == Date()
                     }
                     if !waitingConfirmationOrder.isEmpty || !onProgressOrder.isEmpty {
                         ScrollView {

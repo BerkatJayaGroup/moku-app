@@ -13,14 +13,7 @@ struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
 
     @State private var isDetailBookingModalPresented = false
-
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = .white
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-
+    
     var body: some View {
         NavigationView {
             ScrollView {

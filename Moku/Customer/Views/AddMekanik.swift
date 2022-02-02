@@ -19,6 +19,7 @@ struct AddMekanik: View {
     @State var showImagePicker: Bool = false
     @State private var showActionSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State var isManageMechanic: Bool = false
 
     var body: some View {
         if isLoading {
@@ -69,13 +70,18 @@ struct AddMekanik: View {
                 })
             }
         }
+        .accentColor(isManageMechanic ? .white : AppColor.primaryColor)
     }
 
     @ViewBuilder func uploadButton() -> some View {
-        Button("Unggah foto") {
+        Button {
             self.showActionSheet.toggle()
+        } label: {
+            Text ("Unggah foto")
+                .foregroundColor(AppColor.primaryColor)
         }
-        .sheet(isPresented: $showImagePicker) {            ImagePicker(sourceType: sourceType, pickerResult: $image)
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(sourceType: sourceType, pickerResult: $image)
         }
         .actionSheet(isPresented: $showActionSheet) {
             ActionSheet(

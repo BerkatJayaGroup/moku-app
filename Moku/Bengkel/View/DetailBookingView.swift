@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PartialSheet
+import SDWebImageSwiftUI
+import Introspect
 
 struct DetailBooking: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -15,14 +17,10 @@ struct DetailBooking: View {
 
     @State var isShowFinishBookingSheet = false
 
+    @State var uiTabarController: UITabBarController?
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.backgroundColor = .white
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor(AppColor.primaryColor)]
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
     }
 
     var body: some View {
@@ -143,13 +141,22 @@ struct DetailBooking: View {
                                 .fontWeight(.semibold)
                             Spacer()
                         }
-                        HStack {
-                            Image(systemName: "person.crop.circle")
-                                .frame(width: 80, height: 80, alignment: .center)
-                                .imageScale(.large)
-                                .clipShape(Circle())
-                            VStack(spacing: 8) {
-                                Text(viewModel.order.mechanicName ?? "N/A")
+                        HStack(spacing: 25){
+                            if let mechanicPhoto = viewModel.order.mekanik?.photo {
+                                WebImage(url: URL(string: mechanicPhoto))
+                                    .resizable()
+                                    .frame(width: 80, height: 80, alignment: .center)
+                                    .imageScale(.large)
+                                    .clipShape(Circle())
+                            }
+                            else {
+                                Image(systemName: "person.crop.circle")
+                                    .frame(width: 80, height: 80, alignment: .center)
+                                    .imageScale(.large)
+                                    .clipShape(Circle())
+                            }
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(viewModel.order.mekanik?.name ?? "N/A")
                                     .font(.system(size: 17))
                                 Text("Mekanik")
                                     .font(.system(size: 13))
@@ -187,9 +194,16 @@ struct DetailBooking: View {
                     Image(systemName: "chevron.backward")
                     Text("Kembali")
                 }
-                .foregroundColor(AppColor.primaryColor)
+                .foregroundColor(.white)
             })
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = true
+                self.uiTabarController = UITabBarController
+            }.onDisappear{
+                self.uiTabarController?.tabBar.isHidden = false
+            }
         }.navigationBarHidden(true)
+        
     }
 }
 
