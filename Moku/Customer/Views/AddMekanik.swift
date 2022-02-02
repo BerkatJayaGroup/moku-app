@@ -68,16 +68,15 @@ struct AddMekanik: View {
                 }label: {
                     Text("Tambah")
                 })
-            }
+            }.accentColor(isManageMechanic ? .white : AppColor.primaryColor)
         }
-        .accentColor(isManageMechanic ? .white : AppColor.primaryColor)
     }
 
     @ViewBuilder func uploadButton() -> some View {
         Button {
             self.showActionSheet.toggle()
         } label: {
-            Text ("Unggah foto")
+            Text("Unggah foto")
                 .foregroundColor(AppColor.primaryColor)
         }
         .sheet(isPresented: $showImagePicker) {
