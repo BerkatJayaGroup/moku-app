@@ -116,7 +116,9 @@ struct BengkelTabItem: View {
             }
         } else {
             VStack {
-                ForEach(viewModel.filteredNearbyBengkel, id: \.id) { bengkel in
+                ForEach(viewModel.filteredNearbyBengkel.filter({
+                    viewModel.searchQuery.isEmpty ? true : $0.name.contains(viewModel.searchQuery)
+                }), id: \.id) { bengkel in
                     NavigationLink(
                         destination: BengkelDetail(bengkel: bengkel, tab: $tab)) {
                             BengkelList(bengkel: bengkel)
