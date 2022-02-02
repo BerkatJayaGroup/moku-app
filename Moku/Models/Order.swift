@@ -40,7 +40,7 @@ extension Order {
         case tidakMemilikiAlat  = "Tidak memiliki alat untuk tipe motor"
         case sparepartKosong    = "Sparepart tidak tersedia / kosong"
         case kurangMekanik      = "Bengkel kekurangan mekanik"
-        
+
         case alasanLainnya = "Alasan lainnya"
     }
 

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ButtonStatus {
-    
+
     static func getColors(status: Order.Status) -> some View {
             switch status {
             case .waitingConfirmation:

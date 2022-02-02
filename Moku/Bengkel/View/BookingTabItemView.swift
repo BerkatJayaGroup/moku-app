@@ -10,22 +10,22 @@ import FirebaseAuth
 
 struct BookingTabItemView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
-    
+
     @State private var isDetailBookingModalPresented = false
     @State private var isDetailBookingOnProgressPresented = false
     @State private var selectedOrder: Order?
-    
+
     init() {
-        
+
         let coloredAppearance                               = UINavigationBarAppearance()
         coloredAppearance.backgroundColor                   = UIColor(AppColor.primaryColor)
         coloredAppearance.largeTitleTextAttributes          = [.foregroundColor: UIColor.white]
         coloredAppearance.titleTextAttributes               = [.foregroundColor: UIColor.white]
-        
+
         UINavigationBar.appearance().standardAppearance     = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance   = coloredAppearance
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -140,7 +140,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-    
+
     private func bookingCards(order: Order) -> some View {
         VStack(alignment: .leading) {
             Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.subheadline).fontWeight(.bold)
@@ -193,7 +193,7 @@ struct BookingTabItemView: View {
             }
         }
     }
-    
+
     private func currentBookingSection(order: [Order]) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
@@ -209,7 +209,7 @@ struct BookingTabItemView: View {
                 .padding(.horizontal)
         }
     }
-    
+
     private func currentBookingCard(order: Order) -> some View {
         VStack {
             if let customer = viewModel.customer {

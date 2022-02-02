@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewCell: View {
     @StateObject var viewModel: ViewModel
-    
+
     init(order: Order) {
         let viewModel = ViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
