@@ -20,7 +20,7 @@ struct BookingSeeAllView: View {
                 LazyVStack {
                     if let order = viewModel.bengkelOrders {
                         let newOrder = order.filter { order in
-                            return order.status == .waitingConfirmation
+                            return (order.status == .waitingConfirmation) && (order.schedule >= Date())
                         }
                         ForEach(newOrder, id: \.id) { order in
                             orderCards(order: order).padding(10)
