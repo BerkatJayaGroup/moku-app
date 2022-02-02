@@ -50,8 +50,6 @@
 		837BE1E42727CA52000E1FAA /* CustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E32727CA52000E1FAA /* CustomerView.swift */; };
 		837BE1E62727CAD1000E1FAA /* BengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E52727CAD1000E1FAA /* BengkelView.swift */; };
 		837BE1E82727D580000E1FAA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BE1E72727D580000E1FAA /* Place.swift */; };
-		838A8C16273A42FB007FEDC6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838A8C15273A42FB007FEDC6 /* NotificationService.swift */; };
-		838A8C1A273A42FB007FEDC6 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		83AC9FD22726AD5F003039D8 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC9FD12726AD5F003039D8 /* MapHelper.swift */; };
 		83CA0F31272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */; };
 		83CA0F34272BEA11009DC400 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA0F33272BEA11009DC400 /* ViewExtension.swift */; };
@@ -77,6 +75,7 @@
 		83E13E87272AA80C008758B7 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E13E84272AA80C008758B7 /* OnboardingDataModel.swift */; };
 		83E13E90272AA97F008758B7 /* PickRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E13E8F272AA97F008758B7 /* PickRoleView.swift */; };
 		83E30B26274EA6A900E6D4C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837370BA27144703003656FC /* Preview Assets.xcassets */; };
+		83E60AF127AAC5FD0083536A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 83E60AF027AAC5FD0083536A /* FirebaseCrashlytics */; };
 		8E043576272694700079DB29 /* BengkelDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E043575272694700079DB29 /* BengkelDetail.swift */; };
 		8E0435782726AA2F0079DB29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435772726AA2F0079DB29 /* ColorExtension.swift */; };
 		8E04357A2726B1790079DB29 /* SelectServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0435792726B1790079DB29 /* SelectServices.swift */; };
@@ -170,16 +169,6 @@
 		B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE65F82726BA2B008F4CEE /* AppState.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		838A8C18273A42FB007FEDC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 837370A827144701003656FC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 838A8C12273A42FB007FEDC6;
-			remoteInfo = NotificationServiceExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		838A8C1B273A42FB007FEDC6 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -187,7 +176,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				838A8C1A273A42FB007FEDC6 /* NotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,9 +221,6 @@
 		837BE1E32727CA52000E1FAA /* CustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerView.swift; sourceTree = "<group>"; };
 		837BE1E52727CAD1000E1FAA /* BengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BengkelView.swift; sourceTree = "<group>"; };
 		837BE1E72727D580000E1FAA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		838A8C15273A42FB007FEDC6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		838A8C17273A42FB007FEDC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83AC9FD12726AD5F003039D8 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		83CA0F30272BC3A1009DC400 /* BengkelOwnerOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BengkelOwnerOnboardingView.swift; sourceTree = "<group>"; };
 		83CA0F33272BEA11009DC400 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -370,15 +355,9 @@
 				837370CB27144BB1003656FC /* FirebaseStorage in Frameworks */,
 				832AC1E42715986A00BD92E2 /* SwiftUIX in Frameworks */,
 				837370C527144BB1003656FC /* FirebaseAuth in Frameworks */,
+				83E60AF127AAC5FD0083536A /* FirebaseCrashlytics in Frameworks */,
 				837370C727144BB1003656FC /* FirebaseFirestore in Frameworks */,
 				5A72D5E3563929C98DE80648 /* Pods_Moku.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		838A8C10273A42FB007FEDC6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				837370B227144701003656FC /* Moku */,
-				838A8C14273A42FB007FEDC6 /* NotificationServiceExtension */,
 				837370B127144701003656FC /* Products */,
 				830383D62718035A00F03CE3 /* Frameworks */,
 				F5E8098DE71C292574E0645A /* Pods */,
@@ -494,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				837370B027144701003656FC /* Moku.app */,
-				838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,15 +526,6 @@
 				834437E7272EF37C00279392 /* LocationSearchViewModel.swift */,
 			);
 			path = GoogleMap;
-			sourceTree = "<group>";
-		};
-		838A8C14273A42FB007FEDC6 /* NotificationServiceExtension */ = {
-			isa = PBXGroup;
-			children = (
-				838A8C15273A42FB007FEDC6 /* NotificationService.swift */,
-				838A8C17273A42FB007FEDC6 /* Info.plist */,
-			);
-			path = NotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		83CA0F2F272BC3A1009DC400 /* Bengkel */ = {
@@ -807,6 +775,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 837370BE27144703003656FC /* Build configuration list for PBXNativeTarget "Moku" */;
 			buildPhases = (
+				83E60AF227AAC8DE0083536A /* Upload dSYM files to Firebase Crashlytics */,
 				B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */,
 				837370AC27144701003656FC /* Sources */,
 				837370AD27144701003656FC /* Frameworks */,
@@ -819,7 +788,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				838A8C19273A42FB007FEDC6 /* PBXTargetDependency */,
 			);
 			name = Moku;
 			packageProductDependencies = (
@@ -833,27 +801,11 @@
 				8E5C6AFE27304812004EC262 /* PartialSheet */,
 				B8C74300273D194D00E34B5C /* SnapToScroll */,
 				8320A80B274408400009213C /* FirebaseDynamicLinks */,
+				83E60AF027AAC5FD0083536A /* FirebaseCrashlytics */,
 			);
 			productName = Moku;
 			productReference = 837370B027144701003656FC /* Moku.app */;
 			productType = "com.apple.product-type.application";
-		};
-		838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 838A8C1E273A42FB007FEDC6 /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
-			buildPhases = (
-				838A8C0F273A42FB007FEDC6 /* Sources */,
-				838A8C10273A42FB007FEDC6 /* Frameworks */,
-				838A8C11273A42FB007FEDC6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NotificationServiceExtension;
-			productName = NotificationServiceExtension;
-			productReference = 838A8C13273A42FB007FEDC6 /* NotificationServiceExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -867,9 +819,6 @@
 				TargetAttributes = {
 					837370AF27144701003656FC = {
 						CreatedOnToolsVersion = 13.0;
-					};
-					838A8C12273A42FB007FEDC6 = {
-						CreatedOnToolsVersion = 13.1;
 					};
 				};
 			};
@@ -895,7 +844,6 @@
 			projectRoot = "";
 			targets = (
 				837370AF27144701003656FC /* Moku */,
-				838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -909,13 +857,6 @@
 				6FA3E46727328C9D00F282E1 /* Assets.xcassets in Resources */,
 				837370C2271449E4003656FC /* GoogleService-Info.plist in Resources */,
 				AEB5C440275F7BF5007FA143 /* data_motor.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		838A8C11273A42FB007FEDC6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,6 +880,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+		83E60AF227AAC8DE0083536A /* Upload dSYM files to Firebase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Upload dSYM files to Firebase Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 		987E9469A0F7A736FAD3F889 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1117,7 +1078,6 @@
 				8EB5BF76275382B500138B3F /* ProfileBengkelViewModel.swift in Sources */,
 				B80B01A8272917F600050D90 /* SignInWithApple.swift in Sources */,
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
-				8EBC775B279E421500A67642 /* ColorButton.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */,
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
@@ -1151,23 +1111,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		838A8C0F273A42FB007FEDC6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				838A8C16273A42FB007FEDC6 /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		838A8C19273A42FB007FEDC6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 838A8C12273A42FB007FEDC6 /* NotificationServiceExtension */;
-			targetProxy = 838A8C18273A42FB007FEDC6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		837370BC27144703003656FC /* Debug */ = {
@@ -1298,6 +1242,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
 				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
@@ -1366,60 +1311,6 @@
 			};
 			name = Release;
 		};
-		838A8C1C273A42FB007FEDC6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku.NotificationServiceExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		838A8C1D273A42FB007FEDC6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8KKWD6QU49;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku.NotificationServiceExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1437,15 +1328,6 @@
 			buildConfigurations = (
 				837370BF27144703003656FC /* Debug */,
 				837370C027144703003656FC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		838A8C1E273A42FB007FEDC6 /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				838A8C1C273A42FB007FEDC6 /* Debug */,
-				838A8C1D273A42FB007FEDC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1543,6 +1425,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		83E60AF027AAC5FD0083536A /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 837370C327144BB1003656FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		8E5C6AFE27304812004EC262 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
