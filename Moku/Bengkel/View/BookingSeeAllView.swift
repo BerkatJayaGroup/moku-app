@@ -13,7 +13,7 @@ struct BookingSeeAllView: View {
     @ObservedObject private var viewModel: BookingTabItemViewModel = .shared
 
     @State private var isDetailBookingModalPresented = false
-    
+
     var body: some View {
         NavigationView {
             ScrollView {

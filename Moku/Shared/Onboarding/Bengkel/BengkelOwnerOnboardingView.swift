@@ -166,7 +166,8 @@ extension BengkelOwnerOnboardingView {
                         if let address = viewModel.address {
                             Text(address)
                                 .foregroundColor(.primary)
-                                .lineLimit(1)
+                                .lineLimit(3)
+                                .multilineTextAlignment(.leading)
                                 .font(.subheadline)
                         } else {
                             HStack {
