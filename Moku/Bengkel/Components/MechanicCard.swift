@@ -16,6 +16,7 @@ struct MechanicCard: View {
                 if image != "" {
                     WebImage(url: URL(string: image ))
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 66, height: 66, alignment: .center)
                         .clipShape(Circle())
                         .padding(.trailing, 20)

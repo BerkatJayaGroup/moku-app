@@ -35,7 +35,7 @@ struct BookingTabItemView: View {
                         return (filteredOrder.status == .waitingConfirmation) && (filteredOrder.schedule >= Date())
                     }
                     let onProgressOrder = orders.filter { filteredOrder in
-                        return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule == Date()
+                        return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule.date() == Date().date()
                     }
                     if !waitingConfirmationOrder.isEmpty || !onProgressOrder.isEmpty {
                         ScrollView {
@@ -212,15 +212,17 @@ struct BookingTabItemView: View {
     }
 
     private func currentBookingCard(order: Order) -> some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let customer = viewModel.customer {
                 Text(customer.name)
+                    .font(.title2)
             }
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
                         Image("MotorIcon")
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
                         Text("\(order.motor.brand.rawValue) \(order.motor.model)").font(.caption)
                     }
@@ -237,6 +239,7 @@ struct BookingTabItemView: View {
                     HStack {
                         Image(systemName: "clock.arrow.circlepath")
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
                             .foregroundColor(AppColor.brightOrange)
                         Text(order.schedule.time()).font(.caption)
@@ -264,7 +267,11 @@ struct BookingTabItemView: View {
                     .cornerRadius(5)
                     .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
             }
-        }.onTapGesture {
+        }
+        .onAppear{
+            viewModel.getCustomerFromOrders(customerId: order.customerId)
+        }
+        .onTapGesture {
             isDetailBookingOnProgressPresented.toggle()
             self.selectedOrder = order
         }

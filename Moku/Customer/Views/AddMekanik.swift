@@ -105,7 +105,7 @@ struct AddMekanik: View {
         guard let id = Auth.auth().currentUser?.uid else { return }
         if let image = image.first {
             StorageService.shared.upload(image: image,
-                                         path: "\(id)/mechanics/\(UUID().uuidString)") { url, _ in
+                                         path: "mechanics/\(UUID().uuidString)") { url, _ in
                 guard let url = url?.absoluteString else { return }
                 let newMechanic = Mekanik(name: mechanicName ?? "", photo: url)
                 BengkelRepository.shared.appendMechanic(mechanic: newMechanic, to: id) {_ in

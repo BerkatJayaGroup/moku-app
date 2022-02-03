@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SparepartsListView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Binding var chosenSpareparts: [String]
     @State private var searchText = ""
 
@@ -41,10 +42,8 @@ struct SparepartsListView: View {
                 .listStyle(.plain)
             }.navigationTitle("Suku cadang")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarItems(leading: Button("Simpan") {
-                    print("simpan")
-                }, trailing: Button("Kembali") {
-                    print("kembali")
+                .navigationBarItems(trailing: Button("Simpan") {
+                    presentationMode.wrappedValue.dismiss()
                 })
         }
     }

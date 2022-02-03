@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct FinishBookingView: View {
-
+    
     @StateObject var viewModel: FinishBookingViewModel
     @State private var spareParts: [String] = []
     @State private var notes = ""
@@ -18,44 +18,47 @@ struct FinishBookingView: View {
     @State private var shouldPresentCamera = false
     @State private var shouldPresentSparepartsSheet = false
     @State private var bills: [UIImage] = []
-
+    
     init(order: Order) {
         let viewModel = FinishBookingViewModel(order: order)
         _viewModel = StateObject(wrappedValue: viewModel)
+        UITableView.appearance().backgroundColor = .clear
     }
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Section(header: header(title: "Suku cadang")) {
-                    Text("+ Tambah Suku Cadang")
-                        .fontWeight(.bold)
-                        .foregroundColor(AppColor.darkOrange)
-                        .onTapGesture {
-                            self.shouldPresentSparepartsSheet.toggle()
-                        }
-                    VStack {
-                        HStack {
-                            if spareParts.isEmpty {
-                                Text("Tekan tambah suku cadang untuk menambah suku cadang yang diganti")
-                            } else {
-                                Text(spareParts.joined(separator: "\n"))
-                            }
-                            Spacer()
-                        }
-
-                        Spacer()
-                    }.padding()
-                        .background(AppColor.lightGray)
-                        .cornerRadius(5)
-                        .frame(minWidth: 0,
-                               maxWidth: .infinity, minHeight: 200)
-
-                }
-                .textCase(nil)
-                .padding(.top)
-                .padding(.horizontal)
+                
                 Form {
+                    Section(header: header(title: "Suku cadang")) {
+                        Text("+ Tambah Suku Cadang")
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColor.darkOrange)
+                            .onTapGesture {
+                                self.shouldPresentSparepartsSheet.toggle()
+                            }
+                        VStack {
+                            HStack {
+                                if spareParts.isEmpty {
+                                    Text("Tekan tambah suku cadang untuk menambah suku cadang yang diganti")
+                                } else {
+                                    Text(spareParts.joined(separator: "\n"))
+                                }
+                                Spacer()
+                            }
+                            
+                            Spacer()
+                        }.padding()
+                            .background(AppColor.lightGray)
+                            .cornerRadius(5)
+                            .frame(minWidth: 0,
+                                   maxWidth: .infinity, minHeight: 200)
+                        
+                    }
+                    .padding(.top)
+                    .listRowInsets(EdgeInsets())
+                    .textCase(nil)
+                    
                     textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
                     Section(header: header(title: "Foto Nota")) {
                         if bills != [] {
@@ -124,28 +127,42 @@ struct FinishBookingView: View {
                             ]
                         )
                     }
-                    Button("Selesai") {
+                    Button{
                         var order = viewModel.order
                         order.spareparts = spareParts
                         order.status = .done
                         order.serviceNotes = notes
                         viewModel.updateOrder(order: order)
                         UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    } label: {
+                        Text("Selesai")
+                            .frame(width: 320, height: 45, alignment: .center)
+                            .foregroundColor(.white)
+                            .background(AppColor.primaryColor)
+                            .cornerRadius(8)
+                            
                     }
                 }
+                .background(.white)
                 .sheet(isPresented: $shouldPresentSparepartsSheet) {
-                   SparepartsListView(chosenSpareparts: $spareParts)
+                    SparepartsListView(chosenSpareparts: $spareParts)
+                        .accentColor(.white)
                 }
                 .navigationTitle("Pesanan Selesai")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarItems(leading: Button("Kembali") {
+                .navigationBarItems(leading: Button {
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                } label: {
+                    Text("Kembali")
+                        .foregroundColor(.white)
                 })
             }
-
+            .onTapGesture{
+                endTextEditing()
+            }
         }
     }
-
+    
     private func textField(
         title: String,
         placeholder: String,
@@ -175,11 +192,11 @@ struct FinishBookingView: View {
         .listRowInsets(EdgeInsets())
         .padding(.top)
     }
-
+    
     func header(title: String) -> some View {
         Text(title).fontWeight(.bold).font(.subheadline)
     }
-
+    
     @ViewBuilder
     private func emptyAlert(for text: Binding<String>, alert: String) -> some View {
         if text.wrappedValue.isEmpty {
@@ -187,9 +204,9 @@ struct FinishBookingView: View {
         }
     }
 }
-
+//
 // struct FinishBookingView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ServiceInformationView()
+//        FinishBookingView(order: .preview)
 //    }
 // }

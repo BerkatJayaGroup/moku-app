@@ -47,7 +47,7 @@ extension EditMechanic {
                 guard let index = bengkel.mekaniks.firstIndex(where: { $0.id == mechanic.id }) else { return }
                 if let image = self.image.first {
                     StorageService.shared.upload(image: image,
-                                                 path: "\(String(describing: bengkel.id))/mechanics/\(UUID().uuidString)") { url, _ in
+                                                 path: "mechanics/\(UUID().uuidString)") { url, _ in
                         guard let url = url?.absoluteString else { return }
                         bengkel.mekaniks[index] = Mekanik(name: self.mechanicName, photo: url)
                         self.bengkelRepository.update(bengkel: bengkel) {
