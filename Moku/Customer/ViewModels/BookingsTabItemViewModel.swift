@@ -21,12 +21,12 @@ extension BookingsTabItem {
             }
             orderRepo.$filteredOrdersStatus.sink { [self] orders in
                 filteredOrders = orders.filter { order in
-                    if segmentType == 0 { return order.status == .onProgress } else if segmentType == 1 { return order.status == .waitingSchedule } else { return order.status == .done }
+                    if segmentType == 0 { return order.status == .onProgress } else if segmentType == 1 { return order.status == .scheduled } else { return order.status == .done }
                 }
             }.store(in: &subscriptions)
             $segmentType.sink { [self] segment in
                 filteredOrders = orderRepo.filteredOrdersStatus.filter { order in
-                    if segment == 0 { return order.status == .onProgress } else if segment == 1 { return order.status == .waitingSchedule } else { return order.status == .done }
+                    if segment == 0 { return order.status == .onProgress } else if segment == 1 { return order.status == .scheduled } else { return order.status == .done }
                 }
             }.store(in: &subscriptions)
         }

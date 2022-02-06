@@ -93,6 +93,7 @@
 		8E3775DE2750C0D3009D3FC5 /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775DD2750C0D3009D3FC5 /* DummyView.swift */; };
 		8E3775E02750CD9A009D3FC5 /* EditDataBengkelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775DF2750CD9A009D3FC5 /* EditDataBengkelView.swift */; };
 		8E3775E22750D901009D3FC5 /* EditDataBengkelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3775E12750D901009D3FC5 /* EditDataBengkelViewModel.swift */; };
+		8E3A78D827B0494A003945D1 /* CurrentBookingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A78D727B0494A003945D1 /* CurrentBookingCard.swift */; };
 		8E4029A1274F412F00BE501A /* HistoryOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4029A0274F412F00BE501A /* HistoryOrderView.swift */; };
 		8E40E50927280239001CAEF3 /* PengaturanBengkel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */; };
 		8E40E50D272862D3001CAEF3 /* AddMekanik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40E50C272862D3001CAEF3 /* AddMekanik.swift */; };
@@ -263,6 +264,7 @@
 		8E3775DD2750C0D3009D3FC5 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyView.swift; sourceTree = "<group>"; };
 		8E3775DF2750CD9A009D3FC5 /* EditDataBengkelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataBengkelView.swift; sourceTree = "<group>"; };
 		8E3775E12750D901009D3FC5 /* EditDataBengkelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataBengkelViewModel.swift; sourceTree = "<group>"; };
+		8E3A78D727B0494A003945D1 /* CurrentBookingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBookingCard.swift; sourceTree = "<group>"; };
 		8E4029A0274F412F00BE501A /* HistoryOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderView.swift; sourceTree = "<group>"; };
 		8E40E50827280239001CAEF3 /* PengaturanBengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengaturanBengkel.swift; sourceTree = "<group>"; };
 		8E40E50C272862D3001CAEF3 /* AddMekanik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMekanik.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				8E8F2E512754BED30014B8D4 /* ReviewCard.swift */,
 				8EDC3AE4274CD4A20087F806 /* MechanicCard.swift */,
 				B80D0C5A2755388600D855D0 /* SearchBarComponent.swift */,
+				8E3A78D727B0494A003945D1 /* CurrentBookingCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				B85BDB642750DA680029162A /* FinishBookingViewModel.swift in Sources */,
 				AEEBF21A274B613A002550A8 /* AddNewMotorViewModel.swift in Sources */,
 				8EBC7757279D91F800A67642 /* ServiceHistoryView.swift in Sources */,
+				8E3A78D827B0494A003945D1 /* CurrentBookingCard.swift in Sources */,
 				AE37C6A4273A79B700B5B320 /* BookingDetail.swift in Sources */,
 				B80D0C5D27569D8C00D855D0 /* PengaturanHargaBengkelView.swift in Sources */,
 				8330A2BB2729331500AC5447 /* Day.swift in Sources */,

@@ -102,6 +102,7 @@ struct AddMekanik: View {
     }
 
     func tambahMekanik() {
+        let mechanicNew = CalonMekanik(name: mechanicName ?? "", photo: image.first)
         guard let id = Auth.auth().currentUser?.uid else { return }
         if let image = image.first {
             StorageService.shared.upload(image: image,
@@ -122,6 +123,7 @@ struct AddMekanik: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        mechanics.append(mechanicNew)
     }
 }
 
