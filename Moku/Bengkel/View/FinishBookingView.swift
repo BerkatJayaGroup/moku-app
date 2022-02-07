@@ -29,11 +29,15 @@ struct FinishBookingView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 Form {
-                    Text(viewModel.motorName)
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    Text(viewModel.customer?.name ?? "")
-                        .font(.title2)
+                    VStack(alignment: .leading){
+                        Text(viewModel.motorName)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Text(viewModel.customer?.name ?? "")
+                            .font(.title3)
+                    }
+                    .padding(.horizontal, -12)
+                    .padding(.top, -10)
                     Section(header: header(title: "Suku cadang")) {
                         Text("+ Tambah Suku Cadang")
                             .fontWeight(.bold)
