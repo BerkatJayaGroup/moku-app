@@ -9,7 +9,8 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
     let proxy: GeometryProxy
 
     var selected: Binding<Set<Selectable>>
-
+    @State var isBengkelProfile: Bool = false
+    
     @State var isOpenSelector: Bool = false
 
     private var formattedSelectedListString: String {
@@ -36,7 +37,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
             MultiSelectionView(showSheetView: $isOpenSelector,
                                options: options,
                                optionToString: optionToString,
-                               barTitle: barTitle, selected: selected)
+                               barTitle: barTitle, isBengkelProfile: true, selected: selected)
         }
     }
 }

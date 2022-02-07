@@ -14,6 +14,7 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
             return false
         }
     }
+    var isBengkelProfile: Bool = false
     @Binding var selected: Set<Selectable>
 
     var body: some View {
@@ -58,14 +59,14 @@ struct MultiSelectionView<Selectable: Identifiable & Hashable>: View {
                 } label: {
                     Image(systemName: "chevron.left")
                     Text("Kembali")
-                })
+                }.foregroundColor(isBengkelProfile ? .white : AppColor.primaryColor))
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle(barTitle, displayMode: .inline)
                 .navigationBarItems(trailing: Button {
                     presentationMode.wrappedValue.dismiss()
                 }label: {
                     Text("Simpan")
-                })
+                }.foregroundColor(isBengkelProfile ? .white : AppColor.primaryColor))
             }.onAppear {
                 UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: Double.leastNonzeroMagnitude))
             }

@@ -49,7 +49,7 @@ extension Order {
 //        TODO: waitingSchedule hapus
         case waitingSchedule = "Menunggu penjadwalan"
         case scheduled = "Terjadwal"
-        case onProgress = "Dalam progres"
+        case onProgress = "Dikerjakan"
         case rejected = "Ditolak"
         case done = "Selesai"
         case canceled = "Canceled"

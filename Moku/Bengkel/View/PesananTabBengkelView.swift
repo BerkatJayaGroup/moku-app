@@ -13,18 +13,8 @@ struct PesananTabBengkelView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.bengkelOrders == nil {
-                    Image("EmptyStateBengkel")
-                    Text("Tidak ada bookingan masuk")
-                        .multilineTextAlignment(.center)
-                        .font(.subheadline)
-                        .foregroundColor(.systemGray)
-                        .padding()
-                }
-                else {
-                    ScrollView {
-                        viewModel.showUlasan()
-                    }
+                ScrollView {
+                    viewModel.showUlasan()
                 }
             }
             .background(NavigationLink(destination: HistoryOrderView(bengkelOrders: viewModel.bengkelOrders ?? []), isActive: $viewModel.isHistoryShow) {

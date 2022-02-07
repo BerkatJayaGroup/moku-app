@@ -17,6 +17,7 @@ struct CurrentBookingCard: View {
             if let customer = customer {
                 Text(customer.name)
                     .font(.title2)
+                    .fontWeight(.semibold)
             }
             HStack {
                 VStack(alignment: .leading) {

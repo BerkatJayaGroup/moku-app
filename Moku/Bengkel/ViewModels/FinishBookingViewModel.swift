@@ -15,13 +15,19 @@ class FinishBookingViewModel: ObservableObject {
     @Published var notes = ""
     @Published var billPhotos: [String] = []
     @Published var isSubmitting = false
+    @Published var customer: Customer?
 
     @Published var order: Order
 
     init(order: Order) {
         self.order = order
+        getCustomerFromOrders(customerId: order.customerId)
     }
 
+    var motorName: String {
+        return order.motor.model
+    }
+    
     var isFormValid: Bool {
         !spareParts.isEmpty && !notes.isEmpty && !notes.isEmpty
     }
@@ -33,6 +39,12 @@ class FinishBookingViewModel: ObservableObject {
                 NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(order.status))
             }
             self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId)
+        }
+    }
+    
+    func getCustomerFromOrders(customerId: String) {
+        CustomerRepository.shared.fetch(id: customerId) { customer in
+            self.customer = customer
         }
     }
 

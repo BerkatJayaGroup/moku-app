@@ -28,8 +28,12 @@ struct FinishBookingView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                
                 Form {
+                    Text(viewModel.motorName)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    Text(viewModel.customer?.name ?? "")
+                        .font(.title2)
                     Section(header: header(title: "Suku cadang")) {
                         Text("+ Tambah Suku Cadang")
                             .fontWeight(.bold)
@@ -135,7 +139,7 @@ struct FinishBookingView: View {
                         viewModel.updateOrder(order: order)
                         UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                     } label: {
-                        Text("Selesai")
+                        Text("Kirim")
                             .frame(width: 320, height: 45, alignment: .center)
                             .foregroundColor(.white)
                             .background(AppColor.primaryColor)

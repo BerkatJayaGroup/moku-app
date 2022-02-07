@@ -59,8 +59,11 @@ struct PengaturanBengkel: View {
                             .font(Font.system(size: 11, weight: .regular))
                             .frame(width: proxy.size.width, alignment: .leading)
                         MultiSelector(options: allBrands,
-                                      optionToString: { $0.rawValue }, barTitle: "Brand", proxy: proxy,
-                                      selected: $selectedBrand
+                                      optionToString: { $0.rawValue },
+                                      barTitle: "Brand",
+                                      proxy: proxy,
+                                      selected: $selectedBrand,
+                                      isBengkelProfile: true
                         )
                         brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                     }
