@@ -778,7 +778,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 837370BE27144703003656FC /* Build configuration list for PBXNativeTarget "Moku" */;
 			buildPhases = (
-				83E60AF227AAC8DE0083536A /* Upload dSYM files to Firebase Crashlytics */,
 				B95365E49132407BBF6F3AF8 /* [CP] Check Pods Manifest.lock */,
 				837370AC27144701003656FC /* Sources */,
 				837370AD27144701003656FC /* Frameworks */,
@@ -786,6 +785,7 @@
 				832AC1DE2715963200BD92E2 /* Run SwiftLint */,
 				FC047A88C7DBEF7B73CA883F /* [CP] Copy Pods Resources */,
 				987E9469A0F7A736FAD3F889 /* [CP] Embed Pods Frameworks */,
+				83E60AF227AAC8DE0083536A /* Upload dSYM files to Firebase Crashlytics */,
 				838A8C1B273A42FB007FEDC6 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -1245,15 +1245,16 @@
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
 				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We'll only use your location when you're using the app";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You can add photos to your profile. Rest assured your data is safe with us, and we respect your privacy.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Make the most of your search by enabling your location-based services. Privacy is guaranteed.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images easily from your Photo Library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1265,7 +1266,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moku Provisioning Profile";
@@ -1286,14 +1287,15 @@
 				CODE_SIGN_ENTITLEMENTS = Moku/Moku.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Moku/Preview Content\"";
 				DEVELOPMENT_TEAM = 8KKWD6QU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We'll only use your location when you're using the app";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You can add photos to your profile. Rest assured your data is safe with us, and we respect your privacy.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Make the most of your search by enabling your location-based services. Privacy is guaranteed.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images easily from your Photo Library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1305,7 +1307,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = id.moku.Moku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moku Provisioning Profile";
