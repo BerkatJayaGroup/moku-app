@@ -20,7 +20,7 @@ struct EditDataBengkelView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
-        ZStack{
+        ZStack {
             GeometryReader { proxy in
                 VStack {
                     ScrollView {
@@ -35,7 +35,7 @@ struct EditDataBengkelView: View {
                             brandEmptyAlert(for: $viewModel.selectedBrand, alert: "Brand motor harus diisi")
                         }
                         .padding(.bottom, 24)
-                        
+
                         VStack(spacing: 8) {
                             Text("HARI OPERASIONAL")
                                 .font(Font.system(size: 11, weight: .regular))

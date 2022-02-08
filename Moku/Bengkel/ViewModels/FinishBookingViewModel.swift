@@ -27,7 +27,7 @@ class FinishBookingViewModel: ObservableObject {
     var motorName: String {
         return order.motor.model
     }
-    
+
     var isFormValid: Bool {
         !spareParts.isEmpty && !notes.isEmpty && !notes.isEmpty
     }
@@ -41,7 +41,7 @@ class FinishBookingViewModel: ObservableObject {
             self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId)
         }
     }
-    
+
     func getCustomerFromOrders(customerId: String) {
         CustomerRepository.shared.fetch(id: customerId) { customer in
             self.customer = customer

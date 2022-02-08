@@ -26,7 +26,7 @@ struct ManageMechanicsView: View {
                 ScrollView {
                     if let mechanicsList = viewModel.mechanics {
                         ForEach(mechanicsList, id: \.id) { mechanic in
-                            NavigationLink{
+                            NavigationLink {
                                 EditMechanic(mechanic: mechanic)
                             } label: {
                                 MechanicCard(mechanic: mechanic)
