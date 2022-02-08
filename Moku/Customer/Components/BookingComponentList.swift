@@ -6,20 +6,37 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct BookingComponentList: View {
+    @State var customer: Customer?
+    @State var bengkel: Bengkel?
+    
     let order: Order
+    
     init(order: Order) {
         self.order = order
+        getCustomerFromOrders(customerId: order.customerId)
+        getBengkelOrders(bengkelId: order.bengkelId)
     }
+    
     var body: some View {
         HStack {
-            Image(systemName: "number")
-                .font(.system(size: 85))
-                .aspectRatio(contentMode: .fill)
-                .cornerRadius(8)
+            if let photo = bengkel?.photos.first {
+                WebImage(url: URL(string: photo))
+                    .font(.system(size: 85))
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(8)
+            }
+            else {
+                Image("number")
+                    .font(.system(size: 85))
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(8)
+            }
+            
             VStack(alignment: .leading, spacing: 5) {
-                Text("Berkat Jaya Motor")
+                Text(bengkel?.name ?? "")
                     .font(.system(size: 15, weight: .semibold))
                 HStack(spacing: 5) {
                     VStack(alignment: .leading, spacing: 5) {
@@ -54,5 +71,20 @@ struct BookingComponentList_Previews: PreviewProvider {
     static var previews: some View {
         BookingComponentList(order: .preview)
             .previewLayout(.sizeThatFits)
+    }
+}
+
+extension BookingComponentList {
+    
+    func getBengkelOrders(bengkelId: String) {
+        BengkelRepository.shared.fetch(id: bengkelId) { bengkel in
+            self.bengkel = bengkel
+        }
+    }
+    
+    func getCustomerFromOrders(customerId: String) {
+        CustomerRepository.shared.fetch(id: customerId) { customer in
+            self.customer = customer
+        }
     }
 }

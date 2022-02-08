@@ -62,8 +62,7 @@ struct PengaturanBengkel: View {
                                       optionToString: { $0.rawValue },
                                       barTitle: "Brand",
                                       proxy: proxy,
-                                      selected: $selectedBrand,
-                                      isBengkelProfile: true
+                                      selected: $selectedBrand
                         )
                         brandEmptyAlert(for: $selectedBrand, alert: "Brand motor harus diisi")
                     }

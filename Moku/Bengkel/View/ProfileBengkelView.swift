@@ -92,6 +92,7 @@ struct ProfileBengkelView: View {
                         Button("Sign out") {
                             try? Auth.auth().signOut()
                         }
+                        .foregroundColor(AppColor.primaryColor)
                     }
                     .padding(.horizontal, 30)
                     .padding(.top, 16)

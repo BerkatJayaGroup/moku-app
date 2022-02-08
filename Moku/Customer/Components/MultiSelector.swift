@@ -37,7 +37,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
             MultiSelectionView(showSheetView: $isOpenSelector,
                                options: options,
                                optionToString: optionToString,
-                               barTitle: barTitle, isBengkelProfile: true, selected: selected)
+                               barTitle: barTitle, isBengkelProfile: isBengkelProfile, selected: selected)
         }
     }
 }

@@ -30,7 +30,7 @@ struct EditDataBengkelView: View {
                                 .frame(width: proxy.size.width, alignment: .leading)
                             MultiSelector(options: allBrands,
                                           optionToString: { $0.rawValue }, barTitle: "Brand", proxy: proxy,
-                                          selected: $viewModel.selectedBrand
+                                          selected: $viewModel.selectedBrand, isBengkelProfile: true
                             )
                             brandEmptyAlert(for: $viewModel.selectedBrand, alert: "Brand motor harus diisi")
                         }

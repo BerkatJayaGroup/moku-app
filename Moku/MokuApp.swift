@@ -40,6 +40,8 @@ struct MokuApp: App {
                 }
             } else {
                 contentView().id(appStateShare.viewID)
+//                    .environment(\.colorScheme, .light)
+                    .preferredColorScheme(.light)
                     .environmentObject(sheetManager)
                     .onOpenURL { url in
                         DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, _ in
@@ -50,6 +52,7 @@ struct MokuApp: App {
                     
             }
         }
+        
     }
 
     @ViewBuilder
