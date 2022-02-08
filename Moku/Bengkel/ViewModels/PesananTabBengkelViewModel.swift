@@ -18,6 +18,7 @@ extension PesananTabBengkelView {
         @Published var bengkelOrders: [Order]?
         @Published var customer: Customer?
         @Published var isHistoryShow: Bool = false
+        @Published var isBengkelEmpty = false
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkelOrders(bengkelId: id)
@@ -31,6 +32,7 @@ extension PesananTabBengkelView {
                 }
                 if bengkelFiltered.isEmpty {
                     VStack {
+                        Spacer()
                         Image(systemName: "newspaper")
                             .resizable()
                             .frame(width: 100, height: 100)
@@ -39,26 +41,28 @@ extension PesananTabBengkelView {
                             .font(.system(size: 15))
                             .foregroundColor(AppColor.darkGray)
                             .multilineTextAlignment(.center)
+                        Spacer()
                     }
-                    .padding(.vertical, 70)
                 } else {
                     let orderSorted = bengkelFiltered.sorted(by: { $0.schedule < $1.schedule })
-                    LazyVStack {
-                        ForEach(orderSorted, id: \.id) { order in
-                            NavigationLink {
-                                DetailBooking(order: order)
-                            } label: {
-                                ReviewCell(order: order)
-                            }
-                            .padding(10)
-                            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.25)
-                            .background(AppColor.primaryBackground)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(orderSorted, id: \.id) { order in
+                                NavigationLink {
+                                    DetailBooking(order: order)
+                                } label: {
+                                    ReviewCell(order: order)
+                                }
+                                .padding(10)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.25)
+                                .background(AppColor.primaryBackground)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
 
+                            }
                         }
+                        .padding(.vertical, 15)
                     }
-                    .padding(.vertical, 15)
                 }
             }
         }

@@ -99,7 +99,6 @@ struct BookingTabItemView: View {
                     }
                 } else {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
-                    //TODO: Dicky empty state
                 }
             }
             .navigationTitle("Booking")
