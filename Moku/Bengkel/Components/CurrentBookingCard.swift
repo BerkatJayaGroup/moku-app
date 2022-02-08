@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CurrentBookingCard: View {
-    
+
     @State var order: Order
     @State var customer: Customer?
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             if let customer = customer {
@@ -70,20 +70,20 @@ struct CurrentBookingCard: View {
                     .foregroundColor(ButtonStatus.getFontColors(status: order.status) as? Color)
             }
         }
-        .onAppear{
+        .onAppear {
             getCustomerFromOrders(customerId: order.customerId)
         }
     }
 }
 
-//struct CurrentBookingCard_Previews: PreviewProvider {
+// struct CurrentBookingCard_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CurrentBookingCard()
 //    }
-//}
+// }
 
-extension CurrentBookingCard{
-    
+extension CurrentBookingCard {
+
     func getCustomerFromOrders(customerId: String) {
         CustomerRepository.shared.fetch(id: customerId) { customer in
             self.customer = customer
