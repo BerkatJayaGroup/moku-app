@@ -13,9 +13,7 @@ struct PesananTabBengkelView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
-                    viewModel.showUlasan()
-                }
+                viewModel.showUlasan()
             }
             .background(NavigationLink(destination: HistoryOrderView(bengkelOrders: viewModel.bengkelOrders ?? []), isActive: $viewModel.isHistoryShow) {
                 EmptyView()

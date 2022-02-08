@@ -49,7 +49,7 @@ struct MokuApp: App {
                             DynamicLinksService.shared.handleDynamicLink(dynamicLink: dynamicLink)
                         }
                     }
-                    
+
             }
         }
         

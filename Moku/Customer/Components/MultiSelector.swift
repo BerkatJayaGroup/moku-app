@@ -10,7 +10,7 @@ struct MultiSelector<Selectable: Identifiable & Hashable>: View {
 
     var selected: Binding<Set<Selectable>>
     @State var isBengkelProfile: Bool = false
-    
+
     @State var isOpenSelector: Bool = false
 
     private var formattedSelectedListString: String {
