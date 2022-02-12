@@ -20,7 +20,7 @@ struct MotorModal: View {
                 SearchBarMotor(text: $searchText)
                     .padding()
                 List {
-                    ForEach(availableMotors.filter({searchText.isEmpty ? true : $0.model.contains(searchText)})) { motor in
+                    ForEach(searchText.isEmpty ? availableMotors : availableMotors.filter({ $0.model.lowercased().contains(searchText.lowercased()) })) { motor in
                         Button {
                             selectedMotor = motor
                             showingSheet.toggle()
