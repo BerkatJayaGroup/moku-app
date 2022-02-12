@@ -10,14 +10,16 @@ import SwiftUI
 struct AddNewMotor: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel: AddNewMotorViewModel
+    @Binding var isFinishAddData: Bool
     @ObservedObject var data = JsonHelper()
-    init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil) {
-        _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor))
+    @State var motors: [Motor] = []
+    init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil, isFinishAddData: Binding<Bool>, motors: [Motor]? = nil) {
+        _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor, motors: motors))
         UITableView.appearance().backgroundColor = .none
         UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-//        navBarAppearance.backgroundColor = UIColor(AppColor.navBarDefaultColor)
+        self._isFinishAddData = isFinishAddData
     }
     var body: some View {
         NavigationView {
@@ -78,8 +80,10 @@ struct AddNewMotor: View {
                 }
                 if viewModel.isEditing {
                     Button {
-                        viewModel.remove()
-                        presentationMode.wrappedValue.dismiss()
+                        viewModel.remove {
+                            presentationMode.wrappedValue.dismiss()
+                            self.isFinishAddData = true
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "trash")
@@ -110,11 +114,15 @@ struct AddNewMotor: View {
                 trailing: Button(viewModel.isEditing ? "Simpan" : "Tambah") {
                     if viewModel.isEditing {
                         guard let updatedMotor = viewModel.motor else { return }
-                        viewModel.update(motorUpdate: updatedMotor)
-                        presentationMode.wrappedValue.dismiss()
+                        viewModel.update(motorUpdate: updatedMotor) {
+                            presentationMode.wrappedValue.dismiss()
+                            self.isFinishAddData = true
+                        }
                     } else {
-                        viewModel.add()
-                        presentationMode.wrappedValue.dismiss()
+                        viewModel.add {
+                            presentationMode.wrappedValue.dismiss()
+                            self.isFinishAddData = true
+                        }
                     }
                 }
             )

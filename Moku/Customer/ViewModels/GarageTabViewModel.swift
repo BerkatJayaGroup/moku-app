@@ -38,16 +38,32 @@ class GarageTabViewModel: ObservableObject {
             }
         }.store(in: &subscriptions)
     }
-
-    func removeMotor(motorID: String) {
-        if case .customer(var customer) = sessionService.user {
-            guard let index = customerMotors.firstIndex(where: { $0.id == motorID }) else { return }
-            customer.motors?.remove(at: index)
-            customerRepository.update(customer: customer) { customer in
-                self.customer = customer
+    
+    func getMotors(completionHandler: ((Customer) -> Void)? = nil) {
+        if let userId = Auth.auth().currentUser?.uid {
+            CustomerRepository.shared.fetch(id: userId) { [weak self] customer in
+                self?.customerMotors = customer.motors ?? []
+                completionHandler?(customer)
             }
         }
     }
+
+    func removeMotor(motorID: String, motors: [Motor]?) {
+        getMotors { cst in
+            var newMotors = (motors ?? []) as [Motor]
+            var newCustomer = cst
+            guard let index = newMotors.firstIndex(where: { $0.id == motorID }) else { return }
+            newMotors.remove(at: index)
+            newCustomer.motors?.removeAll()
+            for motor in newMotors {
+                newCustomer.motors?.append(motor)
+            }
+            self.customerRepository.update(customer: newCustomer) { cust in
+                self.customer = cust
+            }
+        }
+    }
+    
     func update(_ customer: Customer) {
         customerRepository.update(customer: customer) { updatedCustomer in
             self.customer = updatedCustomer
@@ -67,19 +83,26 @@ class GarageTabViewModel: ObservableObject {
     }
 
     func addNew(motor: Motor) {
-        if case .customer(var customer) = sessionService.user {
-            customer.motors?.append(motor)
-            customerRepository.update(customer: customer) { customer in
+        getMotors { cst in
+            var newCustomer = cst
+            newCustomer.motors?.append(motor)
+            self.customerRepository.update(customer: newCustomer) { customer in
                 self.customer = customer
             }
         }
     }
-    func updateMotor(motorID: String, updatedMotor: Motor) {
-        if case .customer(var customer) = sessionService.user {
-            guard let index = customerMotors.firstIndex(where: { $0.id == motorID }) else { return }
-            customer.motors?[index] = updatedMotor
-            customerRepository.update(customer: customer) { customer in
-                self.customer = customer
+    func updateMotor(motorID: String, updatedMotor: Motor, motors: [Motor]?) {
+        getMotors { cst in
+            var newMotors = (motors ?? []) as [Motor]
+            var newCustomer = cst
+            guard let index = newMotors.firstIndex(where: { $0.id == motorID }) else { return }
+            newMotors[index] = updatedMotor
+            newCustomer.motors?.removeAll()
+            for motor in newMotors {
+                newCustomer.motors?.append(motor)
+            }
+            self.customerRepository.update(customer: newCustomer) { cust in
+                self.customer = cust
             }
         }
     }

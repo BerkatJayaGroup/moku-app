@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MotorCard: View {
     @State var motor: Motor
+    @State var motors: [Motor]
     @State var isEditingModalShown = false
+    @State private var isFinishAddMotor: Bool = false
     var body: some View {
         VStack {
             HStack {
@@ -25,7 +27,7 @@ struct MotorCard: View {
                         .fixedSize(horizontal: true, vertical: false)
                 }
                 .sheet(isPresented: $isEditingModalShown) {
-                    AddNewMotor(motor: motor, isEditing: true, motorBefore: motor)
+                    AddNewMotor(motor: motor, isEditing: true, motorBefore: motor, isFinishAddData: $isFinishAddMotor, motors: motors)
                 }
             }.padding(.bottom, 15)
             Image("MotorIllustration")
@@ -65,7 +67,9 @@ struct GarasiTabItem: View {
     @State private var isProfileModalPresented = false
     @State private var isAddMotorModalPresented = false
     @State private var newMotorSheet: Bool = false
+    @State private var isFinishAddMotor: Bool = false
     @State private var isSuntingModalPresented = false
+    @State private var motors: [Motor] = []
     @ObservedObject private var viewModel: GarageTabViewModel = .shared
     var body: some View {
         ZStack(alignment: .top) {
@@ -74,6 +78,11 @@ struct GarasiTabItem: View {
                 .ignoresSafeArea()
                 .frame(height: 0)
             ScrollView {
+                RefreshControl(coordinateSpace: .named("RefreshControl"), isFinishEditData: $isFinishAddMotor) {
+                    viewModel.getMotors { customer in
+                        motors = customer.motors ?? []
+                    }
+                }
                 profileSection()
                     .padding(10)
                     .background(Color.white)
@@ -100,6 +109,10 @@ struct GarasiTabItem: View {
                 .padding(.trailing)
 
                 serviceHistorySection().padding(10)
+            }.coordinateSpace(name: "RefreshControl")
+        }.onAppear {
+            viewModel.getMotors { customer in
+                motors = customer.motors ?? []
             }
         }
     }
@@ -122,50 +135,48 @@ struct GarasiTabItem: View {
     @ViewBuilder
     private func motorSection() -> some View {
         VStack {
-            if !viewModel.customerMotors.isEmpty {
-                PagingView(index: $index.animation(), maxIndex: viewModel.customerMotors.count) {
-                    ForEach(viewModel.customerMotors) { motor in
-                        MotorCard(motor: motor)
-                            .padding(.horizontal)
-                    }
-                    VStack {
-                        HStack {
-                            Text("                                           ")
-                                .font(.system(size: 17, weight: .semibold))
-                                .backgroundColor(AppColor.lightGray)
-                                .cornerRadius(10)
-                                .foregroundColor(.clear)
-                            Spacer()
-                        }
-                        Image("MotorIllustration").padding()
-                        Button {
-                            newMotorSheet.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Tambah Motor Baru")
-                            }
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(AppColor.primaryColor)
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .padding(.horizontal, .large)
-                        .sheet(isPresented: $newMotorSheet) {
-                            AddNewMotor(isEditing: false)
-                                .navigationTitle("Sunting Motor")
-                        }
-                    }
-                    .frame(height: 280)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
-                    .padding(.horizontal)
+            PagingView(index: $index.animation(), maxIndex: motors.count) {
+                ForEach(motors) { motor in
+                    MotorCard(motor: motor, motors: motors)
+                        .padding(.horizontal)
                 }
-                .aspectRatio(3/3, contentMode: .fit)
+                VStack {
+                    HStack {
+                        Text("                                           ")
+                            .font(.system(size: 17, weight: .semibold))
+                            .backgroundColor(AppColor.lightGray)
+                            .cornerRadius(10)
+                            .foregroundColor(.clear)
+                        Spacer()
+                    }
+                    Image("MotorIllustration").padding()
+                    Button {
+                        newMotorSheet.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Tambah Motor Baru")
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(AppColor.primaryColor)
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .padding(.horizontal, .large)
+                    .sheet(isPresented: $newMotorSheet) {
+                        AddNewMotor(isEditing: false, isFinishAddData: $isFinishAddMotor)
+                            .navigationTitle("Sunting Motor")
+                    }
+                }
+                .frame(height: 280)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
+                .padding(.horizontal)
             }
+            .aspectRatio(3/3, contentMode: .fit)
         }
     }
     private func serviceHistorySection() -> some View {
