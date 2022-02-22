@@ -8,18 +8,17 @@
 import Foundation
 import SwiftUI
 
-extension DetailBooking {
+extension DetailBookingView {
     class ViewModel: ObservableObject {
         @ObservedObject var orderRepository: OrderRepository = .shared
+
         @Published var customer: Customer?
         @Published var order: Order
         @Published var showModal: Bool
+
         init(order: Order, showModal: Bool) {
             self.order = order
             self.showModal = showModal
-            CustomerRepository.shared.fetch(id: order.customerId) { customer in
-                self.customer = customer
-            }
         }
 
         var motorModel: String {
@@ -61,6 +60,12 @@ extension DetailBooking {
                     NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(status))
                 }
                 self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId)
+            }
+        }
+
+        func viewOnAppear() {
+            CustomerRepository.shared.fetch(id: order.customerId) { customer in
+                self.customer = customer
             }
         }
     }

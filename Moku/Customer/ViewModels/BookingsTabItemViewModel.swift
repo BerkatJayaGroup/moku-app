@@ -29,9 +29,8 @@ final class BookingsTabItemViewModel: ObservableObject {
     }
 
     private func getSegmentedOrders(segment: SegmentType) {
-//        guard let currentUserID = user?.uid else { return }
-//        orderRepo.fetch(userID: currentUserID) { orders in
-        orderRepo.fetch(userID: "MIuaoLvE2hftSjfv7h6YYg3NyPr2") { orders in
+        guard let currentUserID = user?.uid else { return }
+        orderRepo.fetch(userID: currentUserID) { orders in
             self.segmentedOrders = orders.filter { order in
                 switch self.segmentSelection {
                 case .inProgress:

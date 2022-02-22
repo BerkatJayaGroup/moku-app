@@ -122,6 +122,14 @@ final class OrderRepository: ObservableObject {
         }
     }
 
+    func fetch(bengkelID: String, completion: (([Order]) -> Void)? = nil) {
+        store.whereField("bengkelId", isEqualTo: bengkelID).getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            let data: [Order] = snapshot.documents.compactMap { try? $0.data(as: Order.self) }
+            completion?(data)
+        }
+    }
+
     func add(order: Order, completionHandler: CompletionHandler? = nil) {
         do {
             let ref = try store.addDocument(from: order) { error in
