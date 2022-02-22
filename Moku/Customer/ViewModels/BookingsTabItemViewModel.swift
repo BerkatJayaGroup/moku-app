@@ -9,26 +9,53 @@ import FirebaseAuth
 import SwiftUI
 import Combine
 
-extension BookingsTabItem {
-    class ViewModel: ObservableObject {
-        @ObservedObject var orderRepo: OrderRepository = .shared
-        @Published var segmentType = 0
-        @Published var filteredOrders = [Order]()
-        private var subscriptions = Set<AnyCancellable>()
-        init() {
-            if let uid = Auth.auth().currentUser?.uid {
-                orderRepo.fetch(uid)
-            }
-            orderRepo.$filteredOrdersStatus.sink { [self] orders in
-                filteredOrders = orders.filter { order in
-                    if segmentType == 0 { return order.status == .onProgress } else if segmentType == 1 { return order.status == .scheduled } else { return order.status == .done }
-                }
-            }.store(in: &subscriptions)
-            $segmentType.sink { [self] segment in
-                filteredOrders = orderRepo.filteredOrdersStatus.filter { order in
-                    if segment == 0 { return order.status == .onProgress } else if segment == 1 { return order.status == .scheduled } else { return order.status == .done }
-                }
-            }.store(in: &subscriptions)
+final class BookingsTabItemViewModel: ObservableObject {
+    @ObservedObject var orderRepo: OrderRepository = .shared
+
+    @Published var segmentSelection: SegmentType = .inProgress {
+        didSet {
+            getSegmentedOrders(segment: segmentSelection)
         }
+    }
+
+    @Published var segmentedOrders: [Order] = []
+
+    private var user: User? {
+        Auth.auth().currentUser
+    }
+
+    func viewOnAppear() {
+        getSegmentedOrders(segment: segmentSelection)
+    }
+
+    private func getSegmentedOrders(segment: SegmentType) {
+//        guard let currentUserID = user?.uid else { return }
+//        orderRepo.fetch(userID: currentUserID) { orders in
+        orderRepo.fetch(userID: "MIuaoLvE2hftSjfv7h6YYg3NyPr2") { orders in
+            self.segmentedOrders = orders.filter { order in
+                switch self.segmentSelection {
+                case .inProgress:
+                    return order.status == .onProgress
+                case .scheduled:
+                    return order.status == .scheduled
+                case .history:
+                    return order.status == .done
+                }
+            }
+        }
+    }
+}
+
+extension BookingsTabItemViewModel {
+    enum SegmentType: String, Identifiable, CaseIterable {
+        case inProgress = "Dalam Progres"
+        case scheduled = "Terjadwal"
+        case history = "Riwayat"
+
+        var id: String { rawValue }
+    }
+
+    var segments: [SegmentType] {
+        SegmentType.allCases
     }
 }

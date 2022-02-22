@@ -37,14 +37,9 @@ final class BengkelRepository: ObservableObject {
     }
 
     func fetch(id: String, completionHandler: ((Bengkel) -> Void)? = nil) {
-        store.document(id).getDocument { document, error in
-            do {
-                if let data = try document?.data(as: Bengkel.self) {
-                    completionHandler?(data)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
+        store.document(id).getDocument { document, _ in
+            guard let workshop: Bengkel = try? document?.data(as: Bengkel.self) else { return }
+            completionHandler?(workshop)
         }
     }
 

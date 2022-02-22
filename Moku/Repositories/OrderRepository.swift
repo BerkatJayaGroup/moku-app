@@ -99,20 +99,28 @@ final class OrderRepository: ObservableObject {
     }
 
     func fetch(_ customerId: String) {
-            store.whereField("customerId", isEqualTo: customerId).addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Error getting stories: \(error.localizedDescription)")
-                    return
-                }
-                let order = querySnapshot?.documents.compactMap { document in
-                    try? document.data(as: Order.self
-                    )
-                } ?? []
-                DispatchQueue.main.async {
-                    self.filteredOrdersStatus = order
-                }
+        store.whereField("customerId", isEqualTo: customerId).addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error getting stories: \(error.localizedDescription)")
+                return
+            }
+            let order = querySnapshot?.documents.compactMap { document in
+                try? document.data(as: Order.self
+                )
+            } ?? []
+            DispatchQueue.main.async {
+                self.filteredOrdersStatus = order
             }
         }
+    }
+
+    func fetch(userID: String, completion: (([Order]) -> Void)? = nil) {
+        store.whereField("customerId", isEqualTo: userID).getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            let data: [Order] = snapshot.documents.compactMap { try? $0.data(as: Order.self) }
+            completion?(data)
+        }
+    }
 
     func add(order: Order, completionHandler: CompletionHandler? = nil) {
         do {
