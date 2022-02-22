@@ -24,11 +24,10 @@ extension PesananTabBengkelView {
         }
 
         func getBengkelOrders(bengkelId: String) {
-            OrderRepository.shared.fetch(bengkelID: "MIuaoLvE2hftSjfv7h6YYg3NyPr2") { orders in
+            OrderRepository.shared.fetch(bengkelID: bengkelId) { orders in
                 self.bengkelOrders = orders
                     .filter { order in
-                        //                    (order.status == .scheduled) && !(order.schedule.get(.day) == Date().get(.day))
-                        true
+                        (order.status == .scheduled) && !(order.schedule.get(.day) == Date().get(.day))
                     }
                     .sorted { $0.schedule < $1.schedule }
             }

@@ -42,7 +42,7 @@ class AssignMechanicsViewModel: ObservableObject {
     }
 
     func viewOnAppear() {
-        BengkelRepository.shared.fetch(id: "DuyvQ9BX8dfF7HS5KhxOZm4KivE3") { workshop in
+        BengkelRepository.shared.fetch(id: order.bengkelId) { workshop in
             self.bengkel = workshop
         }
         OrderRepository.shared.fetch(bengkelId: order.bengkelId) { orders in
