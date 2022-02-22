@@ -9,8 +9,6 @@ import SwiftUI
 import Foundation
 
 class AssignMechanicsViewModel: ObservableObject {
-    @ObservedObject var bengkelRepository: BengkelRepository = .shared
-    @ObservedObject var orderRepository: OrderRepository = .shared
     @Published var order: Order
 
     @Published var orders = [Order]()
@@ -41,15 +39,16 @@ class AssignMechanicsViewModel: ObservableObject {
 
     init(order: Order) {
         self.order = order
-        fetchBengkel()
-        orderRepository.fetch(bengkelId: order.bengkelId) { orders in
-            self.orders = orders
-        }
     }
 
-    private func fetchBengkel() {
-        bengkelRepository.fetch(id: order.bengkelId) { bengkelData in
-            self.bengkel = bengkelData
+    func viewOnAppear() {
+        BengkelRepository.shared.fetch(id: "DuyvQ9BX8dfF7HS5KhxOZm4KivE3") { workshop in
+            self.bengkel = workshop
+        }
+        OrderRepository.shared.fetch(bengkelId: order.bengkelId) { orders in
+            DispatchQueue.main.async {
+                self.orders = orders
+            }
         }
     }
 
@@ -64,12 +63,12 @@ class AssignMechanicsViewModel: ObservableObject {
         if let reason = reason {
             self.order.cancelingReason = reason
         }
-        orderRepository.updateStatus(order: order) { _ in
+        OrderRepository.shared.updateStatus(order: order) { _ in
             CustomerRepository.shared.fetch(id: self.order.customerId ) { customer in
                 guard let fcmToken = customer.fcmToken else { return }
                 NotificationService.shared.send(to: [fcmToken], notification: .updateOrderStatus(status))
             }
-            self.orderRepository.fetchBengkelOrder(bengkelId: self.order.bengkelId) { orders in
+            OrderRepository.shared.fetchBengkelOrder(bengkelId: self.order.bengkelId) { orders in
                 self.orders = orders
             }
         }
