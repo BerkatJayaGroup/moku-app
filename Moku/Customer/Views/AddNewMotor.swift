@@ -58,16 +58,16 @@ struct AddNewMotor: View {
                                    showingSheet: $viewModel.show)
                     }
                 }
-            
+
                 Image("MotorIllustration")
                     .opacity(0.3)
                     .padding(15)
-              
+
                 VStack(alignment: .leading) {
                     Text("PLAT NOMOR")
                         .font(.caption2)
                         .foregroundColor(AppColor.darkGray)
-                
+
                     VStack {
                         TextField("Plat Nomor", text: $viewModel.plat)
                           .padding(5)
@@ -86,7 +86,7 @@ struct AddNewMotor: View {
                 .padding()
                 .background(AppColor.lightGray)
                 .cornerRadius(8)
-                  
+
                 Text("TAHUN KENDARAAN")
                   .padding(.top)
                   .font(.caption2)

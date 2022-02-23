@@ -72,7 +72,7 @@ struct DaftarCustomer: View {
                                 .font(.caption2)
                                 .foregroundColor(Color.red)
                         }
-                        
+
                         Text("MODEL MOTOR")
                             .font(.caption2)
                         Button {
@@ -109,7 +109,7 @@ struct DaftarCustomer: View {
                                 .padding(.top)
                         }
                     }
-                
+
                       Image("MotorGray")
                           .opacity(0.3)
                           .padding(15)

@@ -24,7 +24,7 @@ class AddNewMotorViewModel: ObservableObject {
         self.isEditing      = isEditing
         self.motorBefore    = motorBefore
         self.motors         = motors
-      
+
       if isEditing {
         plat = motorBefore?.licensePlate ?? ""
         tahunBeli = motorBefore?.year ?? ""
