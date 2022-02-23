@@ -23,7 +23,12 @@ class AddNewMotorViewModel: ObservableObject {
         self.motor          = motor
         self.isEditing      = isEditing
         self.motorBefore    = motorBefore
-        self.motors = motors
+        self.motors         = motors
+      
+      if isEditing {
+        plat = motorBefore?.licensePlate ?? ""
+        tahunBeli = motorBefore?.year ?? ""
+      }
     }
     func remove(completionHandler: (() -> Void)? = nil) {
         guard let motorID = motor?.id else { return }
@@ -40,6 +45,7 @@ class AddNewMotorViewModel: ObservableObject {
     }
     func update(motorUpdate: Motor, completionHandler: (() -> Void)? = nil) {
         guard let motorID = motorBefore?.id else { return }
+        plat = motorBefore?.licensePlate ?? ""
         motorUpdate.licensePlate = plat
         motorUpdate.year = tahunBeli
         garageTabViewModel.updateMotor(motorID: motorID, updatedMotor: motorUpdate, motors: motors)

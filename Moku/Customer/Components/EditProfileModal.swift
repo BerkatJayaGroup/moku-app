@@ -29,7 +29,9 @@ struct EditProfileModal: View {
     }
 
     var btnBack: some View {
-        Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+      Button {
+        self.presentationMode.wrappedValue.dismiss()
+      } label: {
             HStack {
                 Image(systemName: "chevron.left") // set image here
                     .aspectRatio(contentMode: .fit)
@@ -59,6 +61,7 @@ struct EditProfileModal: View {
             .background(Color(hex: "FFF4E9"))
             .cornerRadius(9)
         }
+        .padding(.bottom)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("Profil", displayMode: .inline)
         .navigationBarItems(
@@ -87,5 +90,11 @@ struct EditProfileModal: View {
                     .cornerRadius(8)
             }
         }
+    }
+}
+
+struct EditProfileModal_Previews: PreviewProvider {
+    static var previews: some View {
+      EditProfileModal(customer: Customer.preview)
     }
 }

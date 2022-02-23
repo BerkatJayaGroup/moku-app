@@ -20,7 +20,7 @@ struct DaftarCustomer: View {
             self.presentationMode.wrappedValue.dismiss()
         }label: {
                 HStack {
-                Image("chevron.backward")
+                Image(systemName: "chevron.backward")
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(AppColor.primaryColor)
                     Text("Kembali")
@@ -31,11 +31,11 @@ struct DaftarCustomer: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("NAMA")
-                        .font(.caption2)
+          ScrollView(showsIndicators: false) {
+                VStack(alignment: .center) {
                     VStack(alignment: .leading) {
+                        Text("NAMA")
+                            .font(.caption2)
                         TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { isChanged in
                             if !isChanged {
                                 viewModel.validateEmptyName()
@@ -72,76 +72,76 @@ struct DaftarCustomer: View {
                                 .font(.caption2)
                                 .foregroundColor(Color.red)
                         }
-                    }
-                    Text("MODEL MOTOR")
-                        .font(.caption2)
-                    Button {
-                        viewModel.showModal.toggle()
-                    } label: {
-                        HStack {
-                            if let motor = viewModel.motor {
-                                Text(motor.model)
-                                    .foregroundColor(.black)
-                            } else {
-                                Image(systemName: "magnifyingglass")
-                                Text("Cari Model Motormu")
-                            }
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).fill(AppColor.textField))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(.tertiaryLabel)
-                        .font(.subheadline)
-                        .background(AppColor.textField)
-                        .cornerRadius(8)
-                        .multilineTextAlignment(.leading)
-                    }
-                    .sheet(isPresented: $viewModel.showModal) {
-                        MotorModal(availableMotors: data.motors,
-                                   selectedMotor: $viewModel.motor,
-                                   showingSheet: $viewModel.showModal)
-                    }
-                    if !viewModel.motorCheck {
-                        Text("Motor wajib diisi")
-                            .offset(y: -10)
+                        
+                        Text("MODEL MOTOR")
                             .font(.caption2)
-                            .foregroundColor(Color.red)
-                            .padding(.top)
+                        Button {
+                            viewModel.showModal.toggle()
+                        } label: {
+                            HStack {
+                                if let motor = viewModel.motor {
+                                    Text(motor.model)
+                                        .foregroundColor(.black)
+                                } else {
+                                    Image(systemName: "magnifyingglass")
+                                    Text("Cari Model Motormu")
+                                }
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 8).fill(AppColor.textField))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.tertiaryLabel)
+                            .font(.subheadline)
+                            .background(AppColor.textField)
+                            .cornerRadius(8)
+                            .multilineTextAlignment(.leading)
+                        }
+                        .sheet(isPresented: $viewModel.showModal) {
+                            MotorModal(availableMotors: data.motors,
+                                       selectedMotor: $viewModel.motor,
+                                       showingSheet: $viewModel.showModal)
+                        }
+                        if !viewModel.motorCheck {
+                            Text("Motor wajib diisi")
+                                .offset(y: -10)
+                                .font(.caption2)
+                                .foregroundColor(Color.red)
+                                .padding(.top)
+                        }
                     }
-                }.padding(20)
-                Image("MotorGray")
-                    .opacity(0.3)
-                    .padding(15)
+                
+                      Image("MotorGray")
+                          .opacity(0.3)
+                          .padding(15)
 
-                VStack(alignment: .leading) {
-                    Text("PLAT MOTOR")
-                        .font(.caption2)
-                    TextField("Plat Motor", text: $viewModel.licensePlate)
-                        .font(.subheadline)
-                        .padding(15)
-                        .background(AppColor.textField)
-                        .cornerRadius(8)
-                        .autocapitalization(.none)
-                        .autocapitalization(.none)
-                        .padding(.bottom)
+                      VStack(alignment: .leading) {
+                          Text("PLAT MOTOR")
+                              .font(.caption2)
+                          TextField("Plat Motor", text: $viewModel.licensePlate)
+                              .font(.subheadline)
+                              .padding(15)
+                              .background(AppColor.textField)
+                              .cornerRadius(8)
+                              .autocapitalization(.none)
+                              .autocapitalization(.none)
+                              .padding(.bottom)
 
-                    Text("Tahun Beli")
-                        .font(.caption2)
-                    TextField("Tahun beli", text: $viewModel.year)
-                        .keyboardType(.numberPad)
-                        .font(.subheadline)
-                        .padding(15)
-                        .background(AppColor.textField)
-                        .cornerRadius(8)
-                        .autocapitalization(.none)
-                        .autocapitalization(.none)
-                        .padding(.bottom)
+                          Text("TAHUN BELI")
+                              .font(.caption2)
+                          TextField("Tahun beli", text: $viewModel.year)
+                              .keyboardType(.numberPad)
+                              .font(.subheadline)
+                              .padding(15)
+                              .background(AppColor.textField)
+                              .cornerRadius(8)
+                              .autocapitalization(.none)
+                              .autocapitalization(.none)
+                              .padding(.bottom)
+                      }
                 }
-            }.padding(20)
-            .padding(.horizontal, 20)
-
+            }
+            .padding(20)
             Spacer()
-
             Button {
                 if viewModel.isFormInvalid {
                     viewModel.validateEmptyName()
@@ -190,5 +190,6 @@ struct DaftarCustomer: View {
 struct DaftarCustomer_Previews: PreviewProvider {
     static var previews: some View {
         DaftarCustomer()
+        .previewDevice("iPhone 12")
     }
 }
