@@ -141,7 +141,7 @@ struct FinishBookingView: View {
                         order.status = .done
                         order.serviceNotes = notes
                         viewModel.updateOrder(order: order)
-                        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                        NavigateToRootView.popToRootView()
                     } label: {
                         Text("Kirim")
                             .frame(width: 320, height: 45, alignment: .center)
@@ -158,7 +158,7 @@ struct FinishBookingView: View {
                 .navigationTitle("Pesanan Selesai")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading: Button {
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    NavigateToRootView.popToRootView()
                 } label: {
                     Text("Kembali")
                         .foregroundColor(.white)

@@ -43,7 +43,7 @@ struct AssignMechanics: View {
                 self.isActive = false
                 viewModel.addMekanik()
                 viewModel.updateStatusOrder(status: Order.Status.scheduled)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                NavigateToRootView.popToRootView()
             } label: {
                 Text("Selesai")
                     .frame(width: 310, height: 45, alignment: .center)

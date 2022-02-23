@@ -122,7 +122,7 @@ struct DetailBooking: View {
                     if viewModel.order.schedule.get(.day) == Date().get(.day) {
                         Button(action: {
                             print("Kerjakan Pesanan")
-                            UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                            NavigateToRootView.popToRootView()
                             viewModel.updateStatusOrder(status: .onProgress)
                         }, label: {
                             Text("Kerjakan")
