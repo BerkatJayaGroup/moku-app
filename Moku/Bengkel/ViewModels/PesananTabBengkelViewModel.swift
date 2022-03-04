@@ -19,6 +19,7 @@ extension PesananTabBengkelView {
         @Published var customer: Customer?
         @Published var isHistoryShow: Bool = false
         @Published var isBengkelEmpty = false
+        
         init() {
             if let id = Auth.auth().currentUser?.uid {
                 getBengkelOrders(bengkelId: id)
