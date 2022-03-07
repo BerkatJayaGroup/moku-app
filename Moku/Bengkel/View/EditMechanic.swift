@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseAuth
+import Introspect
 
 struct EditMechanic: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
@@ -15,21 +16,24 @@ struct EditMechanic: View {
     @State var isEditing = false
     @State var saveAlert = false
     @State var isRemove = false
+    @State var uiTabarController: UITabBarController?
+    
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
+    
     var body: some View {
         if viewModel.isLoading {
             ProgressView()
                 .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
-                            if shouldDismiss {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }
+                    if shouldDismiss {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
         } else {
-            VStack {
+            VStack{
                 if viewModel.image.isEmpty {
                     if let image = viewModel.mechanic.photo {
                         WebImage(url: URL(string: image))
@@ -68,51 +72,56 @@ struct EditMechanic: View {
                         .cornerRadius(8)
                         .padding(.bottom)
                 }
+                
                 Spacer()
-                if isEditing {
+                
+                VStack{
+                    if isEditing {
+                        Button {
+                            saveAlert = true
+                        }label: {
+                            Text("Simpan Perubahan")
+                                .frame(width: 309, height: 44, alignment: .center)
+                                .font(.system(size: 17), weight: .bold)
+                                .foregroundColor(.white)
+                                .background(AppColor.primaryColor)
+                                .cornerRadius(8)
+                        }.alert(isPresented: $saveAlert) {
+                            Alert(
+                                title: Text("Simpan Perubahan?"),
+                                message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
+                                primaryButton: .destructive(Text("Simpan")) {
+                                    viewModel.isLoading = true
+                                    viewModel.updateMechanic()
+                                    self.isEditing.toggle()
+                                },
+                                secondaryButton: .cancel(Text("Batal"))
+                            )
+                        }
+                    }
                     Button {
-                        saveAlert = true
-                    }label: {
-                        Text("Simpan Perubahan")
+                        self.isRemove.toggle()
+                    } label: {
+                        Text("Hapus Mekanik")
                             .frame(width: 309, height: 44, alignment: .center)
                             .font(.system(size: 17), weight: .bold)
-                            .foregroundColor(.white)
-                            .background(AppColor.primaryColor)
+                            .foregroundColor(AppColor.primaryColor)
+                            .background(Color(hex: "F8D8BF"))
                             .cornerRadius(8)
-                    }.alert(isPresented: $saveAlert) {
+                    }.alert(isPresented: $isRemove) {
                         Alert(
-                            title: Text("Simpan Perubahan?"),
+                            title: Text("Hapus Mekanik?"),
                             message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
-                            primaryButton: .destructive(Text("Simpan")) {
-                                viewModel.isLoading = true
-                                viewModel.updateMechanic()
-                                self.isEditing.toggle()
+                            primaryButton: .destructive(Text("Hapus")) {
+                                viewModel.removeMechanic()
+                                presentationMode.wrappedValue.dismiss()
                             },
                             secondaryButton: .cancel(Text("Batal"))
                         )
                     }
                 }
-                Button {
-                    self.isRemove.toggle()
-                } label: {
-                    Text("Hapus Mekanik")
-                        .frame(width: 309, height: 44, alignment: .center)
-                        .font(.system(size: 17), weight: .bold)
-                        .foregroundColor(AppColor.primaryColor)
-                        .background(Color(hex: "F8D8BF"))
-                        .cornerRadius(8)
-                }.alert(isPresented: $isRemove) {
-                    Alert(
-                        title: Text("Hapus Mekanik?"),
-                        message: Text("Perubahan yang dilakukan akan memengaruhi data mekanik di bengkel anda"),
-                        primaryButton: .destructive(Text("Hapus")) {
-                            viewModel.removeMechanic()
-                            presentationMode.wrappedValue.dismiss()
-                        },
-                        secondaryButton: .cancel(Text("Batal"))
-                    )
-                }
             }
+            .padding()
             .toolbar {
                 Button {
                     self.isEditing.toggle()
@@ -124,16 +133,20 @@ struct EditMechanic: View {
                         .foregroundColor(.white)
                 }
             }
-            .padding()
             .onReceive(viewModel.viewDismissalModePublisher) { shouldDismiss in
-                        if shouldDismiss {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-
+                if shouldDismiss {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = true
+                self.uiTabarController = UITabBarController
+            }
+            .ignoresSafeArea(.keyboard)
+            
         }
     }
-
+    
     @ViewBuilder
     func uploadButton() -> some View {
         Button("Ubah Foto") {
