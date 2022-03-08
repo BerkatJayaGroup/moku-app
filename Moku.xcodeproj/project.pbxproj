@@ -20,6 +20,8 @@
 		830383D82718035A00F03CE3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 830383D72718035A00F03CE3 /* FirebaseFirestoreSwift-Beta */; };
 		830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830383D9271804D700F03CE3 /* RepositoryHelper.swift */; };
 		8319E3BD27390EE10051ECFD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E3BC27390EE10051ECFD /* NotificationService.swift */; };
+		831FCC1527C5276A00EEA79E /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831FCC1427C5276A00EEA79E /* URLExtension.swift */; };
+		83201E1527C54DF700BABB46 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83201E1427C54DF700BABB46 /* UIApplicationExtension.swift */; };
 		8320A80A2744078A0009213C /* DynamicLinksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320A8092744078A0009213C /* DynamicLinksService.swift */; };
 		8320A80C274408400009213C /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 8320A80B274408400009213C /* FirebaseDynamicLinks */; };
 		832AC1E12715979C00BD92E2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC1E02715979C00BD92E2 /* SDWebImageSwiftUI */; };
@@ -198,6 +200,8 @@
 		830383D42717FF5100F03CE3 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		830383D9271804D700F03CE3 /* RepositoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHelper.swift; sourceTree = "<group>"; };
 		8319E3BC27390EE10051ECFD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		831FCC1427C5276A00EEA79E /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
+		83201E1427C54DF700BABB46 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		8320A8092744078A0009213C /* DynamicLinksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLinksService.swift; sourceTree = "<group>"; };
 		832AC1E627159AE600BD92E2 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		832AC1E827159BC800BD92E2 /* Bengkel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bengkel.swift; sourceTree = "<group>"; };
@@ -549,6 +553,8 @@
 				8EA4A348279556D7004A97CE /* NavigationBarExtension.swift */,
 				8E1458E627A6875000463DC1 /* ButtonStatus.swift */,
 				B856544D27B4078300FE247B /* RefreshControl.swift */,
+				831FCC1427C5276A00EEA79E /* URLExtension.swift */,
+				83201E1427C54DF700BABB46 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1088,6 +1094,7 @@
 				B8CE65F92726BA2B008F4CEE /* AppState.swift in Sources */,
 				830383DA271804D700F03CE3 /* RepositoryHelper.swift in Sources */,
 				B8C74305273D834300E34B5C /* EditProfileModal.swift in Sources */,
+				83201E1527C54DF700BABB46 /* UIApplicationExtension.swift in Sources */,
 				837BE1DC2727C2F9000E1FAA /* GoogleMapsService.swift in Sources */,
 				6FB9BD99272A98070041469C /* AppColor.swift in Sources */,
 				8E3775E02750CD9A009D3FC5 /* EditDataBengkelView.swift in Sources */,
@@ -1104,6 +1111,7 @@
 				8E043576272694700079DB29 /* BengkelDetail.swift in Sources */,
 				83529A592718241000F3C82B /* OrderRepository.swift in Sources */,
 				833674912716C9DD0040D669 /* Order.swift in Sources */,
+				831FCC1527C5276A00EEA79E /* URLExtension.swift in Sources */,
 				B8C742FE273BC56500E34B5C /* GarageTabViewModel.swift in Sources */,
 				AEB5C442275F7C76007FA143 /* JsonHelper.swift in Sources */,
 				837BE1E22727C4F8000E1FAA /* LocationService.swift in Sources */,

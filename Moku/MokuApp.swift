@@ -52,7 +52,7 @@ struct MokuApp: App {
 
             }
         }
-        
+
     }
 
     @ViewBuilder

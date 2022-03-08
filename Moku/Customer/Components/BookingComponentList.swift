@@ -8,83 +8,141 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct BookingComponentList: View {
-    @State var customer: Customer?
-    @State var bengkel: Bengkel?
-    
-    let order: Order
-    
+final class BookingComponentListViewModel: BookingComponentListViewModelProtocol {
+    private let order: Order
+
+    var motorcycleModelName: String {
+        "\(order.motor.brand.rawValue.capitalized) \(order.motor.model)"
+    }
+
+    var typeOfService: String {
+        order.typeOfService.rawValue
+    }
+
+    var schedule: String {
+        Date.convertDateFormat(date: order.schedule, format: "eeee, d MMMM YYYY – HH:mm")
+    }
+
+    @Published var workshopName: String = "Nama Bengkel"
+
+    @Published var workshopDisplayImageURL: URL?
+
+    @Published var isLoading: Bool = true
+
     init(order: Order) {
         self.order = order
-        getCustomerFromOrders(customerId: order.customerId)
+    }
+
+    func viewOnAppear() {
         getBengkelOrders(bengkelId: order.bengkelId)
     }
-    
+
+    private func getBengkelOrders(bengkelId: String) {
+        BengkelRepository.shared.fetch(id: bengkelId) { bengkel in
+            self.isLoading = false
+            self.workshopName = bengkel.name
+            guard let photoUrl: String = bengkel.photos.first else { return }
+            self.workshopDisplayImageURL = URL(string: photoUrl)
+        }
+    }
+}
+
+struct BookingComponentList<ViewModel>: View where ViewModel: BookingComponentListViewModelProtocol {
+    @StateObject private var viewModel: ViewModel
+
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
-        HStack {
-            if let photo = bengkel?.photos.first {
-                WebImage(url: URL(string: photo))
-                    .font(.system(size: 85))
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(8)
+        VStack(alignment: .leading, spacing: 12) {
+            if let photoUrl: URL = viewModel.workshopDisplayImageURL, photoUrl.isValidURL {
+                WebImage(url: photoUrl)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 144)
+                    .cornerRadius(4)
+                    .clipped()
             }
-            else {
-                Image("number")
-                    .font(.system(size: 85))
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(8)
-            }
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(bengkel?.name ?? "")
-                    .font(.system(size: 15, weight: .semibold))
-                HStack(spacing: 5) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Image(systemName: "bicycle")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppColor.primaryColor)
-                        Image(systemName: "wrench.and.screwdriver.fill")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppColor.primaryColor)
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppColor.primaryColor)
-                    }
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("\(order.motor.brand.rawValue) " + "\(order.motor.model)")
-                            .font(.system(size: 13))
-                        Text("\(order.typeOfService.rawValue)")
-                            .font(.system(size: 13))
-                        Text("\(Date.convertDateFormat(date: order.schedule, format: "eeee, d MMMM YYYY - HH:mm"))")
-                            .font(.system(size: 13))
-                            .fixedSize(horizontal: true, vertical: false)
-                    }
+
+            Text(viewModel.workshopName).font(.headline)
+
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Image(systemName: "bicycle")
+                        .foregroundColor(.accentColor)
+                        .width(32)
+                    Text(viewModel.motorcycleModelName)
+                    Spacer()
+                }
+                HStack {
+                    Image(systemName: "wrench.and.screwdriver.fill")
+                        .foregroundColor(.accentColor)
+                        .width(32)
+                    Text(viewModel.typeOfService)
+                }
+                HStack(alignment: .top) {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .foregroundColor(.accentColor)
+                        .width(32)
+                    Text(viewModel.schedule)
                 }
             }
-            .padding(.trailing, 5)
-            .offset(x: -2)
+            .font(.subheadline)
+            .multilineTextAlignment(.leading)
+        }
+        .redacted(reason: viewModel.isLoading ? .placeholder : [])
+        .padding()
+        .foregroundColor(.label)
+        .background(Color(uiColor: .systemBackground))
+        .cornerRadius(10)
+        .shadow(color: .primary.opacity(0.075), radius: 3, x: 3, y: 3)
+        .onAppear {
+            viewModel.viewOnAppear()
         }
     }
 }
 
 struct BookingComponentList_Previews: PreviewProvider {
     static var previews: some View {
-        BookingComponentList(order: .preview)
+        BookingComponentList(viewModel: BookingComponentListViewModelMock())
             .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
 
-extension BookingComponentList {
-    
-    func getBengkelOrders(bengkelId: String) {
-        BengkelRepository.shared.fetch(id: bengkelId) { bengkel in
-            self.bengkel = bengkel
-        }
+protocol BookingComponentListViewModelProtocol: ObservableObject {
+    var workshopDisplayImageURL: URL? { get }
+    var workshopName: String { get }
+    var motorcycleModelName: String { get }
+    var typeOfService: String { get }
+    var schedule: String { get }
+    var isLoading: Bool { get }
+    func viewOnAppear()
+}
+
+final class BookingComponentListViewModelMock: BookingComponentListViewModelProtocol {
+    var workshopDisplayImageURL: URL? {
+        URL(string: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")
     }
-    
-    func getCustomerFromOrders(customerId: String) {
-        CustomerRepository.shared.fetch(id: customerId) { customer in
-            self.customer = customer
-        }
+    var workshopName: String {
+        "Berkat Jaya Motor"
+    }
+    var motorcycleModelName: String {
+        "Yamaha Aerox 155"
+    }
+    var typeOfService: String {
+        "Servis Rutin"
+    }
+    var schedule: String {
+        "Kamis, 24 Februari 2022 – 12:00"
+    }
+
+    var isLoading: Bool {
+        false
+    }
+
+    func viewOnAppear() {
+        // noop
     }
 }

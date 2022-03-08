@@ -94,7 +94,7 @@ struct BookingSeeAllView: View {
             guard let id = Auth.auth().currentUser?.uid else { return }
             viewModel.getBengkelOrders(bengkelId: id)
         } content: {
-            DetailBooking(order: order)
+            DetailBookingView(order: order)
         }
     }
 }
