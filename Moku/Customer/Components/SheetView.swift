@@ -15,30 +15,26 @@ struct SheetView: View {
     var mainInfo: String
     var body: some View {
         VStack {
-            Group {
-                HStack {
-                    Text("Jam Buka")
-                        .font(.headline)
-                    Spacer()
-                }
+            HStack {
+                Text("Jam Buka")
+                    .font(.headline)
                 Spacer()
-                HStack {
-                    VStack(spacing: 8) {
-                        ForEach(dayInAWeek, id: \.self) { dayIndex in
-                            DayByDay(day: dayIndex, time: mainInfo)
-                        }
-                    }
-                    VStack(spacing: 8) {
-                        ForEach(dayInAWeek2, id: \.self) { dayIndex in
-                            DayByDay(day: dayIndex, time: mainInfo)
-                        }
-                        Spacer()
+            }
+            HStack(alignment: .top) {
+                VStack(spacing: 8) {
+                    ForEach(dayInAWeek, id: \.self) { dayIndex in
+                        DayByDay(day: dayIndex, time: mainInfo)
                     }
                 }
-            }
+                VStack(spacing: 8) {
+                    ForEach(dayInAWeek2, id: \.self) { dayIndex in
+                        DayByDay(day: dayIndex, time: mainInfo)
+                    }
+                }
+            }.padding(.top, 8)
+                .padding(.bottom, 48)
         }
         .padding()
-        .frame(height: 330)
     }
 }
 

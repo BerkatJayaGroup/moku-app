@@ -82,7 +82,7 @@ struct BookingConfirmationView: View {
                     }
                     .partialSheet(isPresented: $showInfoModalView) {
                         CancelBookingModal(order: order, activeFrom: true)
-                    }
+                    }.padding(.bottom, 16)
                 case .rejected:
                     Image("rejectIconV2")
                         .resizable()
@@ -106,7 +106,7 @@ struct BookingConfirmationView: View {
                             .frame(width: UIScreen.main.bounds.width * 0.85)
                             .background(Color("PrimaryColor"))
                             .cornerRadius(8)
-                    }
+                    }.padding(.bottom, 16)
 
                 case .onProgress:
                     Image("acceptIconV2")
@@ -132,7 +132,7 @@ struct BookingConfirmationView: View {
                             .frame(width: UIScreen.main.bounds.width * 0.85)
                             .background(Color("PrimaryColor"))
                             .cornerRadius(8)
-                    }
+                    }.padding(.bottom, 16)
                 default:
                     Text("Tidak ada booking")
                 }

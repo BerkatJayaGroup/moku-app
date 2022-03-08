@@ -89,7 +89,7 @@ struct BengkelDate: View {
                     .frame(width: UIScreen.main.bounds.width * 0.85)
                     .background(Color("PrimaryColor"))
                     .cornerRadius(8)
-            }
+            }.padding(.bottom, 16)
         }
         .onTapGesture {
             self.endTextEditing()
