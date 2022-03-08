@@ -22,7 +22,7 @@ struct UlasanAftarSend: View {
             .navigationTitle("Ulasan")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Button("Batal") {
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                NavigateToRootView.popToRootView()
             })
         }
     }

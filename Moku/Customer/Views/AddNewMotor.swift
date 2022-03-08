@@ -13,7 +13,7 @@ struct AddNewMotor: View {
     @Binding var isFinishAddData: Bool
     @ObservedObject var data = JsonHelper()
     @State var motors: [Motor] = []
-    init(motor: Motor? = nil, isEditing: Bool = false, motorBefore: Motor? = nil, isFinishAddData: Binding<Bool>, motors: [Motor]? = nil) {
+    init(motor: Motor? = nil, isEditing: Bool = true, motorBefore: Motor? = nil, isFinishAddData: Binding<Bool>, motors: [Motor]? = nil) {
         _viewModel = StateObject(wrappedValue: AddNewMotorViewModel(motor: motor, isEditing: isEditing, motorBefore: motor, motors: motors))
         UITableView.appearance().backgroundColor = .none
         UITableView.appearance().separatorColor = UIColor(AppColor.darkGray)
@@ -23,13 +23,13 @@ struct AddNewMotor: View {
     }
     var body: some View {
         NavigationView {
-            VStack {
+          VStack {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Text("MODEL MOTOR")
+                        .padding(.top)
                         .font(.caption2)
                         .foregroundColor(AppColor.darkGray)
-                        .padding(.horizontal)
-                        .padding(.leading, 15)
                     Button {
                         viewModel.show.toggle()
                     } label: {
@@ -56,51 +56,73 @@ struct AddNewMotor: View {
                         MotorModal(availableMotors: data.motors,
                                    selectedMotor: $viewModel.motor,
                                    showingSheet: $viewModel.show)
-                    }.padding(.horizontal)
+                    }
                 }
+
                 Image("MotorIllustration")
                     .opacity(0.3)
                     .padding(15)
-                Form {
-                    Section(header: Text("PLAT NOMOR").font(.caption2).foregroundColor(AppColor.darkGray)) {
+
+                VStack(alignment: .leading) {
+                    Text("PLAT NOMOR")
+                        .font(.caption2)
+                        .foregroundColor(AppColor.darkGray)
+
+                    VStack {
                         TextField("Plat Nomor", text: $viewModel.plat)
-                            .listRowBackground(AppColor.lightGray)
-                            .font(.system(size: 15, weight: .regular))
+                          .padding(5)
+                          .foregroundColor(.black)
+                          .font(.subheadline)
+                          .background(AppColor.lightGray)
+                          .cornerRadius(8)
+                        Divider()
                         TextField("Masa Berlaku", text: $viewModel.masaBerlaku)
-                            .listRowBackground(AppColor.lightGray)
-                            .font(.system(size: 15, weight: .regular))
-                            .keyboardType(.numberPad)
-                    }
-                    Section(header: Text("TAHUN KENDARAAN").font(.caption2).foregroundColor(AppColor.darkGray)) {
-                        TextField("Tahun Kendaraan", text: $viewModel.tahunBeli)
-                            .listRowBackground(AppColor.lightGray)
-                            .font(.system(size: 15, weight: .regular))
-                            .keyboardType(.numberPad)
-                    }
+                          .padding(5)
+                          .foregroundColor(.black)
+                          .font(.subheadline)
+                          .background(AppColor.lightGray)
+                          .cornerRadius(8)
                 }
-                if viewModel.isEditing {
-                    Button {
-                        viewModel.remove {
-                            presentationMode.wrappedValue.dismiss()
-                            self.isFinishAddData = true
-                        }
-                    } label: {
-                        HStack {
-                            Image(systemName: "trash")
-                                .font(.system(size: 17, weight: .semibold))
-                            Text("Hapus Motor")
-                                .font(.system(size: 17, weight: .semibold))
-                        }
-                        .foregroundColor(Color.red)
-                        .padding(.horizontal)
-                    }
-                    .frame(width: 312, height: 44)
-                    .background(Color(hex: "EFBFBF"))
-                    .cornerRadius(9)
+                .padding()
+                .background(AppColor.lightGray)
+                .cornerRadius(8)
+
+                Text("TAHUN KENDARAAN")
+                  .padding(.top)
+                  .font(.caption2)
+                  .foregroundColor(AppColor.darkGray)
+                  TextField("Tahun Kendaraan", text: $viewModel.tahunBeli)
+                  .padding()
+                  .foregroundColor(.black)
+                  .font(.subheadline)
+                  .background(AppColor.lightGray)
+                  .cornerRadius(8)
                 }
+            }.padding(.horizontal)
+            if viewModel.isEditing {
+                Button {
+                    viewModel.remove {
+                        presentationMode.wrappedValue.dismiss()
+                        self.isFinishAddData = true
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "trash")
+                            .font(.system(size: 17, weight: .semibold))
+                        Text("Hapus Motor")
+                            .font(.system(size: 17, weight: .semibold))
+                    }
+                    .foregroundColor(Color.red)
+                    .padding(.horizontal)
+                }
+                .frame(width: 312, height: 44)
+                .background(Color(hex: "EFBFBF"))
+                .cornerRadius(9)
             }
-            .padding()
-            .navigationTitle(Text("Tambah Motor Baru"))
+          }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .navigationTitle(viewModel.isEditing ? "Sunting Motor" : "Tambah Motor Baru")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button {
@@ -130,5 +152,11 @@ struct AddNewMotor: View {
                 endTextEditing()
             }
         }
+    }
+}
+
+struct AddNewMotor_Previews: PreviewProvider {
+    static var previews: some View {
+      AddNewMotor(isFinishAddData: .constant(false))
     }
 }

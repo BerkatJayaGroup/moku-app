@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct EditDataBengkelView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
@@ -14,6 +15,7 @@ struct EditDataBengkelView: View {
     @State var isSubmitting: Bool = false
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @StateObject var viewModel: ViewModel
+    @State var uiTabarController: UITabBarController?
 
     init(bengkel: Bengkel) {
         let viewModel = ViewModel(bengkel: bengkel)
@@ -22,8 +24,8 @@ struct EditDataBengkelView: View {
     var body: some View {
         ZStack {
             GeometryReader { proxy in
-                VStack {
-                    ScrollView {
+                ScrollView {
+                    VStack {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("BRAND MOTOR YANG BISA DIPERBAIKI")
                                 .font(Font.system(size: 11, weight: .regular))
@@ -131,23 +133,24 @@ struct EditDataBengkelView: View {
                                 .cornerRadius(9)
                                 .keyboardType(.numberPad)
                         }.padding()
-                    }
-                    Spacer()
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                        viewModel.updateBengkel()
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Text("Simpan")
-                            Spacer()
+                        Spacer()
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                            viewModel.updateBengkel()
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Simpan")
+                                Spacer()
+                            }
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(AppColor.primaryColor)
+                            .cornerRadius(8)
+                            .frame(width: 309)
                         }
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(AppColor.primaryColor)
-                        .cornerRadius(8)
-                        .frame(width: 309)
                     }
+                    .frame(width: proxy.size.width, height: proxy.size.height)
                 }
             }
             .padding()
@@ -155,19 +158,19 @@ struct EditDataBengkelView: View {
             .blur(radius: $showSheetOpen.wrappedValue || $showSheetClose.wrappedValue ? 1 : 0 )
             .overlay(
                 $showSheetOpen.wrappedValue || $showSheetClose.wrappedValue ? Color.black.opacity(0.6) : nil
-                )
+            )
             if self.showSheetOpen == true {
                 GeometryReader { proxy in
                     VStack {
                         Picker("", selection: $viewModel.openHours) {
-                                ForEach(0..<24) { i in
-                                    if i < 10 {
-                                        Text("0\(i):00")
-                                    } else {
-                                        Text("\(i):00")
-                                    }
+                            ForEach(0..<24) { i in
+                                if i < 10 {
+                                    Text("0\(i):00")
+                                } else {
+                                    Text("\(i):00")
                                 }
-                            }.labelsHidden()
+                            }
+                        }.labelsHidden()
                             .frame(maxWidth: proxy.size.width  - 90)
                             .pickerStyle(WheelPickerStyle())
                             .background(RoundedRectangle(cornerRadius: 10)
@@ -193,15 +196,15 @@ struct EditDataBengkelView: View {
             if self.showSheetClose == true {
                 GeometryReader { proxy in
                     VStack {
-                            Picker("", selection: $viewModel.closeHours) {
-                                ForEach(0..<24) { i in
-                                    if i < 10 {
-                                        Text("0\(i):00")
-                                    } else {
-                                        Text("\(i):00")
-                                    }
+                        Picker("", selection: $viewModel.closeHours) {
+                            ForEach(0..<24) { i in
+                                if i < 10 {
+                                    Text("0\(i):00")
+                                } else {
+                                    Text("\(i):00")
                                 }
-                            }.labelsHidden()
+                            }
+                        }.labelsHidden()
                             .frame(maxWidth: proxy.size.width  - 90)
                             .pickerStyle(WheelPickerStyle())
                             .background(RoundedRectangle(cornerRadius: 10)
@@ -223,6 +226,12 @@ struct EditDataBengkelView: View {
                     }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
                 }
             }
+        }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            self.uiTabarController = UITabBarController
+        }.onDisappear {
+            self.uiTabarController?.tabBar.isHidden = false
         }
     }
     @ViewBuilder

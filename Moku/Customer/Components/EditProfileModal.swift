@@ -18,23 +18,32 @@ struct EditProfileModal: View {
 
     var customer: Customer
 
-    func header(title: String) -> some View {
-        Text(title).headerStyle()
-    }
-
     init(customer: Customer) {
         self.customer = customer
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
 
-    var btnBack: some View {
-        Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+    private var backButton: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
             HStack {
-                Image(systemName: "chevron.left") // set image here
-                    .aspectRatio(contentMode: .fit)
+                Image(systemName: "chevron.left").aspectRatio(contentMode: .fit)
                 Text("Back")
             }
+        }
+    }
+
+    private var editButton: some View {
+        Button("Sunting") {
+            let updatedCustomer = Customer(
+                id: customer.id,
+                name: !name.isEmpty ? self.name : customer.name,
+                phoneNumber: !phoneNumber.isEmpty ? self.phoneNumber : customer.phoneNumber
+            )
+            garageTabViewModel.update(updatedCustomer)
+            presentationMode.wrappedValue.dismiss()
         }
     }
 
@@ -42,33 +51,41 @@ struct EditProfileModal: View {
         VStack {
             VStack(alignment: .leading) {
                 textField(title: "NAMA", placeholder: customer.name, text: $name)
-                textField(title: "NOMOR TELEPON", placeholder: customer.phoneNumber, text: $phoneNumber, keyboardType: .numberPad)
-            }.padding()
+                textField(
+                    title: "NOMOR TELEPON",
+                    placeholder: customer.phoneNumber,
+                    text: $phoneNumber,
+                    keyboardType: .numberPad
+                )
+            }
+
             Spacer()
+
             Button {
                 try? Auth.auth().signOut()
             } label: {
                 HStack {
-                    Text("Keluar")
-                        .font(.system(size: 17, weight: .semibold))
+                    Spacer()
+                    Text("Keluar").fontWeight(.semibold)
+                    Spacer()
                 }
-                .foregroundColor(AppColor.primaryColor)
-                .padding(.horizontal)
             }
-            .frame(width: 312, height: 44)
+            .padding(12)
             .background(Color(hex: "FFF4E9"))
             .cornerRadius(9)
+            .padding(.horizontal, 24)
         }
+        .padding(24)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("Profil", displayMode: .inline)
         .navigationBarItems(
-            leading: btnBack,
-            trailing: !name.isEmpty || !phoneNumber.isEmpty ? AnyView(Button("Sunting") {
-                let updatedCustomer = Customer(id: customer.id, name: !name.isEmpty ? self.name : customer.name, phoneNumber: !phoneNumber.isEmpty ? self.phoneNumber : customer.phoneNumber)
-                garageTabViewModel.update(updatedCustomer)
-                presentationMode.wrappedValue.dismiss()
-            }) : AnyView(EmptyView()) )
+            leading: backButton,
+            trailing: (!name.isEmpty || !phoneNumber.isEmpty) ? AnyView(editButton) : AnyView(EmptyView())
+        )
+    }
 
+    private func header(title: String) -> some View {
+        Text(title).headerStyle()
     }
 
     private func textField(
@@ -85,7 +102,14 @@ struct EditProfileModal: View {
                     .padding(10)
                     .background(AppColor.lightGray)
                     .cornerRadius(8)
+                    .padding(.bottom)
             }
         }
+    }
+}
+
+struct EditProfileModal_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProfileModal(customer: .preview)
     }
 }

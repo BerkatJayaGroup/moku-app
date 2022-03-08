@@ -32,7 +32,7 @@ class PengaturanHargaBengkelViewModel: ObservableObject {
         guard let location = bengkelOwnerFormViewModel.location else { return }
 
         isLoading = true
-        let calendar = Calendar.current
+        _ = Calendar.current
         let openTime = pengaturanBengkelForm.openTime
         let closeTime = pengaturanBengkelForm.closeTime
 

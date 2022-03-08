@@ -18,7 +18,7 @@ struct HistoryOrderView: View {
                         ForEach(bengkelOrders, id: \.id) { order in
                             if order.status == .done || order.status == .rejected {
                                 NavigationLink {
-                                    DetailBooking(order: order)
+                                    DetailBookingView(order: order)
                                 } label: {
                                     ReviewCell(order: order)
                                 }

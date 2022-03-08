@@ -144,7 +144,7 @@ struct GarasiTabItem: View {
                     HStack {
                         Text("                                           ")
                             .font(.system(size: 17, weight: .semibold))
-                            .backgroundColor(AppColor.lightGray)
+                            .background(AppColor.lightGray)
                             .cornerRadius(10)
                             .foregroundColor(.clear)
                         Spacer()
