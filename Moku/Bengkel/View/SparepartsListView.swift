@@ -45,6 +45,8 @@ struct SparepartsListView: View {
                 .navigationBarItems(trailing: Button("Simpan") {
                     presentationMode.wrappedValue.dismiss()
                 })
+                .padding(.vertical)
+                .navigationBarColor(AppColor.primaryColor)
         }
     }
 }

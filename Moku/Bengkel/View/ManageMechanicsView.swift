@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct ManageMechanicsView: View {
     @State private var showModal: Bool = false
     @State var mechanics = [Mekanik]()
     @State var mechanics1 = [CalonMekanik]()
     @StateObject var viewModel: ManageMechanicsViewModel
+    
+    @State var uiTabarController: UITabBarController?
 
     init(bengkel: Bengkel) {
         let viewModel = ManageMechanicsViewModel(bengkel: bengkel)
@@ -57,6 +60,12 @@ struct ManageMechanicsView: View {
         }.onAppear {
             viewModel.isLoading = true
             viewModel.fetchMechanics()
+        }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            self.uiTabarController = UITabBarController
+        }.onDisappear {
+            self.uiTabarController?.tabBar.isHidden = false
         }
     }
 }
