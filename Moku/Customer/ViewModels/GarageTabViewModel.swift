@@ -38,7 +38,7 @@ class GarageTabViewModel: ObservableObject {
             }
         }.store(in: &subscriptions)
     }
-    
+
     func getMotors(completionHandler: ((Customer) -> Void)? = nil) {
         if let userId = Auth.auth().currentUser?.uid {
             CustomerRepository.shared.fetch(id: userId) { [weak self] customer in
@@ -63,7 +63,7 @@ class GarageTabViewModel: ObservableObject {
             }
         }
     }
-    
+
     func update(_ customer: Customer) {
         customerRepository.update(customer: customer) { updatedCustomer in
             self.customer = updatedCustomer
