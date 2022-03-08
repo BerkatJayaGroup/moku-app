@@ -616,7 +616,6 @@
 				8E2952062723228E00B87EB8 /* SearchBarLocation.swift */,
 				AE9E6E9C2726A412000E2012 /* Ulasan.swift */,
 				8E0435792726B1790079DB29 /* SelectServices.swift */,
-				B8B04C2827A7A3A800042BD2 /* New Group */,
 				8E04357B2726F9F90079DB29 /* CollectionInfoDetailBengkel.swift */,
 				8E40E50E272949B6001CAEF3 /* MultiSelector.swift */,
 				6F5FDCEF2729580D0000FBCB /* ModalSearchMotor.swift */,
@@ -762,13 +761,6 @@
 				B80B01B0272918C700050D90 /* UserDataKeychain.swift */,
 			);
 			path = Credentials;
-			sourceTree = "<group>";
-		};
-		B8B04C2827A7A3A800042BD2 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F5E8098DE71C292574E0645A /* Pods */ = {

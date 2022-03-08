@@ -162,7 +162,7 @@ final class OrderRepository: ObservableObject {
         let mechanic: [String: Any] = [
             "id": mechanic.id,
             "name": mechanic.name,
-            "photo": mechanic.photo
+            "photo": mechanic.photo ?? ""
         ]
         store
             .document(orderId)

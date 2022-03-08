@@ -66,7 +66,7 @@ struct PickRoleView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 5.0))
                             .padding(.horizontal)
                     }
-                }
+                }.padding(.bottom)
             }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
         }
     }
@@ -88,5 +88,6 @@ struct PickRoleView: View {
 struct PickRoleView_Previews: PreviewProvider {
     static var previews: some View {
         PickRoleView()
+          .previewDevice("iPhone 8")
     }
 }

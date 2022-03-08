@@ -56,8 +56,7 @@ struct CustomerView: View {
             }
             .accentColor(AppColor.primaryColor)
             .navigationBarTitle(returnNaviBarTitle(tabSelection: self.tabSelection))
-            .navigationViewStyle(StackNavigationViewStyle())
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 
     func returnNaviBarTitle(tabSelection: Tabs) -> String {

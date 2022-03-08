@@ -49,7 +49,7 @@ struct LoginView: View {
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black, lineWidth: 1))
                     .padding(.horizontal)
             }
-        }
+        }.padding(.bottom)
     }
 }
 
