@@ -16,7 +16,7 @@ struct EditDataBengkelView: View {
     var dayInAWeek: [String] = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
     @StateObject var viewModel: ViewModel
     @State var uiTabarController: UITabBarController?
-    
+
     init(bengkel: Bengkel) {
         let viewModel = ViewModel(bengkel: bengkel)
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -25,7 +25,7 @@ struct EditDataBengkelView: View {
         ZStack {
             GeometryReader { proxy in
                 ScrollView {
-                    VStack{
+                    VStack {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("BRAND MOTOR YANG BISA DIPERBAIKI")
                                 .font(Font.system(size: 11, weight: .regular))
@@ -37,7 +37,7 @@ struct EditDataBengkelView: View {
                             brandEmptyAlert(for: $viewModel.selectedBrand, alert: "Brand motor harus diisi")
                         }
                         .padding(.bottom, 24)
-                        
+
                         VStack(spacing: 8) {
                             Text("HARI OPERASIONAL")
                                 .font(Font.system(size: 11, weight: .regular))
@@ -150,7 +150,7 @@ struct EditDataBengkelView: View {
                             .frame(width: 309)
                         }
                     }
-                    .frame(width: proxy.size.width , height: proxy.size.height)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
                 }
             }
             .padding()
@@ -175,7 +175,7 @@ struct EditDataBengkelView: View {
                             .pickerStyle(WheelPickerStyle())
                             .background(RoundedRectangle(cornerRadius: 10)
                                             .foregroundColor(Color.white).shadow(radius: 1))
-                        
+
                         VStack {
                             Button {
                                 self.showSheetOpen = false
@@ -192,7 +192,7 @@ struct EditDataBengkelView: View {
                     }.position(x: proxy.size.width / 2, y: proxy.size.height - 200)
                 }
             }
-            
+
             if self.showSheetClose == true {
                 GeometryReader { proxy in
                     VStack {
@@ -209,7 +209,7 @@ struct EditDataBengkelView: View {
                             .pickerStyle(WheelPickerStyle())
                             .background(RoundedRectangle(cornerRadius: 10)
                                             .foregroundColor(Color.white).shadow(radius: 1))
-                        
+
                         VStack {
                             Button {
                                 self.showSheetClose = false

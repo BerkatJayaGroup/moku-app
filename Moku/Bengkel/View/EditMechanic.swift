@@ -17,13 +17,12 @@ struct EditMechanic: View {
     @State var saveAlert = false
     @State var isRemove = false
     @State var uiTabarController: UITabBarController?
-    
+
     init(mechanic: Mekanik) {
         let viewModel = ViewModel(mechanic: mechanic)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
-    
+
     var body: some View {
         if viewModel.isLoading {
             ProgressView()
@@ -33,7 +32,7 @@ struct EditMechanic: View {
                     }
                 }
         } else {
-            VStack{
+            VStack {
                 if viewModel.image.isEmpty {
                     if let image = viewModel.mechanic.photo {
                         WebImage(url: URL(string: image))
@@ -72,10 +71,10 @@ struct EditMechanic: View {
                         .cornerRadius(8)
                         .padding(.bottom)
                 }
-                
+
                 Spacer()
-                
-                VStack{
+
+                VStack {
                     if isEditing {
                         Button {
                             saveAlert = true
@@ -143,10 +142,10 @@ struct EditMechanic: View {
                 self.uiTabarController = UITabBarController
             }
             .ignoresSafeArea(.keyboard)
-            
+
         }
     }
-    
+
     @ViewBuilder
     func uploadButton() -> some View {
         Button("Ubah Foto") {
