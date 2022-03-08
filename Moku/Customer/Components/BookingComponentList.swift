@@ -94,7 +94,7 @@ struct BookingComponentList<ViewModel>: View where ViewModel: BookingComponentLi
         .redacted(reason: viewModel.isLoading ? .placeholder : [])
         .padding()
         .foregroundColor(.label)
-        .background(Color(uiColor: .systemBackground))
+        .background(Color.systemBackground)
         .cornerRadius(10)
         .shadow(color: .primary.opacity(0.075), radius: 3, x: 3, y: 3)
         .onAppear {

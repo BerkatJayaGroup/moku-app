@@ -53,7 +53,7 @@ struct AssignMechanics: View {
                     Spacer()
                 }
                 .padding(12)
-                .foregroundColor(Color(uiColor: .systemBackground))
+                .foregroundColor(Color.systemBackground)
                 .background(AppColor.primaryColor)
                 .cornerRadius(8)
                 .padding(.horizontal, 36)

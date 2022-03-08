@@ -31,8 +31,7 @@ struct BookingTabItemView: View {
             VStack {
                 if let orders = viewModel.bengkelOrders {
                     let waitingConfirmationOrder = orders.filter { filteredOrder in
-//                        TODO: LOGIC TANGGALAN GIMANA SI
-                        return (filteredOrder.status == .waitingConfirmation) && (filteredOrder.schedule >= Date())
+                        (filteredOrder.status == .waitingConfirmation) && (filteredOrder.schedule >= Date())
                     }
                     let onProgressOrder = orders.filter { filteredOrder in
                         return (filteredOrder.status == .onProgress || filteredOrder.status == .scheduled) && filteredOrder.schedule.date() == Date().date()
@@ -103,9 +102,9 @@ struct BookingTabItemView: View {
             }
             .navigationTitle("Booking")
             .navigationBarColor(AppColor.primaryColor)
-            .background(NavigationConfigurator { nc in
-                nc.navigationBar.barTintColor = .blue
-                nc.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+            .background(NavigationConfigurator { navCon in
+                navCon.navigationBar.barTintColor = .blue
+                navCon.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
             })
             .onAppear {
                 if let id = Auth.auth().currentUser?.uid {

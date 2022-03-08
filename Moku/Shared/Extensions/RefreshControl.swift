@@ -18,7 +18,8 @@ struct RefreshControl: View {
                 Spacer()
                     .onAppear {
                         if refresh == false {
-                            onRefresh() /// call refresh once if pulled more than 50px
+                            // call refresh once if pulled more than 50px
+                            onRefresh()
                         }
                         isFinishEditData = false
                         refresh = true
@@ -26,14 +27,17 @@ struct RefreshControl: View {
             } else if geo.frame(in: coordinateSpace).maxY < 1 {
                 Spacer()
                     .onAppear {
+                        // reset  refresh if view shrink back
                         refresh = false
-                        /// reset  refresh if view shrink back
                     }
             }
             ZStack(alignment: .center) {
-                if refresh { /// show loading if refresh called
+                // show loading if refresh called
+                if refresh {
                     ProgressView()
-                } else { /// mimic static progress bar with filled bar to the drag percentage
+                }
+                // mimic static progress bar with filled bar to the drag percentage
+                else {
                     ForEach(0..<8) { tick in
                           VStack {
                               Rectangle()
