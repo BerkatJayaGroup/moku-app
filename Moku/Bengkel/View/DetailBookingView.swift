@@ -1,5 +1,5 @@
 //
-//  DetailBooking.swift
+//  DetailBookingView.swift
 //  Moku
 //
 //  Created by Mac-albert on 16/11/21.
@@ -10,23 +10,114 @@ import PartialSheet
 import SDWebImageSwiftUI
 import Introspect
 
-struct DetailBooking: View {
+struct DetailBookingView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @StateObject var viewModel: ViewModel
+
     @State var isShowRejectModal = false
-
     @State var isShowFinishBookingSheet = false
-
     @State var uiTabarController: UITabBarController?
+
     init(order: Order) {
         let viewModel = ViewModel(order: order, showModal: false)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
+    @ViewBuilder
+    var waitingConfirmationView: some View {
+        Button {
+            viewModel.showModal = true
+        } label: {
+            Text("Terima Booking")
+                .frame(width: 310, height: 44)
+                .foregroundColor(.white)
+                .background(AppColor.primaryColor)
+                .cornerRadius(8)
+                .frame(width: 320, height: 45, alignment: .center)
+        }
+        .partialSheet(isPresented: $viewModel.showModal) {
+            AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
+        }
+        .padding(.bottom, 16)
+
+        Button {
+            isShowRejectModal.toggle()
+        } label: {
+            Text("Tolak Booking")
+                .frame(width: 310, height: 44)
+                .background(Color(hex: "FFF4E9"))
+                .cornerRadius(8)
+                .foregroundColor(AppColor.primaryColor)
+                .frame(width: 320, height: 45, alignment: .center)
+        }.partialSheet(isPresented: $isShowRejectModal) {
+            RejectAppointmentModal(order: viewModel.order)
+        }
+    }
+
+    @ViewBuilder
+    var scheduledView: some View {
+        if viewModel.order.schedule.get(.day) == Date().get(.day) {
+            Button {
+                UIApplication.shared.keyWindowPresentedController?.dismiss(animated: true)
+                viewModel.updateStatusOrder(status: .onProgress)
+            } label: {
+                Text("Kerjakan")
+                    .frame(width: 310, height: 44)
+                    .foregroundColor(.white)
+                    .background(AppColor.primaryColor)
+                    .cornerRadius(8)
+                    .frame(width: 320, height: 45, alignment: .center)
+            }
+        } else {
+            Divider().padding(.bottom, 8)
+            HStack {
+                Text("Mekanik yang ditugaskan").fontWeight(.semibold)
+                Spacer()
+            }
+            HStack(spacing: 25) {
+                if let mechanicPhoto = viewModel.order.mekanik?.photo {
+                    WebImage(url: URL(string: mechanicPhoto))
+                        .resizable()
+                        .frame(width: 80, height: 80, alignment: .center)
+                        .imageScale(.large)
+                        .clipShape(Circle())
+                } else {
+                    Image(systemName: "person.crop.circle")
+                        .frame(width: 80, height: 80, alignment: .center)
+                        .imageScale(.large)
+                        .clipShape(Circle())
+                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(viewModel.order.mekanik?.name ?? "N/A")
+                        .font(.system(size: 17))
+                    Text("Mekanik")
+                        .font(.system(size: 13))
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+        }
+    }
+
+    @ViewBuilder
+    var onProgressView: some View {
+        Button {
+            isShowFinishBookingSheet.toggle()
+        } label: {
+            Text("Pesanan Selesai")
+                .frame(width: 310, height: 44)
+                .foregroundColor(.white)
+                .background(AppColor.primaryColor)
+                .cornerRadius(8)
+                .frame(width: 320, height: 45, alignment: .center)
+        }
+    }
+
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(viewModel.motorModel)
                             .font(.system(size: 22))
@@ -36,19 +127,22 @@ struct DetailBooking: View {
                         HStack {
                             Image(systemName: "phone.circle.fill")
                                 .font(.system(size: 18))
-                            Button(action: {
-                                guard let number = URL(string: "tel://" + "\(viewModel.customerNumber)") else { return }
+                            Button {
+                                guard let number = URL(string: "tel://" + "\(viewModel.customerNumber)"), number.isValidURL else { return }
                                 UIApplication.shared.open(number)
-                            }, label: {
+                            } label: {
                                 Text(viewModel.customerNumber)
                                     .font(.system(size: 15))
-                            })
+                            }
                             Spacer()
                         }
                         .foregroundColor(AppColor.primaryColor)
                     }
                     Image("MotorGray")
-                        .frame(width: 260, height: 160, alignment: .center)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 160)
+                        .padding()
                     HStack {
                         VStack(spacing: 16) {
                             HStack {
@@ -66,148 +160,70 @@ struct DetailBooking: View {
                             HStack {
                                 Text("Catatan: ").font(.system(size: 13))
                                 Spacer()
-                            }
+                            }.font(.subheadline)
                         }
                         VStack(spacing: 16) {
                             HStack {
-                                Text(viewModel.orderDate).font(.system(size: 13, weight: .semibold))
+                                Text(viewModel.orderDate)
                                 Spacer()
                             }
                             HStack {
-                                Text(viewModel.orderHour).font(.system(size: 13, weight: .semibold))
+                                Text(viewModel.orderHour)
                                 Spacer()
                             }
                             HStack {
-                                Text(viewModel.typeOfService).font(.system(size: 13, weight: .semibold))
+                                Text(viewModel.typeOfService)
                                 Spacer()
                             }
                             HStack {
-                                Text(viewModel.notes).font(.system(size: 13, weight: .semibold))
+                                Text(viewModel.notes)
                                 Spacer()
                             }
-                        }
+                        }.font(.subheadline.weight(.semibold))
                     }
-                    Spacer()
+
+                    switch viewModel.order.status {
+                    case .waitingConfirmation: waitingConfirmationView
+                    case .scheduled: scheduledView
+                    case .onProgress: onProgressView
+                    default: EmptyView()
+                    }
                 }.sheet(isPresented: $isShowFinishBookingSheet) {
                     FinishBookingView(order: viewModel.order)
-                }
-                switch viewModel.order.status {
-                case .waitingConfirmation:
-                    Button {
-                        print("Terima Booking")
-                        viewModel.showModal = true
-                    } label: {
-                        Text("Terima Booking")
-                            .frame(width: 310, height: 44)
-                            .foregroundColor(.white)
-                            .background(AppColor.primaryColor)
-                            .cornerRadius(8)
-                            .frame(width: 320, height: 45, alignment: .center)
-                    }.partialSheet(isPresented: $viewModel.showModal) {
-                        AssignMechanics(order: viewModel.order, isRootActive: $viewModel.showModal)
-                    }.padding(.bottom, 16)
-                    Button {
-                        isShowRejectModal.toggle()
-                    } label: {
-                        Text("Tolak Booking")
-                            .frame(width: 310, height: 44)
-                            .background(Color(hex: "FFF4E9"))
-                            .cornerRadius(8)
-                            .foregroundColor(AppColor.primaryColor)
-                            .frame(width: 320, height: 45, alignment: .center)
-                    }.partialSheet(isPresented: $isShowRejectModal) {
-                        RejectAppointmentModal(order: viewModel.order)
-                    }
-                case .scheduled :
-                    if viewModel.order.schedule.get(.day) == Date().get(.day) {
-                        Button(action: {
-                            print("Kerjakan Pesanan")
-                            NavigateToRootView.popToRootView()
-                            viewModel.updateStatusOrder(status: .onProgress)
-                        }, label: {
-                            Text("Kerjakan")
-                                .frame(width: 310, height: 44)
-                                .foregroundColor(.white)
-                                .background(AppColor.primaryColor)
-                                .cornerRadius(8)
-                                .frame(width: 320, height: 45, alignment: .center)
-                        })
-                    } else {
-                        Divider()
-                            .padding(.horizontal)
-                        HStack {
-                            Text("Mekanik yang ditugaskan")
-                                .font(.system(size: 17))
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        HStack(spacing: 25) {
-                            if let mechanicPhoto = viewModel.order.mekanik?.photo {
-                                WebImage(url: URL(string: mechanicPhoto))
-                                    .resizable()
-                                    .frame(width: 80, height: 80, alignment: .center)
-                                    .imageScale(.large)
-                                    .clipShape(Circle())
-                            } else {
-                                Image(systemName: "person.crop.circle")
-                                    .frame(width: 80, height: 80, alignment: .center)
-                                    .imageScale(.large)
-                                    .clipShape(Circle())
-                            }
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(viewModel.order.mekanik?.name ?? "N/A")
-                                    .font(.system(size: 17))
-                                Text("Mekanik")
-                                    .font(.system(size: 13))
-                            }
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                    }
-                case .onProgress:
-                    Button(action: {
-                        print("Pesanan Selesai")
-                        isShowFinishBookingSheet.toggle()
-                    }, label: {
-                        Text("Pesanan Selesai")
-                            .frame(width: 310, height: 44)
-                            .foregroundColor(.white)
-                            .background(AppColor.primaryColor)
-                            .cornerRadius(8)
-                            .frame(width: 320, height: 45, alignment: .center)
-                    })
-                default:
-                    EmptyView()
                 }
             }
             .padding(.vertical, 25)
             .padding(.horizontal, 50)
             .addPartialSheet()
-            .navigationTitle("Detail Booking Masuk")
             .navigationBarColor(Color(hex: "F9F9F9"))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                HStack(spacing: 3) {
-                    Image(systemName: "chevron.backward")
-                    Text("Kembali")
+            .navigationBarTitle("Detail Booking Masuk", displayMode: .inline)
+            .navigationBarItems(
+                leading: Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "chevron.backward")
+                        Text("Kembali")
+                    }.foregroundColor(.white)
                 }
-                .foregroundColor(.white)
-            })
-            .introspectTabBarController { (UITabBarController) in
+            )
+            .introspectTabBarController { UITabBarController in
                 UITabBarController.tabBar.isHidden = true
                 self.uiTabarController = UITabBarController
-            }.onDisappear {
+            }
+            .onDisappear {
                 self.uiTabarController?.tabBar.isHidden = false
             }
-        }.navigationBarHidden(true)
-
+        }
+        .navigationBarHidden(true)
+        .onAppear {
+            viewModel.viewOnAppear()
+        }
     }
 }
 
 struct DetailBooking_Previews: PreviewProvider {
     static var previews: some View {
-        DetailBooking(order: .preview)
+        DetailBookingView(order: .preview)
     }
 }

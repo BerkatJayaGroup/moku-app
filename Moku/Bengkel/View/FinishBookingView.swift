@@ -38,8 +38,7 @@ struct FinishBookingView: View {
                             .foregroundColor(.gray)
                         Divider()
                     }
-                    .padding(.horizontal, -17)
-                    .padding(.top, -10)
+                    .listRowInsets(EdgeInsets())
                     Section(header: header(title: "Suku Cadang yang diganti")) {
                         Text("+ Tambah Suku Cadang")
                             .font(.system(size: 13, weight: .semibold))
@@ -66,7 +65,7 @@ struct FinishBookingView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     .textCase(nil)
-                    textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false)
+                    textField(title: "Keterangan Pengerjaan", placeholder: "Deskripsikan kerjaan yang kamu kerjakan pada motor pelanggan", text: $notes, alert: "Harus diisi", isSparePart: false).padding(.vertical)
                     Section(header: header(title: "Foto Nota dan Bukti Pengerjaan")) {
                         if bills != [] {
                             ScrollView(.horizontal) {
@@ -110,8 +109,8 @@ struct FinishBookingView: View {
                             }
                         }
                     }
-                    .textCase(nil)
                     .listRowInsets(EdgeInsets())
+                    .textCase(nil)
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         if !self.shouldPresentCamera {
                             ImagePHPicker(pickerResult: $bills, isPresented: $shouldPresentImagePicker)

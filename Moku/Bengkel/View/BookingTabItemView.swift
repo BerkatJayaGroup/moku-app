@@ -190,7 +190,7 @@ struct BookingTabItemView: View {
             }
         } content: {
             if let orderSelected = self.selectedOrder {
-                DetailBooking(order: orderSelected)
+                DetailBookingView(order: orderSelected)
             }
         }
     }
@@ -222,7 +222,7 @@ struct BookingTabItemView: View {
             viewModel.getBengkelOrders(bengkelId: id)
         } content: {
             if let orderSelected = self.selectedOrder {
-                DetailBooking(order: orderSelected)
+                DetailBookingView(order: orderSelected)
             }
         }
     }
