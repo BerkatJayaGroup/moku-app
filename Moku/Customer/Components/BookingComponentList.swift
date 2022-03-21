@@ -11,15 +11,15 @@ import SDWebImageSwiftUI
 struct BookingComponentList: View {
     @State var customer: Customer?
     @State var bengkel: Bengkel?
-    
+
     let order: Order
-    
+
     init(order: Order) {
         self.order = order
         getCustomerFromOrders(customerId: order.customerId)
         getBengkelOrders(bengkelId: order.bengkelId)
     }
-    
+
     var body: some View {
         HStack {
             if let photo = bengkel?.photos.first {
@@ -27,14 +27,13 @@ struct BookingComponentList: View {
                     .font(.system(size: 85))
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(8)
-            }
-            else {
+            } else {
                 Image("number")
                     .font(.system(size: 85))
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(8)
             }
-            
+
             VStack(alignment: .leading, spacing: 5) {
                 Text(bengkel?.name ?? "")
                     .font(.system(size: 15, weight: .semibold))
@@ -75,13 +74,13 @@ struct BookingComponentList_Previews: PreviewProvider {
 }
 
 extension BookingComponentList {
-    
+
     func getBengkelOrders(bengkelId: String) {
         BengkelRepository.shared.fetch(id: bengkelId) { bengkel in
             self.bengkel = bengkel
         }
     }
-    
+
     func getCustomerFromOrders(customerId: String) {
         CustomerRepository.shared.fetch(id: customerId) { customer in
             self.customer = customer

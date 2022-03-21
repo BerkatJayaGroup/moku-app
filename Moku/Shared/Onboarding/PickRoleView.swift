@@ -6,13 +6,32 @@
 //
 
 import Foundation
+import FirebaseAuth
 import SwiftUI
 
 struct PickRoleView: View {
     //    @State var isNavigateToBengkelOnboarding = false
+    @Environment(\.presentationMode) var presentationMode
     @State var motorSelected: Bool = false
     @State var bengkelSelected: Bool = false
     @State var isActive: Bool = false
+
+    var btnBack: some View {
+        Button {
+          do {
+            try Auth.auth().signOut()
+          } catch {
+            print("already logged out")
+          }
+          AppState.shared.viewID = UUID()
+        } label: {
+          HStack {
+              Image(systemName: "chevron.left") // set image here
+                  .aspectRatio(contentMode: .fit)
+              Text("Kembali")
+          }
+        }
+    }
 
     var body: some View {
         NavigationView {
@@ -67,7 +86,9 @@ struct PickRoleView: View {
                             .padding(.horizontal)
                     }
                 }
-            }.navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
+            }
+            .navigationBarTitle("Pilih Jenis Akun", displayMode: .inline)
+            .navigationBarItems(leading: btnBack)
         }
     }
 
