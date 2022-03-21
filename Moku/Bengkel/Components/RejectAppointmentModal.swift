@@ -43,7 +43,7 @@ struct RejectAppointmentModal: View {
             Spacer()
             Button("Selesai") {
                 viewModel.updateStatusOrder(status: Order.Status.rejected, reason: chosenReason)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                NavigateToRootView.popToRootView()
             }.padding()
             .frame(maxWidth: .infinity)
             .background(AppColor.primaryColor)

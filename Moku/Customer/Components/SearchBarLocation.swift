@@ -31,7 +31,7 @@ struct SearchBarLocation: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                .animation(.default, value: isEditing)
             }
         }
         .padding(10)

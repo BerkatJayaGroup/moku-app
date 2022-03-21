@@ -56,8 +56,7 @@ extension BengkelDate {
         }
 
         func checkAvailability(index: Int) -> Bool {
-//        TODO: GET MEKANIK MOTOR.COUNT
-            if occupiedHours.keys.contains(String(index)) && /* bengkel.mekaniks.count */ 4  <= occupiedHours[String(index)] ?? 0 {
+            if occupiedHours.keys.contains(String(index)) && bengkel.mekaniks.count <= occupiedHours[String(index)] ?? 0 {
                 return true
             } else {
                 return false

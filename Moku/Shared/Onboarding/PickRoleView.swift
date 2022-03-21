@@ -109,5 +109,6 @@ struct PickRoleView: View {
 struct PickRoleView_Previews: PreviewProvider {
     static var previews: some View {
         PickRoleView()
+          .previewDevice("iPhone 8")
     }
 }

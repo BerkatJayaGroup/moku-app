@@ -46,7 +46,6 @@ extension Order {
 
     enum Status: String, Codable {
         case waitingConfirmation = "Menunggu konfirmasi"
-//        TODO: waitingSchedule hapus
         case waitingSchedule = "Menunggu penjadwalan"
         case scheduled = "Terjadwal"
         case onProgress = "Dikerjakan"

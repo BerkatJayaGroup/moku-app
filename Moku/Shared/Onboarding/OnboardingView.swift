@@ -19,10 +19,11 @@ struct OnboardingView: View {
     }
 
     var body: some View {
+      GeometryReader { proxy in
         VStack {
             TabView(selection: $curSlideIndex) {
                 ForEach(0..<data.count) { i in
-                    OnboardingStepView(data: data[i]).tag(i)
+                  OnboardingStepView(data: data[i], proxy: proxy).tag(i)
                 }
             }
             .tabViewStyle(.page)
@@ -70,7 +71,8 @@ struct OnboardingView: View {
                         .padding()
                 }
             }
-        }
+        }.padding(.bottom)
+      }
     }
 }
 

@@ -162,7 +162,7 @@ struct BookingSummary: View {
                         .frame(width: UIScreen.main.bounds.width * 0.85)
                         .background(Color("PrimaryColor"))
                         .cornerRadius(8)
-                }
+                }.padding(.bottom, 16)
             }
         }
     }

@@ -6,47 +6,42 @@
 //
 
 import SwiftUI
-import FirebaseAuth
-import SwiftUIX
 
 struct BookingsTabItem: View {
-    @StateObject private var viewModel = ViewModel()
+    @StateObject private var viewModel = BookingsTabItemViewModel()
+
     var body: some View {
-            ZStack(alignment: .top) {
-                Rectangle()
-                    .foregroundColor(AppColor.primaryColor)
-                    .ignoresSafeArea()
-                    .frame(height: 0)
-                VStack {
-                    Picker("Bookings", selection: $viewModel.segmentType) {
-                        Text("Dalam Proses").tag(0)
-                        Text("Terjadwal").tag(1)
-                        Text("Riwayat").tag(2)
+        ZStack(alignment: .top) {
+            Rectangle()
+                .foregroundColor(.accentColor)
+                .ignoresSafeArea()
+                .frame(height: 0)
+
+            VStack {
+                Picker("Bookings", selection: $viewModel.segmentSelection) {
+                    ForEach(viewModel.segments) { segment in
+                        Text(segment.rawValue).tag(segment)
                     }
-                    .pickerStyle(.segmented)
-                    if viewModel.filteredOrders.isEmpty == false {
-                        ScrollView {
-                            VStack {
-                                ForEach(viewModel.filteredOrders, id: \.id) { item in
-                                    NavigationLink(destination: BookingDetail(order: item)) {
-                                        BookingComponentList(order: item)
-                                            .padding(5)
-                                            .background(Color.white)
-                                            .cornerRadius(10)
-                                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 0)
-                                            .foregroundColor(.black)
-                                    }
-                                }
-                            }.padding(10)
+                }.pickerStyle(SegmentedPickerStyle())
+
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(viewModel.segmentedOrders, id: \.id) { order in
+                            NavigationLink(destination: BookingDetail(order: order)) {
+                                let viewModel = BookingComponentListViewModel(order: order)
+                                BookingComponentList(viewModel: viewModel).padding(4)
+                            }
                         }
-                    } else {
-                        Spacer()
-                        BookingEmptyComponent(state: viewModel.segmentType == 0)
-                        Spacer()
-                    }
+                    }.padding(.vertical)
                 }
-                .padding(20)
-            }
+                .overlay {
+                    BookingEmptyComponent(state: viewModel.segmentSelection == .inProgress)
+                        .hidden(!viewModel.segmentedOrders.isEmpty)
+                }
+            }.padding()
+        }.onAppear {
+            viewModel.viewOnAppear()
+        }
     }
 }
 

@@ -10,7 +10,9 @@ import SwiftUI
 
 struct NavigateToRootView {
   static func popToRootView() {
-    findNavigationController(viewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)?
+    let scenes = UIApplication.shared.connectedScenes
+    let windowScenes = scenes.first as? UIWindowScene
+    findNavigationController(viewController: windowScenes?.windows.filter { $0.isKeyWindow }.first?.rootViewController)?
       .popToRootViewController(animated: true)
   }
 
