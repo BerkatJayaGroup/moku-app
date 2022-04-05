@@ -34,25 +34,7 @@ struct DaftarCustomer: View {
           ScrollView(showsIndicators: false) {
                 VStack(alignment: .center) {
                     VStack(alignment: .leading) {
-                        Text("NAMA")
-                            .font(.caption2)
-                        TextField("Tulis namamu disini", text: $viewModel.name, onEditingChanged: { isChanged in
-                            if !isChanged {
-                                viewModel.validateEmptyName()
-                            }
-                        })
-                            .font(.subheadline)
-                            .padding(15)
-                            .background(AppColor.textField)
-                            .cornerRadius(8)
-                            .padding(.bottom)
-                        if !viewModel.nameCheck {
-                            Text("Nama wajib diisi")
-                                .offset(y: -10)
-                                .font(.caption2)
-                                .foregroundColor(Color.red)
-                        }
-
+                        
                         Text("NOMOR TELEPON")
                             .font(.caption2)
                         TextField("08xx-xxxx-xxxx", text: $viewModel.nomorTelepon, onEditingChanged: { isChanged in
