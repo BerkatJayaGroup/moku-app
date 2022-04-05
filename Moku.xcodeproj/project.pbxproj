@@ -1257,8 +1257,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "You can add photos to your profile. Rest assured your data is safe with us, and we respect your privacy.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Make the most of your search by enabling your location-based services. Privacy is guaranteed.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images easily from your Photo Library.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Help us find you nearby workshops by enabling your location-based services. Privacy is guaranteed.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images to your profile easily from your Photo Library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1298,8 +1298,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moku/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "You can add photos to your profile. Rest assured your data is safe with us, and we respect your privacy.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Make the most of your search by enabling your location-based services. Privacy is guaranteed.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images easily from your Photo Library.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Help us find you nearby workshops by enabling your location-based services. Privacy is guaranteed.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow this so that you could upload images to your profile easily from your Photo Library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
