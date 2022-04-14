@@ -126,7 +126,6 @@ struct DaftarCustomer: View {
             Spacer()
             Button {
                 if viewModel.isFormInvalid {
-                    viewModel.validateEmptyName()
                     viewModel.isPhoneNumberEmpty()
                     viewModel.isMotorEmpty()
                 } else {

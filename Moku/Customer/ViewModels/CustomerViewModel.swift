@@ -7,7 +7,7 @@
 
 import Combine
 import SwiftUI
-import FirebaseFirestore
+import Firebase
 
 extension DaftarCustomer {
     class ViewModel: ObservableObject {
@@ -26,7 +26,12 @@ extension DaftarCustomer {
 
         private let repository: CustomerRepository = .shared
 
-        init() {}
+        init() {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                name = user.displayName ?? ""
+            }
+        }
 
         func create(_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
             repository.add(customer: customer) { docRef in
@@ -46,14 +51,6 @@ extension DaftarCustomer {
         }
         var isFormInvalid: Bool {
             motor == nil || name.isEmpty || nomorTelepon.isEmpty
-        }
-
-        func validateEmptyName () {
-            if name.isEmpty {
-                nameCheck = false
-            } else {
-                nameCheck = true
-            }
         }
 
         func isPhoneNumberEmpty() {
