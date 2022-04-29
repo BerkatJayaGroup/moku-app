@@ -91,6 +91,7 @@ struct ProfileBengkelView: View {
                         }
                         Button("Sign out") {
                             try? Auth.auth().signOut()
+                            AppState.shared.viewID = UUID()
                         }
                         .foregroundColor(AppColor.primaryColor)
                     }

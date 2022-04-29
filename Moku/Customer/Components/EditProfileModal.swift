@@ -63,6 +63,7 @@ struct EditProfileModal: View {
 
             Button {
                 try? Auth.auth().signOut()
+                AppState.shared.viewID = UUID()
             } label: {
                 HStack {
                     Spacer()
