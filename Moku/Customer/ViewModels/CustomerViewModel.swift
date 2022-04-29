@@ -36,15 +36,9 @@ extension DaftarCustomer {
         func create(_ customer: Customer, completionHandler: ((Customer) -> Void)? = nil) {
             repository.add(customer: customer) { docRef in
                 docRef.getDocument { snapshot, _ in
-                    if let snapshot = snapshot {
-                        do {
-                            if let customer = try snapshot.data(as: Customer.self) {
-                                SessionService.shared.user = .customer(customer)
-                                completionHandler?(customer)
-                            }
-                        } catch {
-                            print(error.localizedDescription)
-                        }
+                    if let customer = try? snapshot?.data(as: Customer.self) {
+                        SessionService.shared.user = .customer(customer)
+                        completionHandler?(customer)
                     }
                 }
             }

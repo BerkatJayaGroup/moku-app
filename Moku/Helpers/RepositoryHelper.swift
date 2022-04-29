@@ -23,10 +23,8 @@ struct RepositoryHelper {
         var results = [T]()
 
         for document in documents {
-            do {
-                guard let data = try document.data(as: T.self) else { continue }
-                results.append(data)
-            } catch { handleParsingError(error) }
+            guard let data = try? document.data(as: T.self) else { continue }
+            results.append(data)
         }
 
         return results
