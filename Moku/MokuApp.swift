@@ -25,7 +25,7 @@ struct MokuApp: App {
     @StateObject var sheetManager = PartialSheetManager()
 
     @StateObject var appStateShare = AppState.shared
-
+    
     var body: some Scene {
         WindowGroup {
             if case .bookingDetail(let orderID) = dynamicLinksService.dynamicLinkTarget {

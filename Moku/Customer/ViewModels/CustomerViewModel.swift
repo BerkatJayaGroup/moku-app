@@ -44,7 +44,7 @@ extension DaftarCustomer {
             }
         }
         var isFormInvalid: Bool {
-            motor == nil || name.isEmpty || nomorTelepon.isEmpty
+            motor == nil || nomorTelepon.isEmpty
         }
 
         func isPhoneNumberEmpty() {
