@@ -154,7 +154,7 @@ struct DaftarCustomer: View {
                     .padding(.vertical, 16)
                     .frame(width: UIScreen.main.bounds.width * 0.85)
                     .background(viewModel.nomorTelepon.isEmpty ? Color(.systemGray6) : Color("PrimaryColor"))
-                    .foregroundColor(viewModel.name.isEmpty || viewModel.nomorTelepon.isEmpty ? .gray : .white)
+                    .foregroundColor(viewModel.nomorTelepon.isEmpty ? .gray : .white)
                     .cornerRadius(8)
                     .padding()
             }
